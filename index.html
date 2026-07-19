@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Planificador Nutricional Completo</title>
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background: #f4f7f6; }
+    table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+    th { background: #2c3e50; color: white; }
+    .row-dia { background: #34495e; color: white; font-weight: bold; }
+    .row-bloque { background: #ecf0f1; font-weight: bold; }
+    .row-total { background: #dff0d8; font-weight: bold; }
+    select { width: 180px; padding: 4px; }
+    input { width: 50px; padding: 4px; text-align: center; }
+    .btn-del { color: #c0392b; cursor: pointer; font-weight: bold; border: 1px solid #c0392b; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+<h1>Planificador Nutricional Semanal</h1>
+<table id="tablaPlan">
+  <thead>
+    <tr>
+      <th>DÍA</th>
+      <th>BLOQUE</th>
+      <th>ALIMENTO</th>
+      <th>g</th>
+      <th>Kcal</th>
+      <th>Prot</th>
+      <th>Carb</th>
+      <th>Grasa</th>
+      <th>Acción</th>
+    </tr>
+  </thead>
+  <tbody id="cuerpoTabla"></tbody>
+</table>
+
+<script>
+// --- CONFIGURACIÓN DE TU MENÚ ---
+// Aquí defines tus filas. Si quieres más, solo copia y pega estas líneas.
+const planEstructura = [
+  { dia: "Lunes", bloque: "Desayuno", alimento: "Arroz integral cocido", gramos: 150 },
+  { dia: "Lunes", bloque: "Desayuno", alimento: "Atún fresco crudo", gramos: 80 },
+  { dia: "Lunes", bloque: "Batido Mañana", alimento: "Arroz integral cocido", gramos: 50 },
+  { dia: "Martes", bloque: "Desayuno", alimento: "Atún fresco crudo", gramos: 100 }
+];
+
+let baseDatos = [];
+
+async function init() {
+  const res = await fetch('alimentos.json');
+  baseDatos = await res.json();
+  renderizar();
+}
+
+function renderizar() {
+  const cuerpo = document.getElementById('cuerpoTabla');
+  cuerpo.innerHTML = '';
+  
+  let diaActual = "";
+  let bloqueActual = "";
+
+  planEstructura.forEach((item, index) => {
+    // Calcular valores
+    const alimento = baseDatos.find(a => a.nombre.toLowerCase().trim() === item.alimento.toLowerCase().trim());
+    const g = item.gramos;
+    const f = g / 100;
+    
+    const kcal = alimento ? (alimento.kcal * f) : 0;
+    const prot = alimento ? (alimento.proteinas * f) : 0;
+    const carb = alimento ? (alimento.carbohidratos * f) : 0;
+    const gras = alimento ? (alimento.grasas * f) : 0;
+
+    // Crear fila
+    const fila = document.createElement('tr');
+    fila.id = `fila-${index}`;
+    
+    let options = baseDatos.map(a => `<option value="${a.nombre}" ${a.nombre === item.alimento ? 'selected' : ''}>${a.nombre}</option>`).join('');
+
+    fila.innerHTML = `
+      <td>${item.dia}</td>
+      <td>${item.bloque}</td>
+      <td><select onchange="actualizar('${index}', this.value)">${options}</select></td>
+      <td><input type="number" value="${g}" onchange="cambiarGramos('${index}', this.value)"></td>
+      <td class="res-kcal">${kcal.toFixed(1)}</td>
+      <td class="res-prot">${prot.toFixed(1)}</td>
+      <td class="res-carb">${carb.toFixed(1)}</td>
+      <td class="res-gras">${gras.toFixed(1)}</td>
+      <td><span class="btn-del" onclick="limpiar('${index}')">X</span></td>
+    `;
+    cuerpo.appendChild(fila);
+  });
+}
+
+function actualizar(index, nuevoNombre) {
+  planEstructura[index].alimento = nuevoNombre;
+  renderizar();
+}
+
+function cambiarGramos(index, nuevosGramos) {
+  planEstructura[index].gramos = parseFloat(nuevosGramos) || 0;
+  renderizar();
+}
+
+function limpiar(index) {
+  planEstructura[index].alimento = "";
+  planEstructura[index].gramos = 0;
+  renderizar();
+}
+
+init();
+</script>
+</body>
+</html>
