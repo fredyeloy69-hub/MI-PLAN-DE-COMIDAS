@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Base de Datos Nutricional</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        input { padding: 10px; width: 300px; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+
+    <h1>Consulta de Alimentos</h1>
+    <input type="text" id="searchInput" placeholder="Buscar alimento..." onkeyup="filtrar()">
+
+    <table id="tablaAlimentos">
+        <thead>
+            <tr>
+                <th>Alimento</th>
+                <th>Kcal</th>
+                <th>Proteínas (g)</th>
+                <th>Grasas (g)</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoTabla"></tbody>
+    </table>
+
+    <script>
+        let data = [];
+
+        // Cargar datos automáticamente desde el JSON
+        fetch('alimentos.json')
+            .then(response => response.json())
+            .then(json => {
+                data = json;
+                mostrarDatos(data);
+            });
+
+        function mostrarDatos(lista) {
+            const cuerpo = document.getElementById('cuerpoTabla');
+            cuerpo.innerHTML = lista.map(item => `
+                <tr>
+                    <td>${item.alimento}</td>
+                    <td>${item.energia_kcal}</td>
+                    <td>${item.proteinas}</td>
+                    <td>${item.grasas}</td>
+                </tr>
+            `).join('');
+        }
+
+        function filtrar() {
+            const busqueda = document.getElementById('searchInput').value.toLowerCase();
+            const filtrados = data.filter(item => item.alimento.toLowerCase().includes(busqueda));
+            mostrarDatos(filtrados);
+        }
+    </script>
+</body>
+</html>
