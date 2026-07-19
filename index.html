@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Planificador Nutricional Semanal Completo</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
+    h1 { text-align: center; color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    th, td { border: 1px solid #bdc3c7; padding: 8px; text-align: center; font-size: 14px; }
+    th { background-color: #34495e; color: white; }
+    .dia-header { background-color: #2c3e50; color: white; font-weight: bold; }
+    .comida-header { background-color: #ecf0f1; font-weight: bold; color: #2c3e50; }
+    .total-row { background-color: #dff0d8; font-weight: bold; }
+    .total-dia { background-color: #f1c40f; font-weight: bold; }
+    input[type="number"] { width: 60px; padding: 5px; text-align: center; }
+    input[type="text"] { width: 180px; padding: 5px; }
+    .btn-add { background: #27ae60; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; font-weight: bold; }
+    .btn-del { background: #c0392b; color: white; border: none; padding: 3px 8px; cursor: pointer; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <h1>Planificador Nutricional Semanal</h1>
+  <div id="contenedorTablas"></div>
+  <datalist id="listaAlimentos"></datalist>
+
+  <script>
+    let baseDatos = [];
+    const estructuraSemana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+    const bloquesComida = ["COMIDA - DESAYUNO/ALMUERZO/CENA", "BATIDO MAÑANA", "BATIDO MEDIAMAÑANA", "BATIDO NOCHE"];
+
+    // Estructura de datos persistente
+    let planSemanal = {};
+    estructuraSemana.forEach(dia => {
+      planSemanal[dia] = {};
+      bloquesComida.forEach(bloque => planSemanal[dia][bloque] = [{ nombre: "", gramos: 0 }]);
+    });
+
+    async function iniciar() {
+      try {
+        const res = await fetch('alimentos.json');
+        baseDatos = await res.json();
+        // Poblar datalist para autocompletar
+        const datalist = document.getElementById('listaAlimentos');
+        datalist.innerHTML = baseDatos.map(a => `<option value="${a.nombre}">`).join('');
+      } catch (e) { console.error("Error al cargar JSON: asegúrate de que el archivo exista en la misma carpeta."); }
+      renderizarTodo();
+    }
+
+    function buscarAlimento(texto) {
+      if (!texto) return null;
+      return baseDatos.find(a => a.nombre.toLowerCase().includes(texto.toLowerCase().trim()));
+    }
+
+    function renderizarTodo() {
+      const contenedor = document.getElementById('contenedorTablas');
+      contenedor.innerHTML = '';
+      let html = `<table><thead><tr><th>DÍA</th><th>BLOQUE</th><th>ALIMENTO</th><th>PORCIÓN (g)</th><th>Kcal</th><th>PROTEÍNA (g)</th><th>CARBOHIDRATOS (g)</th><th>GRASA (g)</th><th>ACCIÓN</th></tr></thead><tbody>`;
+
+      estructuraSemana.forEach(dia => {
+        let diaTotal = { kcal: 0, prot: 0, carb: 0, grasa: 0 };
+        let firstDia = true;
+
+        bloquesComida.forEach(bloque => {
+          let items = planSemanal[dia][bloque];
+          let bloqueTotal = { kcal: 0, prot: 0, carb: 0, grasa: 0 };
+
+          items.forEach((item, index) => {
+            let nut = buscarAlimento(item.nombre) || { kcal: 0, proteinas: 0, carbohidratos: 0, grasas: 0 };
+            let f = item.gramos / 100;
+            let kcal = nut.kcal * f;
+            let prot = nut.proteinas * f;
+            let carb = nut.carbohidratos * f;
+            let gras = nut.grasas * f;
+
+            bloqueTotal.kcal += kcal; bloqueTotal.prot += prot; bloqueTotal.carb += carb; bloqueTotal.grasa += gras;
+            diaTotal.kcal += kcal; diaTotal.prot += prot; diaTotal.carb += carb; diaTotal.grasa += gras;
+
+            html += `<tr>`;
+            if (firstDia) { html += `<td rowspan="${contarFilasDia(dia)}" class="dia-header">${dia}</td>`; firstDia = false; }
+            if (index === 0) { html += `<td rowspan="${items.length + 1}" class="comida-header">${bloque}<br><button class="btn-add" onclick="agregarFila('${dia}', '${bloque}')">+ Agregar</button></td>`; }
+
+            html += `
+              <td><input type="text" list="listaAlimentos" value="${item.nombre}" oninput="cambiarAlimento('${dia}', '${bloque}', ${index}, this.value)" placeholder="Escribe el alimento..."></td>
+              <td><input type="number" value="${item.gramos}" oninput="cambiarGramos('${dia}', '${bloque}', ${index}, this.value)"></td>
+              <td>${kcal.toFixed(1)}</td><td>${prot.toFixed(1)}</td><td>${carb.toFixed(1)}</td><td>${gras.toFixed(1)}</td>
+              <td><button class="btn-del" onclick="eliminarFila('${dia}', '${bloque}', ${index})">X</button></td>
+            </tr>`;
+          });
+          html += `<tr class="total-row"><td colspan="2" style="text-align:right;">TOTAL ${bloque}:</td><td>${bloqueTotal.kcal.toFixed(1)}</td><td>${bloqueTotal.prot.toFixed(1)}</td><td>${bloqueTotal.carb.toFixed(1)}</td><td>${bloqueTotal.grasa.toFixed(1)}</td><td></td></tr>`;
+        });
+        html += `<tr class="total-dia"><td colspan="3" style="text-align:right;">TOTAL DÍA ${dia.toUpperCase()}:</td><td>${diaTotal.kcal.toFixed(1)}</td><td>${diaTotal.prot.toFixed(1)}</td><td>${diaTotal.carb.toFixed(1)}</td><td>${diaTotal.grasa.toFixed(1)}</td><td></td></tr><tr><td colspan="9" style="background:#fff; height:15px; border:none;"></td></tr>`;
+      });
+      html += `</tbody></table>`;
+      contenedor.innerHTML = html;
+    }
+
+    function contarFilasDia(dia) {
+      let total = 0;
+      bloquesComida.forEach(b => total += planSemanal[dia][b].length + 1);
+      return total + 1;
+    }
+
+    function cambiarAlimento(d, b, i, val) { planSemanal[d][b][i].nombre = val; renderizarTodo(); }
+    function cambiarGramos(d, b, i, val) { planSemanal[d][b][i].gramos = parseFloat(val) || 0; renderizarTodo(); }
+    function agregarFila(d, b) { planSemanal[d][b].push({ nombre: "", gramos: 0 }); renderizarTodo(); }
+    function eliminarFila(d, b, i) { planSemanal[d][b].splice(index, 1); renderizarTodo(); }
+
+    window.onload = iniciar;
+  </script>
+</body>
+</html>
