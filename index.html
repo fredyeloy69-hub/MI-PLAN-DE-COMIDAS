@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planificador Nutricional Semanal</title>
+  <style>
+    :root {
+      --azul:#2563eb; --azul-dark:#1e3a5f; --verde:#16a34a;
+      --rojo:#dc2626; --oro:#f59e0b; --gris:#f8fafc;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Segoe UI',Arial,sans-serif; background:#f1f5f9; color:#1e293b; }
+
+    /* HEADER PRINCIPAL */
+    .header { background:linear-gradient(135deg,#1e3a5f,#2563eb); color:white; padding:24px 30px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; box-shadow:0 4px 12px rgba(0,0,0,.2); }
+    .header h1 { font-size:28px; font-weight:800; letter-spacing:.3px; }
+    .header .sub { font-size:14px; opacity:.85; margin-top:4px; }
+
+    /* BOTONES HEADER Y BARRA */
+    .btn-header { border:none; border-radius:20px; padding:8px 18px; font-size:13px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:all .2s; }
+    .btn-pdf { background:#ef4444; color:white; }
+    .btn-pdf:hover { background:#dc2626; transform:translateY(-1px); }
+    .btn-compras-gen { background:var(--verde); color:white; }
+    .btn-compras-gen:hover { background:#15803d; transform:translateY(-1px); }
+    .btn-dark { background:rgba(255,255,255,.15); color:white; border:1px solid rgba(255,255,255,.3); }
+    .btn-dark:hover { background:rgba(255,255,255,.25); }
+    .header-btns { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
+    /* BARRA SUPERIOR FLOTANTE */
+    .barra { background:white; padding:12px 30px; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; border-bottom:2px solid #e2e8f0; position:sticky; top:0; z-index:200; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+    .barra-izq { display:flex; gap:12px; align-items:center; flex:1; min-width:300px; }
+    .buscador-wrap { position:relative; flex:1; max-width:380px; }
+    .buscador-wrap input { width:100%; border:2px solid #cbd5e1; border-radius:10px; padding:9px 14px 9px 38px; font-size:13px; outline:none; transition:border .2s; }
+    .buscador-wrap input:focus { border-color:var(--azul); }
+    .buscador-wrap .ico { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:#94a3b8; font-size:16px; }
+    .badge { font-size:11px; border-radius:20px; padding:4px 12px; font-weight:700; }
+    .badge-total { background:#dbeafe; color:#1d4ed8; white-space:nowrap; }
+    .badge-filtro { background:#dcfce7; color:#15803d; display:none; white-space:nowrap; }
+    
+    .btn-barra { padding:6px 14px; font-size:12px; }
+    .btn-dark-barra { background:#1e293b; color:white; }
+    .btn-dark-barra:hover { background:#334155; }
+
+    /* DÍAS NAV */
+    .dias-nav { background:white; padding:10px 30px; display:flex; gap:8px; overflow-x:auto; border-bottom:1px solid #e2e8f0; position:sticky; top:61px; z-index:190; }
+    .dia-btn { padding:8px 18px; border-radius:20px; border:2px solid #e2e8f0; background:white; font-size:13px; font-weight:600; cursor:pointer; white-space:nowrap; transition:all .2s; color:#64748b; }
+    .dia-btn.activo { background:var(--azul); color:white; border-color:var(--azul); }
+    .dia-btn:hover:not(.activo) { border-color:var(--azul); color:#64748b; }
+
+    /* CONTENEDOR */
+    .contenedor { padding:24px 30px; max-width:1450px; margin:0 auto; }
+
+    /* TABLA */
+    .tabla-wrap { background:white; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,.08); overflow:hidden; margin-bottom:24px; }
+    .tabla-titulo { background:var(--azul-dark); color:white; padding:16px 24px; font-size:20px; font-weight:700; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+    .tabla-titulo .total-dia-badge { margin-left:auto; background:var(--oro); color:#1e293b; border-radius:10px; padding:6px 16px; font-size:14px; font-weight:800; }
+    
+    .btn-limpiar { background:#fee2e2; color:var(--rojo); border:1px solid #fecaca; padding:5px 12px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer; transition:all .2s; }
+    .btn-limpiar:hover { background:var(--rojo); color:white; }
+
+    table { width:100%; border-collapse:collapse; table-layout:fixed; }
+    th { background:#f1f5f9; color:#334155; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding:14px 8px; border-bottom:2px solid #e2e8f0; text-align:center; vertical-align:middle; }
+    .th-sub { font-size:11px; font-weight:normal; opacity:0.75; display:block; margin-top:3px; text-transform:none; letter-spacing:0; color:inherit; }
+    
+    td { border-bottom:1px solid #f1f5f9; padding:10px 8px; font-size:13px; vertical-align:middle; text-align:center; }
+    tr:last-child td { border-bottom:none; }
+    tr:hover td { background:#f8fafc; }
+
+    .bloque-hdr { background:#eff6ff; }
+    .bloque-hdr td { font-weight:700; font-size:15px; color:#1d4ed8; padding:12px 16px; border-left:4px solid var(--azul); text-align:left; }
+    .subtotal-row td { background:#f0fdf4; font-weight:700; font-size:12px; color:#166534; text-align:center; }
+    .total-row td { background:#fef9c3; font-weight:700; font-size:14px; color:#78350f; text-align:center; }
+
+    /* SELECT ALIMENTO */
+    .sel-alimento { position:relative; width:100%; }
+    .sel-alimento textarea { width:100%; min-width:440px; height:56px; border:2px solid #cbd5e1; border-radius:8px; padding:8px 12px; font-size:13px; font-weight:600; color:#1e293b; outline:none; cursor:pointer; resize:none; white-space:normal; line-height:1.35; font-family:inherit; transition:border .2s, box-shadow .2s; text-align:left; }
+    .sel-alimento textarea::placeholder { color:#94a3b8; font-style:italic; font-weight:normal; }
+    .sel-alimento textarea:focus { border-color:var(--azul); box-shadow:0 0 0 3px rgba(37,99,235,0.15); background:white; }
+    
+    /* DROPDOWN */
+    .dropdown { position:absolute; top:100%; left:0; width:100%; min-width:440px; max-height:260px; overflow-y:auto; background:white; border:1px solid #cbd5e1; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,.18); z-index:1000; display:none; text-align:left; }
+    .dropdown.show { display:block; }
+    .dd-item { padding:10px 14px; font-size:13px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; line-height:1.3; gap:10px; }
+    .dd-item:hover { background:#eff6ff; }
+    .dd-item .dd-tag { font-size:11px; background:#f1f5f9; color:#64748b; border-radius:4px; padding:2px 6px; font-weight:700; }
+    .dd-item .dd-kcal { font-size:11px; color:#64748b; font-weight:600; }
+
+    input[type=number] { width:70px; padding:8px 6px; text-align:center; border:2px solid #cbd5e1; border-radius:6px; font-size:13px; font-weight:700; outline:none; margin:0 auto; display:block; }
+    input[type=number]:focus { border-color:var(--azul); }
+    .num { text-align:center; font-variant-numeric:tabular-nums; font-weight:600; font-size:13px; }
+
+    /* BOTONES TABLA */
+    .btn-agregar { background:var(--verde); color:white; border:none; padding:6px 16px; border-radius:20px; font-size:12px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:4px; transition:all .2s; float:right; }
+    .btn-agregar:hover { background:#15803d; transform:translateY(-1px); box-shadow:0 3px 8px rgba(22,163,74,.3); }
+    .btn-del { background:#fee2e2; color:var(--rojo); border:1px solid #fecaca; padding:6px 10px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:700; transition:all .2s; }
+    .btn-del:hover { background:var(--rojo); color:white; }
+
+    /* RESUMEN SEMANAL */
+    .resumen-semana { background:white; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,.08); padding:24px; margin-bottom:24px; }
+    .resumen-semana h3 { color:var(--azul-dark); margin-bottom:16px; font-size:18px; font-weight:700; }
+    .resumen-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:10px; }
+    .resumen-card { background:#f8fafc; border-radius:10px; padding:12px; text-align:center; border:2px solid #e2e8f0; cursor:pointer; transition:all .2s; }
+    .resumen-card:hover, .resumen-card.activo { border-color:var(--azul); background:#eff6ff; }
+    .resumen-card .dia { font-size:12px; font-weight:700; color:#64748b; }
+    .resumen-card .kcal { font-size:20px; font-weight:800; color:var(--azul); margin:4px 0; }
+    .resumen-card .sub { font-size:11px; color:#94a3b8; font-weight:600; }
+
+    /* LISTA DE COMPRAS DIARIA */
+    .lista-compras { background:white; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,.08); padding:24px; margin-top:24px; border-top:5px solid var(--verde); }
+    .lista-compras h3 { color:#166534; font-size:18px; font-weight:800; margin-bottom:6px; display:flex; align-items:center; gap:8px; }
+    .lista-compras .sub-desc { font-size:13px; color:#64748b; margin-bottom:18px; }
+    .compras-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:14px; }
+    .compra-box { background:#f8fafc; border:2px solid #e2e8f0; border-radius:10px; padding:14px; }
+    .compra-box h4 { font-size:14px; color:var(--azul-dark); margin-bottom:10px; padding-bottom:6px; border-bottom:2px solid #e2e8f0; display:flex; align-items:center; justify-content:space-between; }
+    .compra-item { display:flex; justify-content:space-between; font-size:12px; padding:5px 0; border-bottom:1px dashed #e2e8f0; }
+    .compra-item:last-child { border-bottom:none; }
+    .compra-item span:first-child { font-weight:600; color:#334155; }
+    .compra-item span:last-child { font-weight:800; color:var(--azul); background:#eff6ff; padding:2px 8px; border-radius:12px; }
+    .vacio-txt { font-size:12px; color:#94a3b8; font-style:italic; text-align:center; padding:10px 0; }
+
+    /* MODAL DE COMPRAS MÚLTIPLES */
+    .modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; display:none; justify-content:center; align-items:center; padding:20px; }
+    .modal-overlay.show { display:flex; }
+    .modal-box { background:white; width:100%; max-width:850px; max-height:90vh; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.3); overflow:hidden; display:flex; flex-direction:column; }
+    .modal-header { background:var(--azul-dark); color:white; padding:16px 24px; display:flex; justify-content:space-between; align-items:center; font-size:18px; font-weight:700; }
+    .modal-body { padding:24px; overflow-y:auto; flex:1; background:#f8fafc; }
+    .modal-footer { padding:14px 24px; background:white; border-top:1px solid #e2e8f0; text-align:right; }
+    .periodo-btns { display:flex; gap:10px; margin-bottom:20px; justify-content:center; }
+    .btn-periodo { padding:8px 18px; border-radius:20px; border:2px solid #cbd5e1; background:white; font-weight:700; cursor:pointer; font-size:13px; color:#64748b; transition:all .2s; }
+    .btn-periodo.activo { background:var(--azul); color:white; border-color:var(--azul); }
+    .btn-cerrar-modal { background:#64748b; color:white; border:none; padding:8px 20px; border-radius:8px; font-weight:700; cursor:pointer; font-size:13px; }
+    .btn-cerrar-modal:hover { background:#475569; }
+
+    @media(max-width:768px) { .contenedor { padding:12px; } .resumen-grid { grid-template-columns:repeat(4,1fr); } .header-btns, .barra .header-btns { width:100%; justify-content:center; } }
+
+    /* PANEL BÚSQUEDA GLOBAL */
+    .panel-busqueda { background:white; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,.1); padding:18px 20px; margin-bottom:20px; display:none; border-left:4px solid var(--azul); }
+    .panel-busqueda h3 { font-size:16px; color:var(--azul-dark); margin-bottom:12px; font-weight:700; }
+    .panel-busqueda .resultado-item { background:#f8fafc; border-radius:8px; padding:10px 14px; margin-bottom:8px; display:flex; gap:10px; align-items:flex-start; flex-wrap:wrap; }
+    .panel-busqueda .res-dia { font-weight:700; color:var(--azul); font-size:12px; min-width:80px; }
+    .panel-busqueda .res-bloque { color:#64748b; font-size:11px; }
+    .panel-busqueda .res-alimento { font-weight:600; color:#1e293b; font-size:12px; }
+    .panel-busqueda .res-gramos { color:#64748b; font-size:11px; }
+    .panel-busqueda .res-nut { background:#eff6ff; color:#1d4ed8; border-radius:6px; padding:2px 8px; font-size:11px; font-weight:600; }
+    .panel-busqueda .no-result { color:#94a3b8; font-size:13px; text-align:center; padding:20px; }
+    
+    /* MODO OSCURO */
+    body.dark .panel-busqueda { background:#1e293b; }
+    body.dark .panel-busqueda h3 { color:#93c5fd; }
+    body.dark .panel-busqueda .resultado-item { background:#0f172a; }
+    body.dark .panel-busqueda .res-alimento { color:#e2e8f0; }
+    body.dark .panel-busqueda .res-nut { background:#172036; color:#93c5fd; }
+    body.dark { background:#0f172a; color:#e2e8f0; }
+    body.dark .header { background:linear-gradient(135deg,#0f172a,#1e3a5f); }
+    body.dark .barra { background:#1e293b; border-color:#334155; }
+    body.dark .buscador-wrap input { background:#0f172a; border-color:#334155; color:#e2e8f0; }
+    body.dark .dias-nav { background:#1e293b; border-color:#334155; }
+    body.dark .dia-btn { background:#1e293b; border-color:#334155; color:#94a3b8; }
+    body.dark .dia-btn.activo { background:var(--azul); color:white; border-color:var(--azul); }
+    body.dark .dia-btn:hover:not(.activo) { border-color:var(--azul); color:#93c5fd; }
+    body.dark .tabla-wrap, body.dark .lista-compras, body.dark .modal-box { background:#1e293b; box-shadow:0 2px 12px rgba(0,0,0,.4); }
+    body.dark table { background:#1e293b; }
+    body.dark th { background:#0f172a; color:#94a3b8; border-color:#334155; }
+    body.dark td { border-color:#334155; color:#e2e8f0; }
+    body.dark tr:hover td { background:#273344; }
+    body.dark .bloque-hdr td { background:#172036; color:#93c5fd; border-color:#3b82f6; }
+    body.dark .subtotal-row td { background:#14291f; color:#86efac; }
+    body.dark .total-row td { background:#2d2000; color:#fde68a; }
+    body.dark .resumen-semana { background:#1e293b; }
+    body.dark .resumen-semana h3, body.dark .lista-compras h3, body.dark .modal-header { color:#93c5fd; }
+    body.dark .resumen-card, body.dark .compra-box { background:#0f172a; border-color:#334155; }
+    body.dark .resumen-card:hover, body.dark .resumen-card.activo { background:#172036; border-color:var(--azul); }
+    body.dark .resumen-card .dia, body.dark .lista-compras .sub-desc { color:#94a3b8; }
+    body.dark .resumen-card .sub { color:#64748b; }
+    body.dark .compra-box h4 { color:#e2e8f0; border-color:#334155; }
+    body.dark .compra-item { border-color:#334155; }
+    body.dark .compra-item span:first-child { color:#cbd5e1; }
+    body.dark .compra-item span:last-child { background:#172036; color:#93c5fd; }
+    body.dark .sel-alimento textarea, body.dark .sel-alimento input { background:#0f172a; border-color:#334155; color:#e2e8f0; }
+    body.dark .sel-alimento textarea:focus { background:#1e293b; border-color:var(--azul); }
+    body.dark input[type=number] { background:#0f172a; border-color:#334155; color:#e2e8f0; }
+    body.dark .dropdown { background:#1e293b; border-color:#334155; }
+    body.dark .dd-item:hover { background:#172036; }
+    body.dark .dd-item { color:#e2e8f0; }
+    body.dark .dd-tag { background:#0f172a; color:#94a3b8; }
+    body.dark .dd-kcal { color:#94a3b8; }
+    body.dark .btn-del { background:#2d1515; color:#fca5a5; border-color:#7f1d1d; }
+    body.dark .btn-del:hover { background:var(--rojo); color:white; }
+    body.dark .badge-total { background:#1e3a5f; color:#93c5fd; }
+    body.dark .badge-filtro { background:#14291f; color:#86efac; }
+    body.dark .btn-dark-barra { background:#334155; color:#f1f5f9; }
+    body.dark .btn-dark-barra:hover { background:#475569; }
+    body.dark .modal-body { background:#0f172a; }
+    body.dark .modal-footer { background:#1e293b; border-color:#334155; }
+    body.dark .btn-periodo { background:#0f172a; border-color:#334155; color:#94a3b8; }
+    body.dark .btn-periodo.activo { background:var(--azul); color:white; border-color:var(--azul); }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>🥗 Planificador Nutricional Semanal</h1>
+    <div class="sub">Tablas Peruanas + Base Internacional · 2030 alimentos</div>
+  </div>
+  <div class="header-btns">
+    <button class="btn-header btn-compras-gen" onclick="abrirModalCompras()">🛒 Compras (Múltiple)</button>
+    <button class="btn-header btn-pdf" onclick="exportarPDF()">📄 Exportar PDF</button>
+    <button class="btn-header btn-dark" id="btn-dark-header" onclick="toggleDark()">🌙 Modo oscuro</button>
+  </div>
+</div>
+
+<div class="barra">
+  <div class="barra-izq">
+    <div class="buscador-wrap">
+      <span class="ico">🔍</span>
+      <input type="text" id="buscador-global" placeholder="Buscar alimento en toda la base..." oninput="filtrarGlobal(this.value)">
+    </div>
+    <span class="badge badge-total" id="badge-total">2030 alimentos</span>
+    <span class="badge badge-filtro" id="badge-filtro"></span>
+  </div>
+  <div class="header-btns">
+    <button class="btn-header btn-compras-gen btn-barra" onclick="abrirModalCompras()">🛒 Compras</button>
+    <button class="btn-header btn-pdf btn-barra" onclick="exportarPDF()">📄 Exportar PDF</button>
+    <button class="btn-header btn-dark-barra btn-barra" id="btn-dark-barra" onclick="toggleDark()">🌙 Modo oscuro</button>
+  </div>
+</div>
+
+<div class="dias-nav" id="dias-nav"></div>
+
+<div class="contenedor">
+  <div id="panel-busqueda" class="panel-busqueda"></div>
+  <div class="resumen-semana">
+    <h3>📊 Resumen Semanal — Calorías por Día</h3>
+    <div class="resumen-grid" id="resumen-grid"></div>
+  </div>
+  <div id="contenedor-dia"></div>
+</div>
+
+<!-- Modal para Lista de Compras Múltiple -->
+<div class="modal-overlay" id="modal-compras">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span>🛒 Lista de Compras para el Periodo</span>
+      <button onclick="cerrarModalCompras()" style="background:none; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="periodo-btns">
+        <button class="btn-periodo activo" id="btn-p-7" onclick="cambiarPeriodoCompras(7, 'btn-p-7')">📅 1 Semana (7 días)</button>
+        <button class="btn-periodo" id="btn-p-15" onclick="cambiarPeriodoCompras(15, 'btn-p-15')">📅 Quincena (15 días)</button>
+        <button class="btn-periodo" id="btn-p-30" onclick="cambiarPeriodoCompras(30, 'btn-p-30')">📅 Todo el Mes (30 días)</button>
+      </div>
+      <div id="contenido-modal-compras" class="compras-grid"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cerrar-modal" onclick="cerrarModalCompras()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Dropdown compartido -->
+<div class="dropdown" id="dropdown-global"></div>
+
+<script src="alimentos.js"></script>
+<script>
+// ── CONFIG ──
+const DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+const BLOQUES = ["DESAYUNO / ALMUERZO / CENA","BATIDO MAÑANA","BATIDO MEDIAMAÑANA","BATIDO NOCHE"];
+
+// Diccionario estándar de conversión automática (Unidades -> Gramos promedio)
+const PESOS_UNIDAD = {
+  'huevo': 50,
+  'plátano': 120,
+  'manzana': 150,
+  'pera': 150,
+  'naranja': 130,
+  'mandarina': 100,
+  'pan': 50,
+  'palta': 150,
+  'papa': 150,
+  'limón': 40
+};
+
+// ── ESTADO ──
+let diaActivo = "Lunes";
+let inputActivo = null;
+let planSemanal = {};
+let filtroGlobal = "";
+let periodoActualDias = 7;
+
+DIAS.forEach(dia => {
+  planSemanal[dia] = {
+    "DESAYUNO / ALMUERZO / CENA": [
+      {nombre:"Huevo entero cocido",gramos:1}, // Si ponen 1, la función lo convierte a 50g automáticamente
+      {nombre:"Atún en conserva",gramos:80},
+      {nombre:"Palta",gramos:100}
+    ],
+    "BATIDO MAÑANA": [
+      {nombre:"Avena envasada",gramos:50},
+      {nombre:"Leche entera pasteurizada",gramos:125}
+    ],
+    "BATIDO MEDIAMAÑANA": [
+      {nombre:"Fresa",gramos:100}
+    ],
+    "BATIDO NOCHE": [
+      {nombre:"Leche entera pasteurizada",gramos:250},
+      {nombre:"Almendra",gramos:20}
+    ]
+  };
+});
+
+// ── CONVERSIÓN INTELIGENTE DE GRAMOS / UNIDADES ──
+function obtenerGramosReales(nombre, valorIngresado) {
+  const val = parseFloat(valorIngresado) || 0;
+  // Si el valor ingresado es menor o igual a 10, asumimos que son UNIDADES y las convertimos a gramos
+  if (val > 0 && val <= 10) {
+    const nom = nombre.toLowerCase();
+    for (const [key, pesoGramos] of Object.entries(PESOS_UNIDAD)) {
+      if (nom.includes(key)) {
+        return val * pesoGramos;
+      }
+    }
+  }
+  // Si es mayor a 10, se interpreta directamente como gramos
+  return val;
+}
+
+// ── NUTRIENTES ──
+function getNut(nombre, valorInput) {
+  const gramosReales = obtenerGramosReales(nombre, valorInput);
+  const item = baseDatos.find(a => a.nombre.toLowerCase() === nombre.toLowerCase());
+  if (!item || !gramosReales) return {kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+  const f = gramosReales / 100;
+  return {
+    kcal:  +(((item.kcal||0)*f).toFixed(1)),
+    prot:  +(((item.proteinas||0)*f).toFixed(1)),
+    carb:  +(((item.carbohidratos||0)*f).toFixed(1)),
+    grasa: +(((item.grasas||0)*f).toFixed(1)),
+    fibra: +(((item.fibra||0)*f).toFixed(1)),
+  };
+}
+
+function totalDia(dia) {
+  let t={kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+  BLOQUES.forEach(b=>(planSemanal[dia][b]||[]).forEach(item=>{
+    const n=getNut(item.nombre,item.gramos);
+    t.kcal+=n.kcal;t.prot+=n.prot;t.carb+=n.carb;t.grasa+=n.grasa;t.fibra+=n.fibra;
+  }));
+  return t;
+}
+
+// ── CLASIFICACIÓN DE ALIMENTOS ──
+function clasificarAlimento(nombre) {
+  const nom = nombre.toLowerCase();
+  const frutas = ['fresa','plátano','manzana','papaya','mango','arándano','naranja','pera','piña','uva','melón','sandía','mandarina','durazno','kiwi','ciruela','higo','frambuesa','zarzamora','limón'];
+  if (frutas.some(f => nom.includes(f))) return 'Frutas';
+  
+  const vegetales = ['lechuga','tomate','zanahoria','brócoli','espinaca','pepino','apio','cebolla','zapallo','vainita','champiñón','coliflor','pimiento','alcachofa','espárrago'];
+  if (vegetales.some(v => nom.includes(v))) return 'Fibras y Vegetales';
+
+  const item = baseDatos.find(a => a.nombre.toLowerCase() === nom);
+  if (!item) return 'Carbohidratos';
+
+  const p = item.proteinas || 0;
+  const c = item.carbohidratos || 0;
+  const g = item.grasas || 0;
+  const f = item.fibra || 0;
+
+  if (g >= p && g >= c && g > 10) return 'Grasas';
+  if (p >= c && p >= g && p > 8) return 'Proteínas';
+  if (f > 8 && f >= c) return 'Fibras y Vegetales';
+  return 'Carbohidratos';
+}
+
+// ── DÍAS NAV ──
+function renderNav() {
+  const nav = document.getElementById('dias-nav');
+  nav.innerHTML = DIAS.map(d =>
+    `<button class="dia-btn ${d===diaActivo?'activo':''}" onclick="cambiarDia('${d}')">${d}</button>`
+  ).join('');
+}
+function cambiarDia(dia) {
+  diaActivo = dia;
+  renderNav();
+  renderDia();
+  renderResumen();
+}
+
+// ── RESUMEN ──
+function renderResumen() {
+  const grid = document.getElementById('resumen-grid');
+  grid.innerHTML = DIAS.map(d => {
+    const t = totalDia(d);
+    return `<div class="resumen-card ${d===diaActivo?'activo':''}" onclick="cambiarDia('${d}')">
+      <div class="dia">${d.substring(0,3).toUpperCase()}</div>
+      <div class="kcal">${t.kcal.toFixed(0)}</div>
+      <div class="sub">kcal</div>
+    </div>`;
+  }).join('');
+}
+
+// ── REINICIAR / LIMPIAR DÍA ──
+function limpiarDiaActual() {
+  if (confirm(`¿Estás seguro de limpiar todos los registros nutricionales de ${diaActivo}?`)) {
+    BLOQUES.forEach(bloque => {
+      planSemanal[diaActivo][bloque] = [];
+    });
+    renderDia();
+    renderResumen();
+  }
+}
+
+// ── RENDER DÍA ──
+function renderDia() {
+  const dia = diaActivo;
+  const totDia = totalDia(dia);
+  let html = `<div class="tabla-wrap">
+    <div class="tabla-titulo">
+      📅 ${dia}
+      <button class="btn-limpiar" onclick="limpiarDiaActual()">🗑️ Limpiar Día</button>
+      <span class="total-dia-badge">⚡ ${totDia.kcal.toFixed(0)} kcal · 💪 ${totDia.prot.toFixed(1)}g prot · 🌾 ${totDia.carb.toFixed(1)}g carb · 🧈 ${totDia.grasa.toFixed(1)}g grasa</span>
+    </div>
+    <table>
+      <thead><tr>
+        <th style="width:460px; text-align:center;">ALIMENTO<span class="th-sub">(Nombre y origen)</span></th>
+        <th style="width:110px; text-align:center;">PORCIÓN<span class="th-sub">(Ej: 1 und o 100g)</span></th>
+        <th style="width:90px; text-align:center;">ENERGÍA<span class="th-sub">(Calorías kcal)</span></th>
+        <th style="width:85px; text-align:center;">PROT (g)<span class="th-sub">(Proteínas)</span></th>
+        <th style="width:85px; text-align:center;">CARB (g)<span class="th-sub">(Carbohidratos)</span></th>
+        <th style="width:85px; text-align:center;">GRASA (g)<span class="th-sub">(Grasas totales)</span></th>
+        <th style="width:85px; text-align:center;">FIBRA (g)<span class="th-sub">(Fibra dietética)</span></th>
+        <th style="width:60px; text-align:center;">ACCIÓN<span class="th-sub">(Borrar)</span></th>
+      </tr></thead><tbody>`;
+
+  BLOQUES.forEach(bloque => {
+    const items = planSemanal[dia][bloque] || [];
+    let bt={kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+
+    html += `<tr class="bloque-hdr"><td colspan="8">
+      🍽️ ${bloque}
+      <button class="btn-agregar" onclick="agregarFila('${dia}','${bloque}')">＋ Agregar alimento</button>
+    </td></tr>`;
+
+    items.forEach((item, idx) => {
+      const n = getNut(item.nombre, item.gramos);
+      bt.kcal+=n.kcal;bt.prot+=n.prot;bt.carb+=n.carb;bt.grasa+=n.grasa;bt.fibra+=n.fibra;
+      const tag = baseDatos.find(a=>a.nombre.toLowerCase()===item.nombre.toLowerCase())?.fuente==='Tablas Peruanas'?'[PE]':'[INT]';
+      const displayVal = item.nombre ? `${item.nombre} ${tag}` : '';
+      const placeholder = item.nombre ? '' : 'Seleccionar alimento...';
+      html += `<tr>
+        <td>
+          <div class="sel-alimento">
+            <textarea rows="2" class="input-alimento" placeholder="${placeholder}" readonly
+              onclick="abrirDropdown(this,'${dia}','${bloque}',${idx})"
+              data-dia="${dia}" data-bloque="${bloque}" data-idx="${idx}">${displayVal}</textarea>
+          </div>
+        </td>
+        <td><input type="number" value="${item.gramos}" step="1" min="0"
+          onchange="cambiarGramos('${dia}','${bloque}',${idx},this.value)"></td>
+        <td class="num">${n.kcal}</td>
+        <td class="num">${n.prot}</td>
+        <td class="num">${n.carb}</td>
+        <td class="num">${n.grasa}</td>
+        <td class="num">${n.fibra}</td>
+        <td><button class="btn-del" onclick="eliminarFila('${dia}','${bloque}',${idx})">✕</button></td>
+      </tr>`;
+    });
+
+    html += `<tr class="subtotal-row"><td colspan="2" style="text-align:right;padding-right:20px;">Subtotal ${bloque}:</td>
+      <td class="num">${bt.kcal.toFixed(1)}</td><td class="num">${bt.prot.toFixed(1)}</td>
+      <td class="num">${bt.carb.toFixed(1)}</td><td class="num">${bt.grasa.toFixed(1)}</td>
+      <td class="num">${bt.fibra.toFixed(1)}</td><td></td></tr>`;
+  });
+
+  const t = totDia;
+  html += `<tr class="total-row"><td colspan="2" style="text-align:right;padding-right:20px;">TOTAL ${dia.toUpperCase()}:</td>
+    <td class="num">${t.kcal.toFixed(1)}</td><td class="num">${t.prot.toFixed(1)}</td>
+    <td class="num">${t.carb.toFixed(1)}</td><td class="num">${t.grasa.toFixed(1)}</td>
+    <td class="num">${t.fibra.toFixed(1)}</td><td></td></tr>`;
+
+  html += `</tbody></table></div>`;
+
+  // ── LISTA DE COMPRAS DIARIA ──
+  const compras = {};
+  BLOQUES.forEach(bloque => {
+    (planSemanal[dia][bloque] || []).forEach(item => {
+      if (item.nombre && item.gramos > 0) {
+        const grReal = obtenerGramosReales(item.nombre, item.gramos);
+        compras[item.nombre] = (compras[item.nombre] || 0) + grReal;
+      }
+    });
+  });
+
+  const categorias = {
+    'Frutas': { titulo: '🍎 Frutas', items: [] },
+    'Carbohidratos': { titulo: '🌾 Carbohidratos', items: [] },
+    'Proteínas': { titulo: '🥩 Proteínas', items: [] },
+    'Grasas': { titulo: '🥑 Grasas', items: [] },
+    'Fibras y Vegetales': { titulo: '🥗 Fibras y Vegetales', items: [] }
+  };
+
+  Object.entries(compras).forEach(([nom, gr]) => {
+    const cat = clasificarAlimento(nom);
+    if (categorias[cat]) categorias[cat].items.push({ nom, gr: Math.round(gr) });
+  });
+
+  html += `<div class="lista-compras">
+    <h3>🛒 Lista de Compras del Día (${dia})</h3>
+    <div class="sub-desc">Cantidades totales unificadas (convirtiendo unidades a peso real), listas para el mercado.</div>
+    <div class="compras-grid">`;
+
+  Object.values(categorias).forEach(c => {
+    html += `<div class="compra-box">
+      <h4>${c.titulo} <span>${c.items.length}</span></h4>`;
+    if (c.items.length === 0) {
+      html += `<div class="vacio-txt">Sin ítems hoy</div>`;
+    } else {
+      c.items.forEach(i => {
+        const txtGr = i.gr >= 1000 ? `${(i.gr/1000).toFixed(2)} kg` : `${i.gr}g`;
+        html += `<div class="compra-item"><span>${i.nom}</span><span>${txtGr}</span></div>`;
+      });
+    }
+    html += `</div>`;
+  });
+
+  html += `</div></div>`;
+
+  document.getElementById('contenedor-dia').innerHTML = html;
+}
+
+// ── MODAL COMPRAS MÚLTIPLES ──
+function abrirModalCompras() {
+  document.getElementById('modal-compras').classList.add('show');
+  renderizarContenidoModalCompras();
+}
+
+function cerrarModalCompras() {
+  document.getElementById('modal-compras').classList.remove('show');
+}
+
+function cambiarPeriodoCompras(dias, btnId) {
+  periodoActualDias = dias;
+  document.querySelectorAll('.btn-periodo').forEach(b => b.classList.remove('activo'));
+  document.getElementById(btnId).classList.add('activo');
+  renderizarContenidoModalCompras();
+}
+
+function renderizarContenidoModalCompras() {
+  const acumulado = {};
+  
+  DIAS.forEach(d => {
+    BLOQUES.forEach(b => {
+      (planSemanal[d][b] || []).forEach(item => {
+        if (item.nombre && item.gramos > 0) {
+          const grReal = obtenerGramosReales(item.nombre, item.gramos);
+          acumulado[item.nombre] = (acumulado[item.nombre] || 0) + grReal;
+        }
+      });
+    });
+  });
+
+  const factor = periodoActualDias / 7;
+
+  const categorias = {
+    'Frutas': { titulo: '🍎 Frutas', items: [] },
+    'Carbohidratos': { titulo: '🌾 Carbohidratos', items: [] },
+    'Proteínas': { titulo: '🥩 Proteínas', items: [] },
+    'Grasas': { titulo: '🥑 Grasas', items: [] },
+    'Fibras y Vegetales': { titulo: '🥗 Fibras y Vegetales', items: [] }
+  };
+
+  Object.entries(acumulado).forEach(([nom, grTotalSemana]) => {
+    const cat = clasificarAlimento(nom);
+    const grFinal = Math.round(grTotalSemana * factor);
+    if (categorias[cat]) categorias[cat].items.push({ nom, gr: grFinal });
+  });
+
+  let html = '';
+  Object.values(categorias).forEach(c => {
+    html += `<div class="compra-box">
+      <h4>${c.titulo} <span>${c.items.length}</span></h4>`;
+    if (c.items.length === 0) {
+      html += `<div class="vacio-txt">Sin ítems en el plan</div>`;
+    } else {
+      c.items.forEach(i => {
+        const txtGr = i.gr >= 1000 ? `${(i.gr/1000).toFixed(2)} kg` : `${i.gr}g`;
+        html += `<div class="compra-item"><span>${i.nom}</span><span>${txtGr}</span></div>`;
+      });
+    }
+    html += `</div>`;
+  });
+
+  document.getElementById('contenido-modal-compras').innerHTML = html;
+}
+
+// ── DROPDOWN RÁPIDO ──
+let ddDia, ddBloque, ddIdx;
+function abrirDropdown(inputEl, dia, bloque, idx) {
+  ddDia=dia; ddBloque=bloque; ddIdx=idx;
+  inputActivo = inputEl;
+  const dd = document.getElementById('dropdown-global');
+  const rect = inputEl.getBoundingClientRect();
+  dd.style.top = (rect.bottom + window.scrollY + 4) + 'px';
+  dd.style.left = rect.left + 'px';
+  poblarDropdown('');
+  dd.classList.add('show');
+  inputEl.value = '';
+  inputEl.readOnly = false;
+  inputEl.oninput = (e) => poblarDropdown(e.target.value);
+  inputEl.focus();
+}
+
+function poblarDropdown(filtro) {
+  const dd = document.getElementById('dropdown-global');
+  const f = filtro.toLowerCase();
+  const lista = f
+    ? baseDatos.filter(a => a.nombre.toLowerCase().includes(f)).slice(0, 50)
+    : baseDatos.slice(0, 50);
+  dd.innerHTML = lista.map(a =>
+    `<div class="dd-item" onclick="seleccionarAlimento('${a.nombre.replace(/'/g,"\\'")}')">
+      <span>${a.nombre}</span>
+      <span>
+        <span class="dd-tag">${a.fuente==='Tablas Peruanas'?'PE':'INT'}</span>
+        <span class="dd-kcal"> ${a.kcal||0} kcal</span>
+      </span>
+    </div>`
+  ).join('') || '<div class="dd-item" style="color:#94a3b8; justify-content:center;">Sin resultados</div>';
+}
+
+function seleccionarAlimento(nombre) {
+  planSemanal[ddDia][ddBloque][ddIdx].nombre = nombre;
+  cerrarDropdown();
+  renderDia();
+  renderResumen();
+}
+
+function cerrarDropdown() {
+  document.getElementById('dropdown-global').classList.remove('show');
+  if (inputActivo) {
+    inputActivo.readOnly = true;
+    inputActivo.oninput = null;
+  }
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.sel-alimento') && !e.target.closest('.dropdown')) cerrarDropdown();
+});
+
+// ── ACCIONES ──
+function cambiarGramos(dia, bloque, idx, val) {
+  planSemanal[dia][bloque][idx].gramos = parseFloat(val)||0;
+  renderDia();
+  renderResumen();
+}
+function agregarFila(dia, bloque) {
+  planSemanal[dia][bloque].push({nombre:"", gramos:100});
+  renderDia();
+  renderResumen();
+}
+function eliminarFila(dia, bloque, idx) {
+  planSemanal[dia][bloque].splice(idx,1);
+  renderDia();
+  renderResumen();
+}
+
+// ── MODO OSCURO ──
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  const texto = isDark ? '☀️ Modo claro' : '🌙 Modo oscuro';
+  
+  const bh = document.getElementById('btn-dark-header');
+  const bb = document.getElementById('btn-dark-barra');
+  if (bh) bh.textContent = texto;
+  if (bb) bb.textContent = texto;
+  
+  localStorage.setItem('nut_dark', isDark ? '1' : '0');
+}
+
+if (localStorage.getItem('nut_dark') === '1') {
+  document.body.classList.add('dark');
+  document.addEventListener('DOMContentLoaded', () => {
+    const bh = document.getElementById('btn-dark-header');
+    const bb = document.getElementById('btn-dark-barra');
+    if (bh) bh.textContent = '☀️ Modo claro';
+    if (bb) bb.textContent = '☀️ Modo claro';
+  });
+}
+
+// ── EXPORTAR PDF ──
+async function exportarPDF() {
+  if (!window.jspdf) {
+    await new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+      s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
+  const W = doc.internal.pageSize.getWidth();
+  const PH = doc.internal.pageSize.getHeight();
+  const M = 10;
+
+  doc.setFillColor(30,58,95);
+  doc.rect(0,0,W,18,'F');
+  doc.setFontSize(13); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold');
+  doc.text('Planificador Nutricional Semanal', W/2, 11, {align:'center'});
+  doc.setFontSize(8); doc.setFont('helvetica','normal');
+  doc.text(`Generado: ${new Date().toLocaleDateString('es-PE')}`, W/2, 15.5, {align:'center'});
+
+  let y = 22;
+  const cols = [60,18,18,18,18,18,18];
+  const heads = ['ALIMENTO','KCAL','PROT(g)','CARB(g)','GRASA(g)','FIBRA(g)','PORC(g)'];
+
+  DIAS.forEach(dia => {
+    const t = totalDia(dia);
+    if (y + 40 > PH) { doc.addPage(); y = 10; }
+
+    doc.setFillColor(30,58,95); doc.rect(M,y,W-M*2,7,'F');
+    doc.setFontSize(10); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold');
+    doc.text(`${dia.toUpperCase()} — ${t.kcal.toFixed(0)} kcal`, M+3, y+5);
+    y += 7;
+
+    doc.setFillColor(241,245,249); doc.rect(M,y,W-M*2,5,'F');
+    doc.setFontSize(7); doc.setTextColor(71,85,105); doc.setFont('helvetica','bold');
+    let x = M;
+    heads.forEach((h,i) => { doc.text(h, x+1, y+3.5); x+=cols[i]; });
+    y += 5;
+
+    BLOQUES.forEach(bloque => {
+      const items = planSemanal[dia][bloque]||[];
+      if (!items.length) return;
+      if (y + 6 > PH) { doc.addPage(); y = 10; }
+
+      doc.setFillColor(239,246,255); doc.rect(M,y,W-M*2,5,'F');
+      doc.setFontSize(7.5); doc.setTextColor(29,78,216); doc.setFont('helvetica','bold');
+      doc.text(`  ${bloque}`, M+1, y+3.5);
+      y += 5;
+
+      let bt={kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+      items.forEach(item => {
+        if (y + 5 > PH) { doc.addPage(); y = 10; }
+        const n = getNut(item.nombre, item.gramos);
+        bt.kcal+=n.kcal;bt.prot+=n.prot;bt.carb+=n.carb;bt.grasa+=n.grasa;bt.fibra+=n.fibra;
+        doc.setFillColor(255,255,255); doc.rect(M,y,W-M*2,5,'F');
+        doc.setFontSize(7); doc.setTextColor(30,41,59); doc.setFont('helvetica','normal');
+        const grReal = obtenerGramosReales(item.nombre, item.gramos);
+        const vals = [item.nombre||'—', n.kcal.toFixed(1), n.prot.toFixed(1), n.carb.toFixed(1), n.grasa.toFixed(1), n.fibra.toFixed(1), grReal+'g'];
+        let xi = M;
+        vals.forEach((v,i) => {
+          const txt = doc.splitTextToSize(v, cols[i]-2);
+          doc.text(txt[0]||'', xi+1, y+3.5);
+          xi += cols[i];
+        });
+        doc.setDrawColor(226,232,240); doc.line(M, y+5, M+W-M*2, y+5);
+        y += 5;
+      });
+
+      if (y + 5 > PH) { doc.addPage(); y = 10; }
+      doc.setFillColor(240,253,244); doc.rect(M,y,W-M*2,5,'F');
+      doc.setFontSize(7); doc.setTextColor(22,101,52); doc.setFont('helvetica','bold');
+      doc.text(`Subtotal:`, M+1, y+3.5);
+      let xi2=M+cols[0];
+      [bt.kcal,bt.prot,bt.carb,bt.grasa,bt.fibra].forEach((v,i)=>{
+        doc.text(v.toFixed(1), xi2+1, y+3.5); xi2+=cols[i+1];
+      });
+      y += 5;
+    });
+
+    if (y + 6 > PH) { doc.addPage(); y = 10; }
+    doc.setFillColor(254,249,195); doc.rect(M,y,W-M*2,6,'F');
+    doc.setFontSize(8); doc.setTextColor(120,53,15); doc.setFont('helvetica','bold');
+    doc.text(`TOTAL ${dia.toUpperCase()}:`, M+1, y+4.5);
+    let xi3=M+cols[0];
+    [t.kcal,t.prot,t.carb,t.grasa,t.fibra].forEach((v,i)=>{
+      doc.text(v.toFixed(1), xi3+1, y+4.5); xi3+=cols[i+1];
+    });
+    y += 8;
+  });
+
+  doc.save(`Planificador_Nutricional_${new Date().toISOString().slice(0,10)}.pdf`);
+}
+
+// ── FILTRO GLOBAL ──
+function filtrarGlobal(val) {
+  filtroGlobal = val.toLowerCase().trim();
+  const badge = document.getElementById('badge-filtro');
+  const panel = document.getElementById('panel-busqueda');
+
+  if (!filtroGlobal) {
+    badge.style.display = 'none';
+    panel.style.display = 'none';
+    return;
+  }
+
+  const resultados = [];
+  DIAS.forEach(dia => {
+    BLOQUES.forEach(bloque => {
+      (planSemanal[dia][bloque]||[]).forEach((item, idx) => {
+        if (item.nombre && item.nombre.toLowerCase().includes(filtroGlobal)) {
+          const n = getNut(item.nombre, item.gramos);
+          resultados.push({dia, bloque, item, idx, n});
+        }
+      });
+    });
+  });
+
+  const enBase = baseDatos.filter(a => a.nombre.toLowerCase().includes(filtroGlobal)).length;
+  badge.textContent = `${enBase} en base · ${resultados.length} en tu plan`;
+  badge.style.display = 'inline';
+
+  panel.style.display = 'block';
+  if (!resultados.length) {
+    panel.innerHTML = `<h3>🔍 Resultados para "<strong>${val}</strong>"</h3>
+      <div class="no-result">No encontrado en tu plan semanal actual.<br>
+      <span style="font-size:12px;color:#64748b">${enBase} coincidencias disponibles en la base de datos para agregar.</span></div>`;
+    return;
+  }
+
+  let html = `<h3>🔍 "<strong>${val}</strong>" — ${resultados.length} aparición${resultados.length>1?'es':''} en tu plan</h3>`;
+  resultados.forEach(r => {
+    const tag = baseDatos.find(a=>a.nombre.toLowerCase()===r.item.nombre.toLowerCase())?.fuente==='Tablas Peruanas'?'PE':'INT';
+    const grReal = obtenerGramosReales(r.item.nombre, r.item.gramos);
+    html += `<div class="resultado-item">
+      <span class="res-dia">📅 ${r.dia}</span>
+      <span class="res-bloque">🍽️ ${r.bloque}</span>
+      <span class="res-alimento">${r.item.nombre} <small style="color:#94a3b8">[${tag}]</small></span>
+      <span class="res-gramos">${grReal}g</span>
+      <span class="res-nut">⚡ ${r.n.kcal} kcal</span>
+      <span class="res-nut" style="background:#f0fdf4;color:#166534">💪 ${r.n.prot}g prot</span>
+      <span class="res-nut" style="background:#fef9c3;color:#78350f">🌾 ${r.n.carb}g carb</span>
+    </div>`;
+  });
+  panel.innerHTML = html;
+}
+
+// ── INIT `-`
+renderNav();
+renderResumen();
+renderDia();
+</script>
+</body>
+</html>
