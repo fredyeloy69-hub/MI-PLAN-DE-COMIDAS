@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planificador Nutricional Semanal</title>
+  <style>
+    :root { --azul:#4a90e2; --azul-oscuro:#2c3e50; --verde:#28a745; --rojo:#dc3545; --oro:#ffd700; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f4f9; color: #333; }
+    h1 { text-align: center; padding: 18px; color: var(--azul-oscuro); font-size: 22px; background: white; border-bottom: 3px solid var(--azul); }
+    .barra { background: white; padding: 10px 20px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 6px rgba(0,0,0,.1); }
+    .barra input { border: 1px solid #ccc; border-radius: 6px; padding: 6px 12px; font-size: 13px; width: 280px; outline: none; }
+    .barra input:focus { border-color: var(--azul); }
+    .badge { font-size: 11px; background: #e8f0fe; color: var(--azul); border-radius: 12px; padding: 3px 10px; font-weight: 600; }
+    .contenedor { padding: 20px; max-width: 1400px; margin: 0 auto; }
+    
+    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,.12); border-radius: 8px; overflow: hidden; }
+    th { background: var(--azul); color: white; padding: 8px 6px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; }
+    td { border: 1px solid #e0e0e0; padding: 8px 6px; font-size: 12px; vertical-align: middle; }
+    
+    /* Anchos optimizados: Columna de alimento mucho más ancha */
+    th:nth-child(1), td:nth-child(1) { width: 85px; } /* DÍA */
+    th:nth-child(2), td:nth-child(2) { width: 440px; text-align: left; } /* ALIMENTO (Mucho más ancho) */
+    th:nth-child(3), td:nth-child(3) { width: 90px; } /* PORCIÓN */
+    th:nth-child(4), td:nth-child(4),
+    th:nth-child(5), td:nth-child(5),
+    th:nth-child(6), td:nth-child(6),
+    th:nth-child(7), td:nth-child(7),
+    th:nth-child(8), td:nth-child(8) { width: 70px; } /* KCAL, PROT, CARB, GRASA, FIBRA */
+    th:nth-child(9), td:nth-child(9) { width: 50px; text-align: center; } /* DEL */
+
+    .dia-header { background: var(--azul-oscuro); color: white; font-weight: 700; font-size: 14px; text-align: center; }
+    .bloque-header { background: #e8f0fe; font-weight: 700; color: var(--azul-oscuro); font-size: 11px; text-align: left; padding-left: 10px; }
+    .total-bloque { background: #dff0d8; font-weight: 700; font-size: 11px; }
+    .total-dia { background: var(--oro); font-weight: 700; font-size: 12px; }
+    .separador td { background: #f4f4f9; height: 10px; border: none; }
+    
+    /* Altura y espacio interno holgados para nombres muy largos en pocas líneas */
+    select { 
+      width: 100%; 
+      padding: 8px 6px; 
+      font-size: 12px; 
+      border: 1px solid #ccc; 
+      border-radius: 4px; 
+      box-sizing: border-box; 
+      background: white; 
+      white-space: normal; 
+      height: auto; 
+      min-height: 56px; 
+      line-height: 1.4;
+    }
+    input[type=number] { width: 100%; padding: 8px 6px; text-align: center; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box; }
+    
+    .btn-add { background: var(--verde); color: white; border: none; padding: 4px 10px; cursor: pointer; border-radius: 4px; font-size: 11px; font-weight: bold; float: right; }
+    .btn-del { background: var(--rojo); color: white; border: none; padding: 3px 8px; cursor: pointer; border-radius: 4px; font-size: 11px; font-weight: bold; }
+    .btn-add:hover { background: #218838; }
+    .btn-del:hover { background: #c82333; }
+    .num { text-align: right; }
+    @media (max-width: 768px) { .contenedor { padding: 8px; } }
+  </style>
+</head>
+<body>
+
+  <h1>🥗 Planificador Nutricional Semanal</h1>
+
+  <div class="barra">
+    <input type="text" id="buscador" placeholder="🔍 Buscar alimento en la base de datos..." oninput="actualizarOpciones()">
+    <span class="badge" id="badge-total">0 alimentos cargados</span>
+    <span class="badge" id="badge-filtro" style="display:none"></span>
+  </div>
+
+  <div class="contenedor">
+    <div id="contenedorTablas"></div>
+  </div>
+
+  <!-- Enlace a la base de datos externa -->
+  <script src="alimentos.js"></script>
+  <script>
+    const estructuraSemana = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+    const bloquesComida = [
+      "DESAYUNO / ALMUERZO / CENA",
+      "BATIDO MAÑANA",
+      "BATIDO MEDIAMAÑANA",
+      "BATIDO NOCHE"
+    ];
+
+    let planSemanal = {};
+    estructuraSemana.forEach(dia => {
+      planSemanal[dia] = {
+        "DESAYUNO / ALMUERZO / CENA": [
+          { nombre: "Avena, hojuela cocida", gramos: 150 },
+          { nombre: "Achita, kiwicha o achis", gramos: 80 }
+        ],
+        "BATIDO MAÑANA": [
+          { nombre: "Avena envasada", gramos: 50 }
+        ],
+        "BATIDO MEDIAMAÑANA": [
+          { nombre: "Fresa", gramos: 100 }
+        ],
+        "BATIDO NOCHE": [
+          { nombre: "Almendra", gramos: 20 }
+        ]
+      };
+    });
+
+    let filtroActivo = "";
+    let listaAlimentosProcesada = [];
+
+    function inicializarBaseDatos() {
+      const datos = typeof baseDatos !== 'undefined' ? baseDatos : [];
+      listaAlimentosProcesada = datos.map(a => ({
+        ...a,
+        nombreLimpio: a.nombre.replace(/\s*\[(PE|INT)\]\s*$/i, '').trim()
+      }));
+      document.getElementById('badge-total').textContent = `${listaAlimentosProcesada.length} alimentos cargados`;
+    }
+
+    function actualizarOpciones() {
+      filtroActivo = document.getElementById('buscador').value.toLowerCase().trim();
+      const badge = document.getElementById('badge-filtro');
+      if (filtroActivo) {
+        const count = listaAlimentosProcesada.filter(a => a.nombreLimpio.toLowerCase().includes(filtroActivo)).length;
+        badge.textContent = `${count} coincidencias`;
+        badge.style.display = 'inline';
+      } else {
+        badge.style.display = 'none';
+      }
+      renderizarTodo();
+    }
+
+    function calcularNutrientes(nombre, gramos) {
+      if (!nombre || !gramos) return { kcal:0, prot:0, carb:0, grasa:0, fibra:0 };
+      const item = listaAlimentosProcesada.find(a => a.nombreLimpio.toLowerCase() === nombre.toLowerCase().trim());
+      if (!item) return { kcal:0, prot:0, carb:0, grasa:0, fibra:0 };
+      
+      const f = gramos / 100;
+      return {
+        kcal:  ((item.kcal  || 0) * f),
+        prot:  ((item.proteinas || 0) * f),
+        carb:  ((item.carbohidratos || 0) * f),
+        grasa: ((item.grasas || 0) * f),
+        fibra: ((item.fibra || 0) * f),
+      };
+    }
+
+    function fmt(n) { return n.toFixed(1); }
+
+    function contarFilasDia(dia) {
+      let total = 0;
+      bloquesComida.forEach(b => total += (planSemanal[dia][b]?.length || 0) + 2);
+      return total + 1;
+    }
+
+    function renderizarTodo() {
+      const cont = document.getElementById('contenedorTablas');
+      const listaFiltrada = filtroActivo
+        ? listaAlimentosProcesada.filter(a => a.nombreLimpio.toLowerCase().includes(filtroActivo))
+        : listaAlimentosProcesada;
+
+      let html = `<table>
+        <thead><tr>
+          <th>DÍA</th>
+          <th>ALIMENTO</th>
+          <th>PORCIÓN (g)</th>
+          <th>KCAL</th>
+          <th>PROT (g)</th>
+          <th>CARB (g)</th>
+          <th>GRASA (g)</th>
+          <th>FIBRA (g)</th>
+          <th>DEL</th>
+        </tr></thead><tbody>`;
+
+      estructuraSemana.forEach(dia => {
+        let diaT = {kcal:0, prot:0, carb:0, grasa:0, fibra:0};
+        let firstDia = true;
+        const totalFilasDia = contarFilasDia(dia);
+
+        bloquesComida.forEach(bloque => {
+          const items = planSemanal[dia][bloque] || [];
+
+          html += `<tr>`;
+          if (firstDia) {
+            html += `<td rowspan="${totalFilasDia}" class="dia-header">${dia}</td>`;
+            firstDia = false;
+          }
+          html += `<td class="bloque-header" colspan="7">${bloque}
+            <button class="btn-add" onclick="agregarFila('${dia}','${bloque}')">+ Agregar</button>
+          </td><td></td></tr>`;
+
+          let bloqT = {kcal:0, prot:0, carb:0, grasa:0, fibra:0};
+
+          items.forEach((item, idx) => {
+            const n = calcularNutrientes(item.nombre, item.gramos);
+            bloqT.kcal+=n.kcal; bloqT.prot+=n.prot; bloqT.carb+=n.carb; bloqT.grasa+=n.grasa; bloqT.fibra+=n.fibra;
+            diaT.kcal+=n.kcal;  diaT.prot+=n.prot;  diaT.carb+=n.carb;  diaT.grasa+=n.grasa;  diaT.fibra+=n.fibra;
+
+            const optionDefault = `<option value="">-- Seleccionar alimento --</option>`;
+            const opcionesSelect = listaFiltrada.map(a => {
+              const sel = (a.nombreLimpio.toLowerCase() === (item.nombre || "").toLowerCase()) ? 'selected' : '';
+              return `<option value="${a.nombreLimpio.replace(/"/g,'&quot;')}" ${sel}>${a.nombreLimpio}</option>`;
+            }).join('');
+
+            html += `<tr>
+              <td></td>
+              <td>
+                <select onchange="cambiarAlimento('${dia}','${bloque}',${idx},this.value)">
+                  ${optionDefault}
+                  ${opcionesSelect}
+                </select>
+              </td>
+              <td><input type="number" value="${item.gramos}" step="5" min="0" onchange="cambiarGramos('${dia}','${bloque}',${idx},this.value)"></td>
+              <td class="num">${fmt(n.kcal)}</td>
+              <td class="num">${fmt(n.prot)}</td>
+              <td class="num">${fmt(n.carb)}</td>
+              <td class="num">${fmt(n.grasa)}</td>
+              <td class="num">${fmt(n.fibra)}</td>
+              <td style="text-align: center;"><button class="btn-del" onclick="eliminarFila('${dia}','${bloque}',${idx})">✕</button></td>
+            </tr>`;
+          });
+
+          html += `<tr class="total-bloque">
+            <td></td>
+            <td style="text-align:right">Subtotal ${bloque}:</td>
+            <td></td>
+            <td class="num">${fmt(bloqT.kcal)}</td><td class="num">${fmt(bloqT.prot)}</td>
+            <td class="num">${fmt(bloqT.carb)}</td><td class="num">${fmt(bloqT.grasa)}</td>
+            <td class="num">${fmt(bloqT.fibra)}</td><td></td>
+          </tr>`;
+        });
+
+        html += `<tr class="total-dia">
+          <td colspan="2" style="text-align:right">TOTAL ${dia.toUpperCase()}:</td>
+          <td></td>
+          <td class="num">${fmt(diaT.kcal)}</td><td class="num">${fmt(diaT.prot)}</td>
+          <td class="num">${fmt(diaT.carb)}</td><td class="num">${fmt(diaT.grasa)}</td>
+          <td class="num">${fmt(diaT.fibra)}</td><td></td>
+        </tr>
+        <tr class="separador"><td colspan="9"></td></tr>`;
+      });
+
+      html += `</tbody></table>`;
+      cont.innerHTML = html;
+    }
+
+    function cambiarAlimento(dia, bloque, idx, val) {
+      planSemanal[dia][bloque][idx].nombre = val;
+      renderizarTodo();
+    }
+    function cambiarGramos(dia, bloque, idx, val) {
+      planSemanal[dia][bloque][idx].gramos = parseFloat(val) || 0;
+      renderizarTodo();
+    }
+    function agregarFila(dia, bloque) {
+      planSemanal[dia][bloque].push({ nombre: "", gramos: 100 });
+      renderizarTodo();
+    }
+    function eliminarFila(dia, bloque, idx) {
+      planSemanal[dia][bloque].splice(idx, 1);
+      renderizarTodo();
+    }
+
+    window.onload = () => {
+      inicializarBaseDatos();
+      renderizarTodo();
+    };
+  </script>
+</body>
+</html>
