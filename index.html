@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planificador Nutricional Semanal</title>
+  <style>
+    :root {
+      --azul:#2563eb; --azul-dark:#1e3a5f; --verde:#16a34a;
+      --rojo:#dc2626; --oro:#f59e0b; --gris:#f8fafc;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Segoe UI',Arial,sans-serif; background:#f1f5f9; color:#1e293b; }
+
+    /* HEADER */
+    .header { background:linear-gradient(135deg,#1e3a5f,#2563eb); color:white; padding:20px 30px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; box-shadow:0 4px 12px rgba(0,0,0,.2); }
+    .header h1 { font-size:22px; font-weight:700; letter-spacing:.3px; }
+    .header .sub { font-size:12px; opacity:.8; margin-top:3px; }
+
+    /* BUSCADOR */
+    .barra { background:white; padding:12px 30px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; border-bottom:2px solid #e2e8f0; position:sticky; top:0; z-index:200; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+    .buscador-wrap { position:relative; flex:1; max-width:380px; }
+    .buscador-wrap input { width:100%; border:2px solid #cbd5e1; border-radius:10px; padding:9px 14px 9px 38px; font-size:13px; outline:none; transition:border .2s; }
+    .buscador-wrap input:focus { border-color:var(--azul); }
+    .buscador-wrap .ico { position:absolute; left:11px; top:50%; transform:translateY(-50%); color:#94a3b8; font-size:16px; }
+    .badge { font-size:11px; border-radius:20px; padding:4px 12px; font-weight:700; }
+    .badge-total { background:#dbeafe; color:#1d4ed8; }
+    .badge-filtro { background:#dcfce7; color:#15803d; display:none; }
+    .badge-lento { background:#fef3c7; color:#92400e; font-size:11px; padding:4px 12px; border-radius:20px; }
+
+    /* DÍAS NAV */
+    .dias-nav { background:white; padding:8px 30px; display:flex; gap:6px; overflow-x:auto; border-bottom:1px solid #e2e8f0; position:sticky; top:57px; z-index:190; }
+    .dia-btn { padding:6px 16px; border-radius:20px; border:2px solid #e2e8f0; background:white; font-size:12px; font-weight:600; cursor:pointer; white-space:nowrap; transition:all .2s; color:#64748b; }
+    .dia-btn.activo { background:var(--azul); color:white; border-color:var(--azul); }
+    .dia-btn:hover:not(.activo) { border-color:var(--azul); color:var(--azul); }
+
+    /* CONTENEDOR */
+    .contenedor { padding:20px 30px; max-width:1300px; margin:0 auto; }
+
+    /* TABLA */
+    .tabla-wrap { background:white; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,.08); overflow:hidden; margin-bottom:20px; }
+    .tabla-titulo { background:var(--azul-dark); color:white; padding:12px 20px; font-size:16px; font-weight:700; display:flex; align-items:center; gap:10px; }
+    .tabla-titulo .total-dia-badge { margin-left:auto; background:var(--oro); color:#1e293b; border-radius:10px; padding:4px 14px; font-size:13px; }
+
+    table { width:100%; border-collapse:collapse; }
+    th { background:#f1f5f9; color:#475569; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; padding:9px 10px; border-bottom:2px solid #e2e8f0; text-align:center; }
+    td { border-bottom:1px solid #f1f5f9; padding:7px 10px; font-size:12px; vertical-align:middle; }
+    tr:last-child td { border-bottom:none; }
+    tr:hover td { background:#f8fafc; }
+
+    .bloque-hdr { background:#eff6ff; }
+    .bloque-hdr td { font-weight:700; font-size:12px; color:#1d4ed8; padding:8px 12px; border-left:4px solid var(--azul); }
+    .subtotal-row td { background:#f0fdf4; font-weight:700; font-size:11px; color:#166534; }
+    .total-row td { background:#fef9c3; font-weight:700; font-size:13px; color:#78350f; }
+
+    /* SELECT ALIMENTO */
+    .sel-alimento { position:relative; }
+    .sel-alimento input { width:200px; border:1px solid #cbd5e1; border-radius:6px; padding:5px 8px; font-size:12px; outline:none; cursor:pointer; }
+    .sel-alimento input:focus { border-color:var(--azul); }
+    .dropdown { position:absolute; top:100%; left:0; width:300px; max-height:200px; overflow-y:auto; background:white; border:1px solid #e2e8f0; border-radius:8px; box-shadow:0 8px 24px rgba(0,0,0,.15); z-index:1000; display:none; }
+    .dropdown.show { display:block; }
+    .dd-item { padding:7px 12px; font-size:12px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; }
+    .dd-item:hover { background:#eff6ff; }
+    .dd-item .dd-tag { font-size:10px; background:#f1f5f9; color:#64748b; border-radius:4px; padding:1px 5px; }
+    .dd-item .dd-kcal { font-size:10px; color:#64748b; }
+
+    input[type=number] { width:60px; padding:5px; text-align:center; border:1px solid #cbd5e1; border-radius:6px; font-size:12px; outline:none; }
+    input[type=number]:focus { border-color:var(--azul); }
+
+    .num { text-align:right; font-variant-numeric:tabular-nums; }
+
+    /* BOTONES */
+    .btn-agregar { background:var(--verde); color:white; border:none; padding:5px 14px; border-radius:20px; font-size:11px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:4px; transition:all .2s; }
+    .btn-agregar:hover { background:#15803d; transform:translateY(-1px); box-shadow:0 3px 8px rgba(22,163,74,.3); }
+    .btn-del { background:#fee2e2; color:var(--rojo); border:1px solid #fecaca; padding:4px 9px; border-radius:6px; cursor:pointer; font-size:12px; font-weight:700; transition:all .2s; }
+    .btn-del:hover { background:var(--rojo); color:white; }
+
+    /* RESUMEN */
+    .resumen-semana { background:white; border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,.08); padding:20px; margin-bottom:20px; }
+    .resumen-semana h3 { color:var(--azul-dark); margin-bottom:14px; font-size:15px; }
+    .resumen-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
+    .resumen-card { background:#f8fafc; border-radius:10px; padding:10px; text-align:center; border:2px solid #e2e8f0; cursor:pointer; transition:all .2s; }
+    .resumen-card:hover, .resumen-card.activo { border-color:var(--azul); background:#eff6ff; }
+    .resumen-card .dia { font-size:11px; font-weight:700; color:#64748b; }
+    .resumen-card .kcal { font-size:18px; font-weight:700; color:var(--azul); }
+    .resumen-card .sub { font-size:10px; color:#94a3b8; }
+
+    @media(max-width:768px) { .contenedor { padding:12px; } .resumen-grid { grid-template-columns:repeat(4,1fr); } }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>🥗 Planificador Nutricional Semanal</h1>
+    <div class="sub">Tablas Peruanas + Base Internacional · 2030 alimentos</div>
+  </div>
+</div>
+
+<div class="barra">
+  <div class="buscador-wrap">
+    <span class="ico">🔍</span>
+    <input type="text" id="buscador-global" placeholder="Buscar alimento en toda la base..." oninput="filtrarGlobal(this.value)">
+  </div>
+  <span class="badge badge-total" id="badge-total">2030 alimentos</span>
+  <span class="badge badge-filtro" id="badge-filtro"></span>
+</div>
+
+<div class="dias-nav" id="dias-nav"></div>
+
+<div class="contenedor">
+  <div class="resumen-semana">
+    <h3>📊 Resumen Semanal — Calorías por Día</h3>
+    <div class="resumen-grid" id="resumen-grid"></div>
+  </div>
+  <div id="contenedor-dia"></div>
+</div>
+
+<!-- Dropdown compartido -->
+<div class="dropdown" id="dropdown-global"></div>
+
+<script src="alimentos.js"></script>
+<script>
+// ── CONFIG ──
+const DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+const BLOQUES = ["DESAYUNO / ALMUERZO / CENA","BATIDO MAÑANA","BATIDO MEDIAMAÑANA","BATIDO NOCHE"];
+
+// ── ESTADO ──
+let diaActivo = "Lunes";
+let inputActivo = null;
+let planSemanal = {};
+let filtroGlobal = "";
+
+DIAS.forEach(dia => {
+  planSemanal[dia] = {
+    "DESAYUNO / ALMUERZO / CENA": [
+      {nombre:"Huevo entero cocido",gramos:150},
+      {nombre:"Atún en conserva",gramos:80},
+      {nombre:"Palta",gramos:100}
+    ],
+    "BATIDO MAÑANA": [
+      {nombre:"Avena envasada",gramos:50},
+      {nombre:"Leche entera pasteurizada",gramos:125}
+    ],
+    "BATIDO MEDIAMAÑANA": [
+      {nombre:"Fresa",gramos:100}
+    ],
+    "BATIDO NOCHE": [
+      {nombre:"Leche entera pasteurizada",gramos:250},
+      {nombre:"Almendra",gramos:20}
+    ]
+  };
+});
+
+// ── NUTRIENTES ──
+function getNut(nombre, gramos) {
+  const item = baseDatos.find(a => a.nombre.toLowerCase() === nombre.toLowerCase());
+  if (!item || !gramos) return {kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+  const f = gramos / 100;
+  return {
+    kcal:  +(((item.kcal||0)*f).toFixed(1)),
+    prot:  +(((item.proteinas||0)*f).toFixed(1)),
+    carb:  +(((item.carbohidratos||0)*f).toFixed(1)),
+    grasa: +(((item.grasas||0)*f).toFixed(1)),
+    fibra: +(((item.fibra||0)*f).toFixed(1)),
+  };
+}
+function totalDia(dia) {
+  let t={kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+  BLOQUES.forEach(b=>(planSemanal[dia][b]||[]).forEach(item=>{
+    const n=getNut(item.nombre,item.gramos);
+    t.kcal+=n.kcal;t.prot+=n.prot;t.carb+=n.carb;t.grasa+=n.grasa;t.fibra+=n.fibra;
+  }));
+  return t;
+}
+
+// ── DÍAS NAV ──
+function renderNav() {
+  const nav = document.getElementById('dias-nav');
+  nav.innerHTML = DIAS.map(d =>
+    `<button class="dia-btn ${d===diaActivo?'activo':''}" onclick="cambiarDia('${d}')">${d}</button>`
+  ).join('');
+}
+function cambiarDia(dia) {
+  diaActivo = dia;
+  renderNav();
+  renderDia();
+  renderResumen();
+}
+
+// ── RESUMEN ──
+function renderResumen() {
+  const grid = document.getElementById('resumen-grid');
+  grid.innerHTML = DIAS.map(d => {
+    const t = totalDia(d);
+    return `<div class="resumen-card ${d===diaActivo?'activo':''}" onclick="cambiarDia('${d}')">
+      <div class="dia">${d.substring(0,3).toUpperCase()}</div>
+      <div class="kcal">${t.kcal.toFixed(0)}</div>
+      <div class="sub">kcal</div>
+    </div>`;
+  }).join('');
+}
+
+// ── RENDER DÍA ──
+function renderDia() {
+  const dia = diaActivo;
+  const totDia = totalDia(dia);
+  let html = `<div class="tabla-wrap">
+    <div class="tabla-titulo">
+      📅 ${dia}
+      <span class="total-dia-badge">⚡ ${totDia.kcal.toFixed(0)} kcal · 💪 ${totDia.prot.toFixed(1)}g prot · 🌾 ${totDia.carb.toFixed(1)}g carb · 🧈 ${totDia.grasa.toFixed(1)}g grasa</span>
+    </div>
+    <table>
+      <thead><tr>
+        <th style="width:220px">ALIMENTO</th>
+        <th style="width:80px">PORCIÓN (g)</th>
+        <th style="width:70px">KCAL</th>
+        <th style="width:65px">PROT (g)</th>
+        <th style="width:65px">CARB (g)</th>
+        <th style="width:65px">GRASA (g)</th>
+        <th style="width:65px">FIBRA (g)</th>
+        <th style="width:50px"></th>
+      </tr></thead><tbody>`;
+
+  BLOQUES.forEach(bloque => {
+    const items = planSemanal[dia][bloque] || [];
+    let bt={kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+
+    html += `<tr class="bloque-hdr"><td colspan="8">
+      🍽️ ${bloque}
+      <button class="btn-agregar" onclick="agregarFila('${dia}','${bloque}')">＋ Agregar alimento</button>
+    </td></tr>`;
+
+    items.forEach((item, idx) => {
+      const n = getNut(item.nombre, item.gramos);
+      bt.kcal+=n.kcal;bt.prot+=n.prot;bt.carb+=n.carb;bt.grasa+=n.grasa;bt.fibra+=n.fibra;
+      const tag = baseDatos.find(a=>a.nombre.toLowerCase()===item.nombre.toLowerCase())?.fuente==='Tablas Peruanas'?'[PE]':'[INT]';
+      html += `<tr>
+        <td>
+          <div class="sel-alimento">
+            <input type="text" value="${item.nombre} ${tag}" readonly
+              onclick="abrirDropdown(this,'${dia}','${bloque}',${idx})"
+              data-dia="${dia}" data-bloque="${bloque}" data-idx="${idx}">
+          </div>
+        </td>
+        <td><input type="number" value="${item.gramos}" step="5" min="0"
+          onchange="cambiarGramos('${dia}','${bloque}',${idx},this.value)"></td>
+        <td class="num">${n.kcal}</td>
+        <td class="num">${n.prot}</td>
+        <td class="num">${n.carb}</td>
+        <td class="num">${n.grasa}</td>
+        <td class="num">${n.fibra}</td>
+        <td><button class="btn-del" onclick="eliminarFila('${dia}','${bloque}',${idx})">✕</button></td>
+      </tr>`;
+    });
+
+    html += `<tr class="subtotal-row"><td colspan="2" style="text-align:right;padding-right:16px">Subtotal ${bloque}:</td>
+      <td class="num">${bt.kcal.toFixed(1)}</td><td class="num">${bt.prot.toFixed(1)}</td>
+      <td class="num">${bt.carb.toFixed(1)}</td><td class="num">${bt.grasa.toFixed(1)}</td>
+      <td class="num">${bt.fibra.toFixed(1)}</td><td></td></tr>`;
+  });
+
+  const t = totDia;
+  html += `<tr class="total-row"><td colspan="2" style="text-align:right;padding-right:16px">TOTAL ${dia.toUpperCase()}:</td>
+    <td class="num">${t.kcal.toFixed(1)}</td><td class="num">${t.prot.toFixed(1)}</td>
+    <td class="num">${t.carb.toFixed(1)}</td><td class="num">${t.grasa.toFixed(1)}</td>
+    <td class="num">${t.fibra.toFixed(1)}</td><td></td></tr>`;
+
+  html += `</tbody></table></div>`;
+  document.getElementById('contenedor-dia').innerHTML = html;
+}
+
+// ── DROPDOWN RÁPIDO ──
+let ddDia, ddBloque, ddIdx;
+function abrirDropdown(inputEl, dia, bloque, idx) {
+  ddDia=dia; ddBloque=bloque; ddIdx=idx;
+  inputActivo = inputEl;
+  const dd = document.getElementById('dropdown-global');
+  const rect = inputEl.getBoundingClientRect();
+  dd.style.top = (rect.bottom + window.scrollY + 4) + 'px';
+  dd.style.left = rect.left + 'px';
+  poblarDropdown('');
+  dd.classList.add('show');
+  // Crear input temporal de búsqueda
+  inputEl.value = '';
+  inputEl.readOnly = false;
+  inputEl.oninput = (e) => poblarDropdown(e.target.value);
+  inputEl.focus();
+}
+
+function poblarDropdown(filtro) {
+  const dd = document.getElementById('dropdown-global');
+  const f = filtro.toLowerCase();
+  const lista = f
+    ? baseDatos.filter(a => a.nombre.toLowerCase().includes(f)).slice(0, 50)
+    : baseDatos.slice(0, 50);
+  dd.innerHTML = lista.map(a =>
+    `<div class="dd-item" onclick="seleccionarAlimento('${a.nombre.replace(/'/g,"\\'")}')">
+      <span>${a.nombre}</span>
+      <span>
+        <span class="dd-tag">${a.fuente==='Tablas Peruanas'?'PE':'INT'}</span>
+        <span class="dd-kcal"> ${a.kcal||0} kcal</span>
+      </span>
+    </div>`
+  ).join('') || '<div class="dd-item" style="color:#94a3b8">Sin resultados</div>';
+}
+
+function seleccionarAlimento(nombre) {
+  planSemanal[ddDia][ddBloque][ddIdx].nombre = nombre;
+  cerrarDropdown();
+  renderDia();
+  renderResumen();
+}
+
+function cerrarDropdown() {
+  document.getElementById('dropdown-global').classList.remove('show');
+  if (inputActivo) {
+    inputActivo.readOnly = true;
+    inputActivo.oninput = null;
+  }
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.sel-alimento') && !e.target.closest('.dropdown')) cerrarDropdown();
+});
+
+// ── ACCIONES ──
+function cambiarGramos(dia, bloque, idx, val) {
+  planSemanal[dia][bloque][idx].gramos = parseFloat(val)||0;
+  renderDia();
+  renderResumen();
+}
+function agregarFila(dia, bloque) {
+  planSemanal[dia][bloque].push({nombre: baseDatos[0]?.nombre||"", gramos:100});
+  renderDia();
+  renderResumen();
+}
+function eliminarFila(dia, bloque, idx) {
+  planSemanal[dia][bloque].splice(idx,1);
+  renderDia();
+  renderResumen();
+}
+
+// ── FILTRO GLOBAL (solo muestra info) ──
+function filtrarGlobal(val) {
+  filtroGlobal = val.toLowerCase();
+  const badge = document.getElementById('badge-filtro');
+  if (filtroGlobal) {
+    const count = baseDatos.filter(a=>a.nombre.toLowerCase().includes(filtroGlobal)).length;
+    badge.textContent = `${count} alimentos encontrados`;
+    badge.style.display = 'inline';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+// ── INIT ──
+renderNav();
+renderResumen();
+renderDia();
+</script>
+</body>
+</html>
