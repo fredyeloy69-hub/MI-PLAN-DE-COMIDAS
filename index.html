@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planificador Nutricional Semanal</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 98%;
+            max-width: 1600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            background: #e2e8f0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+
+        .dia-col {
+            background-color: #1e293b;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 1.1rem;
+            width: 80px;
+        }
+
+        .bloque-header {
+            background-color: #f1f5f9;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .subtotal-row {
+            background-color: #d1fae5;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .total-row {
+            background-color: #facc15;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        input[type="text"], input[type="number"] {
+            padding: 6px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            width: 100%;
+            background: white;
+            box-sizing: border-box;
+        }
+
+        .btn-add {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .btn-add:hover { background: #059669; }
+
+        .btn-del {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-del:hover { background: #dc2626; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 style="text-align: center; margin-top: 0;">🥗 Planificador Nutricional Semanal</h2>
+        
+        <div class="top-bar">
+            <span class="badge" id="total-alimentos">0 alimentos cargados</span>
+        </div>
+
+        <datalist id="lista-alimentos"></datalist>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>DÍA</th>
+                    <th style="width: 320px;">ALIMENTO</th>
+                    <th style="width: 100px;">PORCIÓN (G)</th>
+                    <th style="width: 70px;">KCAL</th>
+                    <th style="width: 70px;">PROT (G)</th>
+                    <th style="width: 70px;">CARB (G)</th>
+                    <th style="width: 70px;">GRASA (G)</th>
+                    <th style="width: 70px;">FIBRA (G)</th>
+                    <th style="width: 50px;">DEL</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-planificador">
+                <!-- LUNES -->
+                <tr>
+                    <td rowspan="17" class="dia-col">Lunes</td>
+                    <td colspan="8" class="bloque-header">
+                        DESAYUNO / ALMUERZO / CENA 
+                        <button class="btn-add" onclick="agregarFila('comida-tbody')">+ Agregar</button>
+                    </td>
+                </tr>
+                <tbody id="comida-tbody">
+                    <tr class="item-row">
+                        <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." value="Achita, kiwicha o achis [PE]" onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                        <td><input type="number" class="input-porcion" value="150" oninput="recalcularTodo()"></td>
+                        <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                        <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." value="Achita, kiwicha o achis [PE]" onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                        <td><input type="number" class="input-porcion" value="80" oninput="recalcularTodo()"></td>
+                        <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                        <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." value="Palta [PE]" onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                        <td><input type="number" class="input-porcion" value="100" oninput="recalcularTodo()"></td>
+                        <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                        <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+                    </tr>
+                </tbody>
+                <tr class="subtotal-row">
+                    <td colspan="2">Subtotal DESAYUNO / ALMUERZO / CENA:</td>
+                    <td class="sub-kcal">0.0</td><td class="sub-prot">0.0</td><td class="sub-carb">0.0</td><td class="sub-grasa">0.0</td><td class="sub-fibra">0.0</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td colspan="8" class="bloque-header">
+                        BATIDO MAÑANA 
+                        <button class="btn-add" onclick="agregarFila('batido-manana-tbody')">+ Agregar</button>
+                    </td>
+                </tr>
+                <tbody id="batido-manana-tbody">
+                    <tr class="item-row">
+                        <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." value="Avena envasada [PE]" onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                        <td><input type="number" class="input-porcion" value="50" oninput="recalcularTodo()"></td>
+                        <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                        <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." value="Achita, kiwicha o achis [PE]" onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                        <td><input type="number" class="input-porcion" value="125" oninput="recalcularTodo()"></td>
+                        <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                        <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+                    </tr>
+                </tbody>
+                <tr class="subtotal-row">
+                    <td colspan="2">Subtotal BATIDO MAÑANA:</td>
+                    <td class="sub-kcal">0.0</td><td class="sub-prot">0.0</td><td class="sub-carb">0.0</td><td class="sub-grasa">0.0</td><td class="sub-fibra">0.0</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td colspan="8" class="bloque-header">
+                        BATIDO MEDIAMAÑANA 
+                        <button class="btn-add" onclick="agregarFila('batido-media-tbody')">+ Agregar</button>
+                    </td>
+                </tr>
+                <tbody id="batido-media-tbody">
+                    <tr class="item-row">
+                        <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." value="Fresa [PE]" onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                        <td><input type="number" class="input-porcion" value="100" oninput="recalcularTodo()"></td>
+                        <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                        <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+                    </tr>
+                </tbody>
+                <tr class="subtotal-row">
+                    <td colspan="2">Subtotal BATIDO MEDIAMAÑANA:</td>
+                    <td class="sub-kcal">0.0</td><td class="sub-prot">0.0</td><td class="sub-carb">0.0</td><td class="sub-grasa">0.0</td><td class="sub-fibra">0.0</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td colspan="8" class="bloque-header">
+                        BATIDO NOCHE 
+                        <button class="btn-add" onclick="agregarFila('batido-noche-tbody')">+ Agregar</button>
+                    </td>
+                </tr>
+                <tbody id="batido-noche-tbody">
+                    <tr class="item-row">
+                        <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." value="Achita, kiwicha o achis [PE]" onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                        <td><input type="number" class="input-porcion" value="250" oninput="recalcularTodo()"></td>
+                        <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                        <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+                    </tr>
+                    <tr class="item-row">
+                        <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." value="Almendra [PE]" onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                        <td><input type="number" class="input-porcion" value="20" oninput="recalcularTodo()"></td>
+                        <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                        <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+                    </tr>
+                </tbody>
+                <tr class="subtotal-row">
+                    <td colspan="2">Subtotal BATIDO NOCHE:</td>
+                    <td class="sub-kcal">0.0</td><td class="sub-prot">0.0</td><td class="sub-carb">0.0</td><td class="sub-grasa">0.0</td><td class="sub-fibra">0.0</td>
+                    <td></td>
+                </tr>
+
+                <tr class="total-row">
+                    <td colspan="2">TOTAL LUNES:</td>
+                    <td id="total-kcal">0.0</td><td id="total-prot">0.0</td><td id="total-carb">0.0</td><td id="total-grasa">0.0</td><td id="total-fibra">0.0</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // PEGA AQUÍ TU ARREGLO COMPLETO DE 2030 ALIMENTOS
+        let baseDatos = [
+            { nombre: "Achita, kiwicha o achis [PE]", kcal: 351.0, proteinas: 12.8, carbohidratos: 69.1, grasas: 6.6, fibra: 9.3 },
+            { nombre: "Palta [PE]", kcal: 130.0, proteinas: 1.7, carbohidratos: 5.6, grasas: 12.5, fibra: 0.0 },
+            { nombre: "Avena envasada [PE]", kcal: 380.0, proteinas: 13.6, carbohidratos: 71.2, grasas: 4.8, fibra: 0.0 },
+            { nombre: "Fresa [PE]", kcal: 34.0, proteinas: 0.7, carbohidratos: 8.9, grasas: 0.8, fibra: 2.0 },
+            { nombre: "Almendra [PE]", kcal: 552.0, proteinas: 23.5, carbohidratos: 14.5, grasas: 54.0, fibra: 10.0 }
+        ];
+
+        function initApp() {
+            document.getElementById('total-alimentos').innerText = `${baseDatos.length} alimentos cargados`;
+            const datalist = document.getElementById('lista-alimentos');
+            datalist.innerHTML = baseDatos.map(a => `<option value="${a.nombre}">`).join('');
+            recalcularTodo();
+        }
+
+        function agregarFila(tbodyId) {
+            const tbody = document.getElementById(tbodyId);
+            const tr = document.createElement('tr');
+            tr.className = 'item-row';
+            tr.innerHTML = `
+                <td><input type="text" class="input-alimento" list="lista-alimentos" placeholder="Escribe el alimento..." onclick="this.value=''; recalcularTodo();" oninput="recalcularTodo()"></td>
+                <td><input type="number" class="input-porcion" value="100" oninput="recalcularTodo()"></td>
+                <td class="cell-kcal">0.0</td><td class="cell-prot">0.0</td><td class="cell-carb">0.0</td><td class="cell-grasa">0.0</td><td class="cell-fibra">0.0</td>
+                <td><button class="btn-del" onclick="eliminarFila(this)">X</button></td>
+            `;
+            tbody.appendChild(tr);
+            recalcularTodo();
+        }
+
+        function eliminarFila(btn) {
+            btn.closest('tr').remove();
+            recalcularTodo();
+        }
+
+        function recalcularTodo() {
+            let totalKcal = 0, totalProt = 0, totalCarb = 0, totalGrasa = 0, totalFibra = 0;
+            const secciones = ['comida-tbody', 'batido-manana-tbody', 'batido-media-tbody', 'batido-noche-tbody'];
+            
+            secciones.forEach(tbodyId => {
+                const tbody = document.getElementById(tbodyId);
+                if (!tbody) return;
+                
+                let subKcal = 0, subProt = 0, subCarb = 0, subGrasa = 0, subFibra = 0;
+                const filas = tbody.querySelectorAll('.item-row');
+
+                filas.forEach(fila => {
+                    const nombreAlimento = fila.querySelector('.input-alimento').value.trim();
+                    const porcion = parseFloat(fila.querySelector('.input-porcion').value) || 0;
+                    
+                    const alimento = baseDatos.find(a => a.nombre.toLowerCase() === nombreAlimento.toLowerCase());
+                    if (alimento) {
+                        const factor = porcion / 100;
+                        const k = alimento.kcal * factor;
+                        const p = alimento.proteinas * factor;
+                        const c = alimento.carbohidratos * factor;
+                        const g = alimento.grasas * factor;
+                        const f = (alimento.fibra || 0) * factor;
+
+                        fila.querySelector('.cell-kcal').innerText = k.toFixed(1);
+                        fila.querySelector('.cell-prot').innerText = p.toFixed(1);
+                        fila.querySelector('.cell-carb').innerText = c.toFixed(1);
+                        fila.querySelector('.cell-grasa').innerText = g.toFixed(1);
+                        fila.querySelector('.cell-fibra').innerText = f.toFixed(1);
+
+                        subKcal += k; subProt += p; subCarb += c; subGrasa += g; subFibra += f;
+                    } else {
+                        fila.querySelector('.cell-kcal').innerText = '0.0';
+                        fila.querySelector('.cell-prot').innerText = '0.0';
+                        fila.querySelector('.cell-carb').innerText = '0.0';
+                        fila.querySelector('.cell-grasa').innerText = '0.0';
+                        fila.querySelector('.cell-fibra').innerText = '0.0';
+                    }
+                });
+
+                const subtr = tbody.nextElementSibling;
+                if (subtr && subtr.classList.contains('subtotal-row')) {
+                    subtr.querySelector('.sub-kcal').innerText = subKcal.toFixed(1);
+                    subtr.querySelector('.sub-prot').innerText = subProt.toFixed(1);
+                    subtr.querySelector('.sub-carb').innerText = subCarb.toFixed(1);
+                    subtr.querySelector('.sub-grasa').innerText = subGrasa.toFixed(1);
+                    subtr.querySelector('.sub-fibra').innerText = subFibra.toFixed(1);
+                }
+
+                totalKcal += subKcal; totalProt += subProt; totalCarb += subCarb; totalGrasa += subGrasa; totalFibra += subFibra;
+            });
+
+            document.getElementById('total-kcal').innerText = totalKcal.toFixed(1);
+            document.getElementById('total-prot').innerText = totalProt.toFixed(1);
+            document.getElementById('total-carb').innerText = totalCarb.toFixed(1);
+            document.getElementById('total-grasa').innerText = totalGrasa.toFixed(1);
+            document.getElementById('total-fibra').innerText = totalFibra.toFixed(1);
+        }
+
+        initApp();
+    </script>
+</body>
+</html>
