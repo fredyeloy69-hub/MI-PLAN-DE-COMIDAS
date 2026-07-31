@@ -1,0 +1,7572 @@
+[
+  {
+    "alimento": "Abadejo, ahumado",
+    "calorias_kcal": 116,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25.23,
+    "grasas_g": 0.96,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Abulón, al vapor o escalfado",
+    "calorias_kcal": 209,
+    "carbohidratos_g": 11.97,
+    "proteinas_g": 34.05,
+    "grasas_g": 1.51,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Acedias Fritas",
+    "calorias_kcal": 256,
+    "carbohidratos_g": 12,
+    "proteinas_g": 17,
+    "grasas_g": 16,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de almendras",
+    "calorias_kcal": 884,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de cacahuete",
+    "calorias_kcal": 884,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de coco",
+    "calorias_kcal": 892,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 99.06,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de girasol",
+    "calorias_kcal": 884,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de maíz",
+    "calorias_kcal": 900,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de nuez",
+    "calorias_kcal": 884,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de oliva",
+    "calorias_kcal": 884,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de sésamo",
+    "calorias_kcal": 884,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite de soja",
+    "calorias_kcal": 884,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceite Uva, Pepita",
+    "calorias_kcal": 899,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceitunas negras",
+    "calorias_kcal": 105,
+    "carbohidratos_g": 6.06,
+    "proteinas_g": 0.88,
+    "grasas_g": 9.54,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceitunas verdes",
+    "calorias_kcal": 145,
+    "carbohidratos_g": 3.84,
+    "proteinas_g": 1.03,
+    "grasas_g": 15.32,
+    "fibra_g": 3.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aceitunas verdes rellenas",
+    "calorias_kcal": 128,
+    "carbohidratos_g": 4.02,
+    "proteinas_g": 1.04,
+    "grasas_g": 13.22,
+    "fibra_g": 3.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Acelga cruda",
+    "calorias_kcal": 19,
+    "carbohidratos_g": 3.74,
+    "proteinas_g": 1.8,
+    "grasas_g": 0.2,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Acerolas",
+    "calorias_kcal": 31,
+    "carbohidratos_g": 7.5,
+    "proteinas_g": 0.4,
+    "grasas_g": 0.3,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aderezo César",
+    "calorias_kcal": 542,
+    "carbohidratos_g": 3.3,
+    "proteinas_g": 2.17,
+    "grasas_g": 57.85,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aderezo de miel y mostaza",
+    "calorias_kcal": 464,
+    "carbohidratos_g": 23.33,
+    "proteinas_g": 0.87,
+    "grasas_g": 40.83,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aderezo de queso azul o roquefort",
+    "calorias_kcal": 484,
+    "carbohidratos_g": 4.77,
+    "proteinas_g": 1.37,
+    "grasas_g": 51.1,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aderezo de yogurt",
+    "calorias_kcal": 220,
+    "carbohidratos_g": 11.75,
+    "proteinas_g": 3.45,
+    "grasas_g": 18.27,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Agua carbonatada, endulzada",
+    "calorias_kcal": 34,
+    "carbohidratos_g": 8.8,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Agua Manantial",
+    "calorias_kcal": 0,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Aguacate crudo",
+    "calorias_kcal": 160,
+    "carbohidratos_g": 8.53,
+    "proteinas_g": 2,
+    "grasas_g": 14.66,
+    "fibra_g": 6.7,
+    "peso_unidad_g": 200,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Ajo crudo",
+    "calorias_kcal": 149,
+    "carbohidratos_g": 33.06,
+    "proteinas_g": 6.36,
+    "grasas_g": 0.5,
+    "fibra_g": 2.1,
+    "peso_unidad_g": 3,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Albahaca cruda",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 2.65,
+    "proteinas_g": 3.15,
+    "grasas_g": 0.64,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Albaricoque crudo",
+    "calorias_kcal": 48,
+    "carbohidratos_g": 11.12,
+    "proteinas_g": 1.4,
+    "grasas_g": 0.39,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Albaricoque, cocido o enlatado, en almíbar espeso",
+    "calorias_kcal": 83,
+    "carbohidratos_g": 21.47,
+    "proteinas_g": 0.53,
+    "grasas_g": 0.08,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Albaricoque, seco, crudo",
+    "calorias_kcal": 241,
+    "carbohidratos_g": 62.64,
+    "proteinas_g": 3.39,
+    "grasas_g": 0.51,
+    "fibra_g": 7.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Albóndigas suecas con crema o salsa blanca",
+    "calorias_kcal": 170,
+    "carbohidratos_g": 7.22,
+    "proteinas_g": 12.43,
+    "grasas_g": 9.88,
+    "fibra_g": 0.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Alcachofa, cocida, enlatada, hecha con aceite.",
+    "calorias_kcal": 67,
+    "carbohidratos_g": 8.89,
+    "proteinas_g": 3.01,
+    "grasas_g": 3.1,
+    "fibra_g": 4.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Alcachofa, cocida, fresca, hecha con aceite.",
+    "calorias_kcal": 74,
+    "carbohidratos_g": 11.57,
+    "proteinas_g": 2.8,
+    "grasas_g": 2.95,
+    "fibra_g": 5.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Alcachofas",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 2.3,
+    "proteinas_g": 2.9,
+    "grasas_g": 0.2,
+    "fibra_g": 9.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Alitas de pollo, asador",
+    "calorias_kcal": 257,
+    "carbohidratos_g": 0.6,
+    "proteinas_g": 23.42,
+    "grasas_g": 18.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Almejas crudas / Chirla",
+    "calorias_kcal": 86,
+    "carbohidratos_g": 3.57,
+    "proteinas_g": 14.67,
+    "grasas_g": 0.96,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Almejas enlatadas",
+    "calorias_kcal": 108,
+    "carbohidratos_g": 4.46,
+    "proteinas_g": 18.34,
+    "grasas_g": 1.2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Almendras saladas",
+    "calorias_kcal": 601,
+    "carbohidratos_g": 20.18,
+    "proteinas_g": 20.13,
+    "grasas_g": 53.43,
+    "fibra_g": 10.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Almendras sin sal",
+    "calorias_kcal": 607,
+    "carbohidratos_g": 20.38,
+    "proteinas_g": 20.33,
+    "grasas_g": 53.96,
+    "fibra_g": 10.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Almendras sin tostar",
+    "calorias_kcal": 579,
+    "carbohidratos_g": 21.55,
+    "proteinas_g": 21.15,
+    "grasas_g": 49.93,
+    "fibra_g": 12.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Alubias blancas, enlatadas, escurridas, sin grasa añadida",
+    "calorias_kcal": 168,
+    "carbohidratos_g": 30.91,
+    "proteinas_g": 10.84,
+    "grasas_g": 0.57,
+    "fibra_g": 7.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Anacardo",
+    "calorias_kcal": 609,
+    "carbohidratos_g": 30.3,
+    "proteinas_g": 12.12,
+    "grasas_g": 53.03,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ancas de rana, al vapor",
+    "calorias_kcal": 92,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20.62,
+    "grasas_g": 0.38,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Anchoa enlatada",
+    "calorias_kcal": 210,
+    "carbohidratos_g": 0,
+    "proteinas_g": 28.89,
+    "grasas_g": 9.71,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Anguila",
+    "calorias_kcal": 168,
+    "carbohidratos_g": 0,
+    "proteinas_g": 17,
+    "grasas_g": 11,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Anguila ahumada",
+    "calorias_kcal": 287,
+    "carbohidratos_g": 0,
+    "proteinas_g": 28.73,
+    "grasas_g": 18.17,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Anguila al vapor o escalfada",
+    "calorias_kcal": 231,
+    "carbohidratos_g": 0,
+    "proteinas_g": 23.19,
+    "grasas_g": 14.66,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Angulas",
+    "calorias_kcal": 205,
+    "carbohidratos_g": 0,
+    "proteinas_g": 16,
+    "grasas_g": 16,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Anisete",
+    "calorias_kcal": 297,
+    "carbohidratos_g": 2,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Apio cocido",
+    "calorias_kcal": 44,
+    "carbohidratos_g": 9.63,
+    "proteinas_g": 1.57,
+    "grasas_g": 0.31,
+    "fibra_g": 1.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Apio crudo",
+    "calorias_kcal": 16,
+    "carbohidratos_g": 2.97,
+    "proteinas_g": 0.69,
+    "grasas_g": 0.17,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arándanos crudos",
+    "calorias_kcal": 57,
+    "carbohidratos_g": 14.49,
+    "proteinas_g": 0.74,
+    "grasas_g": 0.33,
+    "fibra_g": 2.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arándanos secos",
+    "calorias_kcal": 308,
+    "carbohidratos_g": 82.8,
+    "proteinas_g": 0.17,
+    "grasas_g": 1.09,
+    "fibra_g": 5.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arenque crudo",
+    "calorias_kcal": 158,
+    "carbohidratos_g": 0,
+    "proteinas_g": 17.96,
+    "grasas_g": 9.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arenque Seco",
+    "calorias_kcal": 122,
+    "carbohidratos_g": 0,
+    "proteinas_g": 17,
+    "grasas_g": 6,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arenque, ahumado",
+    "calorias_kcal": 217,
+    "carbohidratos_g": 0,
+    "proteinas_g": 24.58,
+    "grasas_g": 12.37,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arroz cocido con leche",
+    "calorias_kcal": 143,
+    "carbohidratos_g": 25.03,
+    "proteinas_g": 5.06,
+    "grasas_g": 2.21,
+    "fibra_g": 0.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arroz Integral",
+    "calorias_kcal": 357,
+    "carbohidratos_g": 77,
+    "proteinas_g": 7,
+    "grasas_g": 2,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arroz Pulido, Blanco",
+    "calorias_kcal": 361,
+    "carbohidratos_g": 87,
+    "proteinas_g": 6,
+    "grasas_g": 1,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arroz, blanco, cocido, sin agregar grasa al cocinar",
+    "calorias_kcal": 129,
+    "carbohidratos_g": 27.99,
+    "proteinas_g": 2.67,
+    "grasas_g": 0.28,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arroz, integral y salvaje, cocido, sin grasa añadida en la cocción",
+    "calorias_kcal": 120,
+    "carbohidratos_g": 24.9,
+    "proteinas_g": 2.89,
+    "grasas_g": 0.88,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Arroz, salvaje cocido, sin grasa añadida en la cocción",
+    "calorias_kcal": 100,
+    "carbohidratos_g": 21.21,
+    "proteinas_g": 3.97,
+    "grasas_g": 0.34,
+    "fibra_g": 1.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Atún fresco ahumado",
+    "calorias_kcal": 200,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25.54,
+    "grasas_g": 10.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Atún fresco, crudo",
+    "calorias_kcal": 109,
+    "carbohidratos_g": 0,
+    "proteinas_g": 24.4,
+    "grasas_g": 0.49,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Atún, enlatado, con aceite",
+    "calorias_kcal": 198,
+    "carbohidratos_g": 0,
+    "proteinas_g": 29.13,
+    "grasas_g": 8.21,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Avellanas",
+    "calorias_kcal": 628,
+    "carbohidratos_g": 16.7,
+    "proteinas_g": 14.95,
+    "grasas_g": 60.75,
+    "fibra_g": 9.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Avena cruda",
+    "calorias_kcal": 379,
+    "carbohidratos_g": 67.7,
+    "proteinas_g": 13.15,
+    "grasas_g": 6.52,
+    "fibra_g": 10.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Avena, Salvado",
+    "calorias_kcal": 25,
+    "carbohidratos_g": 6.6,
+    "proteinas_g": 1.7,
+    "grasas_g": 0.7,
+    "fibra_g": 1.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Avestruz, cocinado",
+    "calorias_kcal": 174,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25.93,
+    "grasas_g": 7.01,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Azúcar, blanco, granulado o en terrones",
+    "calorias_kcal": 387,
+    "carbohidratos_g": 99.98,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Azúcar, blanco, repostería, en polvo",
+    "calorias_kcal": 389,
+    "carbohidratos_g": 99.77,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Azúcar, marrón (moreno)",
+    "calorias_kcal": 380,
+    "carbohidratos_g": 98.09,
+    "proteinas_g": 0.12,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bacalao ahumado",
+    "calorias_kcal": 108,
+    "carbohidratos_g": 0,
+    "proteinas_g": 23.91,
+    "grasas_g": 0.64,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bacalao al horno o a la parrilla, hecho con aceite",
+    "calorias_kcal": 117,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 18.68,
+    "grasas_g": 4.18,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bacalao al horno o a la parrilla, hecho sin grasa",
+    "calorias_kcal": 87,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 19.24,
+    "grasas_g": 0.52,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bacalao Fresco",
+    "calorias_kcal": 76,
+    "carbohidratos_g": 0,
+    "proteinas_g": 17,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bacalao Salazón, remojado",
+    "calorias_kcal": 138,
+    "carbohidratos_g": 0,
+    "proteinas_g": 32,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bacalao, seco, salado",
+    "calorias_kcal": 290,
+    "carbohidratos_g": 0,
+    "proteinas_g": 62.82,
+    "grasas_g": 2.37,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bacón",
+    "calorias_kcal": 427,
+    "carbohidratos_g": 0,
+    "proteinas_g": 14,
+    "grasas_g": 41,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Banana",
+    "calorias_kcal": 89,
+    "carbohidratos_g": 22.6,
+    "proteinas_g": 1.08,
+    "grasas_g": 0.34,
+    "fibra_g": 2.6,
+    "peso_unidad_g": 118,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Barra de almendras MARS",
+    "calorias_kcal": 467,
+    "carbohidratos_g": 62.7,
+    "proteinas_g": 8.1,
+    "grasas_g": 23,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Barra SNICKERS",
+    "calorias_kcal": 491,
+    "carbohidratos_g": 61.51,
+    "proteinas_g": 7.53,
+    "grasas_g": 23.85,
+    "fibra_g": 2.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Batata",
+    "calorias_kcal": 101,
+    "carbohidratos_g": 23,
+    "proteinas_g": 1.2,
+    "grasas_g": 0.3,
+    "fibra_g": 2.9,
+    "peso_unidad_g": 130,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Batata, al horno, sin cáscara, sin grasa añadida en la cocción",
+    "calorias_kcal": 90,
+    "carbohidratos_g": 20.63,
+    "proteinas_g": 2,
+    "grasas_g": 0.15,
+    "fibra_g": 3.3,
+    "peso_unidad_g": 130,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Batido Chocolate",
+    "calorias_kcal": 366,
+    "carbohidratos_g": 77,
+    "proteinas_g": 6,
+    "grasas_g": 6,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Batido de leche, embotellado, chocolate",
+    "calorias_kcal": 150,
+    "carbohidratos_g": 20.36,
+    "proteinas_g": 3.7,
+    "grasas_g": 6.66,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida de avena con leche",
+    "calorias_kcal": 82,
+    "carbohidratos_g": 15.59,
+    "proteinas_g": 1.69,
+    "grasas_g": 1.57,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida de horchata, hecha con agua.",
+    "calorias_kcal": 87,
+    "carbohidratos_g": 20.48,
+    "proteinas_g": 1.09,
+    "grasas_g": 0.11,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida de Jugo / Zumo de frutas (Sunny D)",
+    "calorias_kcal": 54,
+    "carbohidratos_g": 13.16,
+    "proteinas_g": 0.13,
+    "grasas_g": 0,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida deportiva (Gatorade G)",
+    "calorias_kcal": 26,
+    "carbohidratos_g": 6.43,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida deportiva (Powerade)",
+    "calorias_kcal": 32,
+    "carbohidratos_g": 7.84,
+    "proteinas_g": 0,
+    "grasas_g": 0.05,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida energética (Monster)",
+    "calorias_kcal": 47,
+    "carbohidratos_g": 11.28,
+    "proteinas_g": 0.47,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida energética (Red Bull)",
+    "calorias_kcal": 43,
+    "carbohidratos_g": 10.23,
+    "proteinas_g": 0.46,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida energética (Rockstar)",
+    "calorias_kcal": 58,
+    "carbohidratos_g": 12.7,
+    "proteinas_g": 0.34,
+    "grasas_g": 0.22,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida energética sin azúcar (Red Bull)",
+    "calorias_kcal": 5,
+    "carbohidratos_g": 0.7,
+    "proteinas_g": 0.25,
+    "grasas_g": 0.08,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida energética, baja en calorías (Monster)",
+    "calorias_kcal": 5,
+    "carbohidratos_g": 1.38,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bebida energética, sin azúcar (Rockstar)",
+    "calorias_kcal": 4,
+    "carbohidratos_g": 0.7,
+    "proteinas_g": 0.25,
+    "grasas_g": 0.08,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Berberechos Cocidos",
+    "calorias_kcal": 48,
+    "carbohidratos_g": 0,
+    "proteinas_g": 10.7,
+    "grasas_g": 0.5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Berenjena cruda",
+    "calorias_kcal": 25,
+    "carbohidratos_g": 5.88,
+    "proteinas_g": 0.98,
+    "grasas_g": 0.18,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Berenjenas, cocidas, grasas no agregadas en la cocción",
+    "calorias_kcal": 35,
+    "carbohidratos_g": 8.64,
+    "proteinas_g": 0.82,
+    "grasas_g": 0.23,
+    "fibra_g": 2.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Berro, cocido, fresco, sin grasa añadida en la cocción",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 3.77,
+    "proteinas_g": 1.89,
+    "grasas_g": 0.6,
+    "fibra_g": 0.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Berro, crudo",
+    "calorias_kcal": 32,
+    "carbohidratos_g": 5.5,
+    "proteinas_g": 2.6,
+    "grasas_g": 0.7,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Besugo",
+    "calorias_kcal": 90,
+    "carbohidratos_g": 0,
+    "proteinas_g": 18.1,
+    "grasas_g": 1.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bígaros Cocidos",
+    "calorias_kcal": 135,
+    "carbohidratos_g": 5,
+    "proteinas_g": 26,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Biscotes Trigo",
+    "calorias_kcal": 366,
+    "carbohidratos_g": 73,
+    "proteinas_g": 9,
+    "grasas_g": 4,
+    "fibra_g": 4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Biscotes Trigo Integrales",
+    "calorias_kcal": 407,
+    "carbohidratos_g": 62,
+    "proteinas_g": 11,
+    "grasas_g": 11,
+    "fibra_g": 8.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bloody Mary",
+    "calorias_kcal": 69,
+    "carbohidratos_g": 3.16,
+    "proteinas_g": 0.64,
+    "grasas_g": 0.23,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bollos-Pastas Media",
+    "calorias_kcal": 387,
+    "carbohidratos_g": 49,
+    "proteinas_g": 5,
+    "grasas_g": 20,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bombones Media",
+    "calorias_kcal": 458,
+    "carbohidratos_g": 66,
+    "proteinas_g": 5,
+    "grasas_g": 21,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Boniato",
+    "calorias_kcal": 101,
+    "carbohidratos_g": 23,
+    "proteinas_g": 1.2,
+    "grasas_g": 0.3,
+    "fibra_g": 2.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Brandy",
+    "calorias_kcal": 231,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bratwurst",
+    "calorias_kcal": 333,
+    "carbohidratos_g": 2.85,
+    "proteinas_g": 13.72,
+    "grasas_g": 29.18,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Breca (pescado blanco)",
+    "calorias_kcal": 74,
+    "carbohidratos_g": 1,
+    "proteinas_g": 15.4,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Brécol crudo",
+    "calorias_kcal": 34,
+    "carbohidratos_g": 6.64,
+    "proteinas_g": 2.82,
+    "grasas_g": 0.37,
+    "fibra_g": 2.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Brócoli crudo",
+    "calorias_kcal": 34,
+    "carbohidratos_g": 6.64,
+    "proteinas_g": 2.82,
+    "grasas_g": 0.37,
+    "fibra_g": 2.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Brócoli, cocido, congelado, sin agregar grasa al cocinar",
+    "calorias_kcal": 28,
+    "carbohidratos_g": 5.32,
+    "proteinas_g": 3.08,
+    "grasas_g": 0.12,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Brotes de soja, cocidos, frescos, sin grasa añadida en la cocción",
+    "calorias_kcal": 46,
+    "carbohidratos_g": 5.15,
+    "proteinas_g": 4.76,
+    "grasas_g": 1.95,
+    "fibra_g": 0.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Brotes de soja, crudos",
+    "calorias_kcal": 30,
+    "carbohidratos_g": 5.94,
+    "proteinas_g": 3.04,
+    "grasas_g": 0.18,
+    "fibra_g": 1.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Budín de coco",
+    "calorias_kcal": 111,
+    "carbohidratos_g": 17.37,
+    "proteinas_g": 2.89,
+    "grasas_g": 3.43,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Bullabesa",
+    "calorias_kcal": 98,
+    "carbohidratos_g": 2.15,
+    "proteinas_g": 13.43,
+    "grasas_g": 3.7,
+    "fibra_g": 0.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Buñuelo francés",
+    "calorias_kcal": 412,
+    "carbohidratos_g": 59.5,
+    "proteinas_g": 3.1,
+    "grasas_g": 18.3,
+    "fibra_g": 1.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Buñuelo, plátano",
+    "calorias_kcal": 342,
+    "carbohidratos_g": 34.43,
+    "proteinas_g": 5.03,
+    "grasas_g": 21.33,
+    "fibra_g": 2.1,
+    "peso_unidad_g": 118,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Buñuelos de bacalao",
+    "calorias_kcal": 278,
+    "carbohidratos_g": 36.02,
+    "proteinas_g": 15.32,
+    "grasas_g": 7.45,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Buñuelos de maíz",
+    "calorias_kcal": 394,
+    "carbohidratos_g": 40.81,
+    "proteinas_g": 8.24,
+    "grasas_g": 22.57,
+    "fibra_g": 2.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Burrito con carne",
+    "calorias_kcal": 242,
+    "carbohidratos_g": 14.44,
+    "proteinas_g": 13.03,
+    "grasas_g": 14.48,
+    "fibra_g": 1.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Burrito de pollo",
+    "calorias_kcal": 242,
+    "carbohidratos_g": 16.57,
+    "proteinas_g": 16.9,
+    "grasas_g": 12.01,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Burrito, taco o quesadilla con huevo",
+    "calorias_kcal": 229,
+    "carbohidratos_g": 19.69,
+    "proteinas_g": 10.27,
+    "grasas_g": 11.84,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Butifarra",
+    "calorias_kcal": 243,
+    "carbohidratos_g": 0,
+    "proteinas_g": 15,
+    "grasas_g": 20,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caballa ahumada",
+    "calorias_kcal": 200,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25.54,
+    "grasas_g": 10.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caballa cruda",
+    "calorias_kcal": 189,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19.08,
+    "grasas_g": 11.91,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caballa enlatada",
+    "calorias_kcal": 156,
+    "carbohidratos_g": 0,
+    "proteinas_g": 23.19,
+    "grasas_g": 6.3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caballo Carne",
+    "calorias_kcal": 113,
+    "carbohidratos_g": 0,
+    "proteinas_g": 21,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cabra al horno",
+    "calorias_kcal": 142,
+    "carbohidratos_g": 0,
+    "proteinas_g": 26.87,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cabra Carne",
+    "calorias_kcal": 161,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cabra frita",
+    "calorias_kcal": 153,
+    "carbohidratos_g": 0,
+    "proteinas_g": 26.46,
+    "grasas_g": 4.52,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cabrito Carne",
+    "calorias_kcal": 161,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cacahuetes sin tostar",
+    "calorias_kcal": 567,
+    "carbohidratos_g": 16.13,
+    "proteinas_g": 25.8,
+    "grasas_g": 49.24,
+    "fibra_g": 8.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cacahuetes, tostados, salados",
+    "calorias_kcal": 599,
+    "carbohidratos_g": 15.26,
+    "proteinas_g": 28.03,
+    "grasas_g": 52.5,
+    "fibra_g": 9.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cacahuetes, tostados, sin sal",
+    "calorias_kcal": 599,
+    "carbohidratos_g": 15.26,
+    "proteinas_g": 28.03,
+    "grasas_g": 52.5,
+    "fibra_g": 9.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cacao Polvo",
+    "calorias_kcal": 357,
+    "carbohidratos_g": 11,
+    "proteinas_g": 20,
+    "grasas_g": 24,
+    "fibra_g": 38,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café capuchino",
+    "calorias_kcal": 27,
+    "carbohidratos_g": 2.7,
+    "proteinas_g": 1.68,
+    "grasas_g": 1.03,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café Cubano",
+    "calorias_kcal": 33,
+    "carbohidratos_g": 7.86,
+    "proteinas_g": 0.11,
+    "grasas_g": 0.17,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café descafeinado",
+    "calorias_kcal": 0,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0.1,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café expreso",
+    "calorias_kcal": 9,
+    "carbohidratos_g": 1.67,
+    "proteinas_g": 0.12,
+    "grasas_g": 0.18,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café expreso descafeinado",
+    "calorias_kcal": 9,
+    "carbohidratos_g": 1.69,
+    "proteinas_g": 0.1,
+    "grasas_g": 0.18,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café Extracto, Polvo",
+    "calorias_kcal": 82,
+    "carbohidratos_g": 8,
+    "proteinas_g": 11,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café Infusión",
+    "calorias_kcal": 2,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café Instantáneo (soluble en polvo)",
+    "calorias_kcal": 100,
+    "carbohidratos_g": 11,
+    "proteinas_g": 15,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café irlandés",
+    "calorias_kcal": 88,
+    "carbohidratos_g": 2.03,
+    "proteinas_g": 0.27,
+    "grasas_g": 2.41,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café Torrefacto",
+    "calorias_kcal": 183,
+    "carbohidratos_g": 2,
+    "proteinas_g": 13,
+    "grasas_g": 13,
+    "fibra_g": 66,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café, café con leche",
+    "calorias_kcal": 39,
+    "carbohidratos_g": 5.64,
+    "proteinas_g": 1.64,
+    "grasas_g": 1.08,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Café, café con leche, descafeinado.",
+    "calorias_kcal": 39,
+    "carbohidratos_g": 5.72,
+    "proteinas_g": 1.65,
+    "grasas_g": 1.09,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Calabacín",
+    "calorias_kcal": 14,
+    "carbohidratos_g": 2.2,
+    "proteinas_g": 0.6,
+    "grasas_g": 0.2,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Calabaza, cocida, fresca, grasa no agregada en la cocción",
+    "calorias_kcal": 20,
+    "carbohidratos_g": 4.88,
+    "proteinas_g": 0.72,
+    "grasas_g": 0.07,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Calamar crudo",
+    "calorias_kcal": 92,
+    "carbohidratos_g": 3.08,
+    "proteinas_g": 15.58,
+    "grasas_g": 1.38,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Calamares enlatados",
+    "calorias_kcal": 106,
+    "carbohidratos_g": 3.54,
+    "proteinas_g": 17.9,
+    "grasas_g": 1.59,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caldo de pescado, receta casera",
+    "calorias_kcal": 16,
+    "carbohidratos_g": 0,
+    "proteinas_g": 2.26,
+    "grasas_g": 0.81,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caldo de pollo o pavo, caldo o consomé",
+    "calorias_kcal": 6,
+    "carbohidratos_g": 0.44,
+    "proteinas_g": 0.64,
+    "grasas_g": 0.21,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caldo de verduras, caldo",
+    "calorias_kcal": 5,
+    "carbohidratos_g": 0.93,
+    "proteinas_g": 0.24,
+    "grasas_g": 0.07,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Callos, cocidos",
+    "calorias_kcal": 89,
+    "carbohidratos_g": 0,
+    "proteinas_g": 12.6,
+    "grasas_g": 3.85,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Calzone, con carne y queso.",
+    "calorias_kcal": 348,
+    "carbohidratos_g": 31.16,
+    "proteinas_g": 14.28,
+    "grasas_g": 18.24,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Camarones al vapor o hervidos",
+    "calorias_kcal": 91,
+    "carbohidratos_g": 1.16,
+    "proteinas_g": 17.37,
+    "grasas_g": 1.29,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Canelones rellenos de queso y espinacas, sin salsa",
+    "calorias_kcal": 158,
+    "carbohidratos_g": 17.41,
+    "proteinas_g": 6.95,
+    "grasas_g": 6.71,
+    "fibra_g": 1.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cangrejo de mar",
+    "calorias_kcal": 124,
+    "carbohidratos_g": 13.28,
+    "proteinas_g": 19.5,
+    "grasas_g": 5.1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cangrejo de río, hervido o al vapor",
+    "calorias_kcal": 81,
+    "carbohidratos_g": 0,
+    "proteinas_g": 16.66,
+    "grasas_g": 1.19,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cangrejo enlatado",
+    "calorias_kcal": 83,
+    "carbohidratos_g": 0,
+    "proteinas_g": 17.88,
+    "grasas_g": 0.74,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cangrejo, al horno o a la parrilla, sin agregar grasa en la cocción",
+    "calorias_kcal": 102,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 21.96,
+    "grasas_g": 0.91,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caqui, crudo",
+    "calorias_kcal": 70,
+    "carbohidratos_g": 18.59,
+    "proteinas_g": 0.58,
+    "grasas_g": 0.19,
+    "fibra_g": 3.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caracol Terrestre",
+    "calorias_kcal": 86,
+    "carbohidratos_g": 2,
+    "proteinas_g": 16,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cardo",
+    "calorias_kcal": 21,
+    "carbohidratos_g": 4,
+    "proteinas_g": 1,
+    "grasas_g": 0,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Caballo",
+    "calorias_kcal": 113,
+    "carbohidratos_g": 0,
+    "proteinas_g": 21,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Cabra",
+    "calorias_kcal": 161,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Cabrito",
+    "calorias_kcal": 161,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Cerdo, Grasa",
+    "calorias_kcal": 329,
+    "carbohidratos_g": 0,
+    "proteinas_g": 16,
+    "grasas_g": 30,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Cerdo, Magra",
+    "calorias_kcal": 147,
+    "carbohidratos_g": 0,
+    "proteinas_g": 21,
+    "grasas_g": 7,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Conejo",
+    "calorias_kcal": 124,
+    "carbohidratos_g": 0,
+    "proteinas_g": 22,
+    "grasas_g": 4,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Cordero, Chuleta",
+    "calorias_kcal": 386,
+    "carbohidratos_g": 0,
+    "proteinas_g": 15,
+    "grasas_g": 36,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Cordero, Magra",
+    "calorias_kcal": 122,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Cordero, Paletilla",
+    "calorias_kcal": 314,
+    "carbohidratos_g": 0,
+    "proteinas_g": 16,
+    "grasas_g": 28,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Cordero, Pierna",
+    "calorias_kcal": 240,
+    "carbohidratos_g": 0,
+    "proteinas_g": 18,
+    "grasas_g": 19,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne de res, rabo de buey, cocida",
+    "calorias_kcal": 251,
+    "carbohidratos_g": 0,
+    "proteinas_g": 30.8,
+    "grasas_g": 13.19,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne de venado / ciervo asado",
+    "calorias_kcal": 190,
+    "carbohidratos_g": 0,
+    "proteinas_g": 36.08,
+    "grasas_g": 3.93,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Oveja",
+    "calorias_kcal": 235,
+    "carbohidratos_g": 0,
+    "proteinas_g": 18,
+    "grasas_g": 17,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Ternera, Magra",
+    "calorias_kcal": 109,
+    "carbohidratos_g": 0,
+    "proteinas_g": 21,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Vaca, Chuleta",
+    "calorias_kcal": 290,
+    "carbohidratos_g": 0,
+    "proteinas_g": 16,
+    "grasas_g": 25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Vaca, Filete",
+    "calorias_kcal": 197,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19,
+    "grasas_g": 14,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Vaca, Guisar",
+    "calorias_kcal": 176,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 11,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Vaca, Magra",
+    "calorias_kcal": 123,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carne Vaca, Solomillo",
+    "calorias_kcal": 272,
+    "carbohidratos_g": 0,
+    "proteinas_g": 17,
+    "grasas_g": 23,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carpa ahumada",
+    "calorias_kcal": 198,
+    "carbohidratos_g": 0,
+    "proteinas_g": 27.84,
+    "grasas_g": 8.74,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carpa al vapor o escalfado",
+    "calorias_kcal": 160,
+    "carbohidratos_g": 0,
+    "proteinas_g": 22.42,
+    "grasas_g": 7.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Carpa, al horno o asada, grasa no agregada al cocinar",
+    "calorias_kcal": 160,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 22.46,
+    "grasas_g": 7.06,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Castañas",
+    "calorias_kcal": 245,
+    "carbohidratos_g": 52.96,
+    "proteinas_g": 3.17,
+    "grasas_g": 2.2,
+    "fibra_g": 5.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Caviar Ruso",
+    "calorias_kcal": 264,
+    "carbohidratos_g": 4,
+    "proteinas_g": 25,
+    "grasas_g": 18,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cebada",
+    "calorias_kcal": 360,
+    "carbohidratos_g": 84,
+    "proteinas_g": 8,
+    "grasas_g": 2,
+    "fibra_g": 6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cebolla",
+    "calorias_kcal": 40,
+    "carbohidratos_g": 9,
+    "proteinas_g": 1,
+    "grasas_g": 0,
+    "fibra_g": 1,
+    "peso_unidad_g": 110,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Cebollino crudo",
+    "calorias_kcal": 30,
+    "carbohidratos_g": 4.35,
+    "proteinas_g": 3.27,
+    "grasas_g": 0.73,
+    "fibra_g": 2.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Centollo",
+    "calorias_kcal": 127,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cerdo, chicharrones, cocidos",
+    "calorias_kcal": 468,
+    "carbohidratos_g": 1.7,
+    "proteinas_g": 33.92,
+    "grasas_g": 35.09,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cerdo, lomo, empanizado, frito",
+    "calorias_kcal": 294,
+    "carbohidratos_g": 15.22,
+    "proteinas_g": 22,
+    "grasas_g": 15.55,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cerdo, lomo, rebozado, frito",
+    "calorias_kcal": 193,
+    "carbohidratos_g": 7.57,
+    "proteinas_g": 23.29,
+    "grasas_g": 7.07,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cerdo, solomillo, para estofado",
+    "calorias_kcal": 142,
+    "carbohidratos_g": 0,
+    "proteinas_g": 27.24,
+    "grasas_g": 2.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (copos de maíz de Kellogg's)",
+    "calorias_kcal": 357,
+    "carbohidratos_g": 84.1,
+    "proteinas_g": 7.5,
+    "grasas_g": 0.4,
+    "fibra_g": 3.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (Crispix de Kellogg)",
+    "calorias_kcal": 378,
+    "carbohidratos_g": 87.19,
+    "proteinas_g": 6.59,
+    "grasas_g": 0.8,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (Kellogg's All-Bran)",
+    "calorias_kcal": 259,
+    "carbohidratos_g": 74.24,
+    "proteinas_g": 13.14,
+    "grasas_g": 4.9,
+    "fibra_g": 29.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (Kellogg's Cocoa Krispies)",
+    "calorias_kcal": 389,
+    "carbohidratos_g": 87.9,
+    "proteinas_g": 4.6,
+    "grasas_g": 2.7,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (Kellogg's Rice Krispies)",
+    "calorias_kcal": 381,
+    "carbohidratos_g": 85.05,
+    "proteinas_g": 6.75,
+    "grasas_g": 2.05,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (Kellogg's Special K)",
+    "calorias_kcal": 377,
+    "carbohidratos_g": 73.4,
+    "proteinas_g": 17.79,
+    "grasas_g": 1.79,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (salvado de avena crujiente de Kellogg)",
+    "calorias_kcal": 395,
+    "carbohidratos_g": 70.3,
+    "proteinas_g": 9.2,
+    "grasas_g": 14.1,
+    "fibra_g": 12.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (trigo triturado y salvado)",
+    "calorias_kcal": 339,
+    "carbohidratos_g": 80.65,
+    "proteinas_g": 10.93,
+    "grasas_g": 2.06,
+    "fibra_g": 14.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal (Weetabix Grano Entero)",
+    "calorias_kcal": 371,
+    "carbohidratos_g": 81.5,
+    "proteinas_g": 11.43,
+    "grasas_g": 2.86,
+    "fibra_g": 11.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal, arroz crujiente",
+    "calorias_kcal": 394,
+    "carbohidratos_g": 86.22,
+    "proteinas_g": 6.69,
+    "grasas_g": 1.26,
+    "fibra_g": 0.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal, arroz inflado",
+    "calorias_kcal": 383,
+    "carbohidratos_g": 87.78,
+    "proteinas_g": 7.01,
+    "grasas_g": 0.9,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal, avena tostada",
+    "calorias_kcal": 357,
+    "carbohidratos_g": 75.5,
+    "proteinas_g": 10.71,
+    "grasas_g": 5.36,
+    "fibra_g": 10.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal, muesli",
+    "calorias_kcal": 355,
+    "carbohidratos_g": 74.9,
+    "proteinas_g": 8.6,
+    "grasas_g": 5.4,
+    "fibra_g": 7.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal, trigo inflado, endulzado",
+    "calorias_kcal": 380,
+    "carbohidratos_g": 88.5,
+    "proteinas_g": 5.7,
+    "grasas_g": 2.2,
+    "fibra_g": 5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereal, trigo inflado, simple",
+    "calorias_kcal": 366,
+    "carbohidratos_g": 76.39,
+    "proteinas_g": 16.26,
+    "grasas_g": 2.15,
+    "fibra_g": 9.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereales Cornflakes",
+    "calorias_kcal": 378,
+    "carbohidratos_g": 84,
+    "proteinas_g": 7,
+    "grasas_g": 0,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cereales, copos de maíz",
+    "calorias_kcal": 357,
+    "carbohidratos_g": 84.1,
+    "proteinas_g": 7.5,
+    "grasas_g": 0.4,
+    "fibra_g": 3.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cerezas",
+    "calorias_kcal": 50,
+    "carbohidratos_g": 12.18,
+    "proteinas_g": 1,
+    "grasas_g": 0.3,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cerezas congeladas",
+    "calorias_kcal": 46,
+    "carbohidratos_g": 11.02,
+    "proteinas_g": 0.92,
+    "grasas_g": 0.44,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cerveza",
+    "calorias_kcal": 43,
+    "carbohidratos_g": 3.55,
+    "proteinas_g": 0.46,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cerveza baja en carbohidratos",
+    "calorias_kcal": 27,
+    "carbohidratos_g": 0.73,
+    "proteinas_g": 0.17,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ceviche",
+    "calorias_kcal": 62,
+    "carbohidratos_g": 3.58,
+    "proteinas_g": 10.34,
+    "grasas_g": 0.75,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Champán",
+    "calorias_kcal": 84,
+    "carbohidratos_g": 3,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Champiñones crudos",
+    "calorias_kcal": 22,
+    "carbohidratos_g": 3.26,
+    "proteinas_g": 3.09,
+    "grasas_g": 0.34,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Champiñones, cocidos, hechos con aceite",
+    "calorias_kcal": 52,
+    "carbohidratos_g": 5.11,
+    "proteinas_g": 2.1,
+    "grasas_g": 3.27,
+    "fibra_g": 2.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Champiñones, crema fresca",
+    "calorias_kcal": 81,
+    "carbohidratos_g": 7.01,
+    "proteinas_g": 2.91,
+    "grasas_g": 4.98,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chanquetes",
+    "calorias_kcal": 79,
+    "carbohidratos_g": 2,
+    "proteinas_g": 11,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cheetos Queso, Golosina",
+    "calorias_kcal": 158,
+    "carbohidratos_g": 15,
+    "proteinas_g": 2,
+    "grasas_g": 10,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chícharos, cocidos, frescos, sin grasa añadida en la cocción",
+    "calorias_kcal": 110,
+    "carbohidratos_g": 19.36,
+    "proteinas_g": 5.92,
+    "grasas_g": 1.35,
+    "fibra_g": 4.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chicharrones",
+    "calorias_kcal": 540,
+    "carbohidratos_g": 1,
+    "proteinas_g": 20,
+    "grasas_g": 51,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chile con frijoles sin carne",
+    "calorias_kcal": 42,
+    "carbohidratos_g": 8.19,
+    "proteinas_g": 2.39,
+    "grasas_g": 0.33,
+    "fibra_g": 2.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chili con carne con frijoles",
+    "calorias_kcal": 104,
+    "carbohidratos_g": 10.71,
+    "proteinas_g": 6.88,
+    "grasas_g": 3.81,
+    "fibra_g": 2.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chirimoya",
+    "calorias_kcal": 75,
+    "carbohidratos_g": 18,
+    "proteinas_g": 1.2,
+    "grasas_g": 0.6,
+    "fibra_g": 2.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chirivías, cocidas, sin grasa añadida en la cocción",
+    "calorias_kcal": 71,
+    "carbohidratos_g": 16.9,
+    "proteinas_g": 1.31,
+    "grasas_g": 0.3,
+    "fibra_g": 3.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chirivías, crema",
+    "calorias_kcal": 105,
+    "carbohidratos_g": 13.5,
+    "proteinas_g": 2.44,
+    "grasas_g": 4.89,
+    "fibra_g": 2.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chocolate blanco",
+    "calorias_kcal": 539,
+    "carbohidratos_g": 59.24,
+    "proteinas_g": 5.87,
+    "grasas_g": 32.09,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chocolate blanco con almendras",
+    "calorias_kcal": 547,
+    "carbohidratos_g": 53.15,
+    "proteinas_g": 8.2,
+    "grasas_g": 35.15,
+    "fibra_g": 1.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chocolate con leche",
+    "calorias_kcal": 550,
+    "carbohidratos_g": 56,
+    "proteinas_g": 6,
+    "grasas_g": 34,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chocolate dulce u oscuro",
+    "calorias_kcal": 528,
+    "carbohidratos_g": 60.18,
+    "proteinas_g": 4.5,
+    "grasas_g": 33.2,
+    "fibra_g": 6.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chocolate dulce u oscuro, con almendras.",
+    "calorias_kcal": 553,
+    "carbohidratos_g": 56.48,
+    "proteinas_g": 6.55,
+    "grasas_g": 33.81,
+    "fibra_g": 7.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chocolate sin leche",
+    "calorias_kcal": 530,
+    "carbohidratos_g": 63,
+    "proteinas_g": 2,
+    "grasas_g": 30,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chorizo",
+    "calorias_kcal": 455,
+    "carbohidratos_g": 1.86,
+    "proteinas_g": 24.1,
+    "grasas_g": 38.27,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chorizo de ternera con queso",
+    "calorias_kcal": 402,
+    "carbohidratos_g": 0.4,
+    "proteinas_g": 15.76,
+    "grasas_g": 36.99,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chuleta de cerdo, asada u horneada",
+    "calorias_kcal": 211,
+    "carbohidratos_g": 0,
+    "proteinas_g": 27.69,
+    "grasas_g": 10.5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chuleta de cerdo, empanada o enharinada",
+    "calorias_kcal": 239,
+    "carbohidratos_g": 8.4,
+    "proteinas_g": 26.87,
+    "grasas_g": 10.21,
+    "fibra_g": 0.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chuleta de cerdo, estofada, magra y grasa",
+    "calorias_kcal": 211,
+    "carbohidratos_g": 0,
+    "proteinas_g": 27.69,
+    "grasas_g": 10.5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chuleta de cerdo, frita, magra y grasa",
+    "calorias_kcal": 211,
+    "carbohidratos_g": 0,
+    "proteinas_g": 27.69,
+    "grasas_g": 10.5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chuleta de cerdo, rebozada, frita, magra y grasa",
+    "calorias_kcal": 281,
+    "carbohidratos_g": 12.78,
+    "proteinas_g": 22.6,
+    "grasas_g": 14.97,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chuleta de ternera frita, magra y grasa",
+    "calorias_kcal": 238,
+    "carbohidratos_g": 9.91,
+    "proteinas_g": 27.29,
+    "grasas_g": 9.18,
+    "fibra_g": 0.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Chuleta de ternera, asada, magra y grasa",
+    "calorias_kcal": 215,
+    "carbohidratos_g": 0,
+    "proteinas_g": 24.59,
+    "grasas_g": 12.22,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Churros",
+    "calorias_kcal": 481,
+    "carbohidratos_g": 49.8,
+    "proteinas_g": 3.02,
+    "grasas_g": 30.58,
+    "fibra_g": 0.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cigala",
+    "calorias_kcal": 67,
+    "carbohidratos_g": 0,
+    "proteinas_g": 15,
+    "grasas_g": 0.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cilantro crudo",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 3.67,
+    "proteinas_g": 2.13,
+    "grasas_g": 0.52,
+    "fibra_g": 2.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ciruela cruda",
+    "calorias_kcal": 46,
+    "carbohidratos_g": 11.42,
+    "proteinas_g": 0.7,
+    "grasas_g": 0.28,
+    "fibra_g": 1.4,
+    "peso_unidad_g": 66,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Ciruelas pasas, papillas, coladas",
+    "calorias_kcal": 100,
+    "carbohidratos_g": 23.52,
+    "proteinas_g": 1,
+    "grasas_g": 0.2,
+    "fibra_g": 2.7,
+    "peso_unidad_g": 66,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Coco fresco",
+    "calorias_kcal": 354,
+    "carbohidratos_g": 15.23,
+    "proteinas_g": 3.33,
+    "grasas_g": 33.49,
+    "fibra_g": 9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cóctel Bacardí",
+    "calorias_kcal": 123,
+    "carbohidratos_g": 16.11,
+    "proteinas_g": 0.08,
+    "grasas_g": 0.08,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Codorniz, cocinada",
+    "calorias_kcal": 226,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25,
+    "grasas_g": 14.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Col rizada, cocida, fresca",
+    "calorias_kcal": 28,
+    "carbohidratos_g": 5.59,
+    "proteinas_g": 1.88,
+    "grasas_g": 0.4,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Coles de Bruselas, cocidas, frescas",
+    "calorias_kcal": 36,
+    "carbohidratos_g": 7.06,
+    "proteinas_g": 2.53,
+    "grasas_g": 0.5,
+    "fibra_g": 2.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Coles de Bruselas, crudas",
+    "calorias_kcal": 43,
+    "carbohidratos_g": 8.95,
+    "proteinas_g": 3.38,
+    "grasas_g": 0.3,
+    "fibra_g": 3.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Coliflor cocida, fresca",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 4.08,
+    "proteinas_g": 1.82,
+    "grasas_g": 0.45,
+    "fibra_g": 2.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Coliflor cruda",
+    "calorias_kcal": 25,
+    "carbohidratos_g": 4.97,
+    "proteinas_g": 1.92,
+    "grasas_g": 0.28,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Coliflor rebozada, frita",
+    "calorias_kcal": 216,
+    "carbohidratos_g": 14.46,
+    "proteinas_g": 3.91,
+    "grasas_g": 16.28,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Colinabo crudo",
+    "calorias_kcal": 27,
+    "carbohidratos_g": 6.2,
+    "proteinas_g": 1.7,
+    "grasas_g": 0.1,
+    "fibra_g": 3.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Conejo guisado",
+    "calorias_kcal": 210,
+    "carbohidratos_g": 6.85,
+    "proteinas_g": 17.18,
+    "grasas_g": 12.44,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Conejo, salvaje, cocido",
+    "calorias_kcal": 172,
+    "carbohidratos_g": 0,
+    "proteinas_g": 32.88,
+    "grasas_g": 3.5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Congrio",
+    "calorias_kcal": 102,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19,
+    "grasas_g": 2.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Conguitos",
+    "calorias_kcal": 510,
+    "carbohidratos_g": 50.1,
+    "proteinas_g": 11.7,
+    "grasas_g": 29.2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Coñac",
+    "calorias_kcal": 232,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Corazón Cordero",
+    "calorias_kcal": 119,
+    "carbohidratos_g": 0,
+    "proteinas_g": 17,
+    "grasas_g": 6,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Corazón Vacuno",
+    "calorias_kcal": 108,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19,
+    "grasas_g": 4,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cordero, asado",
+    "calorias_kcal": 265,
+    "carbohidratos_g": 0,
+    "proteinas_g": 23.83,
+    "grasas_g": 18.07,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cordero, costillas",
+    "calorias_kcal": 358,
+    "carbohidratos_g": 0,
+    "proteinas_g": 21.95,
+    "grasas_g": 29.34,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cordero, lomo",
+    "calorias_kcal": 313,
+    "carbohidratos_g": 0,
+    "proteinas_g": 24.96,
+    "grasas_g": 22.89,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cordero, paleta",
+    "calorias_kcal": 274,
+    "carbohidratos_g": 0,
+    "proteinas_g": 22.32,
+    "grasas_g": 19.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cortezas de piel de cerdo",
+    "calorias_kcal": 544,
+    "carbohidratos_g": 0,
+    "proteinas_g": 61.3,
+    "grasas_g": 31.3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Corvina, al vapor o escalfado",
+    "calorias_kcal": 131,
+    "carbohidratos_g": 0,
+    "proteinas_g": 22.36,
+    "grasas_g": 3.99,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Corvina, horneada o asada, grasa no agregada al cocinar",
+    "calorias_kcal": 131,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 22.4,
+    "grasas_g": 4,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Crema chocolate con avellanas",
+    "calorias_kcal": 549,
+    "carbohidratos_g": 60.5,
+    "proteinas_g": 6.2,
+    "grasas_g": 33,
+    "fibra_g": 1.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Crema Leche, Chantilly",
+    "calorias_kcal": 331,
+    "carbohidratos_g": 10,
+    "proteinas_g": 2,
+    "grasas_g": 31,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Crepe, liso",
+    "calorias_kcal": 223,
+    "carbohidratos_g": 21.72,
+    "proteinas_g": 8.74,
+    "grasas_g": 10.95,
+    "fibra_g": 0.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Croissant, chocolate",
+    "calorias_kcal": 421,
+    "carbohidratos_g": 49.4,
+    "proteinas_g": 7.4,
+    "grasas_g": 22.79,
+    "fibra_g": 3.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Croissant, queso",
+    "calorias_kcal": 414,
+    "carbohidratos_g": 47,
+    "proteinas_g": 9.2,
+    "grasas_g": 20.9,
+    "fibra_g": 2.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Croqueta de jamón",
+    "calorias_kcal": 273,
+    "carbohidratos_g": 2.58,
+    "proteinas_g": 17.98,
+    "grasas_g": 20.7,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cuajada",
+    "calorias_kcal": 94,
+    "carbohidratos_g": 6.7,
+    "proteinas_g": 4.8,
+    "grasas_g": 5.3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Cubitos Sopa",
+    "calorias_kcal": 154,
+    "carbohidratos_g": 8,
+    "proteinas_g": 23,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Daiquiri",
+    "calorias_kcal": 119,
+    "carbohidratos_g": 15.65,
+    "proteinas_g": 0.09,
+    "grasas_g": 0.09,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Dátiles",
+    "calorias_kcal": 282,
+    "carbohidratos_g": 75.3,
+    "proteinas_g": 2.45,
+    "grasas_g": 0.39,
+    "fibra_g": 8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Diente de león verde, crudo",
+    "calorias_kcal": 45,
+    "carbohidratos_g": 9.2,
+    "proteinas_g": 2.7,
+    "grasas_g": 0.7,
+    "fibra_g": 3.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Dorada",
+    "calorias_kcal": 140,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20.82,
+    "grasas_g": 6.34,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Emperador",
+    "calorias_kcal": 127,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19,
+    "grasas_g": 4,
+    "fibra_g": 0,
+    "peso_unidad_g": 178,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Emperador a la plancha",
+    "calorias_kcal": 177,
+    "carbohidratos_g": 0.49,
+    "proteinas_g": 23.8,
+    "grasas_g": 8.23,
+    "fibra_g": 0,
+    "peso_unidad_g": 178,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Encurtidos, mezclados",
+    "calorias_kcal": 137,
+    "carbohidratos_g": 36.94,
+    "proteinas_g": 0.39,
+    "grasas_g": 0.5,
+    "fibra_g": 1.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Endibias",
+    "calorias_kcal": 25,
+    "carbohidratos_g": 3.6,
+    "proteinas_g": 1.5,
+    "grasas_g": 0.24,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ensalada César de pollo o pavo lechuga, tomate, queso, sin aderezo",
+    "calorias_kcal": 65,
+    "carbohidratos_g": 2.56,
+    "proteinas_g": 9.55,
+    "grasas_g": 1.88,
+    "fibra_g": 1.3,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Ensalada César, con lechuga romana, sin aderezo",
+    "calorias_kcal": 71,
+    "carbohidratos_g": 6,
+    "proteinas_g": 4.77,
+    "grasas_g": 3.41,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ensalada de atún con huevo",
+    "calorias_kcal": 191,
+    "carbohidratos_g": 2.63,
+    "proteinas_g": 10.53,
+    "grasas_g": 15.41,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ensalada de atún con queso",
+    "calorias_kcal": 214,
+    "carbohidratos_g": 2.8,
+    "proteinas_g": 11.54,
+    "grasas_g": 17.52,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Espárragos cocidos",
+    "calorias_kcal": 18,
+    "carbohidratos_g": 1.91,
+    "proteinas_g": 2.93,
+    "grasas_g": 0.42,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Espárragos crudos",
+    "calorias_kcal": 20,
+    "carbohidratos_g": 3.88,
+    "proteinas_g": 2.2,
+    "grasas_g": 0.12,
+    "fibra_g": 2.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Espárragos Enlatados (Conserva)",
+    "calorias_kcal": 24,
+    "carbohidratos_g": 3.4,
+    "proteinas_g": 1.9,
+    "grasas_g": 0.3,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Espinacas cocidas",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 3.39,
+    "proteinas_g": 2.8,
+    "grasas_g": 0.5,
+    "fibra_g": 2.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Espinacas crema fresca",
+    "calorias_kcal": 74,
+    "carbohidratos_g": 5.96,
+    "proteinas_g": 3.32,
+    "grasas_g": 4.5,
+    "fibra_g": 1.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Espinacas crudas",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 3.63,
+    "proteinas_g": 2.86,
+    "grasas_g": 0.39,
+    "fibra_g": 2.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Esturión ahumado",
+    "calorias_kcal": 173,
+    "carbohidratos_g": 0,
+    "proteinas_g": 31.2,
+    "grasas_g": 4.4,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Esturión al vapor",
+    "calorias_kcal": 132,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20.3,
+    "grasas_g": 5.08,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Extracto de levadura para untar",
+    "calorias_kcal": 185,
+    "carbohidratos_g": 20.42,
+    "proteinas_g": 23.88,
+    "grasas_g": 0.9,
+    "fibra_g": 6.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Faisán cocinado",
+    "calorias_kcal": 238,
+    "carbohidratos_g": 0,
+    "proteinas_g": 32.26,
+    "grasas_g": 12.05,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Faneca (pescado blanco)",
+    "calorias_kcal": 76,
+    "carbohidratos_g": 1,
+    "proteinas_g": 15.4,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Filete de pollo a la parrilla",
+    "calorias_kcal": 145,
+    "carbohidratos_g": 2.37,
+    "proteinas_g": 22.24,
+    "grasas_g": 5.2,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Filete de pollo empanado",
+    "calorias_kcal": 240,
+    "carbohidratos_g": 14.86,
+    "proteinas_g": 14.62,
+    "grasas_g": 13.58,
+    "fibra_g": 1.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Filete o chuleta de cerdo, a la parrilla o al horno, magra y grasa",
+    "calorias_kcal": 239,
+    "carbohidratos_g": 0.06,
+    "proteinas_g": 22.96,
+    "grasas_g": 15.86,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Filete o chuleta de cerdo, rebozada, frita, magra y grasa",
+    "calorias_kcal": 271,
+    "carbohidratos_g": 7.62,
+    "proteinas_g": 19.87,
+    "grasas_g": 17.53,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Filete suizo",
+    "calorias_kcal": 131,
+    "carbohidratos_g": 3.55,
+    "proteinas_g": 10.82,
+    "grasas_g": 8.05,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Filete Vaca",
+    "calorias_kcal": 197,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19,
+    "grasas_g": 14,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Flan de huevo",
+    "calorias_kcal": 177,
+    "carbohidratos_g": 29.04,
+    "proteinas_g": 5.22,
+    "grasas_g": 4.7,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Fletán crudo",
+    "calorias_kcal": 91,
+    "carbohidratos_g": 0,
+    "proteinas_g": 18.56,
+    "grasas_g": 1.33,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Fletán, ahumado",
+    "calorias_kcal": 219,
+    "carbohidratos_g": 0,
+    "proteinas_g": 44.61,
+    "grasas_g": 3.2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Foie-Gras",
+    "calorias_kcal": 444,
+    "carbohidratos_g": 3,
+    "proteinas_g": 10,
+    "grasas_g": 44,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frambuesas, congeladas, sin azúcar",
+    "calorias_kcal": 52,
+    "carbohidratos_g": 11.94,
+    "proteinas_g": 1.2,
+    "grasas_g": 0.65,
+    "fibra_g": 6.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frambuesas, crudas",
+    "calorias_kcal": 52,
+    "carbohidratos_g": 11.94,
+    "proteinas_g": 1.2,
+    "grasas_g": 0.65,
+    "fibra_g": 6.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frankfurter, wiener o hot dog",
+    "calorias_kcal": 332,
+    "carbohidratos_g": 3.13,
+    "proteinas_g": 12.3,
+    "grasas_g": 29.58,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Fresas congeladas, sin azúcar",
+    "calorias_kcal": 35,
+    "carbohidratos_g": 9.13,
+    "proteinas_g": 0.43,
+    "grasas_g": 0.11,
+    "fibra_g": 2.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Fresas crudas",
+    "calorias_kcal": 32,
+    "carbohidratos_g": 7.68,
+    "proteinas_g": 0.67,
+    "grasas_g": 0.3,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijol mungo sin grasa añadida en la cocción",
+    "calorias_kcal": 104,
+    "carbohidratos_g": 19.06,
+    "proteinas_g": 6.98,
+    "grasas_g": 0.38,
+    "fibra_g": 7.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijoles amarillo sin agregar grasa al cocinar",
+    "calorias_kcal": 143,
+    "carbohidratos_g": 25.14,
+    "proteinas_g": 9.11,
+    "grasas_g": 1.07,
+    "fibra_g": 10.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijoles blancos sin grasa añadida en la cocción",
+    "calorias_kcal": 138,
+    "carbohidratos_g": 24.95,
+    "proteinas_g": 9.68,
+    "grasas_g": 0.35,
+    "fibra_g": 6.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijoles de lima sin grasa añadida en la cocción",
+    "calorias_kcal": 114,
+    "carbohidratos_g": 20.77,
+    "proteinas_g": 7.76,
+    "grasas_g": 0.38,
+    "fibra_g": 7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijoles mexicanos pintos sin grasa añadida en la cocción",
+    "calorias_kcal": 142,
+    "carbohidratos_g": 26.07,
+    "proteinas_g": 8.96,
+    "grasas_g": 0.65,
+    "fibra_g": 8.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijoles negros, marrones o bayo sin agregar grasa al cocinar",
+    "calorias_kcal": 131,
+    "carbohidratos_g": 23.58,
+    "proteinas_g": 8.81,
+    "grasas_g": 0.54,
+    "fibra_g": 8.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijoles rojos sin grasa añadida en la cocción",
+    "calorias_kcal": 126,
+    "carbohidratos_g": 22.67,
+    "proteinas_g": 8.62,
+    "grasas_g": 0.5,
+    "fibra_g": 7.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijoles rosados sin grasa añadida en la cocción",
+    "calorias_kcal": 148,
+    "carbohidratos_g": 27.75,
+    "proteinas_g": 9.01,
+    "grasas_g": 0.49,
+    "fibra_g": 5.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Frijoles verdes cocidos, sin grasa añadida en la cocción",
+    "calorias_kcal": 68,
+    "carbohidratos_g": 13.52,
+    "proteinas_g": 4.09,
+    "grasas_g": 0.39,
+    "fibra_g": 5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Galleta coco",
+    "calorias_kcal": 460,
+    "carbohidratos_g": 61.22,
+    "proteinas_g": 3.02,
+    "grasas_g": 22.55,
+    "fibra_g": 5.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Galleta de mantequilla",
+    "calorias_kcal": 514,
+    "carbohidratos_g": 63.78,
+    "proteinas_g": 5.37,
+    "grasas_g": 26.22,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Galleta jengibre",
+    "calorias_kcal": 416,
+    "carbohidratos_g": 76.9,
+    "proteinas_g": 5.6,
+    "grasas_g": 9.8,
+    "fibra_g": 2.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Galleta, almendra",
+    "calorias_kcal": 514,
+    "carbohidratos_g": 63.78,
+    "proteinas_g": 5.37,
+    "grasas_g": 26.22,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Galleta, avena",
+    "calorias_kcal": 450,
+    "carbohidratos_g": 68.7,
+    "proteinas_g": 6.2,
+    "grasas_g": 18.1,
+    "fibra_g": 2.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Galleta, pasas",
+    "calorias_kcal": 401,
+    "carbohidratos_g": 68,
+    "proteinas_g": 4.1,
+    "grasas_g": 13.6,
+    "fibra_g": 1.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Galletas saladas",
+    "calorias_kcal": 418,
+    "carbohidratos_g": 74.05,
+    "proteinas_g": 9.46,
+    "grasas_g": 8.64,
+    "fibra_g": 2.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Gallo",
+    "calorias_kcal": 81,
+    "carbohidratos_g": 0,
+    "proteinas_g": 15.8,
+    "grasas_g": 1.9,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Gambas al ajillo",
+    "calorias_kcal": 195,
+    "carbohidratos_g": 1.77,
+    "proteinas_g": 19.7,
+    "grasas_g": 11.73,
+    "fibra_g": 0.1,
+    "peso_unidad_g": 45,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Gambas cocidas",
+    "calorias_kcal": 96,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19.8,
+    "grasas_g": 1.7,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ganso, salvaje, asado",
+    "calorias_kcal": 304,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25.06,
+    "grasas_g": 21.83,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Garbanzos sin grasa añadida en la cocción",
+    "calorias_kcal": 163,
+    "carbohidratos_g": 27.25,
+    "proteinas_g": 8.81,
+    "grasas_g": 2.57,
+    "fibra_g": 7.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Gatorade",
+    "calorias_kcal": 39,
+    "carbohidratos_g": 10,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Gazpacho",
+    "calorias_kcal": 37,
+    "carbohidratos_g": 3.84,
+    "proteinas_g": 0.86,
+    "grasas_g": 2.35,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Germen de trigo",
+    "calorias_kcal": 382,
+    "carbohidratos_g": 49.6,
+    "proteinas_g": 29.1,
+    "grasas_g": 10.7,
+    "fibra_g": 15.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Gin tonic",
+    "calorias_kcal": 84,
+    "carbohidratos_g": 6.57,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ginebra",
+    "calorias_kcal": 231,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Gofio Millo",
+    "calorias_kcal": 377,
+    "carbohidratos_g": 83,
+    "proteinas_g": 6,
+    "grasas_g": 5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Gofio Trigo",
+    "calorias_kcal": 371,
+    "carbohidratos_g": 82,
+    "proteinas_g": 11,
+    "grasas_g": 2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Granada",
+    "calorias_kcal": 34,
+    "carbohidratos_g": 7.5,
+    "proteinas_g": 0.7,
+    "grasas_g": 0.1,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Grelos",
+    "calorias_kcal": 11,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 2.7,
+    "grasas_g": 0,
+    "fibra_g": 3.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Grosellas crudas",
+    "calorias_kcal": 56,
+    "carbohidratos_g": 13.8,
+    "proteinas_g": 1.4,
+    "grasas_g": 0.2,
+    "fibra_g": 4.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Guisantes enlatados (conserva)",
+    "calorias_kcal": 67,
+    "carbohidratos_g": 9.7,
+    "proteinas_g": 5.6,
+    "grasas_g": 0.5,
+    "fibra_g": 3.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Guisantes, cocidos, frescos, sin grasa añadida en la cocción",
+    "calorias_kcal": 126,
+    "carbohidratos_g": 18.8,
+    "proteinas_g": 5.76,
+    "grasas_g": 3.47,
+    "fibra_g": 4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Guisantes, crema fresca",
+    "calorias_kcal": 111,
+    "carbohidratos_g": 12.78,
+    "proteinas_g": 4.69,
+    "grasas_g": 4.78,
+    "fibra_g": 3.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Guisantes, verdes, crudos",
+    "calorias_kcal": 81,
+    "carbohidratos_g": 14.45,
+    "proteinas_g": 5.42,
+    "grasas_g": 0.4,
+    "fibra_g": 5.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Habas secas",
+    "calorias_kcal": 343,
+    "carbohidratos_g": 59,
+    "proteinas_g": 23,
+    "grasas_g": 1.5,
+    "fibra_g": 4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hamburguesa casera",
+    "calorias_kcal": 220,
+    "carbohidratos_g": 16.76,
+    "proteinas_g": 13.8,
+    "grasas_g": 10.5,
+    "fibra_g": 0.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hamburguesa con queso (Burger King Cheeseburger)",
+    "calorias_kcal": 270,
+    "carbohidratos_g": 25.46,
+    "proteinas_g": 13.49,
+    "grasas_g": 12.9,
+    "fibra_g": 1.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hamburguesa con queso (Burger King WHOPPER con queso)",
+    "calorias_kcal": 268,
+    "carbohidratos_g": 17.73,
+    "proteinas_g": 13.69,
+    "grasas_g": 15.8,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hamburguesa con queso (Burger King WHOPPER Jr. con queso)",
+    "calorias_kcal": 225,
+    "carbohidratos_g": 18.11,
+    "proteinas_g": 11.2,
+    "grasas_g": 11.88,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hamburguesa con queso (McDonald's Double Cheeseburger)",
+    "calorias_kcal": 282,
+    "carbohidratos_g": 17.97,
+    "proteinas_g": 16.24,
+    "grasas_g": 16.18,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hamburguesa con queso (McDonald's Quarter Pounder con queso)",
+    "calorias_kcal": 269,
+    "carbohidratos_g": 19.72,
+    "proteinas_g": 15.21,
+    "grasas_g": 14.4,
+    "fibra_g": 1.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Harina Avena",
+    "calorias_kcal": 401,
+    "carbohidratos_g": 73,
+    "proteinas_g": 12,
+    "grasas_g": 9,
+    "fibra_g": 7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Harina Centeno",
+    "calorias_kcal": 303,
+    "carbohidratos_g": 68,
+    "proteinas_g": 7,
+    "grasas_g": 1,
+    "fibra_g": 9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Harina Maíz",
+    "calorias_kcal": 422,
+    "carbohidratos_g": 90,
+    "proteinas_g": 8,
+    "grasas_g": 4.5,
+    "fibra_g": 8.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Harina Soja",
+    "calorias_kcal": 447,
+    "carbohidratos_g": 24,
+    "proteinas_g": 37,
+    "grasas_g": 24,
+    "fibra_g": 12,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Harina Trigo, Integral",
+    "calorias_kcal": 318,
+    "carbohidratos_g": 66,
+    "proteinas_g": 13,
+    "grasas_g": 2,
+    "fibra_g": 10,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Harina Trigo, Panificada",
+    "calorias_kcal": 337,
+    "carbohidratos_g": 75,
+    "proteinas_g": 11,
+    "grasas_g": 1,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Helado",
+    "calorias_kcal": 209,
+    "carbohidratos_g": 21,
+    "proteinas_g": 4,
+    "grasas_g": 12,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Helado Fruta",
+    "calorias_kcal": 140,
+    "carbohidratos_g": 29,
+    "proteinas_g": 2,
+    "grasas_g": 2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hígado Cerdo",
+    "calorias_kcal": 120,
+    "carbohidratos_g": 1,
+    "proteinas_g": 21.4,
+    "grasas_g": 3.7,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hígado Pollo",
+    "calorias_kcal": 137,
+    "carbohidratos_g": 1.2,
+    "proteinas_g": 22.1,
+    "grasas_g": 4.7,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Hígado Ternera",
+    "calorias_kcal": 132,
+    "carbohidratos_g": 1.6,
+    "proteinas_g": 20.5,
+    "grasas_g": 4.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Higos",
+    "calorias_kcal": 74,
+    "carbohidratos_g": 19.18,
+    "proteinas_g": 0.75,
+    "grasas_g": 0.3,
+    "fibra_g": 2.9,
+    "peso_unidad_g": 40,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Higos Secos",
+    "calorias_kcal": 213,
+    "carbohidratos_g": 53,
+    "proteinas_g": 4,
+    "grasas_g": 0,
+    "fibra_g": 18,
+    "peso_unidad_g": 40,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Hojas de cardo, cocidas, sin grasa agregada en la cocción",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 3.77,
+    "proteinas_g": 1.89,
+    "grasas_g": 0.6,
+    "fibra_g": 0.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Huevas de arenque",
+    "calorias_kcal": 143,
+    "carbohidratos_g": 1.5,
+    "proteinas_g": 22.32,
+    "grasas_g": 6.42,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Huevas de esturión",
+    "calorias_kcal": 264,
+    "carbohidratos_g": 4,
+    "proteinas_g": 24.6,
+    "grasas_g": 17.9,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Huevo Duro",
+    "calorias_kcal": 145,
+    "carbohidratos_g": 0.3,
+    "proteinas_g": 12.5,
+    "grasas_g": 10.5,
+    "fibra_g": 0,
+    "peso_unidad_g": 50,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Huevo entero crudo",
+    "calorias_kcal": 143,
+    "carbohidratos_g": 0.72,
+    "proteinas_g": 12.56,
+    "grasas_g": 9.51,
+    "fibra_g": 0,
+    "peso_unidad_g": 50,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Huevo entero frito con aceite.",
+    "calorias_kcal": 215,
+    "carbohidratos_g": 0.76,
+    "proteinas_g": 13.27,
+    "grasas_g": 17.24,
+    "fibra_g": 0,
+    "peso_unidad_g": 50,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Huevo, solo clara, crudo",
+    "calorias_kcal": 52,
+    "carbohidratos_g": 0.73,
+    "proteinas_g": 10.9,
+    "grasas_g": 0.17,
+    "fibra_g": 0,
+    "peso_unidad_g": 33,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Huevo, solo yema, cruda",
+    "calorias_kcal": 322,
+    "carbohidratos_g": 3.59,
+    "proteinas_g": 15.86,
+    "grasas_g": 26.54,
+    "fibra_g": 0,
+    "peso_unidad_g": 17,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Hummus",
+    "calorias_kcal": 260,
+    "carbohidratos_g": 19.86,
+    "proteinas_g": 8.18,
+    "grasas_g": 17.78,
+    "fibra_g": 5.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jamón Cocido",
+    "calorias_kcal": 114,
+    "carbohidratos_g": 0.4,
+    "proteinas_g": 21,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jamón de pavo, preenvasado o charcutería",
+    "calorias_kcal": 124,
+    "carbohidratos_g": 2.93,
+    "proteinas_g": 19.6,
+    "grasas_g": 3.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jamón serrano",
+    "calorias_kcal": 241,
+    "carbohidratos_g": 0,
+    "proteinas_g": 31,
+    "grasas_g": 13,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jamón, ahumado o curado, enlatado",
+    "calorias_kcal": 132,
+    "carbohidratos_g": 1,
+    "proteinas_g": 17.46,
+    "grasas_g": 6.17,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jamón, preenvasado o charcutería, fiambre, sodio reducido",
+    "calorias_kcal": 107,
+    "carbohidratos_g": 0.7,
+    "proteinas_g": 16.85,
+    "grasas_g": 4.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Judías blancas secas / Alubias blancas secas",
+    "calorias_kcal": 272,
+    "carbohidratos_g": 41.6,
+    "proteinas_g": 22.2,
+    "grasas_g": 1.3,
+    "fibra_g": 19.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de apio",
+    "calorias_kcal": 18,
+    "carbohidratos_g": 4,
+    "proteinas_g": 0.83,
+    "grasas_g": 0.16,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de arándano, 100%",
+    "calorias_kcal": 46,
+    "carbohidratos_g": 12.2,
+    "proteinas_g": 0.39,
+    "grasas_g": 0.13,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de ciruela, 100%",
+    "calorias_kcal": 71,
+    "carbohidratos_g": 17.45,
+    "proteinas_g": 0.61,
+    "grasas_g": 0.03,
+    "fibra_g": 1,
+    "peso_unidad_g": 66,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jugo / Zumo de coco",
+    "calorias_kcal": 31,
+    "carbohidratos_g": 2.92,
+    "proteinas_g": 0.21,
+    "grasas_g": 2.08,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de fresa, 100%",
+    "calorias_kcal": 38,
+    "carbohidratos_g": 7.8,
+    "proteinas_g": 0.3,
+    "grasas_g": 0.6,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de granada, 100%",
+    "calorias_kcal": 54,
+    "carbohidratos_g": 13.13,
+    "proteinas_g": 0.15,
+    "grasas_g": 0.29,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de lima, 100%",
+    "calorias_kcal": 25,
+    "carbohidratos_g": 8.42,
+    "proteinas_g": 0.42,
+    "grasas_g": 0.07,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de limón, 100%",
+    "calorias_kcal": 22,
+    "carbohidratos_g": 6.9,
+    "proteinas_g": 0.35,
+    "grasas_g": 0.24,
+    "fibra_g": 0.3,
+    "peso_unidad_g": 58,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jugo / Zumo de mandarina, 100%",
+    "calorias_kcal": 43,
+    "carbohidratos_g": 10.1,
+    "proteinas_g": 0.5,
+    "grasas_g": 0.2,
+    "fibra_g": 0.2,
+    "peso_unidad_g": 88,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jugo / Zumo de manzana, 100%",
+    "calorias_kcal": 46,
+    "carbohidratos_g": 11.3,
+    "proteinas_g": 0.1,
+    "grasas_g": 0.13,
+    "fibra_g": 0.2,
+    "peso_unidad_g": 180,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jugo / Zumo de maracuyá, 100%",
+    "calorias_kcal": 51,
+    "carbohidratos_g": 13.6,
+    "proteinas_g": 0.39,
+    "grasas_g": 0.05,
+    "fibra_g": 0.2,
+    "peso_unidad_g": 45,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jugo / Zumo de mora, 100%",
+    "calorias_kcal": 38,
+    "carbohidratos_g": 7.8,
+    "proteinas_g": 0.3,
+    "grasas_g": 0.6,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de naranja, 100%",
+    "calorias_kcal": 48,
+    "carbohidratos_g": 11.45,
+    "proteinas_g": 0.68,
+    "grasas_g": 0.12,
+    "fibra_g": 0.3,
+    "peso_unidad_g": 140,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jugo / Zumo de papaya, 100%",
+    "calorias_kcal": 57,
+    "carbohidratos_g": 14.51,
+    "proteinas_g": 0.17,
+    "grasas_g": 0.15,
+    "fibra_g": 0.6,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jugo / Zumo de piña, 100%",
+    "calorias_kcal": 53,
+    "carbohidratos_g": 12.87,
+    "proteinas_g": 0.36,
+    "grasas_g": 0.12,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de sandia, 100%",
+    "calorias_kcal": 30,
+    "carbohidratos_g": 7.55,
+    "proteinas_g": 0.61,
+    "grasas_g": 0.15,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de tomate, 100%",
+    "calorias_kcal": 17,
+    "carbohidratos_g": 3.53,
+    "proteinas_g": 0.85,
+    "grasas_g": 0.29,
+    "fibra_g": 0.4,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jugo / Zumo de uva, 100%",
+    "calorias_kcal": 60,
+    "carbohidratos_g": 14.77,
+    "proteinas_g": 0.37,
+    "grasas_g": 0.13,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Jugo / Zumo de zanahoria, 100%",
+    "calorias_kcal": 40,
+    "carbohidratos_g": 9.28,
+    "proteinas_g": 0.95,
+    "grasas_g": 0.15,
+    "fibra_g": 0.8,
+    "peso_unidad_g": 61,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Jurel",
+    "calorias_kcal": 112,
+    "carbohidratos_g": 0.8,
+    "proteinas_g": 15.4,
+    "grasas_g": 5.2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Kéfir",
+    "calorias_kcal": 52,
+    "carbohidratos_g": 7.34,
+    "proteinas_g": 3.59,
+    "grasas_g": 0.92,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Kétchup",
+    "calorias_kcal": 131,
+    "carbohidratos_g": 32,
+    "proteinas_g": 0.4,
+    "grasas_g": 0,
+    "fibra_g": 0.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Kiwi crudo",
+    "calorias_kcal": 61,
+    "carbohidratos_g": 14.66,
+    "proteinas_g": 1.14,
+    "grasas_g": 0.52,
+    "fibra_g": 3,
+    "peso_unidad_g": 76,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Langosta, al vapor o hervida",
+    "calorias_kcal": 91,
+    "carbohidratos_g": 0,
+    "proteinas_g": 18.3,
+    "grasas_g": 2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Langostino",
+    "calorias_kcal": 93,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20.1,
+    "grasas_g": 1.4,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche baja en grasa (1%) semidesnatada",
+    "calorias_kcal": 42,
+    "carbohidratos_g": 4.99,
+    "proteinas_g": 3.37,
+    "grasas_g": 0.97,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche baja en grasa (2%) semidesnatada",
+    "calorias_kcal": 50,
+    "carbohidratos_g": 4.8,
+    "proteinas_g": 3.3,
+    "grasas_g": 1.98,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche condensada, endulzada",
+    "calorias_kcal": 321,
+    "carbohidratos_g": 54.4,
+    "proteinas_g": 7.91,
+    "grasas_g": 8.7,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche de almendras, endulzada",
+    "calorias_kcal": 38,
+    "carbohidratos_g": 6.59,
+    "proteinas_g": 0.42,
+    "grasas_g": 1.04,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche de almendras, sin azúcar",
+    "calorias_kcal": 15,
+    "carbohidratos_g": 0.58,
+    "proteinas_g": 0.59,
+    "grasas_g": 1.1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche de arroz",
+    "calorias_kcal": 47,
+    "carbohidratos_g": 9.17,
+    "proteinas_g": 0.28,
+    "grasas_g": 0.97,
+    "fibra_g": 0.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche de cabra entera",
+    "calorias_kcal": 69,
+    "carbohidratos_g": 4.45,
+    "proteinas_g": 3.56,
+    "grasas_g": 4.14,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche de coco para cocinar",
+    "calorias_kcal": 230,
+    "carbohidratos_g": 5.54,
+    "proteinas_g": 2.29,
+    "grasas_g": 23.84,
+    "fibra_g": 2.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche de soja",
+    "calorias_kcal": 43,
+    "carbohidratos_g": 4.92,
+    "proteinas_g": 2.6,
+    "grasas_g": 1.47,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche desnatada / descremada",
+    "calorias_kcal": 34,
+    "carbohidratos_g": 4.96,
+    "proteinas_g": 3.37,
+    "grasas_g": 0.08,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche entera",
+    "calorias_kcal": 61,
+    "carbohidratos_g": 4.8,
+    "proteinas_g": 3.15,
+    "grasas_g": 3.25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche entera con calcio",
+    "calorias_kcal": 61,
+    "carbohidratos_g": 4.8,
+    "proteinas_g": 3.15,
+    "grasas_g": 3.25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche Entera, Polvo",
+    "calorias_kcal": 500,
+    "carbohidratos_g": 37,
+    "proteinas_g": 25,
+    "grasas_g": 26,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche evaporada entera",
+    "calorias_kcal": 134,
+    "carbohidratos_g": 10.04,
+    "proteinas_g": 6.81,
+    "grasas_g": 7.56,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche evaporada, sin grasa (desnatada / descremada)",
+    "calorias_kcal": 78,
+    "carbohidratos_g": 11.35,
+    "proteinas_g": 7.55,
+    "grasas_g": 0.2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Leche sin lactosa, entera",
+    "calorias_kcal": 61,
+    "carbohidratos_g": 4.8,
+    "proteinas_g": 3.15,
+    "grasas_g": 3.25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lechuga cruda",
+    "calorias_kcal": 14,
+    "carbohidratos_g": 2.97,
+    "proteinas_g": 0.9,
+    "grasas_g": 0.14,
+    "fibra_g": 1.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lechuga romana cruda",
+    "calorias_kcal": 19,
+    "carbohidratos_g": 3.78,
+    "proteinas_g": 1.39,
+    "grasas_g": 0.27,
+    "fibra_g": 3.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lechuga, Boston, cruda",
+    "calorias_kcal": 13,
+    "carbohidratos_g": 2.23,
+    "proteinas_g": 1.35,
+    "grasas_g": 0.22,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lechuga, rúcula, cruda",
+    "calorias_kcal": 25,
+    "carbohidratos_g": 3.65,
+    "proteinas_g": 2.58,
+    "grasas_g": 0.66,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lenguado, al vapor o escalfado",
+    "calorias_kcal": 88,
+    "carbohidratos_g": 0,
+    "proteinas_g": 15.61,
+    "grasas_g": 2.43,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lentejas secas",
+    "calorias_kcal": 310,
+    "carbohidratos_g": 48.7,
+    "proteinas_g": 24.8,
+    "grasas_g": 1.2,
+    "fibra_g": 9.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lentejas, no agregadas grasas en la cocción",
+    "calorias_kcal": 115,
+    "carbohidratos_g": 20.03,
+    "proteinas_g": 8.98,
+    "grasas_g": 0.38,
+    "fibra_g": 7.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Levadura",
+    "calorias_kcal": 325,
+    "carbohidratos_g": 41.22,
+    "proteinas_g": 40.44,
+    "grasas_g": 7.61,
+    "fibra_g": 26.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Levadura de Cerveza, Seca",
+    "calorias_kcal": 219,
+    "carbohidratos_g": 0,
+    "proteinas_g": 48,
+    "grasas_g": 4,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lichi crudo",
+    "calorias_kcal": 66,
+    "carbohidratos_g": 16.53,
+    "proteinas_g": 0.83,
+    "grasas_g": 0.44,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lima cruda",
+    "calorias_kcal": 30,
+    "carbohidratos_g": 10.54,
+    "proteinas_g": 0.7,
+    "grasas_g": 0.2,
+    "fibra_g": 2.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Limón crudo",
+    "calorias_kcal": 29,
+    "carbohidratos_g": 9.32,
+    "proteinas_g": 1.1,
+    "grasas_g": 0.3,
+    "fibra_g": 2.8,
+    "peso_unidad_g": 58,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Lombarda (col lombarda)",
+    "calorias_kcal": 27,
+    "carbohidratos_g": 3.7,
+    "proteinas_g": 1.1,
+    "grasas_g": 0.3,
+    "fibra_g": 2.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lomo Cerdo Embuchado",
+    "calorias_kcal": 386,
+    "carbohidratos_g": 0,
+    "proteinas_g": 50,
+    "grasas_g": 21,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lubina al vapor o escalfado",
+    "calorias_kcal": 122,
+    "carbohidratos_g": 0,
+    "proteinas_g": 23.18,
+    "grasas_g": 2.52,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Lucio al vapor o escalfado",
+    "calorias_kcal": 111,
+    "carbohidratos_g": 0,
+    "proteinas_g": 24.22,
+    "grasas_g": 0.87,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Macarrones",
+    "calorias_kcal": 370,
+    "carbohidratos_g": 79,
+    "proteinas_g": 14,
+    "grasas_g": 2,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Magdalena",
+    "calorias_kcal": 397,
+    "carbohidratos_g": 42,
+    "proteinas_g": 6,
+    "grasas_g": 23,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Maíz al horno",
+    "calorias_kcal": 214,
+    "carbohidratos_g": 39.68,
+    "proteinas_g": 3.5,
+    "grasas_g": 4.31,
+    "fibra_g": 1.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Maíz crudo",
+    "calorias_kcal": 86,
+    "carbohidratos_g": 18.7,
+    "proteinas_g": 3.27,
+    "grasas_g": 1.35,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Maíz Dulce Mazorca",
+    "calorias_kcal": 104,
+    "carbohidratos_g": 19.5,
+    "proteinas_g": 3.3,
+    "grasas_g": 0.78,
+    "fibra_g": 2.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Malvavisco",
+    "calorias_kcal": 318,
+    "carbohidratos_g": 81.3,
+    "proteinas_g": 1.8,
+    "grasas_g": 0.2,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mandarina cruda",
+    "calorias_kcal": 53,
+    "carbohidratos_g": 13.34,
+    "proteinas_g": 0.81,
+    "grasas_g": 0.31,
+    "fibra_g": 1.8,
+    "peso_unidad_g": 88,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Mango crudo",
+    "calorias_kcal": 60,
+    "carbohidratos_g": 14.98,
+    "proteinas_g": 0.82,
+    "grasas_g": 0.38,
+    "fibra_g": 1.6,
+    "peso_unidad_g": 200,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Manhattan Cocktail",
+    "calorias_kcal": 222,
+    "carbohidratos_g": 1.82,
+    "proteinas_g": 0.03,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Manteca de cerdo",
+    "calorias_kcal": 902,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 100,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mantequilla",
+    "calorias_kcal": 717,
+    "carbohidratos_g": 0.06,
+    "proteinas_g": 0.85,
+    "grasas_g": 81.11,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Manzana cruda",
+    "calorias_kcal": 52,
+    "carbohidratos_g": 13.81,
+    "proteinas_g": 0.26,
+    "grasas_g": 0.17,
+    "fibra_g": 2.4,
+    "peso_unidad_g": 180,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Manzana, seca",
+    "calorias_kcal": 243,
+    "carbohidratos_g": 65.89,
+    "proteinas_g": 0.93,
+    "grasas_g": 0.32,
+    "fibra_g": 8.7,
+    "peso_unidad_g": 180,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Margarina",
+    "calorias_kcal": 533,
+    "carbohidratos_g": 0.86,
+    "proteinas_g": 0.17,
+    "grasas_g": 59.81,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Martini",
+    "calorias_kcal": 201,
+    "carbohidratos_g": 0.15,
+    "proteinas_g": 0.07,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mayonesa",
+    "calorias_kcal": 680,
+    "carbohidratos_g": 0.57,
+    "proteinas_g": 0.96,
+    "grasas_g": 74.85,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mayonesa, baja en grasa, con aceite de oliva.",
+    "calorias_kcal": 361,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0.37,
+    "grasas_g": 40,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mazapán",
+    "calorias_kcal": 443,
+    "carbohidratos_g": 49,
+    "proteinas_g": 9,
+    "grasas_g": 25,
+    "fibra_g": 6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mejillones al vapor o escalfados",
+    "calorias_kcal": 171,
+    "carbohidratos_g": 7.35,
+    "proteinas_g": 23.7,
+    "grasas_g": 4.46,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mejillones crudos",
+    "calorias_kcal": 86,
+    "carbohidratos_g": 3.69,
+    "proteinas_g": 11.9,
+    "grasas_g": 2.24,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Melocotón crudo",
+    "calorias_kcal": 39,
+    "carbohidratos_g": 9.54,
+    "proteinas_g": 0.91,
+    "grasas_g": 0.25,
+    "fibra_g": 1.5,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Melocotón en almíbar",
+    "calorias_kcal": 84,
+    "carbohidratos_g": 22,
+    "proteinas_g": 0.4,
+    "grasas_g": 0,
+    "fibra_g": 1,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Melón",
+    "calorias_kcal": 34,
+    "carbohidratos_g": 8.16,
+    "proteinas_g": 0.84,
+    "grasas_g": 0.19,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Membrillo (dulce de)",
+    "calorias_kcal": 242,
+    "carbohidratos_g": 62.8,
+    "proteinas_g": 0.14,
+    "grasas_g": 0.03,
+    "fibra_g": 0.6,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Merluza",
+    "calorias_kcal": 89,
+    "carbohidratos_g": 0,
+    "proteinas_g": 15.9,
+    "grasas_g": 2.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mermelada, conserva",
+    "calorias_kcal": 278,
+    "carbohidratos_g": 68.86,
+    "proteinas_g": 0.37,
+    "grasas_g": 0.07,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Miel",
+    "calorias_kcal": 304,
+    "carbohidratos_g": 82.4,
+    "proteinas_g": 0.3,
+    "grasas_g": 0,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Miso",
+    "calorias_kcal": 198,
+    "carbohidratos_g": 25.37,
+    "proteinas_g": 12.79,
+    "grasas_g": 6.01,
+    "fibra_g": 5.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Molleja, cocinada",
+    "calorias_kcal": 154,
+    "carbohidratos_g": 0,
+    "proteinas_g": 30.4,
+    "grasas_g": 2.7,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Moras congeladas",
+    "calorias_kcal": 64,
+    "carbohidratos_g": 15.67,
+    "proteinas_g": 1.18,
+    "grasas_g": 0.43,
+    "fibra_g": 5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Moras crudas",
+    "calorias_kcal": 43,
+    "carbohidratos_g": 9.61,
+    "proteinas_g": 1.39,
+    "grasas_g": 0.49,
+    "fibra_g": 5.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Morcilla",
+    "calorias_kcal": 379,
+    "carbohidratos_g": 1.29,
+    "proteinas_g": 14.6,
+    "grasas_g": 34.5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mortadela",
+    "calorias_kcal": 311,
+    "carbohidratos_g": 3.05,
+    "proteinas_g": 16.37,
+    "grasas_g": 25.39,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mostaza",
+    "calorias_kcal": 60,
+    "carbohidratos_g": 5.83,
+    "proteinas_g": 3.74,
+    "grasas_g": 3.34,
+    "fibra_g": 4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Mousse de chocolate",
+    "calorias_kcal": 209,
+    "carbohidratos_g": 16.24,
+    "proteinas_g": 4.31,
+    "grasas_g": 14.97,
+    "fibra_g": 0.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Muffin de chocolate",
+    "calorias_kcal": 390,
+    "carbohidratos_g": 50.81,
+    "proteinas_g": 6.39,
+    "grasas_g": 18.2,
+    "fibra_g": 1.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Muslo de pollo, asado, con piel",
+    "calorias_kcal": 206,
+    "carbohidratos_g": 0.12,
+    "proteinas_g": 25.65,
+    "grasas_g": 11.46,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Muslo de pollo, asado, sin piel",
+    "calorias_kcal": 172,
+    "carbohidratos_g": 0,
+    "proteinas_g": 27.71,
+    "grasas_g": 6.76,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Nabo crudo",
+    "calorias_kcal": 28,
+    "carbohidratos_g": 6.43,
+    "proteinas_g": 0.9,
+    "grasas_g": 0.1,
+    "fibra_g": 1.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Nachos con queso",
+    "calorias_kcal": 343,
+    "carbohidratos_g": 34.91,
+    "proteinas_g": 4.32,
+    "grasas_g": 21.5,
+    "fibra_g": 3.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Naranja",
+    "calorias_kcal": 47,
+    "carbohidratos_g": 11.75,
+    "proteinas_g": 0.94,
+    "grasas_g": 0.12,
+    "fibra_g": 2.4,
+    "peso_unidad_g": 140,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Nectarina",
+    "calorias_kcal": 49.7,
+    "carbohidratos_g": 10.2,
+    "proteinas_g": 0.9,
+    "grasas_g": 0.1,
+    "fibra_g": 2.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Nueces (castellanas)",
+    "calorias_kcal": 654,
+    "carbohidratos_g": 13.71,
+    "proteinas_g": 15.23,
+    "grasas_g": 65.21,
+    "fibra_g": 6.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Nueces de Brasil",
+    "calorias_kcal": 659,
+    "carbohidratos_g": 11.74,
+    "proteinas_g": 14.32,
+    "grasas_g": 67.1,
+    "fibra_g": 7.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Nueces de macadamia",
+    "calorias_kcal": 716,
+    "carbohidratos_g": 12.83,
+    "proteinas_g": 7.79,
+    "grasas_g": 76.08,
+    "fibra_g": 8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Nueces Pacanas - Pecanas",
+    "calorias_kcal": 691,
+    "carbohidratos_g": 13.86,
+    "proteinas_g": 9.17,
+    "grasas_g": 71.97,
+    "fibra_g": 9.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Nuggets de pollo",
+    "calorias_kcal": 307,
+    "carbohidratos_g": 14.93,
+    "proteinas_g": 15.92,
+    "grasas_g": 20.36,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ñoquis, patata",
+    "calorias_kcal": 133,
+    "carbohidratos_g": 17.06,
+    "proteinas_g": 2.36,
+    "grasas_g": 6.24,
+    "fibra_g": 1,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Orejas de cerdo, cola, cabeza, hocico, partes misceláneas, cocidas",
+    "calorias_kcal": 236,
+    "carbohidratos_g": 0,
+    "proteinas_g": 26.14,
+    "grasas_g": 13.77,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ostras crudas",
+    "calorias_kcal": 51,
+    "carbohidratos_g": 2.72,
+    "proteinas_g": 5.71,
+    "grasas_g": 1.71,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Paella con mariscos",
+    "calorias_kcal": 142,
+    "carbohidratos_g": 16.43,
+    "proteinas_g": 8.04,
+    "grasas_g": 4.68,
+    "fibra_g": 0.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Paella de carne al estilo valenciano",
+    "calorias_kcal": 270,
+    "carbohidratos_g": 16.74,
+    "proteinas_g": 21.71,
+    "grasas_g": 12.54,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Palmitos enlatados (conserva)",
+    "calorias_kcal": 47,
+    "carbohidratos_g": 8,
+    "proteinas_g": 2.8,
+    "grasas_g": 0.3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Paloma",
+    "calorias_kcal": 178,
+    "carbohidratos_g": 0,
+    "proteinas_g": 37,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Paloma, frita",
+    "calorias_kcal": 223,
+    "carbohidratos_g": 1.44,
+    "proteinas_g": 23.06,
+    "grasas_g": 13.82,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Palometa (pescado)",
+    "calorias_kcal": 125,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Palomitas de maíz",
+    "calorias_kcal": 438,
+    "carbohidratos_g": 74.18,
+    "proteinas_g": 10.19,
+    "grasas_g": 11.19,
+    "fibra_g": 4.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Palomitas de maíz, microondas",
+    "calorias_kcal": 538,
+    "carbohidratos_g": 55.99,
+    "proteinas_g": 8.69,
+    "grasas_g": 31.07,
+    "fibra_g": 10.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Palosanto",
+    "calorias_kcal": 64,
+    "carbohidratos_g": 15,
+    "proteinas_g": 0.5,
+    "grasas_g": 0.1,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pan blanco",
+    "calorias_kcal": 266,
+    "carbohidratos_g": 49.42,
+    "proteinas_g": 8.85,
+    "grasas_g": 3.33,
+    "fibra_g": 2.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pan blanco, tostado",
+    "calorias_kcal": 297,
+    "carbohidratos_g": 65,
+    "proteinas_g": 10,
+    "grasas_g": 2,
+    "fibra_g": 3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pan centeno, tostado",
+    "calorias_kcal": 285,
+    "carbohidratos_g": 53.08,
+    "proteinas_g": 9.34,
+    "grasas_g": 3.63,
+    "fibra_g": 6.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pan de nuez",
+    "calorias_kcal": 392,
+    "carbohidratos_g": 49.72,
+    "proteinas_g": 6.49,
+    "grasas_g": 19.24,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pan francés o viena",
+    "calorias_kcal": 272,
+    "carbohidratos_g": 51.88,
+    "proteinas_g": 10.75,
+    "grasas_g": 2.42,
+    "fibra_g": 2.2,
+    "peso_unidad_g": 40,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Pan francés o viena, de trigo integral",
+    "calorias_kcal": 239,
+    "carbohidratos_g": 49.1,
+    "proteinas_g": 8.33,
+    "grasas_g": 1.04,
+    "fibra_g": 4.2,
+    "peso_unidad_g": 40,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Pan integral",
+    "calorias_kcal": 252,
+    "carbohidratos_g": 42.71,
+    "proteinas_g": 12.45,
+    "grasas_g": 3.5,
+    "fibra_g": 6,
+    "peso_unidad_g": 30,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Pan multigrano",
+    "calorias_kcal": 265,
+    "carbohidratos_g": 43.34,
+    "proteinas_g": 13.36,
+    "grasas_g": 4.23,
+    "fibra_g": 7.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pan pita, tostado",
+    "calorias_kcal": 302,
+    "carbohidratos_g": 61.21,
+    "proteinas_g": 10,
+    "grasas_g": 1.32,
+    "fibra_g": 2.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pan sin gluten",
+    "calorias_kcal": 248,
+    "carbohidratos_g": 45.78,
+    "proteinas_g": 4.31,
+    "grasas_g": 5.24,
+    "fibra_g": 4.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pan, salvado de avena",
+    "calorias_kcal": 299,
+    "carbohidratos_g": 53.89,
+    "proteinas_g": 9.33,
+    "grasas_g": 4.89,
+    "fibra_g": 4.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Papaya cruda",
+    "calorias_kcal": 43,
+    "carbohidratos_g": 10.82,
+    "proteinas_g": 0.47,
+    "grasas_g": 0.26,
+    "fibra_g": 1.7,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Pasas",
+    "calorias_kcal": 299,
+    "carbohidratos_g": 79.18,
+    "proteinas_g": 3.07,
+    "grasas_g": 0.46,
+    "fibra_g": 3.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pasta cocida",
+    "calorias_kcal": 157,
+    "carbohidratos_g": 30.68,
+    "proteinas_g": 5.76,
+    "grasas_g": 0.92,
+    "fibra_g": 1.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pasta con sabores",
+    "calorias_kcal": 87,
+    "carbohidratos_g": 14.44,
+    "proteinas_g": 2.46,
+    "grasas_g": 2.23,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pasta de wasabi",
+    "calorias_kcal": 292,
+    "carbohidratos_g": 46.13,
+    "proteinas_g": 2.23,
+    "grasas_g": 10.9,
+    "fibra_g": 6.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pasta sin gluten",
+    "calorias_kcal": 179,
+    "carbohidratos_g": 38.05,
+    "proteinas_g": 3.2,
+    "grasas_g": 1,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pastrami",
+    "calorias_kcal": 147,
+    "carbohidratos_g": 0.36,
+    "proteinas_g": 21.8,
+    "grasas_g": 5.82,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Patas de pollo",
+    "calorias_kcal": 215,
+    "carbohidratos_g": 0.2,
+    "proteinas_g": 19.4,
+    "grasas_g": 14.6,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Patata asada",
+    "calorias_kcal": 206,
+    "carbohidratos_g": 46.1,
+    "proteinas_g": 4.3,
+    "grasas_g": 0.1,
+    "fibra_g": 7.9,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Patata hervida",
+    "calorias_kcal": 125,
+    "carbohidratos_g": 20.45,
+    "proteinas_g": 1.87,
+    "grasas_g": 4.19,
+    "fibra_g": 1.4,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Patatas fritas",
+    "calorias_kcal": 529,
+    "carbohidratos_g": 56.54,
+    "proteinas_g": 2.92,
+    "grasas_g": 32.19,
+    "fibra_g": 8.8,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Patatas guisadas",
+    "calorias_kcal": 114,
+    "carbohidratos_g": 19.91,
+    "proteinas_g": 1.84,
+    "grasas_g": 3.22,
+    "fibra_g": 1.4,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Patatas puré",
+    "calorias_kcal": 111,
+    "carbohidratos_g": 17.69,
+    "proteinas_g": 2.15,
+    "grasas_g": 3.79,
+    "fibra_g": 1.2,
+    "peso_unidad_g": 150,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Pato asado",
+    "calorias_kcal": 189,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25,
+    "grasas_g": 9.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pavo",
+    "calorias_kcal": 107,
+    "carbohidratos_g": 0,
+    "proteinas_g": 21.9,
+    "grasas_g": 2.2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pepinillos en vinagre, condimento dulce",
+    "calorias_kcal": 130,
+    "carbohidratos_g": 35.06,
+    "proteinas_g": 0.37,
+    "grasas_g": 0.47,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pepino crudo",
+    "calorias_kcal": 12,
+    "carbohidratos_g": 2.16,
+    "proteinas_g": 0.59,
+    "grasas_g": 0.16,
+    "fibra_g": 0.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pera cruda",
+    "calorias_kcal": 57,
+    "carbohidratos_g": 15.23,
+    "proteinas_g": 0.36,
+    "grasas_g": 0.14,
+    "fibra_g": 3.1,
+    "peso_unidad_g": 178,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Perca de mar, al horno o a la parrilla, grasa añadida en la cocina",
+    "calorias_kcal": 129,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 18.73,
+    "grasas_g": 5.56,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Perca del océano, al vapor o escalfado",
+    "calorias_kcal": 99,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19.25,
+    "grasas_g": 1.94,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Perca del océano, crudo",
+    "calorias_kcal": 79,
+    "carbohidratos_g": 0,
+    "proteinas_g": 15.31,
+    "grasas_g": 1.54,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Percebes",
+    "calorias_kcal": 59,
+    "carbohidratos_g": 0,
+    "proteinas_g": 13.6,
+    "grasas_g": 0.5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Perdiz",
+    "calorias_kcal": 106,
+    "carbohidratos_g": 0,
+    "proteinas_g": 23,
+    "grasas_g": 1.6,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Perejil crudo",
+    "calorias_kcal": 36,
+    "carbohidratos_g": 6.33,
+    "proteinas_g": 2.97,
+    "grasas_g": 0.79,
+    "fibra_g": 3.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Perrito-Caliente Con Mostaza",
+    "calorias_kcal": 308,
+    "carbohidratos_g": 33,
+    "proteinas_g": 11,
+    "grasas_g": 14,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pescadilla",
+    "calorias_kcal": 69,
+    "carbohidratos_g": 0,
+    "proteinas_g": 16,
+    "grasas_g": 0.6,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Petit-Suisse Queso, Tipo",
+    "calorias_kcal": 173,
+    "carbohidratos_g": 4,
+    "proteinas_g": 8,
+    "grasas_g": 14,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pez espada, al horno o a la parrilla, sin agregar grasa en la cocción",
+    "calorias_kcal": 182,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 24.76,
+    "grasas_g": 8.38,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pez espada, al vapor o escalfado",
+    "calorias_kcal": 181,
+    "carbohidratos_g": 0,
+    "proteinas_g": 24.72,
+    "grasas_g": 8.36,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pichón",
+    "calorias_kcal": 182,
+    "carbohidratos_g": 0,
+    "proteinas_g": 21,
+    "grasas_g": 10,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pimiento, crudo",
+    "calorias_kcal": 24,
+    "carbohidratos_g": 5.13,
+    "proteinas_g": 0.91,
+    "grasas_g": 0.22,
+    "fibra_g": 1.8,
+    "peso_unidad_g": 120,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Pimientos en vinagre",
+    "calorias_kcal": 40,
+    "carbohidratos_g": 9.04,
+    "proteinas_g": 0.82,
+    "grasas_g": 0.19,
+    "fibra_g": 1.6,
+    "peso_unidad_g": 120,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Piña colada",
+    "calorias_kcal": 151,
+    "carbohidratos_g": 19.5,
+    "proteinas_g": 0.36,
+    "grasas_g": 2.13,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Piña cruda",
+    "calorias_kcal": 50,
+    "carbohidratos_g": 13.12,
+    "proteinas_g": 0.54,
+    "grasas_g": 0.12,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Piña en almíbar",
+    "calorias_kcal": 81,
+    "carbohidratos_g": 21,
+    "proteinas_g": 0.3,
+    "grasas_g": 0.1,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Piña seca",
+    "calorias_kcal": 269,
+    "carbohidratos_g": 70.08,
+    "proteinas_g": 1.51,
+    "grasas_g": 0.34,
+    "fibra_g": 3.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Piñones",
+    "calorias_kcal": 673,
+    "carbohidratos_g": 13.08,
+    "proteinas_g": 13.69,
+    "grasas_g": 68.37,
+    "fibra_g": 3.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pipas girasol",
+    "calorias_kcal": 580,
+    "carbohidratos_g": 20,
+    "proteinas_g": 27,
+    "grasas_g": 43,
+    "fibra_g": 2.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pistachos",
+    "calorias_kcal": 572,
+    "carbohidratos_g": 28.28,
+    "proteinas_g": 21.05,
+    "grasas_g": 45.82,
+    "fibra_g": 10.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Plátano crudo",
+    "calorias_kcal": 89,
+    "carbohidratos_g": 22.84,
+    "proteinas_g": 1.09,
+    "grasas_g": 0.33,
+    "fibra_g": 2.6,
+    "peso_unidad_g": 118,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Pollo",
+    "calorias_kcal": 167,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 9.7,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pollo (con piel)",
+    "calorias_kcal": 298,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25.73,
+    "grasas_g": 20.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pollo o pavo agridulce",
+    "calorias_kcal": 250,
+    "carbohidratos_g": 23.86,
+    "proteinas_g": 10.1,
+    "grasas_g": 12.65,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pollo, Frito Kentucky",
+    "calorias_kcal": 155,
+    "carbohidratos_g": 5,
+    "proteinas_g": 13,
+    "grasas_g": 9,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pollo, Pechuga, asado",
+    "calorias_kcal": 175,
+    "carbohidratos_g": 0.09,
+    "proteinas_g": 26.37,
+    "grasas_g": 7.67,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pollo, Pechugas Kentucky",
+    "calorias_kcal": 436,
+    "carbohidratos_g": 34,
+    "proteinas_g": 25,
+    "grasas_g": 22,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pomelo crudo",
+    "calorias_kcal": 32,
+    "carbohidratos_g": 8.08,
+    "proteinas_g": 0.63,
+    "grasas_g": 0.1,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ponche de huevo, regular",
+    "calorias_kcal": 88,
+    "carbohidratos_g": 8.05,
+    "proteinas_g": 4.55,
+    "grasas_g": 4.19,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Postre de gelatina",
+    "calorias_kcal": 62,
+    "carbohidratos_g": 14.19,
+    "proteinas_g": 1.22,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pretzel",
+    "calorias_kcal": 384,
+    "carbohidratos_g": 80.39,
+    "proteinas_g": 10.04,
+    "grasas_g": 2.93,
+    "fibra_g": 3.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Puerro crudo",
+    "calorias_kcal": 61,
+    "carbohidratos_g": 14.15,
+    "proteinas_g": 1.5,
+    "grasas_g": 0.3,
+    "fibra_g": 1.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Pulpo hervido",
+    "calorias_kcal": 69,
+    "carbohidratos_g": 1.4,
+    "proteinas_g": 13.4,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso americano",
+    "calorias_kcal": 307,
+    "carbohidratos_g": 8.85,
+    "proteinas_g": 16.09,
+    "grasas_g": 23.06,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Azul",
+    "calorias_kcal": 353,
+    "carbohidratos_g": 2.34,
+    "proteinas_g": 21.4,
+    "grasas_g": 28.74,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Babibel, tipo",
+    "calorias_kcal": 314,
+    "carbohidratos_g": 0,
+    "proteinas_g": 23,
+    "grasas_g": 25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Blanco Desnatado",
+    "calorias_kcal": 68,
+    "carbohidratos_g": 3,
+    "proteinas_g": 10,
+    "grasas_g": 2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Brie",
+    "calorias_kcal": 334,
+    "carbohidratos_g": 0.45,
+    "proteinas_g": 20.75,
+    "grasas_g": 27.68,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Burgos",
+    "calorias_kcal": 167,
+    "carbohidratos_g": 3,
+    "proteinas_g": 11,
+    "grasas_g": 11,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Cabra",
+    "calorias_kcal": 250,
+    "carbohidratos_g": 2,
+    "proteinas_g": 17,
+    "grasas_g": 18,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Camembert",
+    "calorias_kcal": 300,
+    "carbohidratos_g": 0.46,
+    "proteinas_g": 19.8,
+    "grasas_g": 24.26,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Cheddar",
+    "calorias_kcal": 404,
+    "carbohidratos_g": 3.09,
+    "proteinas_g": 22.87,
+    "grasas_g": 33.31,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Chihuahua",
+    "calorias_kcal": 374,
+    "carbohidratos_g": 5.56,
+    "proteinas_g": 21.56,
+    "grasas_g": 29.68,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Colby",
+    "calorias_kcal": 394,
+    "carbohidratos_g": 2.57,
+    "proteinas_g": 23.76,
+    "grasas_g": 32.11,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso con nueces",
+    "calorias_kcal": 424,
+    "carbohidratos_g": 5.89,
+    "proteinas_g": 17.87,
+    "grasas_g": 37.72,
+    "fibra_g": 1.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Cotija",
+    "calorias_kcal": 366,
+    "carbohidratos_g": 3.97,
+    "proteinas_g": 20,
+    "grasas_g": 30,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso crema",
+    "calorias_kcal": 350,
+    "carbohidratos_g": 5.52,
+    "proteinas_g": 6.15,
+    "grasas_g": 34.44,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso de cabra",
+    "calorias_kcal": 360,
+    "carbohidratos_g": 0.76,
+    "proteinas_g": 23.52,
+    "grasas_g": 28.85,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Emmental",
+    "calorias_kcal": 367,
+    "carbohidratos_g": 0,
+    "proteinas_g": 27.3,
+    "grasas_g": 28.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Feta",
+    "calorias_kcal": 264,
+    "carbohidratos_g": 4.09,
+    "proteinas_g": 14.21,
+    "grasas_g": 21.28,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Fontina",
+    "calorias_kcal": 389,
+    "carbohidratos_g": 1.55,
+    "proteinas_g": 25.6,
+    "grasas_g": 31.14,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Fresco (de Burgos)",
+    "calorias_kcal": 175,
+    "carbohidratos_g": 4,
+    "proteinas_g": 15,
+    "grasas_g": 11,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Gouda o Edam",
+    "calorias_kcal": 357,
+    "carbohidratos_g": 1.67,
+    "proteinas_g": 24.98,
+    "grasas_g": 27.69,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Gruyere",
+    "calorias_kcal": 413,
+    "carbohidratos_g": 0.36,
+    "proteinas_g": 29.81,
+    "grasas_g": 32.34,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Limburger",
+    "calorias_kcal": 327,
+    "carbohidratos_g": 0.49,
+    "proteinas_g": 20.05,
+    "grasas_g": 27.25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Manchego Curado",
+    "calorias_kcal": 420,
+    "carbohidratos_g": 1,
+    "proteinas_g": 32,
+    "grasas_g": 32,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Manchego Fresco",
+    "calorias_kcal": 333,
+    "carbohidratos_g": 0,
+    "proteinas_g": 26,
+    "grasas_g": 25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Manchego Semicurado",
+    "calorias_kcal": 390,
+    "carbohidratos_g": 0,
+    "proteinas_g": 29,
+    "grasas_g": 29,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Monterey",
+    "calorias_kcal": 373,
+    "carbohidratos_g": 0.68,
+    "proteinas_g": 24.48,
+    "grasas_g": 30.28,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Mozzarella, Leche Entera",
+    "calorias_kcal": 300,
+    "carbohidratos_g": 2.19,
+    "proteinas_g": 22.17,
+    "grasas_g": 22.35,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Münster",
+    "calorias_kcal": 368,
+    "carbohidratos_g": 1.12,
+    "proteinas_g": 23.41,
+    "grasas_g": 30.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso parmesano, rallado seco",
+    "calorias_kcal": 420,
+    "carbohidratos_g": 13.91,
+    "proteinas_g": 28.42,
+    "grasas_g": 27.84,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Pirineos",
+    "calorias_kcal": 355,
+    "carbohidratos_g": 0,
+    "proteinas_g": 22,
+    "grasas_g": 30,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Porciones",
+    "calorias_kcal": 283,
+    "carbohidratos_g": 1,
+    "proteinas_g": 18,
+    "grasas_g": 23,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Port du Salut",
+    "calorias_kcal": 356,
+    "carbohidratos_g": 2.22,
+    "proteinas_g": 24.94,
+    "grasas_g": 27.44,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Provolone",
+    "calorias_kcal": 351,
+    "carbohidratos_g": 2.14,
+    "proteinas_g": 25.58,
+    "grasas_g": 26.62,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Quark",
+    "calorias_kcal": 167,
+    "carbohidratos_g": 3,
+    "proteinas_g": 11,
+    "grasas_g": 11,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Ricota",
+    "calorias_kcal": 156,
+    "carbohidratos_g": 4.09,
+    "proteinas_g": 11.32,
+    "grasas_g": 10.44,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Roquefort",
+    "calorias_kcal": 353,
+    "carbohidratos_g": 2.34,
+    "proteinas_g": 21.4,
+    "grasas_g": 28.74,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso Suizo",
+    "calorias_kcal": 393,
+    "carbohidratos_g": 1.44,
+    "proteinas_g": 26.96,
+    "grasas_g": 30.99,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Queso tipo Speisequark",
+    "calorias_kcal": 101,
+    "carbohidratos_g": 3,
+    "proteinas_g": 10,
+    "grasas_g": 5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Quiche Lorraine Bacón-Queso",
+    "calorias_kcal": 391,
+    "carbohidratos_g": 21,
+    "proteinas_g": 15,
+    "grasas_g": 28,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Rábano crudo",
+    "calorias_kcal": 16,
+    "carbohidratos_g": 3.4,
+    "proteinas_g": 0.68,
+    "grasas_g": 0.1,
+    "fibra_g": 1.6,
+    "peso_unidad_g": 4.5,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Rabo Vacuno",
+    "calorias_kcal": 171,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20,
+    "grasas_g": 10,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Rape",
+    "calorias_kcal": 86,
+    "carbohidratos_g": 0,
+    "proteinas_g": 17,
+    "grasas_g": 2,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ratatouille",
+    "calorias_kcal": 65,
+    "carbohidratos_g": 6,
+    "proteinas_g": 1,
+    "grasas_g": 4.6,
+    "fibra_g": 1.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Raviolis Tomate, Salsa",
+    "calorias_kcal": 106,
+    "carbohidratos_g": 13,
+    "proteinas_g": 5,
+    "grasas_g": 4,
+    "fibra_g": 0,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Refresco cola",
+    "calorias_kcal": 42,
+    "carbohidratos_g": 10.36,
+    "proteinas_g": 0,
+    "grasas_g": 0.25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Refresco cola light / diet",
+    "calorias_kcal": 2,
+    "carbohidratos_g": 0.29,
+    "proteinas_g": 0.11,
+    "grasas_g": 0.03,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Regaliz",
+    "calorias_kcal": 375,
+    "carbohidratos_g": 93.55,
+    "proteinas_g": 0,
+    "grasas_g": 0.05,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Remolachas crudas",
+    "calorias_kcal": 43,
+    "carbohidratos_g": 9.56,
+    "proteinas_g": 1.61,
+    "grasas_g": 0.17,
+    "fibra_g": 2.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Remolachas, cocidas",
+    "calorias_kcal": 44,
+    "carbohidratos_g": 9.9,
+    "proteinas_g": 1.67,
+    "grasas_g": 0.18,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Repollo, chino, crudo",
+    "calorias_kcal": 13,
+    "carbohidratos_g": 2.18,
+    "proteinas_g": 1.5,
+    "grasas_g": 0.2,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Repollo, col rizada, cocida, grasa no agregada al cocinar",
+    "calorias_kcal": 28,
+    "carbohidratos_g": 6.32,
+    "proteinas_g": 2.07,
+    "grasas_g": 0.1,
+    "fibra_g": 3.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Requesón",
+    "calorias_kcal": 143,
+    "carbohidratos_g": 3.18,
+    "proteinas_g": 10.49,
+    "grasas_g": 9.8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Riñón cocido",
+    "calorias_kcal": 157,
+    "carbohidratos_g": 0,
+    "proteinas_g": 27.04,
+    "grasas_g": 4.61,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Rodaballo",
+    "calorias_kcal": 98,
+    "carbohidratos_g": 0,
+    "proteinas_g": 16.1,
+    "grasas_g": 3.6,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ron",
+    "calorias_kcal": 231,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Ruibarbo crudo",
+    "calorias_kcal": 21,
+    "carbohidratos_g": 4.54,
+    "proteinas_g": 0.9,
+    "grasas_g": 0.2,
+    "fibra_g": 1.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sal",
+    "calorias_kcal": 0,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salami",
+    "calorias_kcal": 378,
+    "carbohidratos_g": 0.72,
+    "proteinas_g": 21.07,
+    "grasas_g": 31.65,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salchichas Cerdo",
+    "calorias_kcal": 367,
+    "carbohidratos_g": 10,
+    "proteinas_g": 11,
+    "grasas_g": 32,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salchichas Fráncfort",
+    "calorias_kcal": 274,
+    "carbohidratos_g": 3,
+    "proteinas_g": 10,
+    "grasas_g": 25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salchichón",
+    "calorias_kcal": 454,
+    "carbohidratos_g": 2,
+    "proteinas_g": 26,
+    "grasas_g": 38,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salmón ahumado",
+    "calorias_kcal": 117,
+    "carbohidratos_g": 0,
+    "proteinas_g": 18.28,
+    "grasas_g": 4.32,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salmón al vapor o escalfado",
+    "calorias_kcal": 160,
+    "carbohidratos_g": 0,
+    "proteinas_g": 25.78,
+    "grasas_g": 5.53,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salmón crudo",
+    "calorias_kcal": 127,
+    "carbohidratos_g": 0,
+    "proteinas_g": 20.5,
+    "grasas_g": 4.4,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salmonete crudo",
+    "calorias_kcal": 117,
+    "carbohidratos_g": 0,
+    "proteinas_g": 19.35,
+    "grasas_g": 3.79,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa Boloñesa",
+    "calorias_kcal": 139,
+    "carbohidratos_g": 2,
+    "proteinas_g": 8,
+    "grasas_g": 11,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa César",
+    "calorias_kcal": 542,
+    "carbohidratos_g": 3.3,
+    "proteinas_g": 2.17,
+    "grasas_g": 57.85,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de Ajo",
+    "calorias_kcal": 108,
+    "carbohidratos_g": 7.32,
+    "proteinas_g": 3.07,
+    "grasas_g": 7.42,
+    "fibra_g": 0.2,
+    "peso_unidad_g": 3,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Salsa de arándano y frambuesa",
+    "calorias_kcal": 162,
+    "carbohidratos_g": 41.83,
+    "proteinas_g": 0.78,
+    "grasas_g": 0.22,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de barbacoa",
+    "calorias_kcal": 172,
+    "carbohidratos_g": 40.77,
+    "proteinas_g": 0.82,
+    "grasas_g": 0.63,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de cebolla",
+    "calorias_kcal": 345,
+    "carbohidratos_g": 3.23,
+    "proteinas_g": 1.86,
+    "grasas_g": 36.27,
+    "fibra_g": 0.1,
+    "peso_unidad_g": 110,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Salsa de chocolate",
+    "calorias_kcal": 388,
+    "carbohidratos_g": 65.39,
+    "proteinas_g": 3.33,
+    "grasas_g": 13.06,
+    "fibra_g": 2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de ciruela",
+    "calorias_kcal": 200,
+    "carbohidratos_g": 50.67,
+    "proteinas_g": 0.65,
+    "grasas_g": 0.29,
+    "fibra_g": 1.1,
+    "peso_unidad_g": 66,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Salsa de cóctel",
+    "calorias_kcal": 124,
+    "carbohidratos_g": 28.22,
+    "proteinas_g": 1.36,
+    "grasas_g": 1.05,
+    "fibra_g": 1.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de enchilada roja",
+    "calorias_kcal": 30,
+    "carbohidratos_g": 4.87,
+    "proteinas_g": 0.62,
+    "grasas_g": 0.91,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de enchilada, verde",
+    "calorias_kcal": 28,
+    "carbohidratos_g": 5.5,
+    "proteinas_g": 0.99,
+    "grasas_g": 0.59,
+    "fibra_g": 1.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de eneldo",
+    "calorias_kcal": 429,
+    "carbohidratos_g": 3.08,
+    "proteinas_g": 1.92,
+    "grasas_g": 45.78,
+    "fibra_g": 0.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de miel y mostaza",
+    "calorias_kcal": 464,
+    "carbohidratos_g": 23.33,
+    "proteinas_g": 0.87,
+    "grasas_g": 40.83,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de pescado",
+    "calorias_kcal": 35,
+    "carbohidratos_g": 3.64,
+    "proteinas_g": 5.06,
+    "grasas_g": 0.01,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de queso",
+    "calorias_kcal": 160,
+    "carbohidratos_g": 7.66,
+    "proteinas_g": 3.24,
+    "grasas_g": 13.02,
+    "fibra_g": 0.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de queso azul o roquefort",
+    "calorias_kcal": 484,
+    "carbohidratos_g": 4.77,
+    "proteinas_g": 1.37,
+    "grasas_g": 51.1,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de soja",
+    "calorias_kcal": 53,
+    "carbohidratos_g": 4.93,
+    "proteinas_g": 8.14,
+    "grasas_g": 0.57,
+    "fibra_g": 0.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa de tomate",
+    "calorias_kcal": 101,
+    "carbohidratos_g": 27.4,
+    "proteinas_g": 1.04,
+    "grasas_g": 0.1,
+    "fibra_g": 0.3,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Salsa de yogurt",
+    "calorias_kcal": 220,
+    "carbohidratos_g": 11.75,
+    "proteinas_g": 3.45,
+    "grasas_g": 18.27,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa holandesa",
+    "calorias_kcal": 504,
+    "carbohidratos_g": 1.52,
+    "proteinas_g": 4.68,
+    "grasas_g": 54.22,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa Kétchup",
+    "calorias_kcal": 131,
+    "carbohidratos_g": 32,
+    "proteinas_g": 0.4,
+    "grasas_g": 0,
+    "fibra_g": 0.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa pesto",
+    "calorias_kcal": 569,
+    "carbohidratos_g": 6.16,
+    "proteinas_g": 8.51,
+    "grasas_g": 58.52,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa rusa",
+    "calorias_kcal": 355,
+    "carbohidratos_g": 31.9,
+    "proteinas_g": 0.69,
+    "grasas_g": 26.18,
+    "fibra_g": 0.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa tártara",
+    "calorias_kcal": 211,
+    "carbohidratos_g": 13.3,
+    "proteinas_g": 1,
+    "grasas_g": 16.7,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa teriyaki",
+    "calorias_kcal": 89,
+    "carbohidratos_g": 15.56,
+    "proteinas_g": 5.93,
+    "grasas_g": 0.02,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa Tzatziki",
+    "calorias_kcal": 92,
+    "carbohidratos_g": 3.95,
+    "proteinas_g": 5.35,
+    "grasas_g": 6.31,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salsa verde o salsa verde",
+    "calorias_kcal": 38,
+    "carbohidratos_g": 6.36,
+    "proteinas_g": 1.13,
+    "grasas_g": 0.89,
+    "fibra_g": 1.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salvado de avena",
+    "calorias_kcal": 246,
+    "carbohidratos_g": 66.22,
+    "proteinas_g": 17.3,
+    "grasas_g": 7.03,
+    "fibra_g": 15.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Salvado de trigo",
+    "calorias_kcal": 216,
+    "carbohidratos_g": 64.51,
+    "proteinas_g": 15.55,
+    "grasas_g": 4.25,
+    "fibra_g": 42.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sandía cruda",
+    "calorias_kcal": 30,
+    "carbohidratos_g": 7.55,
+    "proteinas_g": 0.61,
+    "grasas_g": 0.15,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sangre Vacuno",
+    "calorias_kcal": 81,
+    "carbohidratos_g": 0,
+    "proteinas_g": 18,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sangría blanca",
+    "calorias_kcal": 94,
+    "carbohidratos_g": 8.26,
+    "proteinas_g": 0.04,
+    "grasas_g": 0.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sangría roja",
+    "calorias_kcal": 96,
+    "carbohidratos_g": 8.27,
+    "proteinas_g": 0.04,
+    "grasas_g": 0.04,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sardinas cocidas",
+    "calorias_kcal": 208,
+    "carbohidratos_g": 0,
+    "proteinas_g": 24.62,
+    "grasas_g": 11.45,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sardinas con salsa de tomate",
+    "calorias_kcal": 185,
+    "carbohidratos_g": 0.54,
+    "proteinas_g": 20.86,
+    "grasas_g": 10.45,
+    "fibra_g": 0.1,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Sardinas enlatadas en aceite",
+    "calorias_kcal": 208,
+    "carbohidratos_g": 0,
+    "proteinas_g": 24.62,
+    "grasas_g": 11.45,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sardinas secas",
+    "calorias_kcal": 406,
+    "carbohidratos_g": 0,
+    "proteinas_g": 46.06,
+    "grasas_g": 23.18,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Semillas de chía",
+    "calorias_kcal": 534,
+    "carbohidratos_g": 28.88,
+    "proteinas_g": 18.29,
+    "grasas_g": 42.16,
+    "fibra_g": 27.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Semillas de girasol",
+    "calorias_kcal": 582,
+    "carbohidratos_g": 24.07,
+    "proteinas_g": 19.33,
+    "grasas_g": 49.8,
+    "fibra_g": 11.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Semillas de sésamo",
+    "calorias_kcal": 567,
+    "carbohidratos_g": 26.04,
+    "proteinas_g": 16.96,
+    "grasas_g": 48,
+    "fibra_g": 16.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sémola",
+    "calorias_kcal": 90,
+    "carbohidratos_g": 16.43,
+    "proteinas_g": 2.34,
+    "grasas_g": 1.55,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sepia",
+    "calorias_kcal": 92,
+    "carbohidratos_g": 3.08,
+    "proteinas_g": 15.58,
+    "grasas_g": 1.38,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sesos Cerdo",
+    "calorias_kcal": 132,
+    "carbohidratos_g": 0,
+    "proteinas_g": 11,
+    "grasas_g": 9,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sesos Cordero",
+    "calorias_kcal": 110,
+    "carbohidratos_g": 0,
+    "proteinas_g": 10,
+    "grasas_g": 8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sesos Ternera",
+    "calorias_kcal": 110,
+    "carbohidratos_g": 0,
+    "proteinas_g": 10,
+    "grasas_g": 8,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Setas Boletus, Edulis",
+    "calorias_kcal": 16,
+    "carbohidratos_g": 0,
+    "proteinas_g": 3,
+    "grasas_g": 0,
+    "fibra_g": 7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Setas Cantharellus",
+    "calorias_kcal": 11,
+    "carbohidratos_g": 0,
+    "proteinas_g": 2,
+    "grasas_g": 0,
+    "fibra_g": 6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Setas Colmenilla",
+    "calorias_kcal": 9,
+    "carbohidratos_g": 0,
+    "proteinas_g": 2,
+    "grasas_g": 0,
+    "fibra_g": 7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Seven-Up, refresco",
+    "calorias_kcal": 144,
+    "carbohidratos_g": 36,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sidra de manzana",
+    "calorias_kcal": 46,
+    "carbohidratos_g": 11.3,
+    "proteinas_g": 0.1,
+    "grasas_g": 0.13,
+    "fibra_g": 0.2,
+    "peso_unidad_g": 180,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Soja Brotes",
+    "calorias_kcal": 30,
+    "carbohidratos_g": 5.94,
+    "proteinas_g": 3.04,
+    "grasas_g": 0.18,
+    "fibra_g": 1.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Soja Germinada",
+    "calorias_kcal": 54.9,
+    "carbohidratos_g": 4.68,
+    "proteinas_g": 5.53,
+    "grasas_g": 1.03,
+    "fibra_g": 2.38,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sopa agridulce",
+    "calorias_kcal": 39,
+    "carbohidratos_g": 4.35,
+    "proteinas_g": 2.58,
+    "grasas_g": 1.21,
+    "fibra_g": 0.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sopa De Cebolla",
+    "calorias_kcal": 46,
+    "carbohidratos_g": 6.7,
+    "proteinas_g": 3.06,
+    "grasas_g": 1.42,
+    "fibra_g": 0.7,
+    "peso_unidad_g": 110,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Sopa Minestrone",
+    "calorias_kcal": 35,
+    "carbohidratos_g": 5,
+    "proteinas_g": 2,
+    "grasas_g": 1,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sorbete de cítrico",
+    "calorias_kcal": 95,
+    "carbohidratos_g": 23.17,
+    "proteinas_g": 0.5,
+    "grasas_g": 0,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sorbete, sabores",
+    "calorias_kcal": 144,
+    "carbohidratos_g": 30.4,
+    "proteinas_g": 1.1,
+    "grasas_g": 2,
+    "fibra_g": 1.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Stroganoff de jamón",
+    "calorias_kcal": 130,
+    "carbohidratos_g": 4.97,
+    "proteinas_g": 7.52,
+    "grasas_g": 9.04,
+    "fibra_g": 0.7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Strudel de manzana",
+    "calorias_kcal": 274,
+    "carbohidratos_g": 41.1,
+    "proteinas_g": 3.3,
+    "grasas_g": 11.2,
+    "fibra_g": 2.2,
+    "peso_unidad_g": 180,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Sushi",
+    "calorias_kcal": 93,
+    "carbohidratos_g": 18.42,
+    "proteinas_g": 2.92,
+    "grasas_g": 0.67,
+    "fibra_g": 1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sushi con atún",
+    "calorias_kcal": 100,
+    "carbohidratos_g": 13.39,
+    "proteinas_g": 9.66,
+    "grasas_g": 0.28,
+    "fibra_g": 0.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Sushi con salmón",
+    "calorias_kcal": 107,
+    "carbohidratos_g": 13.39,
+    "proteinas_g": 8.92,
+    "grasas_g": 1.74,
+    "fibra_g": 0.6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tamarindo, crudo",
+    "calorias_kcal": 239,
+    "carbohidratos_g": 62.5,
+    "proteinas_g": 2.8,
+    "grasas_g": 0.6,
+    "fibra_g": 5.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tapioca",
+    "calorias_kcal": 359,
+    "carbohidratos_g": 95,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tarta Manzana Casera",
+    "calorias_kcal": 282,
+    "carbohidratos_g": 43,
+    "proteinas_g": 2,
+    "grasas_g": 12,
+    "fibra_g": 0,
+    "peso_unidad_g": 180,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Té caliente a base de hierbas",
+    "calorias_kcal": 1,
+    "carbohidratos_g": 0.2,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Té caliente, manzanilla",
+    "calorias_kcal": 1,
+    "carbohidratos_g": 0.2,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Té, caliente, hoja, verde",
+    "calorias_kcal": 1,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0.22,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tequila",
+    "calorias_kcal": 231,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Toblerone, chocolate con leche con miel y turrón de almendras",
+    "calorias_kcal": 525,
+    "carbohidratos_g": 61.21,
+    "proteinas_g": 5.71,
+    "grasas_g": 28.57,
+    "fibra_g": 2.5,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tocino",
+    "calorias_kcal": 427,
+    "carbohidratos_g": 0,
+    "proteinas_g": 14,
+    "grasas_g": 41,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tomate Frito",
+    "calorias_kcal": 88,
+    "carbohidratos_g": 5.2,
+    "proteinas_g": 1.5,
+    "grasas_g": 6.4,
+    "fibra_g": 1.6,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Tomate triturado",
+    "calorias_kcal": 39,
+    "carbohidratos_g": 5.5,
+    "proteinas_g": 2.3,
+    "grasas_g": 0.5,
+    "fibra_g": 0,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Tomates cocidos",
+    "calorias_kcal": 18,
+    "carbohidratos_g": 3.99,
+    "proteinas_g": 0.95,
+    "grasas_g": 0.11,
+    "fibra_g": 0.7,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Tomates crudos",
+    "calorias_kcal": 18,
+    "carbohidratos_g": 3.89,
+    "proteinas_g": 0.88,
+    "grasas_g": 0.2,
+    "fibra_g": 1.2,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Tomates rojos secos",
+    "calorias_kcal": 258,
+    "carbohidratos_g": 55.76,
+    "proteinas_g": 14.11,
+    "grasas_g": 2.97,
+    "fibra_g": 12.3,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Tomates verdes crudos",
+    "calorias_kcal": 23,
+    "carbohidratos_g": 5.1,
+    "proteinas_g": 1.2,
+    "grasas_g": 0.2,
+    "fibra_g": 1.1,
+    "peso_unidad_g": 123,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Tónica Agua",
+    "calorias_kcal": 42,
+    "carbohidratos_g": 10,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tortilla de clara de huevo, revuelta o frita, hecha con aceite",
+    "calorias_kcal": 119,
+    "carbohidratos_g": 0.77,
+    "proteinas_g": 11.52,
+    "grasas_g": 7.38,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tortilla de huevo o huevo revuelto, hecho con aceite",
+    "calorias_kcal": 180,
+    "carbohidratos_g": 1.81,
+    "proteinas_g": 11.16,
+    "grasas_g": 13.95,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Tortilla de maíz",
+    "calorias_kcal": 218,
+    "carbohidratos_g": 44.64,
+    "proteinas_g": 5.7,
+    "grasas_g": 2.85,
+    "fibra_g": 6.3,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Trucha",
+    "calorias_kcal": 89,
+    "carbohidratos_g": 0,
+    "proteinas_g": 16,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Trucha ahumada",
+    "calorias_kcal": 251,
+    "carbohidratos_g": 0,
+    "proteinas_g": 35.47,
+    "grasas_g": 10.99,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Trucha al horno o asada, hecha con aceite",
+    "calorias_kcal": 205,
+    "carbohidratos_g": 0.1,
+    "proteinas_g": 24.4,
+    "grasas_g": 11.24,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Trufas",
+    "calorias_kcal": 511,
+    "carbohidratos_g": 49.61,
+    "proteinas_g": 6.77,
+    "grasas_g": 31.93,
+    "fibra_g": 2.8,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Turrón Media",
+    "calorias_kcal": 470,
+    "carbohidratos_g": 57,
+    "proteinas_g": 10,
+    "grasas_g": 24,
+    "fibra_g": 7,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "TWIX Barras de galletas de caramelo",
+    "calorias_kcal": 502,
+    "carbohidratos_g": 64.8,
+    "proteinas_g": 4.91,
+    "grasas_g": 24.85,
+    "fibra_g": 1.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Uvas",
+    "calorias_kcal": 69,
+    "carbohidratos_g": 18.1,
+    "proteinas_g": 0.72,
+    "grasas_g": 0.16,
+    "fibra_g": 0.9,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Uvas Pasas",
+    "calorias_kcal": 243,
+    "carbohidratos_g": 63,
+    "proteinas_g": 2,
+    "grasas_g": 0,
+    "fibra_g": 6,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vermut Seco",
+    "calorias_kcal": 118,
+    "carbohidratos_g": 6,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vieiras al vapor o hervidas",
+    "calorias_kcal": 137,
+    "carbohidratos_g": 6.33,
+    "proteinas_g": 24.01,
+    "grasas_g": 0.98,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vinagre",
+    "calorias_kcal": 21,
+    "carbohidratos_g": 0.93,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vino de arroz",
+    "calorias_kcal": 134,
+    "carbohidratos_g": 5,
+    "proteinas_g": 0.5,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vino Oporto",
+    "calorias_kcal": 157,
+    "carbohidratos_g": 12,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vino sin alcohol",
+    "calorias_kcal": 6,
+    "carbohidratos_g": 1.1,
+    "proteinas_g": 0.5,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vino, mesa, blanco",
+    "calorias_kcal": 82,
+    "carbohidratos_g": 2.6,
+    "proteinas_g": 0.07,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vino, mesa, rosado",
+    "calorias_kcal": 83,
+    "carbohidratos_g": 3.8,
+    "proteinas_g": 0.36,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vino, mesa, tinto",
+    "calorias_kcal": 85,
+    "carbohidratos_g": 2.61,
+    "proteinas_g": 0.07,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Vodka",
+    "calorias_kcal": 231,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Whisky",
+    "calorias_kcal": 231,
+    "carbohidratos_g": 0,
+    "proteinas_g": 0,
+    "grasas_g": 0,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogur, griego con fruta",
+    "calorias_kcal": 106,
+    "carbohidratos_g": 12.29,
+    "proteinas_g": 7.33,
+    "grasas_g": 3,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogur, griego natural",
+    "calorias_kcal": 97,
+    "carbohidratos_g": 3.98,
+    "proteinas_g": 9,
+    "grasas_g": 5,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogur, helado, cono, sabores que no sean chocolate",
+    "calorias_kcal": 189,
+    "carbohidratos_g": 31.5,
+    "proteinas_g": 4.48,
+    "grasas_g": 5.38,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogurt liquido",
+    "calorias_kcal": 72,
+    "carbohidratos_g": 11.81,
+    "proteinas_g": 3.71,
+    "grasas_g": 1.09,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogurt, leche desnatada/descremada, fruta",
+    "calorias_kcal": 83,
+    "carbohidratos_g": 15.02,
+    "proteinas_g": 5.09,
+    "grasas_g": 0.17,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogurt, leche desnatada/descremada, natural",
+    "calorias_kcal": 56,
+    "carbohidratos_g": 7.68,
+    "proteinas_g": 5.73,
+    "grasas_g": 0.18,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogurt, leche entera, fruta",
+    "calorias_kcal": 87,
+    "carbohidratos_g": 12.36,
+    "proteinas_g": 3.1,
+    "grasas_g": 2.87,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogurt, leche entera, natural",
+    "calorias_kcal": 61,
+    "carbohidratos_g": 4.66,
+    "proteinas_g": 3.47,
+    "grasas_g": 3.25,
+    "fibra_g": 0,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yogurt, soja",
+    "calorias_kcal": 94,
+    "carbohidratos_g": 15.96,
+    "proteinas_g": 3.5,
+    "grasas_g": 1.8,
+    "fibra_g": 0.2,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Yuca fritas",
+    "calorias_kcal": 267,
+    "carbohidratos_g": 34.72,
+    "proteinas_g": 1.24,
+    "grasas_g": 13.94,
+    "fibra_g": 1.6,
+    "peso_unidad_g": 200,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Zanahorias crudas",
+    "calorias_kcal": 41,
+    "carbohidratos_g": 9.58,
+    "proteinas_g": 0.93,
+    "grasas_g": 0.24,
+    "fibra_g": 2.8,
+    "peso_unidad_g": 61,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Zanahorias, cocinadas, crema",
+    "calorias_kcal": 88,
+    "carbohidratos_g": 8.38,
+    "proteinas_g": 2.08,
+    "grasas_g": 5.26,
+    "fibra_g": 1.9,
+    "peso_unidad_g": 61,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Zanahorias, crudas, ensalada",
+    "calorias_kcal": 208,
+    "carbohidratos_g": 17.17,
+    "proteinas_g": 1.22,
+    "grasas_g": 15.7,
+    "fibra_g": 2.3,
+    "peso_unidad_g": 61,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Zumo de lima, 100% recién exprimido",
+    "calorias_kcal": 25,
+    "carbohidratos_g": 8.42,
+    "proteinas_g": 0.42,
+    "grasas_g": 0.07,
+    "fibra_g": 0.4,
+    "peso_unidad_g": null,
+    "nota": null
+  },
+  {
+    "alimento": "Zumo de naranja, 100%, recién exprimido",
+    "calorias_kcal": 45,
+    "carbohidratos_g": 10.4,
+    "proteinas_g": 0.7,
+    "grasas_g": 0.2,
+    "fibra_g": 0.2,
+    "peso_unidad_g": 140,
+    "nota": "Peso estimado (promedio comercial/USDA), unidad comestible"
+  },
+  {
+    "alimento": "Zumo de pomelo, 100%, recién exprimido",
+    "calorias_kcal": 39,
+    "carbohidratos_g": 9.2,
+    "proteinas_g": 0.5,
+    "grasas_g": 0.1,
+    "fibra_g": 0.1,
+    "peso_unidad_g": null,
+    "nota": null
+  }
+]
