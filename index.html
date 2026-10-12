@@ -305,6 +305,33 @@
     .emoji-amigable { font-size: 1.3em; vertical-align: middle; margin-right: 4px; display: inline-block; }
     .emoji-grande { font-size: 1.5em; vertical-align: middle; margin-right: 6px; }
 
+    /* ── Sugerencias ── */
+    .sug-bar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:10px 36px; background:#fffbeb; border-bottom:1px solid #fde68a; }
+    .sug-bar-lbl { font-weight:800; color:#92400e; font-size:13.5px; }
+    .btn-sug { border:none; border-radius:20px; padding:8px 16px; font-size:13px; font-weight:800; cursor:pointer; color:#fff; transition:all .2s; }
+    .btn-sug:hover { transform:translateY(-1px); filter:brightness(1.08); }
+    .btn-sug-prot { background:#7c3aed; } .btn-sug-azu { background:#ea580c; } .btn-sug-gras { background:#16a34a; } .btn-sug-fib { background:#0d9488; }
+    .sug-desc { font-size:13.5px; color:#475569; margin-bottom:12px; }
+    .sug-destino { display:flex; flex-wrap:wrap; gap:16px; margin-bottom:14px; font-size:13px; font-weight:700; color:#334155; }
+    .sug-destino select { padding:7px 10px; border:1px solid #cbd5e1; border-radius:8px; font-weight:700; background:#fff; color:#0f172a; margin-left:6px; }
+    .sug-item { display:flex; justify-content:space-between; align-items:center; gap:14px; padding:10px 12px; border:1px solid #cbd5e1; border-radius:10px; background:#fff; margin-bottom:8px; }
+    .sug-nombre { font-weight:800; color:#1e293b; } .sug-nombre small { color:#94a3b8; font-weight:600; }
+    .sug-why { font-size:12.5px; color:#475569; margin-top:2px; }
+    .sug-nut { font-size:12px; color:#166534; font-weight:700; margin-top:3px; }
+    .sug-accion { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+    .sug-accion input { width:70px !important; padding:6px; border:1px solid #cbd5e1; border-radius:6px; text-align:center; font-weight:700; background:#fff; color:#0f172a; }
+    .btn-sug-add { background:#16a34a; color:#fff; border:none; border-radius:8px; padding:8px 14px; font-weight:800; cursor:pointer; font-size:12.5px; }
+    .btn-sug-add.ok { background:#64748b; }
+    .sug-aviso { margin-top:10px; font-size:11.5px; color:#94a3b8; }
+    .toast-sugerencia { position:fixed; left:50%; bottom:24px; transform:translate(-50%,30px); background:#1e293b; color:#fff; padding:12px 16px; border-radius:12px; display:flex; gap:12px; align-items:center; box-shadow:0 8px 24px rgba(0,0,0,.35); opacity:0; pointer-events:none; transition:all .3s; z-index:900; font-size:13.5px; font-weight:600; max-width:92vw; }
+    .toast-sugerencia.show { opacity:1; pointer-events:auto; transform:translate(-50%,0); }
+    .toast-sugerencia button { border:none; border-radius:8px; padding:7px 12px; font-weight:800; cursor:pointer; background:#f59e0b; color:#1e293b; }
+    .toast-sugerencia .toast-sug-x { background:transparent; color:#94a3b8; padding:4px 6px; }
+    body.dark .sug-bar { background:#1e293b; border-color:#334155; } body.dark .sug-bar-lbl { color:#fcd34d; }
+    body.dark .sug-item { background:#1e293b; border-color:#334155; } body.dark .sug-nombre { color:#f1f5f9; } body.dark .sug-why, body.dark .sug-desc { color:#94a3b8; }
+    body.dark .sug-nut { color:#86efac; } body.dark .sug-destino { color:#cbd5e1; }
+    body.dark .sug-destino select, body.dark .sug-accion input { background:#0f172a; color:#f1f5f9; border-color:#475569; }
+    @media(max-width:768px) { .sug-bar { padding:10px 12px; } .sug-item { flex-direction:column; align-items:flex-start; } }
     /* ── Columna PESO con unidad ── */
     .td-peso { white-space:nowrap; }
     .td-peso input { width:62px !important; display:inline-block !important; vertical-align:middle; }
@@ -373,6 +400,14 @@
 </div>
 
 <div class="dias-nav" id="dias-nav"></div>
+
+<div class="sug-bar">
+  <span class="sug-bar-lbl">💡 Sugerir alimentos para:</span>
+  <button class="btn-sug btn-sug-prot" onclick="abrirSugerencias('proteina')">🧬 Digerir mejor la proteína</button>
+  <button class="btn-sug btn-sug-azu" onclick="abrirSugerencias('azucar')">🍋 Frenar picos de azúcar</button>
+  <button class="btn-sug btn-sug-gras" onclick="abrirSugerencias('grasas')">🥑 Buenas grasas</button>
+  <button class="btn-sug btn-sug-fib" onclick="abrirSugerencias('fibra')">🌾 Fibra soluble</button>
+</div>
 
 <div class="contenedor">
   <div class="panel-objetivos">
@@ -474,6 +509,35 @@
       <button class="btn-cerrar-modal" onclick="cerrarModalCalculadora()">Aceptar y Cerrar</button>
     </div>
   </div>
+</div>
+
+<!-- Modal de sugerencias -->
+<div class="modal-overlay" id="modal-sugerencias">
+  <div class="modal-box" style="max-width: 860px;">
+    <div class="modal-header">
+      <span id="sug-titulo">Sugerencias</span>
+      <button onclick="cerrarSugerencias()" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <p id="sug-desc" class="sug-desc"></p>
+      <div class="sug-destino">
+        <label>Agregar a la sección: <select id="sug-bloque"></select></label>
+        <label>¿Dónde?: <select id="sug-dia"></select></label>
+      </div>
+      <div id="sug-lista"></div>
+      <p class="sug-aviso">Información general de alimentación; no reemplaza a un nutricionista.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-excel-modal" onclick="agregarTodosSugeridos()">＋ Agregar todos</button>
+      <button class="btn-cerrar-modal" onclick="cerrarSugerencias()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-sugerencia" id="toast-sugerencia">
+  <span id="toast-sug-txt"></span>
+  <button id="toast-sug-btn">Ver sugerencias</button>
+  <button class="toast-sug-x" onclick="ocultarToastSugerencia()">✕</button>
 </div>
 
 <!-- Dropdown de 2 columnas -->
@@ -1503,6 +1567,201 @@ async function exportarComprasExcel() {
   setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
+// ══════════ SUGERENCIAS DE ALIMENTOS (digestión, azúcar, grasas buenas, fibra soluble) ══════════
+const SUGERENCIAS = {
+  proteina: {
+    boton: '🧬 Digerir mejor la proteína',
+    titulo: '🧬 Alimentos que ayudan a digerir y aprovechar la proteína',
+    desc: 'Enzimas naturales (bromelina, papaína), probióticos y vitamina B6. Combínalos con tus comidas de pollo, huevo, pescado o carne.',
+    items: [
+      {n:'Piña cruda', f:'Internacional', g:100, why:'Bromelina: enzima que ayuda a digerir proteínas'},
+      {n:'Papaya cruda', f:'Internacional', g:150, why:'Papaína: enzima digestiva de proteínas'},
+      {n:'Kiwi crudo', f:'Internacional', g:100, why:'Actinidina: enzima que ayuda a digerir proteínas'},
+      {n:'Yogur, griego natural', f:'Internacional', g:120, why:'Probióticos para la digestión'},
+      {n:'Kéfir', f:'Internacional', g:200, why:'Probióticos para la digestión'},
+      {n:'Plátano crudo', f:'Internacional', g:118, why:'Vitamina B6: ayuda a usar los aminoácidos'},
+      {n:'Palta', f:'Tablas Peruanas', g:60, why:'Vitamina B6 y grasa buena'},
+      {n:'Limón crudo', f:'Internacional', g:30, why:'Acidez que acompaña la digestión de la comida'}
+    ]
+  },
+  azucar: {
+    boton: '🍋 Frenar picos de azúcar',
+    titulo: '🍋 Alimentos que frenan el pico de azúcar de los carbohidratos',
+    desc: 'Fibra, proteína y grasa buena hacen que el carbohidrato se absorba más lento. Agrégalos junto a tu arroz, papa, camote, pan o fruta.',
+    items: [
+      {n:'Avena cruda', f:'Internacional', g:40, why:'Fibra (beta-glucano) que retarda la absorción'},
+      {n:'Quinua cocida', f:'Tablas Peruanas', g:150, why:'Carbohidrato con fibra y proteína'},
+      {n:'Lentejas, no agregadas grasas en la cocción', f:'Internacional', g:150, why:'Menestra: fibra + proteína'},
+      {n:'Garbanzo, cocido', f:'Tablas Peruanas', g:100, why:'Menestra: fibra + proteína'},
+      {n:'Frejol tarhui o chocho cocido con cáscara', f:'Tablas Peruanas', g:80, why:'Tarwi: mucha proteína y fibra'},
+      {n:'Semillas de chía', f:'Internacional', g:15, why:'Fibra que forma gel y frena la absorción'},
+      {n:'Linaza', f:'Tablas Peruanas', g:15, why:'Fibra soluble y omega-3'},
+      {n:'Almendras sin sal', f:'Internacional', g:20, why:'Grasa buena + fibra: baja el pico de glucosa'},
+      {n:'Brócoli crudo', f:'Internacional', g:100, why:'Verdura fibrosa: comerla antes del carbohidrato ayuda'},
+      {n:'Espinacas crudas', f:'Internacional', g:50, why:'Verdura fibrosa'},
+      {n:'Limón crudo', f:'Internacional', g:30, why:'Su acidez (como el vinagre) modera la subida de glucosa'},
+      {n:'Canela, molida*', f:'Tablas Peruanas', g:2, why:'Se usa como acompañante en avenas y postres'}
+    ]
+  },
+  grasas: {
+    boton: '🥑 Buenas grasas',
+    titulo: '🥑 Buenas grasas (omega-3 y monoinsaturadas)',
+    desc: 'Cómelas junto a verduras (zanahoria, tomate, espinaca) para absorber mejor las vitaminas A, D, E y K.',
+    items: [
+      {n:'Aguacate crudo', f:'Internacional', g:70, why:'Grasa monoinsaturada + vitamina E'},
+      {n:'Aceite de oliva', f:'Internacional', g:10, why:'Grasa monoinsaturada; úsalo en crudo en ensaladas'},
+      {n:'Almendras sin sal', f:'Internacional', g:25, why:'Grasa buena + vitamina E'},
+      {n:'Nueces (castellanas)', f:'Internacional', g:25, why:'Omega-3 (ALA)'},
+      {n:'Sacha Inchi tostado', f:'Tablas Peruanas', g:20, why:'Omega-3 vegetal peruano'},
+      {n:'Semillas de chía', f:'Internacional', g:15, why:'Omega-3 vegetal + fibra'},
+      {n:'Linaza', f:'Tablas Peruanas', g:15, why:'Omega-3 vegetal + fibra'},
+      {n:'Pescado trucha, fresca', f:'Tablas Peruanas', g:120, why:'Omega-3 (EPA/DHA)'},
+      {n:'Pescado jurel, fresco', f:'Tablas Peruanas', g:120, why:'Pescado azul: omega-3'},
+      {n:'Pescado caballa, fresco', f:'Tablas Peruanas', g:120, why:'Pescado azul: omega-3'},
+      {n:'Sardinas cocidas', f:'Internacional', g:100, why:'Pescado azul: omega-3'},
+      {n:'Aceitunas negras', f:'Internacional', g:20, why:'Grasa monoinsaturada'}
+    ]
+  },
+  fibra: {
+    boton: '🌾 Fibra soluble',
+    titulo: '🌾 Fibra soluble (atrapa colesterol y grasa)',
+    desc: 'La fibra soluble se une a la bilis y al colesterol y los elimina. Úsala sobre todo cuando tu comida tenga grasa saturada (carnes grasas, frituras, quesos).',
+    items: [
+      {n:'Avena cruda', f:'Internacional', g:40, why:'Beta-glucano: la fibra soluble más estudiada'},
+      {n:'Manzana cruda', f:'Internacional', g:150, why:'Pectina'},
+      {n:'Pera cruda', f:'Internacional', g:150, why:'Pectina'},
+      {n:'Naranja', f:'Internacional', g:130, why:'Pectina (mejor la fruta entera que el jugo)'},
+      {n:'Cebada perlada o resbalada cocida', f:'Tablas Peruanas', g:150, why:'Beta-glucano'},
+      {n:'Lentejas, no agregadas grasas en la cocción', f:'Internacional', g:150, why:'Menestra rica en fibra soluble'},
+      {n:'Garbanzo, cocido', f:'Tablas Peruanas', g:100, why:'Menestra rica en fibra soluble'},
+      {n:'Habas frescas, sin cáscara y sin vaina', f:'Tablas Peruanas', g:100, why:'Menestra fresca con fibra'},
+      {n:'Frejol tarhui o chocho cocido con cáscara', f:'Tablas Peruanas', g:80, why:'Tarwi: fibra y proteína'},
+      {n:'Linaza', f:'Tablas Peruanas', g:15, why:'Mucílago (fibra soluble) + omega-3'},
+      {n:'Semillas de chía', f:'Internacional', g:15, why:'Fibra soluble que forma gel'},
+      {n:'Zanahorias crudas', f:'Internacional', g:100, why:'Pectina'},
+      {n:'Brócoli crudo', f:'Internacional', g:100, why:'Fibra + verdura'}
+    ]
+  }
+};
+
+let sugTipoActual = null;
+let sugToastTimeout = null;
+
+function abrirSugerencias(tipo) {
+  sugTipoActual = tipo;
+  ocultarToastSugerencia();
+  const s = SUGERENCIAS[tipo];
+  document.getElementById('sug-titulo').textContent = s.titulo;
+  document.getElementById('sug-desc').textContent = s.desc;
+
+  const bloques = Object.keys(planSemanal[diaActivo] || {});
+  const sel = document.getElementById('sug-bloque');
+  sel.innerHTML = (bloques.length ? bloques : ['SUGERENCIAS']).map(b => `<option value="${b.replace(/"/g,'&quot;')}">${b}</option>`).join('');
+  document.getElementById('sug-dia').innerHTML =
+    `<option value="dia">Solo ${diaActivo}</option><option value="semana">Toda la semana (7 días)</option>`;
+
+  renderListaSugerencias();
+  document.getElementById('modal-sugerencias').classList.add('show');
+}
+
+function renderListaSugerencias() {
+  const s = SUGERENCIAS[sugTipoActual];
+  let html = '';
+  s.items.forEach((it, i) => {
+    const b = buscarBase(it.n, it.f);
+    if (!b) return;
+    const tag = b.fuente === 'Tablas Peruanas' ? 'PE' : 'INT';
+    html += `<div class="sug-item" id="sug-item-${i}">
+      <div class="sug-info">
+        <div class="sug-nombre">${b.nombre} <small>[${tag}]</small></div>
+        <div class="sug-why">${it.why}</div>
+        <div class="sug-nut" id="sug-nut-${i}"></div>
+      </div>
+      <div class="sug-accion">
+        <input type="number" min="1" step="1" value="${it.g}" id="sug-g-${i}" oninput="actualizarNutSugerido(${i})"> <span>g</span>
+        <button class="btn-sug-add" id="sug-btn-${i}" onclick="agregarSugerido(${i})">＋ Agregar</button>
+      </div>
+    </div>`;
+  });
+  document.getElementById('sug-lista').innerHTML = html || '<div class="vacio-txt">No se encontraron alimentos en tu base.</div>';
+  s.items.forEach((it, i) => actualizarNutSugerido(i));
+}
+
+function actualizarNutSugerido(i) {
+  const it = SUGERENCIAS[sugTipoActual].items[i];
+  const b = buscarBase(it.n, it.f);
+  const el = document.getElementById('sug-nut-' + i);
+  if (!b || !el) return;
+  const g = parseFloat(document.getElementById('sug-g-' + i).value) || 0;
+  const f = g / 100;
+  el.textContent = `${Math.round((b.kcal||0)*f)} kcal · P ${((b.proteinas||0)*f).toFixed(1)} g · C ${((b.carbohidratos||0)*f).toFixed(1)} g · G ${((b.grasas||0)*f).toFixed(1)} g`;
+}
+
+function agregarItemSugerido(i, dias, bloque) {
+  const it = SUGERENCIAS[sugTipoActual].items[i];
+  const b = buscarBase(it.n, it.f);
+  const g = parseFloat(document.getElementById('sug-g-' + i).value) || 0;
+  if (!b || g <= 0) return false;
+  dias.forEach(d => {
+    if (!planSemanal[d]) planSemanal[d] = {};
+    if (!planSemanal[d][bloque]) planSemanal[d][bloque] = [];
+    planSemanal[d][bloque].push({nombre: b.nombre, fuente: b.fuente, cant: 0, pesoKg: g, pesoU: 'g'});
+  });
+  return true;
+}
+
+function diasDestinoSugerencia() {
+  return document.getElementById('sug-dia').value === 'semana' ? DIAS : [diaActivo];
+}
+
+function marcarAgregado(i) {
+  const btn = document.getElementById('sug-btn-' + i);
+  if (btn) { btn.textContent = '✓ Agregado'; btn.classList.add('ok'); }
+}
+
+function agregarSugerido(i) {
+  const bloque = document.getElementById('sug-bloque').value;
+  if (!agregarItemSugerido(i, diasDestinoSugerencia(), bloque)) return;
+  marcarAgregado(i);
+  guardarPlanEnStorage(); renderDia(); renderResumen();
+}
+
+function agregarTodosSugeridos() {
+  const bloque = document.getElementById('sug-bloque').value;
+  const dias = diasDestinoSugerencia();
+  SUGERENCIAS[sugTipoActual].items.forEach((it, i) => {
+    const btn = document.getElementById('sug-btn-' + i);
+    if (btn && !btn.classList.contains('ok') && agregarItemSugerido(i, dias, bloque)) marcarAgregado(i);
+  });
+  guardarPlanEnStorage(); renderDia(); renderResumen();
+}
+
+function cerrarSugerencias() {
+  document.getElementById('modal-sugerencias').classList.remove('show');
+}
+
+// Aviso al elegir un alimento nuevo: propone el grupo de sugerencias que le corresponde
+function mostrarToastSugerencia(nombre, fuente) {
+  const cat = clasificarAlimento(nombre);
+  const mapa = {
+    'Proteínas': ['proteina', 'Es una proteína: ¿agregas algo que ayude a digerirla?'],
+    'Carbohidratos': ['azucar', 'Es un carbohidrato: ¿agregas algo que frene el pico de azúcar?'],
+    'Grasas': ['fibra', 'Es una grasa: ¿agregas fibra soluble para reducir su absorción?']
+  };
+  const m = mapa[cat];
+  if (!m) return;
+  const t = document.getElementById('toast-sugerencia');
+  document.getElementById('toast-sug-txt').textContent = '💡 ' + m[1];
+  document.getElementById('toast-sug-btn').onclick = () => abrirSugerencias(m[0]);
+  t.classList.add('show');
+  clearTimeout(sugToastTimeout);
+  sugToastTimeout = setTimeout(ocultarToastSugerencia, 9000);
+}
+function ocultarToastSugerencia() {
+  document.getElementById('toast-sugerencia').classList.remove('show');
+  clearTimeout(sugToastTimeout);
+}
+
 // ── DROPDOWN CON FILTROS FUNCIONALES ──
 let ddDia, ddBloque, ddIdx;
 
@@ -1655,6 +1914,7 @@ function seleccionarAlimento(nombre, fuente) {
   cerrarDropdown();
   renderDia();
   renderResumen();
+  mostrarToastSugerencia(nombre, fuente);
 }
 
 function cerrarDropdown() {
