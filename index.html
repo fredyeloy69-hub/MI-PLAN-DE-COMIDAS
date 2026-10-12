@@ -304,6 +304,44 @@
     /* ESTILO GRANDE Y AMIGABLE PARA EMOTICONES */
     .emoji-amigable { font-size: 1.3em; vertical-align: middle; margin-right: 4px; display: inline-block; }
     .emoji-grande { font-size: 1.5em; vertical-align: middle; margin-right: 6px; }
+
+    /* ── Columna PESO con unidad ── */
+    .td-peso { white-space:nowrap; }
+    .td-peso input { width:62px !important; display:inline-block !important; vertical-align:middle; }
+    .td-peso .sel-unidad { width:50px !important; display:inline-block !important; vertical-align:middle; margin-left:3px; padding:6px 2px; border:1px solid #cbd5e1; border-radius:8px; font-weight:700; background:#fff; color:#0f172a; }
+    body.dark .td-peso .sel-unidad { background:#0f172a; color:#f1f5f9; border-color:#475569; }
+    /* ── Lista de compras con costos ── */
+    .modal-compras-box { max-width: 1080px; }
+    .tabla-compras-wrap { overflow-x:auto; border:2px solid #1e293b; border-radius:10px; background:#fff; }
+    .tabla-compras { width:100%; border-collapse:collapse; font-size:13px; }
+    .tabla-compras th { position:static !important; background:#2563eb; color:#fff; padding:10px 8px; font-size:12px; text-align:center; border:1px solid #1d4ed8; }
+    .tabla-compras td { padding:7px 8px; border:1px solid #cbd5e1; text-align:center; vertical-align:middle; }
+    .tabla-compras .th-alim, .tabla-compras .td-alim { text-align:left; min-width:230px; }
+    .tabla-compras .td-alim { font-weight:700; color:#334155; white-space:normal; }
+    .tabla-compras .td-alim small { color:#94a3b8; font-weight:600; }
+    .tabla-compras .fila-cat td { background:#e0e7ff; color:#1e3a5f; font-weight:900; font-size:14px; text-align:left; border-top:2px solid #1e293b; }
+    .tabla-compras .fila-cat span { background:#1e3a5f; color:#fff; border-radius:10px; padding:1px 8px; font-size:11px; margin-left:6px; }
+    .tabla-compras .fila-sub td { background:#f1f5f9; font-weight:800; text-align:right; border-top:2px solid #1e293b; }
+    .tabla-compras .fila-sub td:last-child { text-align:center; color:#1e3a5f; }
+    .tabla-compras .fila-total td { background:#16a34a; color:#fff; font-weight:900; font-size:15px; text-align:right; border-top:3px solid #0f172a; }
+    .tabla-compras .fila-total td:last-child { text-align:center; }
+    .tabla-compras input { width:84px; padding:6px; border:1px solid #cbd5e1; border-radius:6px; text-align:center; font-weight:700; background:#fff; color:#0f172a; }
+    .tabla-compras .td-cant { white-space:nowrap; min-width:165px; }
+    .tabla-compras .td-cant input { display:inline-block !important; width:76px !important; vertical-align:middle; }
+    .tabla-compras .td-cant select { display:inline-block !important; width:62px !important; vertical-align:middle; }
+    .tabla-compras .inp-precio { display:inline-block !important; width:84px !important; }
+    .tabla-compras .td-cant select { padding:6px 4px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; color:#0f172a; font-weight:700; margin-left:4px; }
+    .tabla-compras .td-total { font-weight:900; color:#166534; background:#f0fdf4; }
+    .tabla-compras .sin-und { color:#94a3b8; }
+    .nota-compras { margin-top:12px; font-size:12.5px; color:#475569; }
+    body.dark .tabla-compras-wrap { background:#1e293b; border-color:#475569; }
+    body.dark .tabla-compras td { border-color:#334155; color:#e2e8f0; }
+    body.dark .tabla-compras .td-alim { color:#f1f5f9; }
+    body.dark .tabla-compras .fila-cat td { background:#1e3a8a; color:#fff; }
+    body.dark .tabla-compras .fila-sub td { background:#0f172a; color:#e2e8f0; }
+    body.dark .tabla-compras .td-total { background:#052e16; color:#86efac; }
+    body.dark .tabla-compras input, body.dark .tabla-compras select { background:#0f172a; color:#f1f5f9; border-color:#475569; }
+    body.dark .nota-compras { color:#94a3b8; }
   </style>
 </head>
 <body>
@@ -311,15 +349,7 @@
 <div class="header">
   <div>
     <h1><span class="emoji-grande">🥗</span> Planificador Nutricional Semanal</h1>
-    <div class="sub">Tablas Peruanas + Base Internacional · 2030 alimentos</div>
-  </div>
-  <div class="header-btns">
-    <button class="btn-header btn-add-seccion" onclick="preguntarNuevaSeccion()"><span class="emoji-amigable">➕</span> Añadir Nueva Sección</button>
-    <button class="btn-header btn-plantillas" onclick="abrirMenuPlantillas()"><span class="emoji-amigable">📁</span> Plantillas</button>
-    <button class="btn-header btn-calc" onclick="abrirModalCalculadora()"><span class="emoji-amigable">⚡</span> Metas</button>
-    <button class="btn-header btn-compras-gen" onclick="abrirModalCompras()"><span class="emoji-amigable">🛒</span> Compras</button>
-    <button class="btn-header btn-pdf" onclick="exportarPDF()"><span class="emoji-amigable">📄</span> PDF</button>
-    <button class="btn-header btn-dark" id="btn-dark-header" onclick="toggleDark()"><span class="emoji-amigable" id="ico-dark-h">🌙</span> Modo oscuro</button>
+    <div class="sub">Tablas Peruanas + Base Internacional · <span id="sub-total">2030</span> alimentos</div>
   </div>
 </div>
 
@@ -363,9 +393,9 @@
 
 <!-- Modal para Lista de Compras Múltiple -->
 <div class="modal-overlay" id="modal-compras">
-  <div class="modal-box">
+  <div class="modal-box modal-compras-box">
     <div class="modal-header">
-      <span><span class="emoji-grande">🛒</span> Lista de Compras para el Periodo</span>
+      <span><span class="emoji-grande">🛒</span> Lista de Compras y Costos del Periodo</span>
       <button onclick="cerrarModalCompras()" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
     </div>
     <div class="modal-body">
@@ -374,10 +404,10 @@
         <button class="btn-periodo" id="btn-p-15" onclick="cambiarPeriodoCompras(15, 'btn-p-15')"><span class="emoji-amigable">📅</span> Quincena (15 días)</button>
         <button class="btn-periodo" id="btn-p-30" onclick="cambiarPeriodoCompras(30, 'btn-p-30')"><span class="emoji-amigable">📅</span> Todo el Mes (30 días)</button>
       </div>
-      <div id="contenido-modal-compras" class="compras-grid"></div>
+      <div id="contenido-modal-compras"></div>
     </div>
     <div class="modal-footer">
-      <button class="btn-excel-modal" onclick="exportarComprasExcel()"><span class="emoji-amigable">📥</span> Exportar a Excel (CSV)</button>
+      <button class="btn-excel-modal" onclick="exportarComprasExcel()"><span class="emoji-amigable">📥</span> Exportar a Excel (.xlsx)</button>
       <button class="btn-cerrar-modal" onclick="cerrarModalCompras()">Cerrar</button>
     </div>
   </div>
@@ -433,6 +463,7 @@
       
       <div class="calc-resultado-box" id="calc-resultado-box">
         <h4>📋 Metas Actuales Configuradas:</h4>
+        <p id="res-geb"></p>
         <p id="res-cal">Calorías objetivo: -- kcal</p>
         <p id="res-prot">Proteínas: -- g</p>
         <p id="res-gras">Grasas: -- g</p>
@@ -454,7 +485,7 @@ const DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Doming
 
 const PESOS_UNIDAD = {
   'huevo': 50, 'plátano': 120, 'manzana': 150, 'pera': 150, 'naranja': 130,
-  'mandarina': 100, 'pan': 50, 'palta': 150, 'papa': 150, 'limón': 40, 'atún': 120, 'leche': 400
+  'mandarina': 100, 'pan': 50, 'palta': 150, 'papa': 150, 'limón': 40, 'atún': 120, 'leche': 400, 'queso': 100
 };
 
 let diaActivo = "Lunes";
@@ -708,68 +739,92 @@ function moverSeccion(dia, bloqueNombre, direccion) {
   renderResumen();
 }
 
+// ── BASE DE DATOS: ignora filas vacías y la nota al pie del CSV ──
+const BASE = baseDatos.filter(a => a.nombre && a.nombre.trim() && !a.nombre.trim().startsWith('*'));
+const _norm = s => (s || '').toLowerCase().trim();
+const BASE_POR_NOMBRE = new Map();
+BASE.forEach(a => {
+  const k = _norm(a.nombre);
+  if (!BASE_POR_NOMBRE.has(k)) BASE_POR_NOMBRE.set(k, []);
+  BASE_POR_NOMBRE.get(k).push(a);
+});
+
+// Busca el alimento EXACTO. Si existe en las dos tablas (14 nombres repetidos con valores distintos)
+// usa la fuente que se eligió; si no hay fuente guardada, la Internacional (comportamiento anterior).
+function buscarBase(nombre, fuente) {
+  const lista = BASE_POR_NOMBRE.get(_norm(nombre));
+  if (!lista) return null;
+  if (fuente) { const e = lista.find(a => a.fuente === fuente); if (e) return e; }
+  return lista[0];
+}
+
+// Peso por unidad: primero el dato de la tabla (pesoUnidadG); si no hay, tabla de respaldo.
+// La coincidencia es por PALABRA (antes "papa" también atrapaba "papaya" y "pan" a "panca").
+const _re = k => new RegExp('(^|[^a-záéíóúñü])' + k + '(s|es)?([^a-záéíóúñü]|$)', 'i');
+const PESOS_RE = Object.entries(PESOS_UNIDAD).map(([k, p]) => [_re(k), p]);
+function pesoUnidadDe(nombre, fuente) {
+  const b = buscarBase(nombre, fuente);
+  if (b && b.pesoUnidadG > 0) return b.pesoUnidadG;
+  const nom = _norm(nombre);
+  for (const [re, p] of PESOS_RE) if (re.test(nom)) return p;
+  return null;
+}
+
+// Unidad de la columna PESO. Filas nuevas: la que elijas (por defecto g).
+// Filas antiguas sin unidad guardada: se mantiene la regla vieja (menos de 10 = kg) para no cambiarte los totales.
+function unidadPeso(item) {
+  if (item.pesoU === 'g' || item.pesoU === 'kg') return item.pesoU;
+  const v = parseFloat(item.pesoKg) || 0;
+  return (v > 0 && v < 10) ? 'kg' : 'g';
+}
+
 function calcularGramosTotales(item) {
   const cant = parseFloat(item.cant) || 0;
   const pesoKg = parseFloat(item.pesoKg) || 0;
 
   let gramosPorCantidad = 0;
-  if (cant > 0) {
-    const nom = (item.nombre || "").toLowerCase();
-    let pesoUnitario = 100;
-    for (const [key, p] of Object.entries(PESOS_UNIDAD)) {
-      if (nom.includes(key)) { pesoUnitario = p; break; }
-    }
-    gramosPorCantidad = cant * pesoUnitario;
-  }
+  if (cant > 0) gramosPorCantidad = cant * (pesoUnidadDe(item.nombre, item.fuente) || 100);
 
   let gramosPorPeso = 0;
-  if (pesoKg > 0) {
-    gramosPorPeso = (pesoKg < 10) ? pesoKg * 1000 : pesoKg;
-  }
-  return gramosPorCantidad + gramosPorPeso;
+  if (pesoKg > 0) gramosPorPeso = (unidadPeso(item) === 'kg') ? pesoKg * 1000 : pesoKg;
+  return Math.round((gramosPorCantidad + gramosPorPeso) * 10) / 10;
 }
 
-function formatearCantidadComercial(nombre, gramos) {
-  const nom = nombre.toLowerCase();
-  if (nom.includes('palta')) return `${Math.max(1, Math.round(gramos / 150))} unidad(es)`;
-  if (nom.includes('queso')) return `${Math.max(1, Math.round(gramos / 100))} unidad(es)`;
-  
-  const cat = clasificarAlimento(nombre);
-  if (cat === 'Frutas') return `${(gramos / 1000).toFixed(2)} kg`;
+function formatearPeso(gramos) {
+  return gramos >= 1000 ? `${(gramos / 1000).toFixed(2)} kg` : `${Math.round(gramos)} g`;
+}
 
-  if (nom.includes('huevo')) {
-    const unds = Math.round(gramos / 50);
-    if (unds >= 30) {
-      const mallas = Math.floor(unds / 30);
-      const resto = unds % 30;
+function unidadesDe(gramos, nombre, fuente) {
+  const pu = pesoUnidadDe(nombre, fuente);
+  return pu ? Math.max(1, Math.ceil(gramos / pu - 1e-6)) : null;
+}
+
+function formatearCantidadComercial(nombre, gramos, fuente) {
+  const nom = nombre.toLowerCase();
+  const und = unidadesDe(gramos, nombre, fuente);
+  if (nom.includes('huevo') && und) {
+    if (und >= 30) {
+      const mallas = Math.floor(und / 30), resto = und % 30;
       return `${mallas} malla(s) (30 und)${resto > 0 ? ` + ${resto} und` : ''}`;
     }
-    return `${unds} unidad(es)`;
+    return `${und} unidad(es)`;
   }
-  
-  if (nom.includes('atún') || nom.includes('conserva')) {
-    const latas = Math.round(gramos / 120);
-    return `${latas || 1} lata(s)`;
-  }
-  
-  if (nom.includes('leche') && nom.includes('tarro')) {
-    const tarros = Math.round(gramos / 400);
-    return `${tarros || 1} tarro(s)`;
-  }
-  
-  return gramos >= 1000 ? `${(gramos/1000).toFixed(2)} kg` : `${Math.round(gramos)}g`;
+  if ((nom.includes('atún') || nom.includes('conserva')) && und) return `${und} lata(s)`;
+  return und ? `${formatearPeso(gramos)} · ${und} und` : formatearPeso(gramos);
 }
 
+// Devuelve nutrientes + estado: 'ok' (nombre exacto), 'aprox' (coincidencia parcial), 'sin' (no se encontró)
 function getNut(item) {
+  const cero = {kcal:0,prot:0,carb:0,grasa:0,fibra:0,estado:'sin'};
   const gramosTotales = calcularGramosTotales(item);
-  const nombreItem = (item.nombre || "").toLowerCase().trim();
-  if (!baseDatos || !baseDatos.length || !nombreItem || !gramosTotales) return {kcal:0,prot:0,carb:0,grasa:0,fibra:0};
-
-  let baseItem = baseDatos.find(a => a.nombre.toLowerCase().trim() === nombreItem);
+  const nombreItem = _norm(item.nombre);
+  if (!nombreItem) return cero;
+  let baseItem = buscarBase(item.nombre, item.fuente), estado = 'ok';
   if (!baseItem) {
-    baseItem = baseDatos.find(a => a.nombre.toLowerCase().includes(nombreItem) || nombreItem.includes(a.nombre.toLowerCase().trim()));
+    baseItem = BASE.find(a => _norm(a.nombre).includes(nombreItem) || nombreItem.includes(_norm(a.nombre)));
+    estado = baseItem ? 'aprox' : 'sin';
   }
-  if (!baseItem) return {kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+  if (!baseItem || !gramosTotales) return {...cero, estado};
 
   const f = gramosTotales / 100;
   return {
@@ -778,7 +833,24 @@ function getNut(item) {
     carb:  +(((baseItem.carbohidratos||0)*f).toFixed(1)),
     grasa: +(((baseItem.grasas||0)*f).toFixed(1)),
     fibra: +(((baseItem.fibra||0)*f).toFixed(1)),
+    estado
   };
+}
+
+// Suma el plan semanal por alimento (nombre + fuente) → [{nombre, fuente, gr}]
+function acumularPlan(dias = DIAS) {
+  const m = new Map();
+  dias.forEach(d => Object.values(planSemanal[d] || {}).forEach(items => (items || []).forEach(it => {
+    if (!it.nombre) return;
+    const gr = calcularGramosTotales(it);
+    if (gr <= 0) return;
+    const b = buscarBase(it.nombre, it.fuente);
+    const fuente = it.fuente || (b && b.fuente) || '';
+    const k = it.nombre + '||' + fuente;
+    if (!m.has(k)) m.set(k, {nombre: it.nombre, fuente, gr: 0});
+    m.get(k).gr += gr;
+  })));
+  return [...m.values()];
 }
 
 function totalDia(dia) {
@@ -801,7 +873,7 @@ function clasificarAlimento(nombre) {
   const vegetales = ['lechuga','tomate','zanahoria','brócoli','espinaca','pepino','apio','cebolla','zapallo','vainita','champiñón','coliflor','pimiento','alcachofa','espárrago'];
   if (vegetales.some(v => nom.includes(v))) return 'Fibras y Vegetales';
 
-  const item = baseDatos.find(a => a.nombre.toLowerCase() === nom);
+  const item = buscarBase(nombre);
   if (!item) return 'Carbohidratos';
 
   const p = item.proteinas || 0;
@@ -854,9 +926,11 @@ function renderBarrasObjetivos() {
 
   let html = '';
   itemsBar.forEach(item => {
-    const pct = Math.min(100, Math.round((item.actual / (item.meta || 1)) * 100));
+    const pct = Math.round((item.actual / (item.meta || 1)) * 100);   // % REAL (antes se topaba en 100%)
+    const pctBarra = Math.min(100, pct);
     let colorFill = 'var(--azul)';
     if (pct >= 90 && pct <= 110) colorFill = 'var(--verde)';
+    else if (pct > 130) colorFill = '#dc2626';
     else if (pct > 110) colorFill = 'var(--oro)';
 
     html += `<div class="obj-barra-card">
@@ -865,7 +939,7 @@ function renderBarrasObjetivos() {
         <span>${pct}%</span>
       </div>
       <div class="progress-track">
-        <div class="progress-fill" style="width: ${pct}%; background: ${colorFill};"></div>
+        <div class="progress-fill" style="width: ${pctBarra}%; background: ${colorFill};"></div>
       </div>
     </div>`;
   });
@@ -875,12 +949,14 @@ function renderBarrasObjetivos() {
 
 function abrirModalCalculadora() {
   document.getElementById('modal-calculadora').classList.add('show');
-  if (metasNutricionales.tipoObjetivo) {
-    document.getElementById('calc-objetivo').value = metasNutricionales.tipoObjetivo;
-  }
-  if (metasNutricionales.sexo) {
-    document.getElementById('calc-sexo').value = metasNutricionales.sexo;
-  }
+  const m = metasNutricionales;
+  if (m.tipoObjetivo) document.getElementById('calc-objetivo').value = m.tipoObjetivo;
+  if (m.sexo) document.getElementById('calc-sexo').value = m.sexo;
+  // Recupera los datos con los que se calculó por última vez (antes volvían a 65 kg / 170 cm / 25 años)
+  if (m.peso) document.getElementById('calc-peso').value = m.peso;
+  if (m.altura) document.getElementById('calc-altura').value = m.altura;
+  if (m.edad) document.getElementById('calc-edad').value = m.edad;
+  if (m.actividad) document.getElementById('calc-actividad').value = String(m.actividad);
   actualizarTextoResultadosCalc();
 }
 
@@ -890,61 +966,65 @@ function cerrarModalCalculadora() {
 }
 
 function calcularYGuardarMetas() {
-  const peso = parseFloat(document.getElementById('calc-peso').value) || 65;
-  const altura = parseFloat(document.getElementById('calc-altura').value) || 170;
-  const edad = parseFloat(document.getElementById('calc-edad').value) || 25;
-  const actividad = parseFloat(document.getElementById('calc-actividad').value) || 1.375;
+  const peso = parseFloat(document.getElementById('calc-peso').value);
+  const altura = parseFloat(document.getElementById('calc-altura').value);
+  const edad = parseFloat(document.getElementById('calc-edad').value);
+  const actividad = parseFloat(document.getElementById('calc-actividad').value);
   const objetivo = document.getElementById('calc-objetivo').value;
   const sexo = document.getElementById('calc-sexo').value;
 
+  // Validación (antes un campo vacío se reemplazaba en silencio por 65 kg / 170 cm / 25 años)
+  if (!(peso >= 30 && peso <= 300) || !(altura >= 120 && altura <= 230) || !(edad >= 14 && edad <= 100) || !(actividad > 0)) {
+    alert('Revisa los datos: peso entre 30 y 300 kg, estatura entre 120 y 230 cm, edad entre 14 y 100 años.');
+    return;
+  }
+
+  // Mifflin-St Jeor: GEB = 10·peso + 6.25·estatura − 5·edad + (5 hombre | −161 mujer)
   let geb = (10 * peso) + (6.25 * altura) - (5 * edad);
   geb += (sexo === 'h') ? 5 : -161;
-
   const tdee = geb * actividad;
-  
+
   let kcalObjetivo = tdee;
   let protKg, grasaKg;
-
   if (objetivo === 'volumen') {
     kcalObjetivo += (sexo === 'h') ? 450 : 300;
-    protKg = 2.1;
-    grasaKg = 1.1;
+    protKg = 2.1; grasaKg = 1.1;
   } else if (objetivo === 'definicion') {
     kcalObjetivo -= 400;
-    protKg = 2.3;
-    grasaKg = 0.75;
-  } else { 
-    protKg = 1.9;
-    grasaKg = 0.95;
+    protKg = 2.3; grasaKg = 0.75;
+  } else {
+    protKg = 1.9; grasaKg = 0.95;
   }
 
   const prot = Math.round(peso * protKg);
   const grasa = Math.round(peso * grasaKg);
-  const kcalProtGrasa = (prot * 4) + (grasa * 9);
-  const carb = Math.max(0, Math.round((kcalObjetivo - kcalProtGrasa) / 4));
+  const carbBruto = (kcalObjetivo - (prot * 4) - (grasa * 9)) / 4;
+  const carb = Math.max(0, Math.round(carbBruto));
 
-  metasNutricionales = { 
-    kcal: Math.round(kcalObjetivo), 
-    prot, 
-    carb, 
-    grasa, 
-    tipoObjetivo: objetivo,
-    sexo: sexo
+  metasNutricionales = {
+    kcal: Math.round(kcalObjetivo), prot, carb, grasa,
+    tipoObjetivo: objetivo, sexo,
+    peso, altura, edad, actividad,
+    geb: Math.round(geb), tdee: Math.round(tdee)
   };
 
-  localStorage.setItem('nut_metas', JSON.stringify(metasNutricionales));
+  try { localStorage.setItem('nut_metas', JSON.stringify(metasNutricionales)); } catch(e) {}
   actualizarTextoResultadosCalc();
   renderBarrasObjetivos();
+  if (carbBruto < 0) alert('⚠️ Con estos datos las proteínas y grasas ya superan las calorías objetivo; los carbohidratos quedaron en 0. Revisa peso/objetivo.');
 }
 
 function actualizarTextoResultadosCalc() {
   const m = metasNutricionales;
-  const peso = parseFloat(document.getElementById('calc-peso').value) || 65;
+  const peso = m.peso || parseFloat(document.getElementById('calc-peso').value) || 65;
   let descObj = "Volumen limpio";
   if (m.tipoObjetivo === 'definicion') descObj = "Definición / Pérdida de peso";
   if (m.tipoObjetivo === 'mantenimiento') descObj = "Mantenimiento / Recomposición";
   const sexoTxt = (m.sexo === 'f') ? 'Mujer' : 'Hombre';
 
+  document.getElementById('res-geb').textContent = m.geb
+    ? `Metabolismo basal: ${m.geb} kcal · Gasto total diario (con actividad): ${m.tdee} kcal`
+    : 'Metabolismo basal: pulsa “Calcular” para ver el detalle';
   document.getElementById('res-cal').textContent = `Calorías objetivo: ${m.kcal} kcal (${descObj} - ${sexoTxt})`;
   document.getElementById('res-prot').textContent = `Proteínas: ${m.prot} g (${(m.prot / peso).toFixed(2)} g/kg)`;
   document.getElementById('res-gras').textContent = `Grasas: ${m.grasa} g (${(m.grasa / peso).toFixed(2)} g/kg)`;
@@ -983,7 +1063,7 @@ function renderDia() {
       <thead><tr>
         <th style="width:340px; text-align:center;">ALIMENTO<span class="th-sub">(Nombre y origen)</span></th>
         <th style="width:75px; text-align:center;">CANTIDAD<span class="th-sub">(Latas / Und)</span></th>
-        <th style="width:75px; text-align:center;">PESO<span class="th-sub">(kg o gramos)</span></th>
+        <th style="width:120px; text-align:center;">PESO<span class="th-sub">(g o kg)</span></th>
         <th style="width:75px; text-align:center;">TOTAL (g)<span class="th-sub">(Calculado)</span></th>
         <th style="width:70px; text-align:center;">ENERGÍA<span class="th-sub">(Kcal)</span></th>
         <th style="width:65px; text-align:center;">PROT<span class="th-sub">(g)</span></th>
@@ -1018,7 +1098,7 @@ function renderDia() {
       const grTotales = calcularGramosTotales(item);
       bt.kcal+=n.kcal; bt.prot+=n.prot; bt.carb+=n.carb; bt.grasa+=n.grasa; bt.fibra+=n.fibra;
       if (colapsada) return;
-      const tag = baseDatos.find(a=>a.nombre.toLowerCase()===item.nombre.toLowerCase())?.fuente==='Tablas Peruanas'?'[PE]':'[INT]';
+      const tag = buscarBase(item.nombre, item.fuente)?.fuente==='Tablas Peruanas'?'[PE]':'[INT]';
       const displayVal = item.nombre ? `${item.nombre} ${tag}` : '';
       const placeholder = item.nombre ? '' : 'Seleccionar alimento...';
       
@@ -1032,10 +1112,14 @@ function renderDia() {
         </td>
         <td><input type="number" value="${item.cant || ''}" step="1" min="0" placeholder="0"
           onchange="cambiarCampo('${dia}','${bloque}',${idx},'cant',this.value)"></td>
-        <td><input type="number" value="${item.pesoKg || ''}" step="any" min="0" placeholder="0"
-          onchange="cambiarCampo('${dia}','${bloque}',${idx},'pesoKg',this.value)"></td>
+        <td class="td-peso"><input type="number" value="${item.pesoKg || ''}" step="any" min="0" placeholder="0"
+          onchange="cambiarCampo('${dia}','${bloque}',${idx},'pesoKg',this.value)">
+          <select class="sel-unidad" onchange="cambiarUnidadPeso('${dia}','${bloque}',${idx},this.value)">
+            <option value="g" ${unidadPeso(item)==='g'?'selected':''}>g</option>
+            <option value="kg" ${unidadPeso(item)==='kg'?'selected':''}>kg</option>
+          </select></td>
         <td><span class="peso-badge">${grTotales}g</span></td>
-        <td class="num">${n.kcal}</td>
+        <td class="num">${n.kcal}${item.nombre && n.estado !== 'ok' ? ` <span title="${n.estado==='aprox'?'Coincidencia aproximada: vuelve a elegir el alimento de la lista':'No se encontró en la base: vuelve a elegirlo de la lista'}" style="cursor:help">⚠️</span>` : ''}</td>
         <td class="num">${n.prot}</td>
         <td class="num">${n.carb}</td>
         <td class="num">${n.grasa}</td>
@@ -1062,15 +1146,7 @@ function renderDia() {
     </div>
   </div>`;
 
-  const compras = {};
-  bloquesKeys.forEach(bloque => {
-    (planSemanal[dia][bloque] || []).forEach(item => {
-      if (item.nombre) {
-        const grTotales = calcularGramosTotales(item);
-        if (grTotales > 0) compras[item.nombre] = (compras[item.nombre] || 0) + grTotales;
-      }
-    });
-  });
+  const compras = acumularPlan([dia]);
 
   const categorias = {
     'Frutas': { titulo: '🍎 Frutas', items: [] },
@@ -1080,9 +1156,9 @@ function renderDia() {
     'Fibras y Vegetales': { titulo: '🥗 Fibras y Vegetales', items: [] }
   };
 
-  Object.entries(compras).forEach(([nom, gr]) => {
+  compras.forEach(({nombre: nom, fuente, gr}) => {
     const cat = clasificarAlimento(nom);
-    if (categorias[cat]) categorias[cat].items.push({ nom, gr });
+    if (categorias[cat]) categorias[cat].items.push({ nom, gr, fuente });
   });
 
   html += `<div class="lista-compras">
@@ -1096,7 +1172,7 @@ function renderDia() {
     if (c.items.length === 0) html += `<div class="vacio-txt">Sin ítems hoy</div>`;
     else {
       c.items.forEach(i => {
-        const textoComercial = formatearCantidadComercial(i.nom, i.gr);
+        const textoComercial = formatearCantidadComercial(i.nom, i.gr, i.fuente);
         html += `<div class="compra-item"><span>${i.nom}</span><span>${textoComercial}</span></div>`;
       });
     }
@@ -1124,90 +1200,307 @@ function cambiarPeriodoCompras(dias, btnId) {
   renderizarContenidoModalCompras();
 }
 
-function renderizarContenidoModalCompras() {
-  const acumulado = {};
-  DIAS.forEach(d => {
-    const bloques = planSemanal[d] || {};
-    Object.keys(bloques).forEach(b => {
-      (bloques[b] || []).forEach(item => {
-        if (item.nombre) {
-          const grTotales = calcularGramosTotales(item);
-          if (grTotales > 0) acumulado[item.nombre] = (acumulado[item.nombre] || 0) + grTotales;
-        }
-      });
-    });
-  });
+// ══════════ LISTA DE COMPRAS + COSTOS ══════════
+const ORDEN_CATS = ['Frutas','Carbohidratos','Proteínas','Grasas','Fibras y Vegetales'];
+const TIT_CATS = {'Frutas':'🍎 Frutas','Carbohidratos':'🌾 Carbohidratos','Proteínas':'🥩 Proteínas','Grasas':'🥑 Grasas','Fibras y Vegetales':'🥗 Fibras y Vegetales'};
+let preciosCompras = {};
+try { preciosCompras = JSON.parse(localStorage.getItem('nut_precios') || '{}'); } catch(e) {}
+let filasCompras = [];
 
+function guardarPrecios() { try { localStorage.setItem('nut_precios', JSON.stringify(preciosCompras)); } catch(e) {} }
+const fmtS = n => 'S/ ' + (Number(n) || 0).toLocaleString('es-PE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+function construirFilasCompras() {
   const factor = periodoActualDias / 7;
-  const categorias = {
-    'Frutas': { titulo: '🍎 Frutas', items: [] },
-    'Carbohidratos': { titulo: '🌾 Carbohidratos', items: [] },
-    'Proteínas': { titulo: '🥩 Proteínas', items: [] },
-    'Grasas': { titulo: '🥑 Grasas', items: [] },
-    'Fibras y Vegetales': { titulo: '🥗 Fibras y Vegetales', items: [] }
-  };
-
-  Object.entries(acumulado).forEach(([nom, grTotalSemana]) => {
-    const cat = clasificarAlimento(nom);
-    const grFinal = grTotalSemana * factor;
-    if (categorias[cat]) categorias[cat].items.push({ nom, gr: grFinal });
-  });
-
-  let html = '';
-  Object.values(categorias).forEach(c => {
-    html += `<div class="compra-box">
-      <h4>${c.titulo} <span>${c.items.length}</span></h4>`;
-    if (c.items.length === 0) html += `<div class="vacio-txt">Sin ítems en el plan</div>`;
-    else {
-      c.items.forEach(i => {
-        const textoComercial = formatearCantidadComercial(i.nom, i.gr);
-        html += `<div class="compra-item"><span>${i.nom}</span><span>${textoComercial}</span></div>`;
-      });
-    }
-    html += `</div>`;
-  });
-
-  document.getElementById('contenido-modal-compras').innerHTML = html;
+  const prev = {};
+  filasCompras.forEach(f => { prev[f.key] = f; });   // conserva lo que el usuario editó al cambiar de periodo
+  filasCompras = acumularPlan().map(f => {
+    const gr = f.gr * factor;
+    const pu = pesoUnidadDe(f.nombre, f.fuente);
+    const key = f.nombre + '||' + f.fuente;
+    const p = preciosCompras[key] || {};
+    let base = p.base || (pu ? 'und' : 'kg');
+    if (base === 'und' && !pu) base = 'kg';
+    const unidades = pu ? Math.max(1, Math.ceil(gr / pu - 1e-6)) : null;
+    const cantDef = base === 'und' ? unidades : +(gr / 1000).toFixed(2);
+    return {
+      key, nombre: f.nombre, fuente: f.fuente, cat: clasificarAlimento(f.nombre),
+      gr, pu, unidades, base, cantDef, cant: cantDef,
+      precio: (p.precio === undefined || p.precio === null) ? '' : p.precio
+    };
+  }).sort((a, b) => (ORDEN_CATS.indexOf(a.cat) - ORDEN_CATS.indexOf(b.cat)) || a.nombre.localeCompare(b.nombre, 'es'));
 }
 
-function exportarComprasExcel() {
-  const acumulado = {};
-  DIAS.forEach(d => {
-    const bloques = planSemanal[d] || {};
-    Object.keys(bloques).forEach(b => {
-      (bloques[b] || []).forEach(item => {
-        if (item.nombre) {
-          const grTotales = calcularGramosTotales(item);
-          if (grTotales > 0) acumulado[item.nombre] = (acumulado[item.nombre] || 0) + grTotales;
-        }
-      });
+function totalFila(f) {
+  const c = parseFloat(f.cant), p = parseFloat(f.precio);
+  return (isNaN(c) || isNaN(p)) ? 0 : c * p;
+}
+
+function renderizarContenidoModalCompras() {
+  construirFilasCompras();
+  let html = '';
+  if (!filasCompras.length) {
+    html = `<div class="vacio-txt" style="padding:20px;text-align:center">Todavía no hay alimentos con cantidad en tu plan.</div>`;
+    document.getElementById('contenido-modal-compras').innerHTML = html;
+    return;
+  }
+  html += `<div class="tabla-compras-wrap"><table class="tabla-compras">
+    <thead><tr>
+      <th class="th-alim">Alimento</th>
+      <th>Peso total</th>
+      <th>Cantidad en unidades</th>
+      <th>Cantidad a comprar</th>
+      <th>Costo unitario (S/)</th>
+      <th>Costo total (S/)</th>
+    </tr></thead><tbody>`;
+  ORDEN_CATS.forEach(cat => {
+    const idxs = filasCompras.map((f, i) => f.cat === cat ? i : -1).filter(i => i >= 0);
+    if (!idxs.length) return;
+    html += `<tr class="fila-cat"><td colspan="6">${TIT_CATS[cat]} <span>${idxs.length}</span></td></tr>`;
+    idxs.forEach(i => {
+      const f = filasCompras[i];
+      const tag = f.fuente === 'Tablas Peruanas' ? 'PE' : 'INT';
+      const undTxt = f.unidades ? `${f.unidades} und` : '<span class="sin-und" title="Este alimento no tiene peso por unidad en la tabla">—</span>';
+      html += `<tr>
+        <td class="td-alim">${f.nombre} <small>[${tag}]</small></td>
+        <td>${formatearPeso(f.gr)}</td>
+        <td>${undTxt}</td>
+        <td class="td-cant">
+          <input type="number" min="0" step="any" value="${f.cant}" oninput="editarCompra(${i},'cant',this.value)">
+          <select onchange="cambiarBaseCompra(${i}, this.value)">
+            <option value="kg" ${f.base==='kg'?'selected':''}>kg</option>
+            ${f.pu ? `<option value="und" ${f.base==='und'?'selected':''}>und</option>` : ''}
+          </select>
+        </td>
+        <td><input type="number" class="inp-precio" min="0" step="0.01" placeholder="0.00" value="${f.precio}" oninput="editarCompra(${i},'precio',this.value)"></td>
+        <td class="td-total" id="tc-${i}">${fmtS(totalFila(f))}</td>
+      </tr>`;
     });
+    html += `<tr class="fila-sub"><td colspan="5">Subtotal ${cat}</td><td id="sub-${ORDEN_CATS.indexOf(cat)}">${fmtS(0)}</td></tr>`;
   });
+  html += `<tr class="fila-total"><td colspan="5">💰 TOTAL DE LA COMPRA (${periodoActualDias} días)</td><td id="total-general">${fmtS(0)}</td></tr>`;
+  html += `</tbody></table></div>
+    <div class="nota-compras">💡 Escribe el <b>costo unitario</b> (por unidad o por kg según lo que elijas en “Cantidad a comprar”) y el total se calcula solo. Los precios quedan guardados para la próxima vez.</div>`;
+  document.getElementById('contenido-modal-compras').innerHTML = html;
+  recalcularTotalesCompras();
+}
 
-  const factor = periodoActualDias / 7;
-  let csvContent = "\uFEFFCategoria;Alimento;Cantidad Comercial\n";
+function editarCompra(i, campo, val) {
+  const f = filasCompras[i];
+  f[campo] = val;
+  if (campo === 'precio') {
+    const p = preciosCompras[f.key] || {};
+    p.precio = val === '' ? null : parseFloat(val);
+    p.base = f.base;
+    preciosCompras[f.key] = p;
+    guardarPrecios();
+  }
+  recalcularTotalesCompras();
+}
 
-  const categoriasNombres = {
-    'Frutas': 'Frutas', 'Carbohidratos': 'Carbohidratos', 'Proteínas': 'Proteínas', 'Grasas': 'Grasas', 'Fibras y Vegetales': 'Fibras y Vegetales'
+function cambiarBaseCompra(i, base) {
+  const f = filasCompras[i];
+  f.base = base;
+  const p = preciosCompras[f.key] || {};
+  p.base = base;
+  preciosCompras[f.key] = p;
+  guardarPrecios();
+  f.cant = base === 'und' ? f.unidades : +(f.gr / 1000).toFixed(2);
+  const inp = document.querySelector(`#tc-${i}`).parentElement.querySelector('.td-cant input');
+  inp.value = f.cant;
+  recalcularTotalesCompras();
+}
+
+function recalcularTotalesCompras() {
+  const subs = {};
+  let total = 0;
+  filasCompras.forEach((f, i) => {
+    const t = totalFila(f);
+    const el = document.getElementById('tc-' + i);
+    if (el) el.textContent = fmtS(t);
+    subs[f.cat] = (subs[f.cat] || 0) + t;
+    total += t;
+  });
+  ORDEN_CATS.forEach((c, i) => { const el = document.getElementById('sub-' + i); if (el) el.textContent = fmtS(subs[c] || 0); });
+  const tg = document.getElementById('total-general');
+  if (tg) tg.textContent = fmtS(total);
+}
+
+async function cargarExcelJS() {
+  if (window.ExcelJS) return;
+  const urls = [
+    'https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js',
+    'https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js'
+  ];
+  for (const u of urls) {
+    try {
+      await new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = u; s.onload = res; s.onerror = rej;
+        document.head.appendChild(s);
+      });
+      if (window.ExcelJS) return;
+    } catch (e) {}
+  }
+  throw new Error('No se pudo cargar ExcelJS');
+}
+
+async function exportarComprasExcel() {
+  if (!filasCompras.length) construirFilasCompras();
+  if (!filasCompras.length) { alert('No hay alimentos en el plan para exportar.'); return; }
+  try { await cargarExcelJS(); }
+  catch (e) { alert('No se pudo cargar el generador de Excel (revisa tu conexión a internet).'); return; }
+
+  const wb = new ExcelJS.Workbook();
+  wb.creator = 'Planificador Nutricional';
+  const ws = wb.addWorksheet('Lista de Compras', {
+    views: [{ state: 'frozen', ySplit: 4, showGridLines: false }],
+    pageSetup: { orientation: 'landscape', paperSize: 9, fitToPage: true, fitToWidth: 1, fitToHeight: 0, margins: {left:.4,right:.4,top:.5,bottom:.5,header:.3,footer:.3} }
+  });
+  ws.columns = [
+    { key: 'a', width: 46 }, { key: 'b', width: 15 }, { key: 'c', width: 17 },
+    { key: 'd', width: 17 }, { key: 'e', width: 13 }, { key: 'f', width: 17 }, { key: 'g', width: 18 }
+  ];
+
+  const NEGRO = { argb: 'FF111827' };
+  const fino = { style: 'thin', color: { argb: 'FF94A3B8' } };
+  const grueso = { style: 'medium', color: NEGRO };
+  const COLS = 7;
+  const FMT_S = '"S/" #,##0.00';
+  const COLORES = {
+    'Frutas': 'FFFDE68A', 'Carbohidratos': 'FFFED7AA', 'Proteínas': 'FFFECACA',
+    'Grasas': 'FFD9F99D', 'Fibras y Vegetales': 'FFA7F3D0'
   };
 
-  Object.entries(acumulado).forEach(([nom, grTotalSemana]) => {
-    const cat = clasificarAlimento(nom);
-    const grFinal = grTotalSemana * factor;
-    const textoComercial = formatearCantidadComercial(nom, grFinal);
-    const catNombre = categoriasNombres[cat] || 'Otros';
-    csvContent += `"${catNombre}";"${nom}";"${textoComercial}"\n`;
+  // Título
+  ws.mergeCells(1, 1, 1, COLS);
+  const t = ws.getCell(1, 1);
+  t.value = `LISTA DE COMPRAS — ${periodoActualDias} DÍAS`;
+  t.font = { name: 'Calibri', size: 18, bold: true, color: { argb: 'FFFFFFFF' } };
+  t.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1E3A5F' } };
+  t.alignment = { horizontal: 'center', vertical: 'middle' };
+  ws.getRow(1).height = 36;
+
+  ws.mergeCells(2, 1, 2, COLS);
+  const st = ws.getCell(2, 1);
+  const m = metasNutricionales;
+  st.value = `Generado el ${new Date().toLocaleDateString('es-PE')}  ·  Meta diaria: ${m.kcal} kcal · ${m.prot} g proteína · ${m.carb} g carbohidratos · ${m.grasa} g grasa`;
+  st.font = { name: 'Calibri', size: 10.5, italic: true, color: { argb: 'FF475569' } };
+  st.alignment = { horizontal: 'center', vertical: 'middle' };
+  ws.getRow(2).height = 20;
+  ws.getRow(3).height = 8;
+
+  // Encabezado de la tabla
+  const heads = ['Alimento', 'Peso total', 'Cantidad en unidades', 'Cantidad a comprar', 'Unidad de compra', 'Costo unitario', 'Costo total'];
+  const hr = ws.getRow(4);
+  heads.forEach((h, i) => {
+    const c = hr.getCell(i + 1);
+    c.value = h;
+    c.font = { name: 'Calibri', size: 11, bold: true, color: { argb: 'FFFFFFFF' } };
+    c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF2563EB' } };
+    c.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
+    c.border = { top: grueso, bottom: grueso, left: i === 0 ? grueso : fino, right: i === COLS - 1 ? grueso : fino };
+  });
+  hr.height = 34;
+
+  let r = 5;
+  const filasSub = [];
+  ORDEN_CATS.forEach(cat => {
+    const items = filasCompras.filter(f => f.cat === cat);
+    if (!items.length) return;
+    const top = r;
+
+    // Banda de categoría (separada)
+    ws.mergeCells(r, 1, r, COLS);
+    const bc = ws.getCell(r, 1);
+    bc.value = (TIT_CATS[cat] || cat).replace(/^[^\wÁÉÍÓÚÑ]+\s*/, '').toUpperCase();
+    bc.font = { name: 'Calibri', size: 13, bold: true, color: NEGRO };
+    bc.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLORES[cat] || 'FFE2E8F0' } };
+    bc.alignment = { horizontal: 'left', vertical: 'middle', indent: 1 };
+    ws.getRow(r).height = 24;
+    r++;
+
+    const ini = r;
+    items.forEach((f, k) => {
+      const row = ws.getRow(r);
+      const cant = parseFloat(f.cant), precio = parseFloat(f.precio);
+      const tag = f.fuente === 'Tablas Peruanas' ? ' [PE]' : ' [INT]';
+      row.getCell(1).value = f.nombre + tag;
+      row.getCell(2).value = +(f.gr / 1000).toFixed(3);
+      row.getCell(2).numFmt = '0.00" kg"';
+      row.getCell(3).value = f.unidades || '—';
+      row.getCell(4).value = isNaN(cant) ? null : cant;
+      row.getCell(4).numFmt = '#,##0.##';
+      row.getCell(5).value = f.base === 'und' ? 'unidad' : 'kg';
+      row.getCell(6).value = isNaN(precio) ? null : precio;
+      row.getCell(6).numFmt = FMT_S;
+      row.getCell(7).value = { formula: `IF(OR(D${r}="",F${r}=""),0,D${r}*F${r})`, result: isNaN(cant) || isNaN(precio) ? 0 : cant * precio };
+      row.getCell(7).numFmt = FMT_S;
+      const lineas = Math.ceil((f.nombre.length + 6) / 44);
+      row.height = Math.max(21, 16 * lineas + 5);
+      const zebra = k % 2 ? 'FFF8FAFC' : 'FFFFFFFF';
+      for (let c = 1; c <= COLS; c++) {
+        const cell = row.getCell(c);
+        cell.font = { name: 'Calibri', size: 11, bold: c === 7 };
+        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: zebra } };
+        cell.alignment = { horizontal: c === 1 ? 'left' : 'center', vertical: 'middle', wrapText: true, indent: c === 1 ? 1 : 0 };
+        cell.border = { top: fino, bottom: fino, left: c === 1 ? grueso : fino, right: c === COLS ? grueso : fino };
+      }
+      r++;
+    });
+    const fin = r - 1;
+
+    // Subtotal de la categoría
+    ws.mergeCells(r, 1, r, 6);
+    const sc = ws.getCell(r, 1);
+    sc.value = `Subtotal ${cat}`;
+    const sv = ws.getCell(r, 7);
+    sv.value = { formula: `SUM(G${ini}:G${fin})`, result: items.reduce((a, f) => a + totalFila(f), 0) };
+    sv.numFmt = FMT_S;
+    for (let c = 1; c <= COLS; c++) {
+      const cell = ws.getCell(r, c);
+      cell.font = { name: 'Calibri', size: 11.5, bold: true, color: NEGRO };
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLORES[cat] || 'FFE2E8F0' } };
+      cell.alignment = { horizontal: c === 1 ? 'right' : 'center', vertical: 'middle', indent: c === 1 ? 1 : 0 };
+      cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : fino, right: c === COLS ? grueso : fino };
+    }
+    ws.getRow(r).height = 23;
+    // marco en negrita alrededor de toda la categoría (banda)
+    for (let c = 1; c <= COLS; c++) {
+      const cell = ws.getCell(top, c);
+      cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : undefined, right: c === COLS ? grueso : undefined };
+    }
+    filasSub.push(r);
+    r++;
+    ws.getRow(r).height = 9; // espacio entre categorías
+    r++;
   });
 
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  // Total general
+  ws.mergeCells(r, 1, r, 6);
+  ws.getCell(r, 1).value = '💰 TOTAL GENERAL DE LA COMPRA';
+  const tg = ws.getCell(r, 7);
+  tg.value = { formula: filasSub.map(x => `G${x}`).join('+'), result: filasCompras.reduce((a, f) => a + totalFila(f), 0) };
+  tg.numFmt = FMT_S;
+  for (let c = 1; c <= COLS; c++) {
+    const cell = ws.getCell(r, c);
+    cell.font = { name: 'Calibri', size: 14, bold: true, color: { argb: 'FFFFFFFF' } };
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF16A34A' } };
+    cell.alignment = { horizontal: c === 1 ? 'right' : 'center', vertical: 'middle', indent: c === 1 ? 1 : 0 };
+    cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : undefined, right: c === COLS ? grueso : undefined };
+  }
+  ws.getRow(r).height = 32;
+
+  const buf = await wb.xlsx.writeBuffer();
+  const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `Lista_Compras_${periodoActualDias}_dias.csv`;
+  a.download = `Lista_Compras_${periodoActualDias}_dias.xlsx`;
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
 
 // ── DROPDOWN CON FILTROS FUNCIONALES ──
@@ -1248,7 +1541,7 @@ function abrirDropdown(inputEl, dia, bloque, idx) {
       e.preventDefault();
       if (items[dropdownHighlightedIndex]) {
         const nombreAlimento = items[dropdownHighlightedIndex].getAttribute('data-nombre');
-        if (nombreAlimento) seleccionarAlimento(nombreAlimento);
+        if (nombreAlimento) seleccionarAlimento(nombreAlimento, items[dropdownHighlightedIndex].getAttribute('data-fuente'));
       }
     }
   };
@@ -1270,9 +1563,9 @@ function poblarDropdown(filtro) {
   const dd = document.getElementById('dropdown-global');
   const f = (filtro || '').toLowerCase();
 
-  let baseFiltrada = baseDatos;
+  let baseFiltrada = BASE;
   if (categoriaFiltroDropdown !== "TODOS") {
-    baseFiltrada = baseDatos.filter(a => clasificarAlimento(a.nombre) === categoriaFiltroDropdown);
+    baseFiltrada = BASE.filter(a => clasificarAlimento(a.nombre) === categoriaFiltroDropdown);
   }
 
   const todos = f
@@ -1289,9 +1582,9 @@ function poblarDropdown(filtro) {
 
   let htmlTodos = todos.map((a) => {
     const esFav = favoritos.includes(a.nombre);
-    return `<div class="dd-item" data-nombre="${a.nombre.replace(/"/g, '&quot;')}"
+    return `<div class="dd-item" data-nombre="${a.nombre.replace(/"/g, '&quot;')}" data-fuente="${a.fuente}"
           onmouseover="resaltarItemPorNombre('${a.nombre.replace(/'/g, "\\'")}')"
-          onclick="seleccionarAlimento('${a.nombre.replace(/'/g,"\\'")}')">
+          onclick="seleccionarAlimento('${a.nombre.replace(/'/g,"\\'")}','${a.fuente}')">
       <div class="dd-left-info">
         <span class="dd-estrella ${esFav ? 'favorito' : ''}" onclick="toggleFavorito('${a.nombre.replace(/'/g,"\\'")}', event)">★</span>
         <span class="dd-nombre">${a.nombre}</span>
@@ -1304,9 +1597,9 @@ function poblarDropdown(filtro) {
   }).join('') || '<div class="dd-item" style="color:#64748b; justify-content:center;">Sin resultados</div>';
 
   let htmlFavs = favs.map((a) => {
-    return `<div class="dd-item" data-nombre="${a.nombre.replace(/"/g, '&quot;')}"
+    return `<div class="dd-item" data-nombre="${a.nombre.replace(/"/g, '&quot;')}" data-fuente="${a.fuente}"
           onmouseover="resaltarItemPorNombre('${a.nombre.replace(/'/g, "\\'")}')"
-          onclick="seleccionarAlimento('${a.nombre.replace(/'/g,"\\'")}')">
+          onclick="seleccionarAlimento('${a.nombre.replace(/'/g,"\\'")}','${a.fuente}')">
       <div class="dd-left-info">
         <span class="dd-estrella favorito" onclick="toggleFavorito('${a.nombre.replace(/'/g,"\\'")}', event)">★</span>
         <span class="dd-nombre">${a.nombre}</span>
@@ -1355,8 +1648,9 @@ function actualizarHighlightDropdown(items) {
   });
 }
 
-function seleccionarAlimento(nombre) {
+function seleccionarAlimento(nombre, fuente) {
   planSemanal[ddDia][ddBloque][ddIdx].nombre = nombre;
+  planSemanal[ddDia][ddBloque][ddIdx].fuente = fuente || buscarBase(nombre)?.fuente || '';
   guardarPlanEnStorage();
   cerrarDropdown();
   renderDia();
@@ -1376,14 +1670,31 @@ document.addEventListener('click', e => {
 });
 
 function cambiarCampo(dia, bloque, idx, campo, val) {
-  planSemanal[dia][bloque][idx][campo] = val === '' ? 0 : parseFloat(val);
+  const it = planSemanal[dia][bloque][idx];
+  const num = val === '' ? 0 : (parseFloat(val) || 0);
+  if (campo === 'pesoKg' && !it.pesoU) it.pesoU = 'g';          // lo que escribes en PESO se entiende en gramos
+  it[campo] = num;
+  // CANTIDAD y PESO son excluyentes: al llenar uno se limpia el otro (así nunca se suman por error)
+  if (campo === 'cant' && num > 0) it.pesoKg = 0;
+  if (campo === 'pesoKg' && num > 0) it.cant = 0;
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+}
+
+function cambiarUnidadPeso(dia, bloque, idx, u) {
+  const it = planSemanal[dia][bloque][idx];
+  const antes = unidadPeso(it);
+  const v = parseFloat(it.pesoKg) || 0;
+  if (v > 0 && antes !== u) it.pesoKg = u === 'kg' ? +(v / 1000).toFixed(4) : +(v * 1000).toFixed(2);  // conserva el mismo total
+  it.pesoU = u;
   guardarPlanEnStorage();
   renderDia();
   renderResumen();
 }
 
 function agregarFila(dia, bloque) {
-  planSemanal[dia][bloque].push({nombre:"", cant: 0, pesoKg: 0});
+  planSemanal[dia][bloque].push({nombre:"", cant: 0, pesoKg: 0, pesoU: 'g'});
   guardarPlanEnStorage();
   renderDia();
   renderResumen();
@@ -1545,7 +1856,7 @@ async function exportarPDF() {
         bt.kcal+=n.kcal; bt.prot+=n.prot; bt.carb+=n.carb; bt.grasa+=n.grasa; bt.fibra+=n.fibra;
         doc.setFillColor(255,255,255); doc.rect(M,y,W-M*2,5,'F');
         doc.setFontSize(7); doc.setTextColor(30,41,59); doc.setFont('helvetica','normal');
-        const vals = [item.nombre||'—', (item.cant||''), (item.pesoKg||''), grTotales+'g', n.kcal.toFixed(1), n.prot.toFixed(1), n.carb.toFixed(1), n.grasa.toFixed(1), n.fibra.toFixed(1)];
+        const vals = [item.nombre||'—', (item.cant||''), (item.pesoKg ? item.pesoKg + ' ' + unidadPeso(item) : ''), grTotales+'g', n.kcal.toFixed(1), n.prot.toFixed(1), n.carb.toFixed(1), n.grasa.toFixed(1), n.fibra.toFixed(1)];
         let xi = M;
         vals.forEach((v,i) => {
           const txt = doc.splitTextToSize(v, cols[i]-2);
@@ -1586,28 +1897,17 @@ async function exportarPDF() {
   doc.text('LISTA DE COMPRAS GENERAL (1 SEMANA)', M+4, y+5.5);
   y += 12;
 
-  const acumulado = {};
-  DIAS.forEach(d => {
-    const bloques = planSemanal[d] || {};
-    Object.keys(bloques).forEach(b => {
-      (bloques[b] || []).forEach(item => {
-        if (item.nombre) {
-          const grTotales = calcularGramosTotales(item);
-          if (grTotales > 0) acumulado[item.nombre] = (acumulado[item.nombre] || 0) + grTotales;
-        }
-      });
-    });
-  });
+  const acumulado = acumularPlan();
 
   const categoriasMap = {
     'Frutas': '🍎 Frutas', 'Carbohidratos': '🌾 Carbohidratos', 'Proteínas': '🥩 Proteínas', 'Grasas': '🥑 Grasas', 'Fibras y Vegetales': '🥗 Fibras y Vegetales'
   };
 
   const agrupadoCat = {};
-  Object.entries(acumulado).forEach(([nom, gr]) => {
+  acumulado.forEach(({nombre: nom, fuente, gr}) => {
     const cat = clasificarAlimento(nom);
     if (!agrupadoCat[cat]) agrupadoCat[cat] = [];
-    agrupadoCat[cat].push({ nom, gr });
+    agrupadoCat[cat].push({ nom, gr, fuente });
   });
 
   Object.entries(agrupadoCat).forEach(([catKey, items]) => {
@@ -1620,7 +1920,7 @@ async function exportarPDF() {
 
     items.forEach(i => {
       if (y + 6 > PH) { doc.addPage(); y = 15; }
-      const textoComercial = formatearCantidadComercial(i.nom, i.gr);
+      const textoComercial = formatearCantidadComercial(i.nom, i.gr, i.fuente);
       doc.setFontSize(8); doc.setTextColor(51,65,85); doc.setFont('helvetica','normal');
       doc.text(`• ${i.nom}`, M+4, y+4);
       doc.text(textoComercial, W - M - 40, y+4, { align: 'right' });
@@ -1659,7 +1959,7 @@ function filtrarGlobal(val) {
     });
   });
 
-  const enBase = baseDatos.filter(a => a.nombre.toLowerCase().includes(filtroGlobal)).length;
+  const enBase = BASE.filter(a => a.nombre.toLowerCase().includes(filtroGlobal)).length;
   badge.textContent = `${enBase} en base · ${resultados.length} en tu plan`;
   badge.style.display = 'inline';
 
@@ -1673,7 +1973,7 @@ function filtrarGlobal(val) {
 
   let html = `<h3>🔍 "<strong>${val}</strong>" — ${resultados.length} aparición(es) en tu plan</h3>`;
   resultados.forEach(r => {
-    const tag = baseDatos.find(a=>a.nombre.toLowerCase()===r.item.nombre.toLowerCase())?.fuente==='Tablas Peruanas'?'PE':'INT';
+    const tag = buscarBase(r.item.nombre, r.item.fuente)?.fuente==='Tablas Peruanas'?'PE':'INT';
     html += `<div class="resultado-item">
       <span class="res-dia">📅 ${r.dia}</span>
       <span class="res-bloque">🍽️ ${r.bloque}</span>
@@ -1687,6 +1987,8 @@ function filtrarGlobal(val) {
   panel.innerHTML = html;
 }
 
+document.getElementById('badge-total').textContent = BASE.length + ' alimentos';
+document.getElementById('sub-total').textContent = BASE.length;
 renderNav();
 renderResumen();
 renderDia();
