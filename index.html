@@ -396,26 +396,28 @@
     .toast-aviso.show { opacity:1; transform:translate(-50%,0); }
 
     /* respaldo / nube */
-    .resp-estado { padding:10px 14px; border-radius:10px; font-weight:700; font-size:13.5px; margin-bottom:14px; }
+    .resp-estado { padding:12px 16px; border-radius:10px; font-weight:700; font-size:16px; margin-bottom:14px; }
     .resp-estado.bien { background:#dcfce7; color:#166534; } .resp-estado.mal { background:#fee2e2; color:#991b1b; }
     .resp-bloque { background:#fff; border:1px solid #cbd5e1; border-radius:12px; padding:14px 16px; margin-bottom:14px; }
-    .resp-bloque h4 { margin:0 0 6px; color:#1e3a5f; font-size:15px; }
-    .resp-bloque p, .resp-bloque small { color:#475569; font-size:12.5px; line-height:1.45; }
+    .resp-bloque h4 { margin:0 0 8px; color:#1e3a5f; font-size:19px; }
+    .resp-bloque p, .resp-bloque small { color:#475569; font-size:15.5px; line-height:1.55; }
+    .resp-bloque small { display:block; margin-top:8px; }
+    .resp-bloque code { font-size:14px; background:#e2e8f0; padding:1px 5px; border-radius:4px; }
     .resp-btns { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .resp-btns button, .btn-sec { background:#0f766e; color:#fff; border:none; border-radius:9px; padding:8px 14px; font-weight:800; cursor:pointer; font-size:12.5px; }
+    .resp-btns button, .btn-sec { background:#0f766e; color:#fff; border:none; border-radius:9px; padding:11px 18px; font-weight:800; cursor:pointer; font-size:15px; }
     .resp-btns button.gris, .btn-sec.gris { background:#64748b; }
-    .resp-bloque textarea, .resp-bloque input[type=text] { width:100%; box-sizing:border-box; border:1px solid #cbd5e1; border-radius:8px; padding:8px; font-size:12.5px; font-family:monospace; margin-top:6px; }
-    .resp-bloque textarea { height:96px; }
-    #sync-estado { margin-top:8px; font-weight:700; font-size:12.5px; color:#0f766e; }
-    .resp-bloque pre { background:#0f172a; color:#e2e8f0; padding:10px; border-radius:8px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }
+    .resp-bloque textarea, .resp-bloque input[type=text] { width:100%; box-sizing:border-box; border:1px solid #cbd5e1; border-radius:8px; padding:10px; font-size:15px; font-family:monospace; margin-top:8px; }
+    .resp-bloque textarea { height:130px; }
+    #sync-estado { margin-top:10px; font-weight:700; font-size:15.5px; color:#0f766e; }
+    .resp-bloque pre { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px; font-size:14px; overflow-x:auto; white-space:pre-wrap; }
 
     /* revisión BD */
     .bd-tabs { display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
-    .bd-tabs button { background:#e2e8f0; border:none; border-radius:9px; padding:8px 14px; font-weight:800; cursor:pointer; color:#334155; }
+    .bd-tabs button { background:#e2e8f0; border:none; border-radius:9px; padding:10px 16px; font-size:15px; font-weight:800; cursor:pointer; color:#334155; }
     .bd-tabs button.activo { background:var(--azul); color:#fff; }
-    .bd-nota { font-size:12.5px; color:#475569; margin:6px 0 10px; }
+    .bd-nota { font-size:15px; color:#475569; margin:6px 0 10px; }
     .bd-wrap { overflow:auto; max-height:52vh; border:1px solid #cbd5e1; border-radius:10px; background:#fff; }
-    .bd-tabla { border-collapse:collapse; width:100%; font-size:12px; }
+    .bd-tabla { border-collapse:collapse; width:100%; font-size:14.5px; }
     .bd-tabla th { position:sticky; top:0; background:#1e3a5f; color:#fff; padding:6px 8px; text-align:left; white-space:nowrap; }
     .bd-tabla td { padding:5px 8px; border-bottom:1px solid #e2e8f0; }
     .bd-tabla td.pos { color:#b45309; font-weight:700; } .bd-tabla td.neg { color:#1d4ed8; font-weight:700; }
@@ -435,13 +437,13 @@
 
     /* costos */
     .costos-fila { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:16px; padding-top:14px; border-top:1px dashed #cbd5e1; }
-    .costo-chip { background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0; border-radius:10px; padding:8px 14px; font-size:14px; font-weight:700; }
-    .costo-pres { font-size:13.5px; font-weight:700; color:#334155; }
+    .costo-chip { background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0; border-radius:10px; padding:9px 16px; font-size:16px; font-weight:700; }
+    .costo-pres { font-size:15.5px; font-weight:700; color:#334155; }
     .costo-pres input { width:90px; padding:6px 8px; border:1px solid #cbd5e1; border-radius:8px; font-weight:700; }
     .costo-barra { margin-top:10px; } .costo-barra-txt { font-size:12px; font-weight:700; color:#475569; margin-top:4px; }
-    .costo-aviso { margin-top:10px; font-size:12.5px; font-weight:700; color:#92400e; background:#fffbeb; border:1px solid #fde68a; border-radius:9px; padding:8px 12px; }
+    .costo-aviso { margin-top:10px; font-size:14.5px; font-weight:700; color:#92400e; background:#fffbeb; border:1px solid #fde68a; border-radius:9px; padding:8px 12px; }
     .costo-aviso button { margin-left:8px; background:#f59e0b; color:#fff; border:none; border-radius:7px; padding:4px 10px; font-weight:800; cursor:pointer; }
-    .costo-nota { margin-top:8px; font-size:11.5px; color:#64748b; }
+    .costo-nota { margin-top:8px; font-size:13.5px; color:#64748b; }
     .resumen-card .costo-mini { font-size:11px; font-weight:800; color:#047857; margin-top:2px; }
     .panel-obj-header { flex-wrap:wrap; gap:8px; }
 
@@ -451,10 +453,10 @@
     .copiar-rapido { display:flex; gap:6px; flex-wrap:wrap; }
     .copiar-modo { display:flex; flex-direction:column; gap:6px; margin-top:6px; font-weight:700; font-size:13.5px; }
     .comida-guardar { background:#fffbeb; border:1px solid #fde68a; border-radius:12px; padding:12px; margin-bottom:12px; }
-    .comida-sub { font-size:12.5px; font-weight:700; color:#92400e; margin-bottom:8px; }
+    .comida-sub { font-size:15px; font-weight:700; color:#92400e; margin-bottom:8px; }
     .comida-guardar-fila { display:flex; gap:8px; } .comida-guardar-fila input { flex:1; padding:8px 10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px; }
     .comida-guardar-fila button:disabled { background:#94a3b8; cursor:not-allowed; }
-    .comp-faltan, #comp-proy { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:10px 14px; margin-bottom:12px; font-size:13.5px; }
+    .comp-faltan, #comp-proy { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:12px 16px; margin-bottom:12px; font-size:16px; }
     #comp-proy { background:#f0fdf4; border-color:#bbf7d0; margin-top:12px; margin-bottom:0; }
     .comp-faltan small { color:#64748b; }
 
