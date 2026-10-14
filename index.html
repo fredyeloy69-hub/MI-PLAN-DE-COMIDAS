@@ -384,6 +384,124 @@
     body.dark .tabla-compras .td-total { background:#052e16; color:#86efac; }
     body.dark .tabla-compras input, body.dark .tabla-compras select { background:#0f172a; color:#f1f5f9; border-color:#475569; }
     body.dark .nota-compras { color:#94a3b8; }
+
+    /* ══ MEJORAS v3 ══ */
+    .btn-respaldo { background:#0f766e; color:#fff; position:relative; }
+    .btn-respaldo:hover { background:#115e59; transform:translateY(-1px); }
+    .btn-respaldo.aviso::after { content:''; position:absolute; top:-3px; right:-3px; width:12px; height:12px; border-radius:50%; background:#ef4444; border:2px solid #fff; }
+    .btn-completar { background:#16a34a !important; color:#fff !important; border-color:#16a34a !important; }
+    .btn-comidas { background:#fef3c7; color:#92400e; border:1px solid #fde68a; padding:5px 10px; border-radius:8px; font-size:11.5px; font-weight:700; cursor:pointer; }
+    .btn-comidas:hover { background:#92400e; color:#fff; }
+    .toast-aviso { position:fixed; left:50%; bottom:80px; transform:translate(-50%,30px); background:#0f172a; color:#fff; padding:11px 18px; border-radius:12px; opacity:0; pointer-events:none; transition:all .3s; z-index:10001; font-size:13.5px; font-weight:700; max-width:92vw; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.35); }
+    .toast-aviso.show { opacity:1; transform:translate(-50%,0); }
+
+    /* respaldo / nube */
+    .resp-estado { padding:10px 14px; border-radius:10px; font-weight:700; font-size:13.5px; margin-bottom:14px; }
+    .resp-estado.bien { background:#dcfce7; color:#166534; } .resp-estado.mal { background:#fee2e2; color:#991b1b; }
+    .resp-bloque { background:#fff; border:1px solid #cbd5e1; border-radius:12px; padding:14px 16px; margin-bottom:14px; }
+    .resp-bloque h4 { margin:0 0 6px; color:#1e3a5f; font-size:15px; }
+    .resp-bloque p, .resp-bloque small { color:#475569; font-size:12.5px; line-height:1.45; }
+    .resp-btns { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .resp-btns button, .btn-sec { background:#0f766e; color:#fff; border:none; border-radius:9px; padding:8px 14px; font-weight:800; cursor:pointer; font-size:12.5px; }
+    .resp-btns button.gris, .btn-sec.gris { background:#64748b; }
+    .resp-bloque textarea, .resp-bloque input[type=text] { width:100%; box-sizing:border-box; border:1px solid #cbd5e1; border-radius:8px; padding:8px; font-size:12.5px; font-family:monospace; margin-top:6px; }
+    .resp-bloque textarea { height:96px; }
+    #sync-estado { margin-top:8px; font-weight:700; font-size:12.5px; color:#0f766e; }
+    .resp-bloque pre { background:#0f172a; color:#e2e8f0; padding:10px; border-radius:8px; font-size:11px; overflow-x:auto; white-space:pre-wrap; }
+
+    /* revisión BD */
+    .bd-tabs { display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+    .bd-tabs button { background:#e2e8f0; border:none; border-radius:9px; padding:8px 14px; font-weight:800; cursor:pointer; color:#334155; }
+    .bd-tabs button.activo { background:var(--azul); color:#fff; }
+    .bd-nota { font-size:12.5px; color:#475569; margin:6px 0 10px; }
+    .bd-wrap { overflow:auto; max-height:52vh; border:1px solid #cbd5e1; border-radius:10px; background:#fff; }
+    .bd-tabla { border-collapse:collapse; width:100%; font-size:12px; }
+    .bd-tabla th { position:sticky; top:0; background:#1e3a5f; color:#fff; padding:6px 8px; text-align:left; white-space:nowrap; }
+    .bd-tabla td { padding:5px 8px; border-bottom:1px solid #e2e8f0; }
+    .bd-tabla td.pos { color:#b45309; font-weight:700; } .bd-tabla td.neg { color:#1d4ed8; font-weight:700; }
+
+    /* compras ✔ */
+    .tabla-compras .td-chk { text-align:center; width:34px; }
+    .tabla-compras .td-chk input { width:18px; height:18px; cursor:pointer; }
+    .tabla-compras tr.comprado td { opacity:.5; }
+    .tabla-compras tr.comprado .td-alim { text-decoration:line-through; }
+    .tabla-compras .fila-pend td { background:#fef9c3; color:#713f12; font-weight:800; }
+    .compras-extra { display:flex; gap:8px; flex-wrap:wrap; }
+    .btn-wa { background:#16a34a; color:#fff; border:none; padding:9px 16px; border-radius:9px; font-weight:800; cursor:pointer; font-size:13.5px; }
+    .btn-wa:hover { background:#15803d; }
+    .btn-gris-m { background:#64748b; color:#fff; border:none; padding:9px 16px; border-radius:9px; font-weight:800; cursor:pointer; font-size:13.5px; }
+    .modal-footer { gap:8px; flex-wrap:wrap; }
+    .modal-footer-izq { display:flex; gap:8px; flex-wrap:wrap; }
+
+    /* costos */
+    .costos-fila { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:16px; padding-top:14px; border-top:1px dashed #cbd5e1; }
+    .costo-chip { background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0; border-radius:10px; padding:8px 14px; font-size:14px; font-weight:700; }
+    .costo-pres { font-size:13.5px; font-weight:700; color:#334155; }
+    .costo-pres input { width:90px; padding:6px 8px; border:1px solid #cbd5e1; border-radius:8px; font-weight:700; }
+    .costo-barra { margin-top:10px; } .costo-barra-txt { font-size:12px; font-weight:700; color:#475569; margin-top:4px; }
+    .costo-aviso { margin-top:10px; font-size:12.5px; font-weight:700; color:#92400e; background:#fffbeb; border:1px solid #fde68a; border-radius:9px; padding:8px 12px; }
+    .costo-aviso button { margin-left:8px; background:#f59e0b; color:#fff; border:none; border-radius:7px; padding:4px 10px; font-weight:800; cursor:pointer; }
+    .costo-nota { margin-top:8px; font-size:11.5px; color:#64748b; }
+    .resumen-card .costo-mini { font-size:11px; font-weight:800; color:#047857; margin-top:2px; }
+    .panel-obj-header { flex-wrap:wrap; gap:8px; }
+
+    /* copiar / comidas / completar */
+    .copiar-dias { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin:12px 0; }
+    .chk-dia { display:flex; align-items:center; gap:8px; background:#fff; border:1px solid #cbd5e1; border-radius:9px; padding:9px 12px; font-weight:700; cursor:pointer; }
+    .copiar-rapido { display:flex; gap:6px; flex-wrap:wrap; }
+    .copiar-modo { display:flex; flex-direction:column; gap:6px; margin-top:6px; font-weight:700; font-size:13.5px; }
+    .comida-guardar { background:#fffbeb; border:1px solid #fde68a; border-radius:12px; padding:12px; margin-bottom:12px; }
+    .comida-sub { font-size:12.5px; font-weight:700; color:#92400e; margin-bottom:8px; }
+    .comida-guardar-fila { display:flex; gap:8px; } .comida-guardar-fila input { flex:1; padding:8px 10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px; }
+    .comida-guardar-fila button:disabled { background:#94a3b8; cursor:not-allowed; }
+    .comp-faltan, #comp-proy { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:10px 14px; margin-bottom:12px; font-size:13.5px; }
+    #comp-proy { background:#f0fdf4; border-color:#bbf7d0; margin-top:12px; margin-bottom:0; }
+    .comp-faltan small { color:#64748b; }
+
+    /* pestañas del menú de alimentos (solo celular) */
+    .dd-tabs-movil { display:none; gap:6px; padding:6px 10px; background:#f1f5f9; border-bottom:1px solid #cbd5e1; }
+    .dd-tab-movil { flex:1; background:#fff; border:1px solid #cbd5e1; border-radius:10px; padding:8px 4px; font-size:12.5px; font-weight:800; color:#475569; cursor:pointer; }
+    .dd-tab-movil.activo { background:var(--azul); color:#fff; border-color:var(--azul); }
+    @media(max-width:700px) {
+      .dropdown { width:calc(100vw - 12px); max-height:92vh; }
+      .dd-tabs-movil { display:flex; }
+      .dd-cuerpo-cols { display:block; overflow:hidden; }
+      .dd-columna { display:none; max-height:calc(92vh - 175px); }
+      .dd-columna.dd-col-activa { display:block; }
+      .dd-columna + .dd-columna { border-left:none; }
+      .dd-filtros-bar { flex-wrap:nowrap; overflow-x:auto; }
+      .dd-filtro-btn { white-space:nowrap; flex-shrink:0; }
+      #dd-buscar { font-size:16px; }
+      .copiar-dias { grid-template-columns:1fr; }
+      .costos-fila { gap:8px; }
+      .header { padding:14px 14px; } .header h1 { font-size:19px; } .header .sub { font-size:12px; }
+      .barra { position:static; padding:10px 12px; gap:8px; }
+      .barra-izq { min-width:0; width:100%; }
+      .btn-barra { padding:6px 11px; font-size:12px; }
+      .dias-nav { top:0; padding:8px 12px; }
+      .tabla-wrap { overflow-x:auto; }
+      .tabla-wrap table { min-width:860px; }
+      .tabla-compras { min-width:760px; table-layout:auto; }
+      .tabla-compras th, .tabla-compras td { white-space:nowrap; }
+      .tabla-compras .td-alim { white-space:normal; min-width:150px; }
+      .bd-tabla { min-width:760px; }
+      .tabla-titulo { position:sticky; left:0; }
+      .panel-objetivos { padding:16px 14px; }
+      .modal-overlay { padding:8px; }
+      .modal-header { font-size:16px; padding:14px 16px; } .modal-body { padding:14px; }
+    }
+    body.dark .resp-bloque, body.dark .chk-dia, body.dark .bd-wrap { background:#1e293b; border-color:#334155; color:#e2e8f0; }
+    body.dark .resp-bloque h4 { color:#93c5fd; } body.dark .resp-bloque p, body.dark .resp-bloque small, body.dark .bd-nota { color:#94a3b8; }
+    body.dark .resp-bloque textarea, body.dark .resp-bloque input[type=text], body.dark .comida-guardar-fila input, body.dark .costo-pres input { background:#0f172a; color:#f1f5f9; border-color:#475569; }
+    body.dark .bd-tabla td { border-color:#334155; color:#e2e8f0; }
+    body.dark .costo-chip { background:#052e16; color:#86efac; border-color:#166534; } body.dark .costo-pres { color:#cbd5e1; }
+    body.dark .costo-aviso, body.dark .comida-guardar { background:#2a2412; border-color:#92400e; color:#fcd34d; }
+    body.dark .comida-sub { color:#fcd34d; }
+    body.dark .comp-faltan { background:#172554; border-color:#1e40af; color:#e2e8f0; } body.dark #comp-proy { background:#052e16; border-color:#166534; color:#e2e8f0; }
+    body.dark .dd-tabs-movil { background:#0f172a; border-color:#334155; } body.dark .dd-tab-movil { background:#1e293b; border-color:#475569; color:#cbd5e1; }
+    body.dark .dd-tab-movil.activo { background:var(--azul); color:#fff; }
+    body.dark .tabla-compras .fila-pend td { background:#422006; color:#fcd34d; }
+    body.dark .btn-comidas { background:#422006; color:#fcd34d; border-color:#92400e; }
   </style>
 </head>
 <body>
@@ -410,6 +528,7 @@
     <button class="btn-header btn-calc btn-barra" onclick="abrirModalCalculadora()"><span class="emoji-amigable">⚡</span> Metas</button>
     <button class="btn-header btn-compras-gen btn-barra" onclick="abrirModalCompras()"><span class="emoji-amigable">🛒</span> Compras</button>
     <button class="btn-header btn-pdf btn-barra" onclick="exportarPDF()"><span class="emoji-amigable">📄</span> PDF</button>
+    <button class="btn-header btn-respaldo btn-barra" id="btn-respaldo" onclick="abrirRespaldo()"><span class="emoji-amigable">💾</span> Respaldo</button>
     <button class="btn-header btn-dark-barra btn-barra" id="btn-dark-barra" onclick="toggleDark()"><span class="emoji-amigable" id="ico-dark-b">🌙</span> Modo oscuro</button>
   </div>
 </div>
@@ -428,9 +547,11 @@
   <div class="panel-objetivos">
     <div class="panel-obj-header">
       <h3><span class="emoji-grande">🎯</span> Control de Objetivos Diarios</h3>
+      <button class="btn-config-obj btn-completar" onclick="abrirCompletar()">🎯 Completar lo que falta</button>
       <button class="btn-config-obj" onclick="abrirModalCalculadora()">⚙️ Cambiar Objetivo / Recalcular</button>
     </div>
     <div class="obj-grid-barras" id="obj-grid-barras"></div>
+    <div id="panel-costos"></div>
   </div>
 
   <div id="panel-busqueda" class="panel-busqueda"></div>
@@ -457,7 +578,12 @@
       <div id="contenido-modal-compras"></div>
     </div>
     <div class="modal-footer">
-      <button class="btn-excel-modal" onclick="exportarComprasExcel()"><span class="emoji-amigable">📥</span> Exportar a Excel (.xlsx)</button>
+      <div class="modal-footer-izq">
+        <button class="btn-excel-modal" onclick="exportarComprasExcel()"><span class="emoji-amigable">📥</span> Excel (.xlsx)</button>
+        <button class="btn-wa" onclick="enviarComprasWhatsApp()">📲 WhatsApp</button>
+        <button class="btn-gris-m" onclick="copiarListaCompras()">📋 Copiar</button>
+        <button class="btn-gris-m" onclick="limpiarComprados()">↺ Quitar ✔</button>
+      </div>
       <button class="btn-cerrar-modal" onclick="cerrarModalCompras()">Cerrar</button>
     </div>
   </div>
@@ -555,6 +681,142 @@
   <button class="toast-sug-x" onclick="ocultarToastSugerencia()">✕</button>
 </div>
 
+
+<!-- Modal Respaldo / nube / revisión BD -->
+<div class="modal-overlay" id="modal-respaldo">
+  <div class="modal-box" style="max-width: 720px;">
+    <div class="modal-header">
+      <span>💾 Respaldo y herramientas</span>
+      <button onclick="cerrarModal('modal-respaldo')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="resp-estado" class="resp-estado"></div>
+
+      <div class="resp-bloque">
+        <h4>📥 Respaldo en un archivo</h4>
+        <p>Guarda tu plan, metas, favoritos, precios, plantillas y comidas en un archivo <b>.json</b>. Si cambias de celular/PC o se borran los datos del navegador, lo restauras aquí.</p>
+        <div class="resp-btns">
+          <button onclick="descargarRespaldo()">⬇️ Descargar respaldo</button>
+          <button class="gris" onclick="document.getElementById('archivo-respaldo').click()">⬆️ Restaurar desde archivo</button>
+          <input type="file" id="archivo-respaldo" accept=".json,application/json" style="display:none" onchange="restaurarRespaldo(event)">
+        </div>
+      </div>
+
+      <div class="resp-bloque">
+        <h4>☁️ Sincronizar entre dispositivos (Firebase)</h4>
+        <p>Opcional. Con esto tu plan se sube solo a tu propio Firestore y lo ves igual en el celular y en la PC. Usa el mismo <b>código</b> en todos tus dispositivos.</p>
+        <small>1) En Firebase Console → tu proyecto → Configuración → “Tus apps” → copia el bloque <code>firebaseConfig</code> y pégalo abajo. 2) En Firestore → Reglas, pega esto y publica:</small>
+        <pre>rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /planes/{codigo} {
+      allow get, create, update: if true;
+      allow list, delete: if false;
+    }
+  }
+}</pre>
+        <small>⚠️ Quien conozca tu código puede leer y cambiar tu plan: usa el código largo que genera el botón y no lo compartas.</small>
+        <textarea id="sync-config" placeholder='{ apiKey: "…", authDomain: "…", projectId: "…", appId: "…" }'></textarea>
+        <input type="text" id="sync-codigo" placeholder="Código de sincronización (mín. 12 caracteres)" autocomplete="off">
+        <div class="resp-btns">
+          <button class="gris" onclick="generarCodigoSync()">🎲 Generar código</button>
+          <button id="sync-btn-conectar" onclick="guardarYConectarSync()">🔌 Guardar y conectar</button>
+        </div>
+        <div class="resp-btns" id="sync-botones-on" style="display:none">
+          <button onclick="subirNube()">⬆️ Subir ahora</button>
+          <button onclick="bajarNube(true)">⬇️ Bajar de la nube</button>
+          <button class="gris" onclick="desconectarSync()">Desconectar</button>
+        </div>
+        <div id="sync-estado">Sin conectar.</div>
+      </div>
+
+      <div class="resp-bloque">
+        <h4>🔎 Revisar la base de datos de alimentos</h4>
+        <p>Lista los alimentos cuyas calorías no cuadran con sus macros (para que decidas cuáles corregir en <code>alimentos.js</code>). No cambia nada por sí sola.</p>
+        <div class="resp-btns"><button onclick="abrirRevisionBD()">Ver filas sospechosas</button></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <span></span>
+      <button class="btn-cerrar-modal" onclick="cerrarModal('modal-respaldo')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-bd">
+  <div class="modal-box" style="max-width: 1000px;">
+    <div class="modal-header">
+      <span>🔎 Alimentos con calorías que no cuadran</span>
+      <button onclick="cerrarModal('modal-bd')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body"><div id="bd-contenido"></div></div>
+    <div class="modal-footer">
+      <button class="btn-excel-modal" onclick="descargarCSVBD()">📥 Descargar CSV (todas)</button>
+      <button class="btn-cerrar-modal" onclick="cerrarModal('modal-bd')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal copiar día / sección -->
+<div class="modal-overlay" id="modal-copiar">
+  <div class="modal-box" style="max-width: 520px;">
+    <div class="modal-header">
+      <span id="copiar-titulo">Copiar</span>
+      <button onclick="cerrarModal('modal-copiar')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-weight:800;margin-bottom:4px">Copiar a estos días:</div>
+      <div class="copiar-rapido">
+        <button class="btn-sec gris" onclick="marcarDiasCopiar('lv')">Lun–Vie</button>
+        <button class="btn-sec gris" onclick="marcarDiasCopiar('fs')">Fin de semana</button>
+        <button class="btn-sec gris" onclick="marcarDiasCopiar('todos')">Todos</button>
+        <button class="btn-sec gris" onclick="marcarDiasCopiar('ninguno')">Ninguno</button>
+      </div>
+      <div class="copiar-dias" id="copiar-dias"></div>
+      <div class="copiar-modo">
+        <label><input type="radio" name="copiar-modo" value="reemplazar" checked> Reemplazar lo que ya tengan</label>
+        <label><input type="radio" name="copiar-modo" value="agregar"> Agregar al final de lo que ya tengan</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-excel-modal" onclick="aplicarCopiar()">📋 Copiar</button>
+      <button class="btn-cerrar-modal" onclick="cerrarModal('modal-copiar')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal comidas guardadas -->
+<div class="modal-overlay" id="modal-comidas">
+  <div class="modal-box" style="max-width: 760px;">
+    <div class="modal-header">
+      <span>🍽️ Comidas guardadas</span>
+      <button onclick="cerrarModal('modal-comidas')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body"><div id="comidas-contenido"></div></div>
+    <div class="modal-footer"><span></span><button class="btn-cerrar-modal" onclick="cerrarModal('modal-comidas')">Cerrar</button></div>
+  </div>
+</div>
+
+<!-- Modal completar lo que falta -->
+<div class="modal-overlay" id="modal-completar">
+  <div class="modal-box" style="max-width: 820px;">
+    <div class="modal-header">
+      <span>🎯 Completar lo que falta del día</span>
+      <button onclick="cerrarModal('modal-completar')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="comp-lista"></div>
+      <div id="comp-proy"></div>
+      <div class="sug-destino" style="margin-top:12px"><label>Agregar a la sección: <select id="comp-bloque"></select></label></div>
+      <p class="sug-aviso">Propuesta automática según tus metas; ajusta los gramos como quieras. No reemplaza a un nutricionista.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-excel-modal" onclick="agregarTodoCompletar()">＋ Agregar todo</button>
+      <button class="btn-cerrar-modal" onclick="cerrarModal('modal-completar')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <!-- Dropdown de 2 columnas -->
 <div class="dd-backdrop" id="dd-backdrop"></div>
 <div class="dropdown" id="dropdown-global">
@@ -632,60 +894,6 @@ function toggleTodasSeccionesDia() {
   });
   guardarColapsadasEnStorage();
   renderDia();
-}
-
-function copiarSeccionAOtroDia(diaOrigen, bloque) {
-  const otrosDias = DIAS.filter(d => d !== diaOrigen);
-  const lista = otrosDias.map((d, i) => `${i + 1}. ${d}`).join('\n');
-  const resp = prompt(`📋 Copiar la sección "${bloque}" de ${diaOrigen} a otro día.\n\n${lista}\n\nEscribe el número o el nombre del día destino:`);
-  if (!resp || !resp.trim()) return;
-  const respTrim = resp.trim();
-
-  let diaDestino = otrosDias.find(d => d.toLowerCase() === respTrim.toLowerCase());
-  if (!diaDestino) {
-    const num = parseInt(respTrim);
-    if (!isNaN(num) && otrosDias[num - 1]) diaDestino = otrosDias[num - 1];
-  }
-  if (!diaDestino) { alert('No se reconoció ese día. Intenta de nuevo escribiendo el número o el nombre exacto.'); return; }
-
-  if (!planSemanal[diaDestino]) planSemanal[diaDestino] = {};
-  const itemsCopia = JSON.parse(JSON.stringify(planSemanal[diaOrigen][bloque] || []));
-
-  if (planSemanal[diaDestino][bloque] && planSemanal[diaDestino][bloque].length > 0) {
-    const sobrescribir = confirm(`"${diaDestino}" ya tiene alimentos en "${bloque}".\n\nAceptar = SOBRESCRIBIR con la copia\nCancelar = AGREGAR al final de lo existente`);
-    if (sobrescribir) planSemanal[diaDestino][bloque] = itemsCopia;
-    else planSemanal[diaDestino][bloque] = [...planSemanal[diaDestino][bloque], ...itemsCopia];
-  } else {
-    planSemanal[diaDestino][bloque] = itemsCopia;
-  }
-
-  guardarPlanEnStorage();
-  renderResumen();
-  renderBarrasObjetivos();
-  alert(`✅ Sección "${bloque}" copiada a ${diaDestino}.`);
-}
-
-function duplicarDiaActual() {
-  const diaOrigen = diaActivo;
-  const otrosDias = DIAS.filter(d => d !== diaOrigen);
-  const lista = otrosDias.map((d, i) => `${i + 1}. ${d}`).join('\n');
-  const resp = prompt(`📋 Vas a duplicar TODO el plan de "${diaOrigen}" hacia otro día.\n\n${lista}\n\nEscribe el número o el nombre del día destino:`);
-  if (!resp || !resp.trim()) return;
-  const respTrim = resp.trim();
-
-  let diaDestino = otrosDias.find(d => d.toLowerCase() === respTrim.toLowerCase());
-  if (!diaDestino) {
-    const num = parseInt(respTrim);
-    if (!isNaN(num) && otrosDias[num - 1]) diaDestino = otrosDias[num - 1];
-  }
-  if (!diaDestino) { alert('No se reconoció ese día. Intenta de nuevo escribiendo el número o el nombre exacto.'); return; }
-
-  if (!confirm(`Esto va a REEMPLAZAR todo lo que tenga "${diaDestino}" con una copia exacta de "${diaOrigen}".\n\n¿Continuar?`)) return;
-
-  planSemanal[diaDestino] = JSON.parse(JSON.stringify(planSemanal[diaOrigen]));
-  guardarPlanEnStorage();
-  renderResumen();
-  alert(`✅ "${diaOrigen}" fue duplicado en "${diaDestino}".`);
 }
 
 function abrirMenuPlantillas() {
@@ -991,10 +1199,12 @@ function renderResumen() {
   const grid = document.getElementById('resumen-grid');
   grid.innerHTML = DIAS.map(d => {
     const t = totalDia(d);
+    const cd = costoDia(d).total;
     return `<div class="resumen-card ${d===diaActivo?'activo':''}" onclick="cambiarDia('${d}')">
       <div class="dia">${d.substring(0,3).toUpperCase()}</div>
       <div class="kcal">${t.kcal.toFixed(0)}</div>
       <div class="sub">kcal</div>
+      ${cd > 0 ? `<div class="costo-mini">${fmtS(cd)}</div>` : ''}
     </div>`;
   }).join('');
 }
@@ -1031,6 +1241,7 @@ function renderBarrasObjetivos() {
   });
 
   document.getElementById('obj-grid-barras').innerHTML = html;
+  if (typeof renderCostos === 'function') renderCostos();
 }
 
 function abrirModalCalculadora() {
@@ -1173,6 +1384,7 @@ function renderDia() {
         <button class="btn-copiar-seccion" onclick="copiarSeccionAOtroDia('${dia}','${bloque}')" title="Copiar esta sección a otro día">📋 Copiar a...</button>
         ${bIdx > 0 ? `<button class="btn-mover-seccion" onclick="moverSeccion('${dia}','${bloque}',-1)" title="Mover arriba">⬆️</button>` : ''}
         ${bIdx < bloquesKeys.length - 1 ? `<button class="btn-mover-seccion" onclick="moverSeccion('${dia}','${bloque}',1)" title="Mover abajo">⬇️</button>` : ''}
+        <button class="btn-comidas" onclick="abrirComidas('${dia}','${bloque}')" title="Guardar esta sección como comida o agregar una comida guardada">🍽️ Comidas</button>
         <button class="btn-agregar" onclick="agregarFila('${dia}','${bloque}')">＋ Agregar alimento</button>
         <button class="btn-renombrar-bloque" onclick="renombrarSeccion('${bloque}')">✏️ Renombrar</button>
         <button class="btn-del-bloque" onclick="eliminarSeccion('${bloque}')">Eliminar</button>
@@ -1332,6 +1544,7 @@ function renderizarContenidoModalCompras() {
   }
   html += `<div class="tabla-compras-wrap"><table class="tabla-compras">
     <thead><tr>
+      <th class="th-chk" title="Marca lo que ya compraste">✔</th>
       <th class="th-alim">Alimento</th>
       <th>Peso total</th>
       <th>Cantidad en unidades</th>
@@ -1342,12 +1555,13 @@ function renderizarContenidoModalCompras() {
   ORDEN_CATS.forEach(cat => {
     const idxs = filasCompras.map((f, i) => f.cat === cat ? i : -1).filter(i => i >= 0);
     if (!idxs.length) return;
-    html += `<tr class="fila-cat"><td colspan="6">${TIT_CATS[cat]} <span>${idxs.length}</span></td></tr>`;
+    html += `<tr class="fila-cat"><td colspan="7">${TIT_CATS[cat]} <span>${idxs.length}</span></td></tr>`;
     idxs.forEach(i => {
       const f = filasCompras[i];
       const tag = f.fuente === 'Tablas Peruanas' ? 'PE' : 'INT';
       const undTxt = f.unidades ? `${f.unidades} und` : '<span class="sin-und" title="Este alimento no tiene peso por unidad en la tabla">—</span>';
-      html += `<tr>
+      html += `<tr class="${comprados[f.key] ? 'comprado' : ''}">
+        <td class="td-chk"><input type="checkbox" ${comprados[f.key] ? 'checked' : ''} onchange="marcarComprado(${i}, this.checked)" title="Ya lo compré"></td>
         <td class="td-alim">${f.nombre} <small>[${tag}]</small></td>
         <td>${formatearPeso(f.gr)}</td>
         <td>${undTxt}</td>
@@ -1362,9 +1576,10 @@ function renderizarContenidoModalCompras() {
         <td class="td-total" id="tc-${i}">${fmtS(totalFila(f))}</td>
       </tr>`;
     });
-    html += `<tr class="fila-sub"><td colspan="5">Subtotal ${cat}</td><td id="sub-${ORDEN_CATS.indexOf(cat)}">${fmtS(0)}</td></tr>`;
+    html += `<tr class="fila-sub"><td colspan="6">Subtotal ${cat}</td><td id="sub-${ORDEN_CATS.indexOf(cat)}">${fmtS(0)}</td></tr>`;
   });
-  html += `<tr class="fila-total"><td colspan="5">💰 TOTAL DE LA COMPRA (${periodoActualDias} días)</td><td id="total-general">${fmtS(0)}</td></tr>`;
+  html += `<tr class="fila-total"><td colspan="6">💰 TOTAL DE LA COMPRA (${periodoActualDias} días)</td><td id="total-general">${fmtS(0)}</td></tr>`;
+  html += `<tr class="fila-pend"><td colspan="6">🧾 Por comprar todavía (<span id="n-pend">0</span> de ${filasCompras.length} alimentos)</td><td id="total-pend">${fmtS(0)}</td></tr>`;
   html += `</tbody></table></div>
     <div class="nota-compras">💡 Escribe el <b>costo unitario</b> (por unidad o por kg según lo que elijas en “Cantidad a comprar”) y el total se calcula solo. Los precios quedan guardados para la próxima vez.</div>`;
   document.getElementById('contenido-modal-compras').innerHTML = html;
@@ -1380,6 +1595,7 @@ function editarCompra(i, campo, val) {
     p.base = f.base;
     preciosCompras[f.key] = p;
     guardarPrecios();
+    if (typeof renderCostos === 'function') { renderCostos(); renderResumen(); }
   }
   recalcularTotalesCompras();
 }
@@ -1399,14 +1615,17 @@ function cambiarBaseCompra(i, base) {
 
 function recalcularTotalesCompras() {
   const subs = {};
-  let total = 0;
+  let total = 0, pend = 0, nPend = 0;
   filasCompras.forEach((f, i) => {
     const t = totalFila(f);
     const el = document.getElementById('tc-' + i);
     if (el) el.textContent = fmtS(t);
     subs[f.cat] = (subs[f.cat] || 0) + t;
     total += t;
+    if (!comprados[f.key]) { pend += t; nPend++; }
   });
+  const tp = document.getElementById('total-pend'); if (tp) tp.textContent = fmtS(pend);
+  const np = document.getElementById('n-pend'); if (np) np.textContent = nPend;
   ORDEN_CATS.forEach((c, i) => { const el = document.getElementById('sub-' + i); if (el) el.textContent = fmtS(subs[c] || 0); });
   const tg = document.getElementById('total-general');
   if (tg) tg.textContent = fmtS(total);
@@ -1445,13 +1664,13 @@ async function exportarComprasExcel() {
   });
   ws.columns = [
     { key: 'a', width: 46 }, { key: 'b', width: 15 }, { key: 'c', width: 17 },
-    { key: 'd', width: 17 }, { key: 'e', width: 13 }, { key: 'f', width: 17 }, { key: 'g', width: 18 }
+    { key: 'd', width: 17 }, { key: 'e', width: 13 }, { key: 'f', width: 17 }, { key: 'g', width: 18 }, { key: 'h', width: 12 }
   ];
 
   const NEGRO = { argb: 'FF111827' };
   const fino = { style: 'thin', color: { argb: 'FF94A3B8' } };
   const grueso = { style: 'medium', color: NEGRO };
-  const COLS = 7;
+  const COLS = 8;
   const FMT_S = '"S/" #,##0.00';
   const COLORES = {
     'Frutas': 'FFFDE68A', 'Carbohidratos': 'FFFED7AA', 'Proteínas': 'FFFECACA',
@@ -1477,7 +1696,7 @@ async function exportarComprasExcel() {
   ws.getRow(3).height = 8;
 
   // Encabezado de la tabla
-  const heads = ['Alimento', 'Peso total', 'Cantidad en unidades', 'Cantidad a comprar', 'Unidad de compra', 'Costo unitario', 'Costo total'];
+  const heads = ['Alimento', 'Peso total', 'Cantidad en unidades', 'Cantidad a comprar', 'Unidad de compra', 'Costo unitario', 'Costo total', 'Comprado'];
   const hr = ws.getRow(4);
   heads.forEach((h, i) => {
     const c = hr.getCell(i + 1);
@@ -1522,12 +1741,13 @@ async function exportarComprasExcel() {
       row.getCell(6).numFmt = FMT_S;
       row.getCell(7).value = { formula: `IF(OR(D${r}="",F${r}=""),0,D${r}*F${r})`, result: isNaN(cant) || isNaN(precio) ? 0 : cant * precio };
       row.getCell(7).numFmt = FMT_S;
+      row.getCell(8).value = comprados[f.key] ? '✔' : '';
       const lineas = Math.ceil((f.nombre.length + 6) / 44);
       row.height = Math.max(21, 16 * lineas + 5);
       const zebra = k % 2 ? 'FFF8FAFC' : 'FFFFFFFF';
       for (let c = 1; c <= COLS; c++) {
         const cell = row.getCell(c);
-        cell.font = { name: 'Calibri', size: 11, bold: c === 7 };
+        cell.font = { name: 'Calibri', size: c === 8 ? 14 : 11, bold: c === 7 || c === 8, color: c === 8 ? { argb: 'FF16A34A' } : undefined };
         cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: zebra } };
         cell.alignment = { horizontal: c === 1 ? 'left' : 'center', vertical: 'middle', wrapText: true, indent: c === 1 ? 1 : 0 };
         cell.border = { top: fino, bottom: fino, left: c === 1 ? grueso : fino, right: c === COLS ? grueso : fino };
@@ -1576,6 +1796,23 @@ async function exportarComprasExcel() {
     cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : undefined, right: c === COLS ? grueso : undefined };
   }
   ws.getRow(r).height = 32;
+  const filaTotal = r;
+
+  // Por comprar todavía = total − lo marcado como comprado
+  r++;
+  ws.mergeCells(r, 1, r, 6);
+  ws.getCell(r, 1).value = '🧾 POR COMPRAR TODAVÍA (sin lo marcado ✔)';
+  const pend = ws.getCell(r, 7);
+  pend.value = { formula: `G${filaTotal}-SUMIF(H5:H${filaTotal - 1},"✔",G5:G${filaTotal - 1})`, result: filasCompras.filter(f => !comprados[f.key]).reduce((a, f) => a + totalFila(f), 0) };
+  pend.numFmt = FMT_S;
+  for (let c = 1; c <= COLS; c++) {
+    const cell = ws.getCell(r, c);
+    cell.font = { name: 'Calibri', size: 13, bold: true, color: { argb: 'FF713F12' } };
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEF08A' } };
+    cell.alignment = { horizontal: c === 1 ? 'right' : 'center', vertical: 'middle', indent: c === 1 ? 1 : 0 };
+    cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : undefined, right: c === COLS ? grueso : undefined };
+  }
+  ws.getRow(r).height = 28;
 
   const buf = await wb.xlsx.writeBuffer();
   const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
@@ -1839,6 +2076,7 @@ function abrirDropdown(inputEl, dia, bloque, idx) {
   const buscar = document.getElementById('dd-buscar');
   dropdownHighlightedIndex = -1;
   categoriaFiltroDropdown = "TODOS";
+  ddTabMovil = 'alim';
   buscar.value = '';
   poblarDropdown('');
   document.getElementById('dd-backdrop').classList.add('show');
@@ -1953,17 +2191,22 @@ function poblarDropdown(filtro) {
     </div>`;
   }).join('');
 
-  dd.innerHTML = htmlFiltros + `
+  const tabsMovil = `<div class="dd-tabs-movil">
+    <button type="button" class="dd-tab-movil ${ddTabMovil==='alim'?'activo':''}" onclick="cambiarTabMovil('alim', event)">📋 Alimentos</button>
+    <button type="button" class="dd-tab-movil ${ddTabMovil==='fav'?'activo':''}" onclick="cambiarTabMovil('fav', event)">⭐ Favoritos</button>
+    <button type="button" class="dd-tab-movil ${ddTabMovil==='sug'?'activo':''}" onclick="cambiarTabMovil('sug', event)">💡 Sugerencias</button>
+  </div>`;
+  dd.innerHTML = tabsMovil + htmlFiltros + `
     <div class="dd-cuerpo-cols">
-      <div class="dd-columna">
+      <div class="dd-columna ${ddTabMovil==='alim'?'dd-col-activa':''}">
         <div class="dd-columna-titulo">📋 Alimentos (${categoriaFiltroDropdown})</div>
         ${htmlTodos}
       </div>
-      <div class="dd-columna">
+      <div class="dd-columna ${ddTabMovil==='fav'?'dd-col-activa':''}">
         <div class="dd-columna-titulo">⭐ Favoritos</div>
         ${htmlFavs}
       </div>
-      <div class="dd-columna dd-columna-sug">
+      <div class="dd-columna dd-columna-sug ${ddTabMovil==='sug'?'dd-col-activa':''}">
         <div class="dd-columna-titulo">💡 Sugerencias: ${TIPS_SUG[sugDropdownTipo]}</div>
         ${htmlTabsSug}
         ${htmlSugs}
@@ -2334,12 +2577,748 @@ function filtrarGlobal(val) {
   panel.innerHTML = html;
 }
 
+
+// ══════════════════════════════════════════════════════════════
+//  MEJORAS v3: respaldo, compras ✔/WhatsApp, menú móvil, costos,
+//  copiar día, comidas guardadas, completar faltante, revisión BD, nube
+// ══════════════════════════════════════════════════════════════
+const LS_EXCLUIDAS = ['nut_ultimo_respaldo'];
+function esClaveRespaldable(k) {
+  k = String(k);
+  return k.indexOf('nut_') === 0 && k.indexOf('nut_sync') !== 0 && !LS_EXCLUIDAS.includes(k);
+}
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fechaISO = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
+const leerLS = (k, def) => { try { const v = localStorage.getItem(k); return v == null ? def : JSON.parse(v); } catch (e) { return def; } };
+const abrirModal = id => document.getElementById(id).classList.add('show');
+const cerrarModal = id => document.getElementById(id).classList.remove('show');
+
+// Cualquier cambio guardado dispara la sincronización en la nube (si está activa)
+(function () {
+  const orig = Storage.prototype.setItem;
+  Storage.prototype.setItem = function (k, v) {
+    orig.call(this, k, v);
+    try { if (this === window.localStorage && esClaveRespaldable(k)) programarSync(); } catch (e) {}
+  };
+})();
+
+// Aviso breve (toast)
+let avisoTimeout = null;
+function mostrarAviso(txt) {
+  let t = document.getElementById('toast-aviso');
+  if (!t) { t = document.createElement('div'); t.id = 'toast-aviso'; t.className = 'toast-aviso'; document.body.appendChild(t); }
+  t.textContent = txt;
+  t.classList.add('show');
+  clearTimeout(avisoTimeout);
+  avisoTimeout = setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ───────────── 1. RESPALDO ─────────────
+function recolectarDatos() {
+  const d = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (esClaveRespaldable(k)) d[k] = localStorage.getItem(k);
+  }
+  return d;
+}
+
+function validarDatos(datos) {
+  if (!datos || typeof datos !== 'object') return 'El archivo no contiene datos.';
+  const claves = Object.keys(datos).filter(k => k.indexOf('nut_') === 0);
+  if (!claves.length) return 'Este archivo no es un respaldo del planificador.';
+  if (claves.some(k => typeof datos[k] !== 'string')) return 'El archivo está dañado.';
+  if (datos.nut_plan_semanal !== undefined) {
+    try { const p = JSON.parse(datos.nut_plan_semanal); if (!p || typeof p !== 'object') throw 0; }
+    catch (e) { return 'El plan guardado en el archivo está dañado.'; }
+  }
+  return null;
+}
+
+function aplicarDatos(datos) {
+  const borrar = [];
+  for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (esClaveRespaldable(k)) borrar.push(k); }
+  borrar.forEach(k => localStorage.removeItem(k));
+  Object.keys(datos).forEach(k => { if (esClaveRespaldable(k)) localStorage.setItem(k, datos[k]); });
+}
+
+function descargarRespaldo() {
+  const obj = { app: 'planificador-nutricional', version: 3, fecha: new Date().toISOString(), datos: recolectarDatos() };
+  const blob = new Blob([JSON.stringify(obj, null, 1)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'respaldo-plan-nutricional-' + fechaISO() + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+  try { localStorage.setItem('nut_ultimo_respaldo', String(Date.now())); } catch (e) {}
+  renderEstadoRespaldo();
+  actualizarAvisoRespaldo();
+}
+
+function restaurarRespaldo(ev) {
+  const f = ev.target.files && ev.target.files[0];
+  ev.target.value = '';
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    let obj;
+    try { obj = JSON.parse(r.result); } catch (e) { alert('No se pudo leer el archivo: no es un JSON válido.'); return; }
+    const datos = obj && obj.datos ? obj.datos : null;
+    const err = validarDatos(datos);
+    if (err) { alert('❌ ' + err); return; }
+    const cuando = obj.fecha ? new Date(obj.fecha).toLocaleString('es-PE') : 'fecha desconocida';
+    if (!confirm('Vas a REEMPLAZAR todo lo que hay en este navegador (plan, metas, favoritos, precios, plantillas, comidas) con el respaldo del ' + cuando + '.\n\n¿Continuar?')) return;
+    aplicarDatos(datos);
+    location.reload();
+  };
+  r.readAsText(f);
+}
+
+function textoHace(ts) {
+  const dias = Math.floor((Date.now() - ts) / 86400000);
+  return dias <= 0 ? 'hoy' : dias === 1 ? 'ayer' : 'hace ' + dias + ' días';
+}
+
+function renderEstadoRespaldo() {
+  const el = document.getElementById('resp-estado');
+  if (!el) return;
+  const ts = parseInt(localStorage.getItem('nut_ultimo_respaldo')) || 0;
+  if (!ts) { el.className = 'resp-estado mal'; el.textContent = '⚠️ Todavía no descargaste ningún respaldo. Tus datos solo viven en este navegador.'; return; }
+  const dias = Math.floor((Date.now() - ts) / 86400000);
+  el.className = 'resp-estado ' + (dias > 7 ? 'mal' : 'bien');
+  el.textContent = (dias > 7 ? '⚠️ ' : '✅ ') + 'Último respaldo: ' + textoHace(ts) + ' (' + new Date(ts).toLocaleDateString('es-PE') + ').';
+}
+
+function actualizarAvisoRespaldo() {
+  const b = document.getElementById('btn-respaldo');
+  if (!b) return;
+  const ts = parseInt(localStorage.getItem('nut_ultimo_respaldo')) || 0;
+  const viejo = !ts || (Date.now() - ts) > 7 * 86400000;
+  b.classList.toggle('aviso', viejo && !syncActivo());
+}
+
+function abrirRespaldo() {
+  renderEstadoRespaldo();
+  renderFormSync();
+  abrirModal('modal-respaldo');
+}
+
+// ───────────── 8. SINCRONIZAR CON FIREBASE ─────────────
+let syncTimer = null, fbDoc = null, syncCancelada = false;
+function syncActivo() {
+  try { return !!(localStorage.getItem('nut_sync_cfg') && localStorage.getItem('nut_sync_cod') && localStorage.getItem('nut_sync_on') === '1'); }
+  catch (e) { return false; }
+}
+function setSyncEstado(txt) { const el = document.getElementById('sync-estado'); if (el) el.textContent = txt; }
+function horaCorta() { return new Date().toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' }); }
+
+function programarSync() {
+  if (!syncActivo()) return;
+  clearTimeout(syncTimer);
+  setSyncEstado('⏳ Cambios pendientes de subir…');
+  syncTimer = setTimeout(() => subirNube(), 2500);
+}
+
+async function cargarFirebase() {
+  if (window.firebase && window.firebase.firestore) return;
+  const base = 'https://www.gstatic.com/firebasejs/10.12.2/';
+  for (const f of ['firebase-app-compat.js', 'firebase-firestore-compat.js']) {
+    await new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = base + f; s.onload = res; s.onerror = () => rej(new Error('No se pudo cargar ' + f));
+      document.head.appendChild(s);
+    });
+  }
+}
+
+async function conectarFirebase() {
+  if (fbDoc) return fbDoc;
+  const cfg = JSON.parse(localStorage.getItem('nut_sync_cfg'));
+  const cod = localStorage.getItem('nut_sync_cod');
+  await cargarFirebase();
+  const app = (firebase.apps || []).find(a => a.name === 'nutplan') || firebase.initializeApp(cfg, 'nutplan');
+  fbDoc = app.firestore().collection('planes').doc(cod);
+  return fbDoc;
+}
+
+async function subirNube() {
+  if (!syncActivo()) return;
+  try {
+    const doc = await conectarFirebase();
+    const datos = recolectarDatos();
+    if (JSON.stringify(datos).length > 900000) { setSyncEstado('⚠️ Tus datos son demasiado grandes para la nube (>900 KB).'); return; }
+    const ts = Date.now();
+    await doc.set({ datos, actualizado: ts, version: 3 });
+    localStorage.setItem('nut_sync_ts', String(ts));
+    setSyncEstado('☁️ Subido a la nube a las ' + horaCorta());
+  } catch (e) {
+    setSyncEstado('❌ No se pudo subir: ' + (e && e.message ? e.message : e));
+  }
+}
+
+async function bajarNube(preguntar) {
+  try {
+    const doc = await conectarFirebase();
+    const snap = await doc.get();
+    if (!snap.exists) { setSyncEstado('No hay nada guardado en la nube con ese código.'); return false; }
+    const d = snap.data();
+    const err = validarDatos(d.datos);
+    if (err) { setSyncEstado('❌ ' + err); return false; }
+    if (preguntar !== false) {
+      const cuando = d.actualizado ? new Date(d.actualizado).toLocaleString('es-PE') : 'fecha desconocida';
+      if (!confirm('Vas a REEMPLAZAR lo que hay en este dispositivo con la versión de la nube (' + cuando + ').\n\n¿Continuar?')) return false;
+    }
+    aplicarDatos(d.datos);
+    localStorage.setItem('nut_sync_ts', String(d.actualizado || Date.now()));
+    location.reload();
+    return true;
+  } catch (e) {
+    setSyncEstado('❌ No se pudo bajar: ' + (e && e.message ? e.message : e));
+    return false;
+  }
+}
+
+// Al abrir la página: si la nube tiene una versión más nueva, ofrece cargarla
+async function iniciarSync() {
+  if (!syncActivo()) return;
+  try {
+    const doc = await conectarFirebase();
+    const snap = await doc.get();
+    if (!snap.exists) { await subirNube(); return; }
+    const d = snap.data();
+    const localTs = parseInt(localStorage.getItem('nut_sync_ts')) || 0;
+    if ((d.actualizado || 0) > localTs + 1000) {
+      const iguales = JSON.stringify(d.datos || {}, Object.keys(d.datos || {}).sort()) === JSON.stringify(recolectarDatos(), Object.keys(recolectarDatos()).sort());
+      if (iguales) { localStorage.setItem('nut_sync_ts', String(d.actualizado)); setSyncEstado('☁️ Sincronizado'); return; }
+      const cuando = new Date(d.actualizado).toLocaleString('es-PE');
+      if (!validarDatos(d.datos) && confirm('☁️ Hay una versión más nueva en la nube (' + cuando + ').\n\nAceptar = cargarla en este dispositivo\nCancelar = seguir con lo de este dispositivo (se subirá cuando hagas un cambio)')) {
+        aplicarDatos(d.datos);
+        localStorage.setItem('nut_sync_ts', String(d.actualizado));
+        location.reload();
+        return;
+      }
+      setSyncEstado('Este dispositivo tiene datos distintos a la nube; se subirán al próximo cambio.');
+    } else {
+      setSyncEstado('☁️ Sincronizado (' + horaCorta() + ')');
+    }
+  } catch (e) {
+    setSyncEstado('❌ No se pudo conectar con la nube: ' + (e && e.message ? e.message : e));
+  }
+}
+
+function parsearConfigFirebase(txt) {
+  const m = String(txt || '').match(/\{[\s\S]*\}/);
+  if (!m) throw new Error('No encontré el bloque { ... } de la configuración.');
+  let s = m[0].replace(/\/\/.*$/gm, '').replace(/'/g, '"').replace(/([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g, '$1"$2":').replace(/,\s*}/g, '}');
+  const cfg = JSON.parse(s);
+  if (!cfg.apiKey || !cfg.projectId) throw new Error('Faltan apiKey o projectId en la configuración.');
+  return cfg;
+}
+
+function generarCodigoSync() {
+  const a = new Uint8Array(12); crypto.getRandomValues(a);
+  const cod = Array.from(a).map(b => b.toString(36).padStart(2, '0')).join('').slice(0, 24);
+  document.getElementById('sync-codigo').value = cod;
+}
+
+async function guardarYConectarSync() {
+  try {
+    const cfg = parsearConfigFirebase(document.getElementById('sync-config').value || localStorage.getItem('nut_sync_cfg'));
+    const cod = (document.getElementById('sync-codigo').value || '').trim();
+    if (!/^[A-Za-z0-9_-]{12,}$/.test(cod)) { alert('El código de sincronización debe tener al menos 12 letras o números (usa el botón "Generar código").'); return; }
+    localStorage.setItem('nut_sync_cfg', JSON.stringify(cfg));
+    localStorage.setItem('nut_sync_cod', cod);
+    localStorage.setItem('nut_sync_on', '1');
+    fbDoc = null;
+    setSyncEstado('Conectando…');
+    renderFormSync();
+    await iniciarSync();
+    actualizarAvisoRespaldo();
+  } catch (e) { alert('❌ ' + e.message); }
+}
+
+function desconectarSync() {
+  if (!confirm('¿Desconectar la sincronización? Tus datos en la nube no se borran.')) return;
+  ['nut_sync_cfg', 'nut_sync_cod', 'nut_sync_on', 'nut_sync_ts'].forEach(k => localStorage.removeItem(k));
+  fbDoc = null; clearTimeout(syncTimer);
+  renderFormSync();
+  actualizarAvisoRespaldo();
+}
+
+function renderFormSync() {
+  const on = syncActivo();
+  const cfg = document.getElementById('sync-config'), cod = document.getElementById('sync-codigo');
+  if (!cfg) return;
+  if (on) {
+    cfg.value = ''; cfg.placeholder = '(configuración guardada en este navegador)';
+    cod.value = localStorage.getItem('nut_sync_cod') || '';
+  }
+  document.getElementById('sync-botones-on').style.display = on ? 'flex' : 'none';
+  document.getElementById('sync-btn-conectar').textContent = on ? '🔄 Actualizar conexión' : '🔌 Guardar y conectar';
+  if (!on) setSyncEstado('Sin conectar.');
+}
+
+// ───────────── 7. REVISIÓN DE LA BASE DE DATOS ─────────────
+const RX_ALCOHOL = /vino|cerveza|pisco|ron\b|whisk|vodka|licor|tequila|brandy|ginebra|champ|sangr|cocktail|cóctel|anís|anisete|martini|jerez|oporto|sidra|mistela|sake|amaretto|aguardiente|coñac|algarrobina|chicha de jora|vermut/i;
+let bdFilas = [], bdVista = 'revisar';
+
+function analizarBD() {
+  const out = [];
+  BASE.forEach(a => {
+    const kc = +a.kcal || 0, p = +a.proteinas || 0, c = +a.carbohidratos || 0, g = +a.grasas || 0, fb = +a.fibra || 0;
+    const calc = 4 * p + 4 * c + 9 * g;
+    const alt = 4 * p + 4 * Math.max(c - fb, 0) + 2 * fb + 9 * g;
+    const tol = Math.max(25, 0.2 * kc);
+    let motivo = null, nivel = null;
+    if (kc < 0 || p < 0 || c < 0 || g < 0 || fb < 0) { motivo = 'Hay valores negativos'; nivel = 'revisar'; }
+    else if (p + c + g > 100.5) { motivo = 'Proteína + carbohidratos + grasa suman más de 100 g en 100 g'; nivel = 'revisar'; }
+    else if (kc === 0 && (p + c + g) > 1) { motivo = 'Calorías en 0 pero tiene macros'; nivel = 'revisar'; }
+    else if (Math.abs(kc - calc) > tol) {
+      if (Math.abs(kc - alt) <= tol) { motivo = 'Los carbohidratos incluyen la fibra (normal en las tablas peruanas)'; nivel = 'normal'; }
+      else if (kc > calc && RX_ALCOHOL.test(a.nombre)) { motivo = 'Contiene alcohol (7 kcal/g, no se ve en los macros)'; nivel = 'normal'; }
+      else { motivo = 'Las calorías no cuadran con proteína, carbohidratos y grasa'; nivel = 'revisar'; }
+    }
+    if (motivo) out.push({ nombre: a.nombre, fuente: a.fuente, kcal: kc, calc: Math.round(calc), prot: p, carb: c, grasa: g, fibra: fb, dif: Math.round(kc - calc), motivo, nivel });
+  });
+  return out.sort((x, y) => Math.abs(y.dif) - Math.abs(x.dif));
+}
+
+function abrirRevisionBD() {
+  bdFilas = analizarBD();
+  bdVista = 'revisar';
+  renderRevisionBD();
+  abrirModal('modal-bd');
+}
+function cambiarVistaBD(v) { bdVista = v; renderRevisionBD(); }
+
+function renderRevisionBD() {
+  const rev = bdFilas.filter(f => f.nivel === 'revisar'), nor = bdFilas.filter(f => f.nivel === 'normal');
+  const lista = bdVista === 'revisar' ? rev : nor;
+  let h = `<div class="bd-tabs">
+    <button class="${bdVista === 'revisar' ? 'activo' : ''}" onclick="cambiarVistaBD('revisar')">🔎 Para revisar (${rev.length})</button>
+    <button class="${bdVista === 'normal' ? 'activo' : ''}" onclick="cambiarVistaBD('normal')">✔️ Con explicación normal (${nor.length})</button>
+  </div>
+  <p class="bd-nota">Se compara la caloría de la tabla con la que salen de los macros (4·proteína + 4·carbohidratos + 9·grasa). Se marca cuando la diferencia supera 20 % (mínimo 25 kcal). <b>Solo es una lista</b>: no se cambió ningún dato de tu base.</p>`;
+  h += `<div class="bd-wrap"><table class="bd-tabla"><thead><tr><th>Alimento</th><th>Fuente</th><th>kcal tabla</th><th>kcal por macros</th><th>Dif.</th><th>Prot</th><th>Carb</th><th>Grasa</th><th>Motivo</th></tr></thead><tbody>`;
+  lista.slice(0, 400).forEach(f => {
+    h += `<tr><td>${esc(f.nombre)}</td><td>${f.fuente === 'Tablas Peruanas' ? 'PE' : 'INT'}</td><td>${f.kcal}</td><td>${f.calc}</td><td class="${f.dif > 0 ? 'pos' : 'neg'}">${f.dif > 0 ? '+' : ''}${f.dif}</td><td>${f.prot}</td><td>${f.carb}</td><td>${f.grasa}</td><td>${esc(f.motivo)}</td></tr>`;
+  });
+  if (!lista.length) h += `<tr><td colspan="9" style="text-align:center;padding:16px">Nada que mostrar aquí 🎉</td></tr>`;
+  h += `</tbody></table></div>` + (lista.length > 400 ? `<p class="bd-nota">Se muestran las 400 con mayor diferencia; el CSV trae todas.</p>` : '');
+  document.getElementById('bd-contenido').innerHTML = h;
+}
+
+function descargarCSVBD() {
+  const cab = ['Alimento', 'Fuente', 'kcal tabla', 'kcal por macros', 'Diferencia', 'Proteina', 'Carbohidratos', 'Grasa', 'Fibra', 'Tipo', 'Motivo'];
+  const q = v => '"' + String(v).replace(/"/g, '""') + '"';
+  const filas = bdFilas.map(f => [f.nombre, f.fuente, f.kcal, f.calc, f.dif, f.prot, f.carb, f.grasa, f.fibra, f.nivel === 'revisar' ? 'REVISAR' : 'normal', f.motivo].map(q).join(','));
+  const blob = new Blob(['﻿' + [cab.map(q).join(',')].concat(filas).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'base-datos-filas-sospechosas.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+}
+
+// ───────────── 3. COMPRAS: ✔ COMPRADO + WHATSAPP ─────────────
+let comprados = leerLS('nut_comprados', {});
+function guardarComprados() { try { localStorage.setItem('nut_comprados', JSON.stringify(comprados)); } catch (e) {} }
+
+function marcarComprado(i, chk) {
+  const f = filasCompras[i];
+  if (!f) return;
+  if (chk) comprados[f.key] = 1; else delete comprados[f.key];
+  guardarComprados();
+  const tr = document.getElementById('tc-' + i).parentElement;
+  tr.classList.toggle('comprado', !!chk);
+  recalcularTotalesCompras();
+}
+
+function limpiarComprados() {
+  if (!Object.keys(comprados).length) return;
+  if (!confirm('¿Desmarcar todos los ✔ de la lista de compras?')) return;
+  comprados = {};
+  guardarComprados();
+  renderizarContenidoModalCompras();
+}
+
+function textoListaCompras(soloPendientes) {
+  construirFilasCompras();
+  const pend = filasCompras.filter(f => !soloPendientes || !comprados[f.key]);
+  if (!pend.length) return '';
+  let t = '🛒 *Lista de compras* (' + periodoActualDias + ' días)\n';
+  let total = 0;
+  ORDEN_CATS.forEach(cat => {
+    const items = pend.filter(f => f.cat === cat);
+    if (!items.length) return;
+    t += '\n' + TIT_CATS[cat] + '\n';
+    items.forEach(f => {
+      const c = parseFloat(f.cant);
+      const cantTxt = isNaN(c) ? '' : ' — ' + (+c.toFixed(2)) + ' ' + f.base;
+      const tf = totalFila(f); total += tf;
+      t += (comprados[f.key] ? '✅ ' : '⬜ ') + f.nombre + cantTxt + (tf > 0 ? ' (' + fmtS(tf) + ')' : '') + '\n';
+    });
+  });
+  if (total > 0) t += '\n💰 Total: ' + fmtS(total);
+  return t.trim();
+}
+
+function enviarComprasWhatsApp() {
+  const t = textoListaCompras(true);
+  if (!t) { alert('No hay nada pendiente por comprar 🎉'); return; }
+  window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
+}
+
+async function copiarListaCompras() {
+  const t = textoListaCompras(true);
+  if (!t) { alert('No hay nada pendiente por comprar 🎉'); return; }
+  try { await navigator.clipboard.writeText(t); mostrarAviso('📋 Lista copiada'); }
+  catch (e) { prompt('Copia la lista:', t); }
+}
+
+// ───────────── 2. COSTOS DEL DÍA Y LA SEMANA ─────────────
+let presupuestoSemanal = leerLS('nut_presupuesto', 0) || 0;
+
+function costoGramos(nombre, fuente, gr) {
+  const b = buscarBase(nombre, fuente);
+  const f = fuente || (b && b.fuente) || '';
+  const p = preciosCompras[nombre + '||' + f];
+  if (!p || p.precio === null || p.precio === undefined || p.precio === '' || isNaN(parseFloat(p.precio))) return null;
+  const pu = pesoUnidadDe(nombre, f);
+  const base = p.base || (pu ? 'und' : 'kg');
+  return (base === 'und' && pu) ? (gr / pu) * parseFloat(p.precio) : (gr / 1000) * parseFloat(p.precio);
+}
+
+function costoDia(dia) {
+  let total = 0; const faltan = new Set();
+  Object.values(planSemanal[dia] || {}).forEach(items => (items || []).forEach(it => {
+    if (!it.nombre) return;
+    const gr = calcularGramosTotales(it);
+    if (gr <= 0) return;
+    const c = costoGramos(it.nombre, it.fuente, gr);
+    if (c === null) faltan.add(it.nombre); else total += c;
+  }));
+  return { total, faltan: [...faltan] };
+}
+
+function costoSemana() {
+  let total = 0; const faltan = new Set();
+  DIAS.forEach(d => { const c = costoDia(d); total += c.total; c.faltan.forEach(n => faltan.add(n)); });
+  return { total, faltan: [...faltan] };
+}
+
+function guardarPresupuesto(v) {
+  presupuestoSemanal = Math.max(0, parseFloat(v) || 0);
+  try { localStorage.setItem('nut_presupuesto', JSON.stringify(presupuestoSemanal)); } catch (e) {}
+  renderCostos();
+}
+
+function renderCostos() {
+  const cont = document.getElementById('panel-costos');
+  if (!cont) return;
+  const hoy = costoDia(diaActivo), sem = costoSemana();
+  const hayPrecios = Object.values(preciosCompras).some(p => p && parseFloat(p.precio) > 0);
+  let h = `<div class="costos-fila">
+    <div class="costo-chip">💰 ${diaActivo}: <b>${fmtS(hoy.total)}</b></div>
+    <div class="costo-chip">📅 Semana: <b>${fmtS(sem.total)}</b></div>
+    <label class="costo-pres">Presupuesto semanal: S/ <input type="number" min="0" step="1" value="${presupuestoSemanal || ''}" placeholder="0" onchange="guardarPresupuesto(this.value)"></label>
+  </div>`;
+  if (presupuestoSemanal > 0) {
+    const pct = Math.round(sem.total / presupuestoSemanal * 100);
+    const col = pct > 100 ? '#dc2626' : pct >= 85 ? 'var(--oro)' : 'var(--verde)';
+    const resto = presupuestoSemanal - sem.total;
+    h += `<div class="costo-barra"><div class="progress-track"><div class="progress-fill" style="width:${Math.min(100, pct)}%;background:${col}"></div></div>
+      <div class="costo-barra-txt">${pct}% del presupuesto · ${resto >= 0 ? 'te sobran ' + fmtS(resto) : 'te pasas por ' + fmtS(-resto)}</div></div>`;
+  }
+  if (sem.faltan.length) {
+    h += `<div class="costo-aviso">${hayPrecios ? '⚠️ Faltan precios de ' + sem.faltan.length + ' alimento(s), por eso el total puede ser mayor.' : '💡 Pon el costo unitario de tus alimentos en 🛒 Compras y aquí verás cuánto cuesta cada día y la semana.'}
+      <button onclick="abrirModalCompras()">Poner precios</button></div>`;
+  }
+  h += `<div class="costo-nota">Costo proporcional a lo que comes. Lo que pagas en el mercado (unidades y kilos enteros) está en 🛒 Compras.</div>`;
+  cont.innerHTML = h;
+}
+
+// ───────────── 4. COPIAR DÍA / SECCIÓN A VARIOS DÍAS ─────────────
+let copiarCtx = null;
+function duplicarDiaActual() { abrirCopiar(diaActivo, null); }
+function copiarSeccionAOtroDia(dia, bloque) { abrirCopiar(dia, bloque); }
+
+function abrirCopiar(dia, bloque) {
+  copiarCtx = { dia, bloque };
+  document.getElementById('copiar-titulo').textContent = bloque ? '📋 Copiar «' + bloque + '» de ' + dia : '📋 Copiar todo ' + dia;
+  document.getElementById('copiar-dias').innerHTML = DIAS.filter(d => d !== dia).map(d =>
+    `<label class="chk-dia"><input type="checkbox" value="${d}"> ${d}</label>`).join('');
+  document.querySelector('input[name="copiar-modo"][value="reemplazar"]').checked = true;
+  abrirModal('modal-copiar');
+}
+
+function marcarDiasCopiar(grupo) {
+  const lv = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'], fs = ['Sábado', 'Domingo'];
+  document.querySelectorAll('#copiar-dias input').forEach(c => {
+    c.checked = grupo === 'todos' ? true : grupo === 'ninguno' ? false : grupo === 'lv' ? lv.includes(c.value) : fs.includes(c.value);
+  });
+}
+
+function aplicarCopiar() {
+  const { dia, bloque } = copiarCtx;
+  const destinos = [...document.querySelectorAll('#copiar-dias input:checked')].map(c => c.value);
+  if (!destinos.length) { alert('Marca al menos un día destino.'); return; }
+  const modo = document.querySelector('input[name="copiar-modo"]:checked').value;
+  const clon = x => JSON.parse(JSON.stringify(x));
+  destinos.forEach(d => {
+    if (!planSemanal[d]) planSemanal[d] = {};
+    if (!bloque) {
+      if (modo === 'reemplazar') planSemanal[d] = clon(planSemanal[dia]);
+      else Object.keys(planSemanal[dia]).forEach(b => { planSemanal[d][b] = (planSemanal[d][b] || []).concat(clon(planSemanal[dia][b])); });
+    } else {
+      const items = clon(planSemanal[dia][bloque] || []);
+      planSemanal[d][bloque] = modo === 'reemplazar' ? items : (planSemanal[d][bloque] || []).concat(items);
+    }
+  });
+  guardarPlanEnStorage();
+  cerrarModal('modal-copiar');
+  renderDia(); renderResumen(); renderBarrasObjetivos();
+  mostrarAviso('✅ Copiado a: ' + destinos.join(', '));
+}
+
+// ───────────── 4b. COMIDAS GUARDADAS ─────────────
+let comidasGuardadas = leerLS('nut_comidas', {});
+let comidasCtx = null;
+function guardarComidasLS() { try { localStorage.setItem('nut_comidas', JSON.stringify(comidasGuardadas)); } catch (e) {} }
+
+function abrirComidas(dia, bloque) {
+  comidasCtx = { dia, bloque };
+  renderComidas();
+  abrirModal('modal-comidas');
+}
+
+function totalesItems(items) {
+  const t = { kcal: 0, prot: 0, carb: 0, grasa: 0 };
+  (items || []).forEach(it => { const n = getNut(it); t.kcal += n.kcal; t.prot += n.prot; t.carb += n.carb; t.grasa += n.grasa; });
+  return t;
+}
+
+function renderComidas() {
+  const { dia, bloque } = comidasCtx;
+  const itemsSeccion = ((planSemanal[dia] || {})[bloque] || []).filter(i => i.nombre);
+  const nombres = Object.keys(comidasGuardadas);
+  let h = `<div class="comida-guardar">
+      <div class="comida-sub">Guardar lo que tienes en «${esc(bloque)}» (${itemsSeccion.length} alimento${itemsSeccion.length === 1 ? '' : 's'}) como comida reutilizable:</div>
+      <div class="comida-guardar-fila">
+        <input type="text" id="comida-nombre" maxlength="60" placeholder="Nombre (ej. Desayuno de avena)" value="${esc(bloque)}">
+        <button class="btn-sug-add" onclick="guardarComida()" ${itemsSeccion.length ? '' : 'disabled'}>💾 Guardar</button>
+      </div>
+    </div>
+    <div class="sug-destino"><label>Al agregar, poner en: <select id="comida-dest">
+      <option value="dia">Solo ${esc(dia)}</option><option value="semana">Toda la semana (7 días)</option></select></label></div>`;
+  if (!nombres.length) h += `<div class="vacio-txt" style="padding:14px;text-align:center">Todavía no tienes comidas guardadas. Arma una sección, ponle nombre arriba y guárdala.</div>`;
+  nombres.forEach((n, i) => {
+    const items = comidasGuardadas[n], t = totalesItems(items);
+    h += `<div class="sug-item">
+      <div class="sug-info">
+        <div class="sug-nombre">${esc(n)}</div>
+        <div class="sug-why">${items.map(it => esc(it.nombre)).join(' · ')}</div>
+        <div class="sug-nut">${Math.round(t.kcal)} kcal · P ${t.prot.toFixed(1)} g · C ${t.carb.toFixed(1)} g · G ${t.grasa.toFixed(1)} g</div>
+      </div>
+      <div class="sug-accion">
+        <button class="btn-sug-add" onclick="insertarComida(${i})">＋ Agregar</button>
+        <button class="btn-del" title="Borrar comida guardada" onclick="borrarComida(${i})">✕</button>
+      </div>
+    </div>`;
+  });
+  document.getElementById('comidas-contenido').innerHTML = h;
+}
+
+function guardarComida() {
+  const { dia, bloque } = comidasCtx;
+  const nombre = (document.getElementById('comida-nombre').value || '').trim();
+  if (!nombre) { alert('Escribe un nombre para la comida.'); return; }
+  const items = ((planSemanal[dia] || {})[bloque] || []).filter(i => i.nombre).map(i => JSON.parse(JSON.stringify(i)));
+  if (!items.length) return;
+  if (comidasGuardadas[nombre] && !confirm('Ya existe una comida llamada «' + nombre + '». ¿Reemplazarla?')) return;
+  comidasGuardadas[nombre] = items;
+  guardarComidasLS();
+  renderComidas();
+  mostrarAviso('💾 Comida «' + nombre + '» guardada');
+}
+
+function insertarComida(i) {
+  const { dia, bloque } = comidasCtx;
+  const nombre = Object.keys(comidasGuardadas)[i];
+  const dias = document.getElementById('comida-dest').value === 'semana' ? DIAS : [dia];
+  dias.forEach(d => {
+    if (!planSemanal[d]) planSemanal[d] = {};
+    if (!planSemanal[d][bloque]) planSemanal[d][bloque] = [];
+    comidasGuardadas[nombre].forEach(it => planSemanal[d][bloque].push(JSON.parse(JSON.stringify(it))));
+  });
+  guardarPlanEnStorage();
+  cerrarModal('modal-comidas');
+  renderDia(); renderResumen(); renderBarrasObjetivos();
+  mostrarAviso('🍽️ «' + nombre + '» agregada a ' + bloque);
+}
+
+function borrarComida(i) {
+  const nombre = Object.keys(comidasGuardadas)[i];
+  if (!confirm('¿Borrar la comida guardada «' + nombre + '»? No afecta tu plan.')) return;
+  delete comidasGuardadas[nombre];
+  guardarComidasLS();
+  renderComidas();
+}
+
+// ───────────── 5. COMPLETAR LO QUE FALTA ─────────────
+const CAND_COMPLETAR = [
+  {n:'Pollo, Pechuga, asado', f:'Internacional', g:150, why:'Proteína magra'},
+  {n:'Huevo entero crudo', f:'Internacional', g:100, why:'Proteína completa (2 huevos)'},
+  {n:'Pescado atún, enlatado en agua', f:'Tablas Peruanas', g:120, why:'Proteína sin grasa'},
+  {n:'Yogur, griego natural', f:'Internacional', g:150, why:'Proteína + probióticos'},
+  {n:'Lentejas, no agregadas grasas en la cocción', f:'Internacional', g:150, why:'Proteína vegetal + fibra'},
+  {n:'Queso Fresco (de Burgos)', f:'Internacional', g:60, why:'Proteína'},
+  {n:'Camote blanco', f:'Tablas Peruanas', g:150, why:'Carbohidrato de absorción lenta'},
+  {n:'Papa blanca', f:'Tablas Peruanas', g:200, why:'Carbohidrato'},
+  {n:'Avena envasada', f:'Tablas Peruanas', g:50, why:'Carbohidrato con fibra soluble'},
+  {n:'Quinua cocida', f:'Tablas Peruanas', g:150, why:'Carbohidrato con proteína'},
+  {n:'Pan integral', f:'Internacional', g:60, why:'Carbohidrato (2 rebanadas)'},
+  {n:'Plátano crudo', f:'Internacional', g:118, why:'Carbohidrato rápido + potasio'},
+  {n:'Palta', f:'Tablas Peruanas', g:60, why:'Grasa buena'},
+  {n:'Aceite de oliva', f:'Internacional', g:10, why:'Grasa buena (1 cucharada)'},
+  {n:'Almendras sin sal', f:'Internacional', g:25, why:'Grasa buena + fibra'},
+  {n:'Nueces (castellanas)', f:'Internacional', g:25, why:'Omega-3'},
+  {n:'Maní tostado, sin película', f:'Tablas Peruanas', g:25, why:'Grasa + proteína'}
+];
+let completarLista = [];
+
+function propuestaCompletar() {
+  const t = totalDia(diaActivo), m = metasNutricionales;
+  const meta = { kcal: m.kcal || 1, prot: m.prot || 1, carb: m.carb || 1, grasa: m.grasa || 1 };
+  let falta = { kcal: m.kcal - t.kcal, prot: m.prot - t.prot, carb: m.carb - t.carb, grasa: m.grasa - t.grasa };
+  const peso = { kcal: 1, prot: 1.5, carb: 1, grasa: 1 }, exceso = { kcal: 4, prot: 1.5, carb: 3, grasa: 4 };
+  const score = f => Object.keys(meta).reduce((s, k) => {
+    const r = f[k] / meta[k];
+    return s + (r > 0 ? peso[k] * r * r : exceso[k] * r * r);
+  }, 0);
+  const cands = CAND_COMPLETAR.map(c => ({ c, b: buscarBase(c.n, c.f) })).filter(x => x.b);
+  const elegidos = [], usados = new Set();
+  let actual = score(falta);
+  for (let paso = 0; paso < 8 && falta.kcal > 60; paso++) {
+    let mejor = null;
+    cands.forEach(({ c, b }) => {
+      if (usados.has(c.n)) return;
+      [0.5, 1, 1.5, 2].forEach(mult => {
+        const g = Math.max(5, Math.round(c.g * mult / 5) * 5);
+        const k = g / 100;
+        const r = { kcal: falta.kcal - (b.kcal || 0) * k, prot: falta.prot - (b.proteinas || 0) * k, carb: falta.carb - (b.carbohidratos || 0) * k, grasa: falta.grasa - (b.grasas || 0) * k };
+        const s = score(r);
+        if (!mejor || s < mejor.s) mejor = { c, b, g, r, s };
+      });
+    });
+    if (!mejor || mejor.s > actual - 0.004) break;
+    usados.add(mejor.c.n); elegidos.push(mejor); falta = mejor.r; actual = mejor.s;
+  }
+  return elegidos.map(e => ({ n: e.c.n, f: e.c.f, g: e.g, why: e.c.why }));
+}
+
+function abrirCompletar() {
+  completarLista = propuestaCompletar();
+  const bloques = Object.keys(planSemanal[diaActivo] || {});
+  document.getElementById('comp-bloque').innerHTML = (bloques.length ? bloques : ['COMPLETAR']).map(b => `<option value="${esc(b)}">${esc(b)}</option>`).join('');
+  renderCompletar();
+  abrirModal('modal-completar');
+}
+
+function nutCompletar(it) {
+  const b = buscarBase(it.n, it.f), k = (parseFloat(it.g) || 0) / 100;
+  return { kcal: (b.kcal || 0) * k, prot: (b.proteinas || 0) * k, carb: (b.carbohidratos || 0) * k, grasa: (b.grasas || 0) * k };
+}
+
+function renderCompletar() {
+  const t = totalDia(diaActivo), m = metasNutricionales;
+  const f = { kcal: m.kcal - t.kcal, prot: m.prot - t.prot, carb: m.carb - t.carb, grasa: m.grasa - t.grasa };
+  const sg = v => (v >= 0 ? Math.round(v) : '+' + Math.round(-v));
+  let h = `<div class="comp-faltan"><b>Hoy (${esc(diaActivo)}) te faltan:</b>
+    <span>⚡ ${sg(f.kcal)} kcal</span><span>💪 ${sg(f.prot)} g prot</span><span>🌾 ${sg(f.carb)} g carb</span><span>🥑 ${sg(f.grasa)} g grasa</span>
+    <small>(un “+” significa que ya te pasaste de esa meta)</small></div>`;
+  if (f.kcal <= 60) {
+    h += `<div class="vacio-txt" style="padding:16px;text-align:center">🎉 Ya llegaste a tu meta de calorías de ${esc(diaActivo)}. No hace falta agregar más.</div>`;
+    document.getElementById('comp-lista').innerHTML = h; document.getElementById('comp-proy').innerHTML = ''; return;
+  }
+  if (!completarLista.length) {
+    h += `<div class="vacio-txt" style="padding:16px;text-align:center">No encontré una combinación que mejore tu día. Revisa tus metas en ⚡ Metas.</div>`;
+    document.getElementById('comp-lista').innerHTML = h; document.getElementById('comp-proy').innerHTML = ''; return;
+  }
+  completarLista.forEach((it, i) => {
+    const b = buscarBase(it.n, it.f);
+    h += `<div class="sug-item" id="comp-item-${i}">
+      <div class="sug-info"><div class="sug-nombre">${esc(b.nombre)} <small>[${b.fuente === 'Tablas Peruanas' ? 'PE' : 'INT'}]</small></div>
+        <div class="sug-why">${esc(it.why)}</div><div class="sug-nut" id="comp-nut-${i}"></div></div>
+      <div class="sug-accion"><input type="number" min="1" step="5" value="${it.g}" id="comp-g-${i}" oninput="completarCambioGramos(${i})"> <span>g</span>
+        <button class="btn-sug-add" id="comp-btn-${i}" onclick="agregarCompletar(${i})">＋ Agregar</button></div>
+    </div>`;
+  });
+  document.getElementById('comp-lista').innerHTML = h;
+  completarLista.forEach((it, i) => actualizarFilaCompletar(i));
+  actualizarProyeccionCompletar();
+}
+
+function actualizarFilaCompletar(i) {
+  const it = completarLista[i], inp = document.getElementById('comp-g-' + i);
+  if (inp) it.g = parseFloat(inp.value) || 0;
+  const n = nutCompletar(it), el = document.getElementById('comp-nut-' + i);
+  if (el) el.textContent = Math.round(n.kcal) + ' kcal · P ' + n.prot.toFixed(1) + ' g · C ' + n.carb.toFixed(1) + ' g · G ' + n.grasa.toFixed(1) + ' g';
+}
+function completarCambioGramos(i) { actualizarFilaCompletar(i); actualizarProyeccionCompletar(); }
+
+function actualizarProyeccionCompletar() {
+  const t = totalDia(diaActivo), m = metasNutricionales;
+  const p = { kcal: t.kcal, prot: t.prot, carb: t.carb, grasa: t.grasa };
+  completarLista.forEach((it, i) => {
+    const btn = document.getElementById('comp-btn-' + i);
+    if (btn && btn.classList.contains('ok')) return;   // ya está dentro del total del día
+    const n = nutCompletar(it); p.kcal += n.kcal; p.prot += n.prot; p.carb += n.carb; p.grasa += n.grasa;
+  });
+  const pc = (a, b) => Math.round(a / (b || 1) * 100) + '%';
+  document.getElementById('comp-proy').innerHTML = `<b>Si agregas todo quedarías en:</b>
+    <span>⚡ ${Math.round(p.kcal)} / ${m.kcal} kcal (${pc(p.kcal, m.kcal)})</span><span>💪 ${p.prot.toFixed(0)} / ${m.prot} g (${pc(p.prot, m.prot)})</span>
+    <span>🌾 ${p.carb.toFixed(0)} / ${m.carb} g (${pc(p.carb, m.carb)})</span><span>🥑 ${p.grasa.toFixed(0)} / ${m.grasa} g (${pc(p.grasa, m.grasa)})</span>`;
+}
+
+function agregarItemCompletar(i, bloque) {
+  const it = completarLista[i], b = buscarBase(it.n, it.f);
+  const g = parseFloat(document.getElementById('comp-g-' + i).value) || 0;
+  if (!b || g <= 0) return false;
+  if (!planSemanal[diaActivo][bloque]) planSemanal[diaActivo][bloque] = [];
+  planSemanal[diaActivo][bloque].push({ nombre: b.nombre, fuente: b.fuente, cant: 0, pesoKg: g, pesoU: 'g' });
+  const btn = document.getElementById('comp-btn-' + i);
+  if (btn) { btn.textContent = '✓ Agregado'; btn.classList.add('ok'); }
+  return true;
+}
+function agregarCompletar(i) {
+  if (!agregarItemCompletar(i, document.getElementById('comp-bloque').value)) return;
+  guardarPlanEnStorage(); renderDia(); renderResumen(); renderBarrasObjetivos();
+  actualizarProyeccionCompletar();
+}
+function agregarTodoCompletar() {
+  const bloque = document.getElementById('comp-bloque').value;
+  completarLista.forEach((it, i) => { const btn = document.getElementById('comp-btn-' + i); if (btn && !btn.classList.contains('ok')) agregarItemCompletar(i, bloque); });
+  guardarPlanEnStorage(); renderDia(); renderResumen(); renderBarrasObjetivos();
+  actualizarProyeccionCompletar();
+}
+
+// ───────────── 6. MENÚ DE ALIMENTOS CON PESTAÑAS EN CELULAR ─────────────
+let ddTabMovil = 'alim';
+function cambiarTabMovil(t, ev) {
+  if (ev) { ev.stopPropagation(); ev.preventDefault(); }
+  ddTabMovil = t;
+  poblarDropdown(textoBuscarDD());
+  enfocarBuscarDD();
+}
+
 document.getElementById('badge-total').textContent = BASE.length + ' alimentos';
 document.getElementById('sub-total').textContent = BASE.length;
 renderNav();
 renderResumen();
 renderDia();
 renderBarrasObjetivos();
+actualizarAvisoRespaldo();
+iniciarSync();
 </script>
 </body>
 </html>
