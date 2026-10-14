@@ -129,15 +129,22 @@
     .sel-alimento textarea:focus { border-color:var(--azul); box-shadow:0 0 0 3px rgba(37,99,235,0.15); background:white; }
     
     /* DROPDOWN DE 2 COLUMNAS Y FILTROS POR CATEGORÍA */
-    .dropdown { position:absolute; top:100%; left:0; width:900px; max-width:calc(100vw - 20px); max-height:400px; overflow-y:auto; background:white; border:1px solid #cbd5e1; border-radius:9px; box-shadow:0 8px 24px rgba(0,0,0,.18); z-index:1000; display:none; flex-direction:column; text-align:left; }
+    .dropdown { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:900px; max-width:calc(100vw - 24px); max-height:86vh; overflow:hidden; overscroll-behavior:contain; background:white; border:1px solid #cbd5e1; border-radius:9px; box-shadow:0 8px 24px rgba(0,0,0,.18); z-index:1000; display:none; flex-direction:column; text-align:left; }
     .dropdown.show { display:flex; }
+    .dd-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.45); z-index:999; display:none; }
+    .dd-backdrop.show { display:block; }
+    .dd-buscar-wrap { display:flex; gap:8px; padding:10px 12px; border-bottom:1px solid #cbd5e1; background:#fff; border-radius:9px 9px 0 0; }
+    #dd-buscar { flex:1; padding:10px 14px; font-size:14px; border:2px solid #3b82f6; border-radius:10px; outline:none; background:#fff; color:#0f172a; }
+    .dd-cerrar { background:#e2e8f0; color:#334155; border:none; border-radius:10px; width:40px; font-size:16px; font-weight:800; cursor:pointer; }
+    #dd-contenido { display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+    body.dark .dd-buscar-wrap { background:#1e293b; border-color:#334155; } body.dark #dd-buscar { background:#0f172a; color:#f1f5f9; } body.dark .dd-cerrar { background:#334155; color:#e2e8f0; }
     
     .dd-filtros-bar { padding: 8px 12px; background: #f1f5f9; border-bottom: 1px solid #cbd5e1; display: flex; gap: 6px; flex-wrap: wrap; }
     .dd-filtro-btn { background: white; border: 1px solid #cbd5e1; border-radius: 14px; padding: 4px 10px; font-size: 11px; font-weight: 700; cursor: pointer; color: #475569; transition: all 0.2s; }
     .dd-filtro-btn.activo { background: var(--azul); color: white; border-color: var(--azul); }
 
     .dd-cuerpo-cols { display: flex; flex: 1; overflow: hidden; }
-    .dd-columna { flex: 1; padding: 6px; overflow-y: auto; max-height: 320px; min-width:0; }
+    .dd-columna { flex: 1; padding: 6px; overflow-y: auto; max-height: calc(86vh - 150px); min-width:0; overscroll-behavior:contain; }
     .dd-columna + .dd-columna { border-left: 1px solid #e2e8f0; }
     .dd-columna-sug { background:#fffbeb; }
     .dd-columna-sug .dd-columna-titulo { background:#fef3c7; color:#92400e; line-height:1.2; }
@@ -549,7 +556,14 @@
 </div>
 
 <!-- Dropdown de 2 columnas -->
-<div class="dropdown" id="dropdown-global"></div>
+<div class="dd-backdrop" id="dd-backdrop"></div>
+<div class="dropdown" id="dropdown-global">
+  <div class="dd-buscar-wrap">
+    <input type="text" id="dd-buscar" placeholder="🔍 Escribe para buscar un alimento…  (↑ ↓ para moverte, Enter para elegir, Esc para cerrar)" autocomplete="off">
+    <button type="button" class="dd-cerrar" onclick="cerrarDropdown()" title="Cerrar">✕</button>
+  </div>
+  <div id="dd-contenido"></div>
+</div>
 
 <script src="alimentos.js"></script>
 <script>
@@ -734,7 +748,7 @@ function toggleFavorito(nombre, event) {
   if (idx >= 0) favoritos.splice(idx, 1);
   else favoritos.push(nombre);
   localStorage.setItem('nut_favoritos', JSON.stringify(favoritos));
-  poblarDropdown(inputActivo ? inputActivo.value : '');
+  poblarDropdown(textoBuscarDD());
 }
 
 function preguntarNuevaSeccion() {
@@ -1794,8 +1808,8 @@ function tipoSugerenciaParaSeccion(dia, bloque) {
 function cambiarTipoSugDropdown(tipo, event) {
   if (event) { event.stopPropagation(); event.preventDefault(); }
   sugDropdownTipo = tipo;
-  poblarDropdown(inputActivo ? inputActivo.value : '');
-  if (inputActivo) inputActivo.focus();
+  poblarDropdown(textoBuscarDD());
+  enfocarBuscarDD();
 }
 
 // Elegir un alimento sugerido desde el menú: lo pone en la fila con su porción sugerida (si la fila está vacía)
@@ -1813,27 +1827,33 @@ function seleccionarSugeridoDropdown(tipo, i) {
   renderResumen();
 }
 
+function textoBuscarDD() { const el = document.getElementById('dd-buscar'); return el ? el.value : ''; }
+function enfocarBuscarDD() { const el = document.getElementById('dd-buscar'); if (el) el.focus(); }
+
+// El menú se abre SIEMPRE centrado en la pantalla (ya no depende de dónde esté el scroll)
 function abrirDropdown(inputEl, dia, bloque, idx) {
   ddDia=dia; ddBloque=bloque; ddIdx=idx;
   sugDropdownTipo = tipoSugerenciaParaSeccion(dia, bloque);
   inputActivo = inputEl;
   const dd = document.getElementById('dropdown-global');
-  const rect = inputEl.getBoundingClientRect();
-  dd.style.top = (rect.bottom + window.scrollY + 4) + 'px';
-  dd.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 940)) + 'px';
+  const buscar = document.getElementById('dd-buscar');
   dropdownHighlightedIndex = -1;
   categoriaFiltroDropdown = "TODOS";
+  buscar.value = '';
   poblarDropdown('');
+  document.getElementById('dd-backdrop').classList.add('show');
   dd.classList.add('show');
-  inputEl.value = '';
-  inputEl.readOnly = false;
-  
-  inputEl.oninput = (e) => {
+  document.body.style.overflow = 'hidden';   // la rueda del mouse ya no mueve la página de fondo
+
+  buscar.oninput = (e) => {
     dropdownHighlightedIndex = 0;
     poblarDropdown(e.target.value);
+    const items = dd.querySelectorAll('.dd-item');
+    if (items.length) actualizarHighlightDropdown(items);
   };
 
-  inputEl.onkeydown = (e) => {
+  buscar.onkeydown = (e) => {
+    if (e.key === 'Escape') { e.preventDefault(); cerrarDropdown(); return; }
     const items = dd.querySelectorAll('.dd-item');
     if (!items.length) return;
 
@@ -1854,7 +1874,7 @@ function abrirDropdown(inputEl, dia, bloque, idx) {
     }
   };
 
-  inputEl.focus();
+  buscar.focus();
 }
 
 function filtrarCategoriaDropdown(cat, event) {
@@ -1863,12 +1883,12 @@ function filtrarCategoriaDropdown(cat, event) {
     event.preventDefault();
   }
   categoriaFiltroDropdown = cat;
-  poblarDropdown(inputActivo ? inputActivo.value : '');
-  if (inputActivo) inputActivo.focus();
+  poblarDropdown(textoBuscarDD());
+  enfocarBuscarDD();
 }
 
 function poblarDropdown(filtro) {
-  const dd = document.getElementById('dropdown-global');
+  const dd = document.getElementById('dd-contenido');
   const f = (filtro || '').toLowerCase();
 
   let baseFiltrada = BASE;
@@ -1987,11 +2007,10 @@ function seleccionarAlimento(nombre, fuente) {
 
 function cerrarDropdown() {
   document.getElementById('dropdown-global').classList.remove('show');
-  if (inputActivo) {
-    inputActivo.readOnly = true;
-    inputActivo.oninput = null;
-    inputActivo.onkeydown = null;
-  }
+  document.getElementById('dd-backdrop').classList.remove('show');
+  document.body.style.overflow = '';
+  const buscar = document.getElementById('dd-buscar');
+  if (buscar) { buscar.oninput = null; buscar.onkeydown = null; }
 }
 document.addEventListener('click', e => {
   if (!e.target.closest('.sel-alimento') && !e.target.closest('.dropdown')) cerrarDropdown();
