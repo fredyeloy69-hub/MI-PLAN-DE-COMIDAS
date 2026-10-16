@@ -3362,4 +3362,3368 @@ actualizarAvisoRespaldo();
 iniciarSync();
 </script>
 </body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planificador Nutricional Semanal</title>
+  <style>
+    :root {
+      --azul:#2563eb; --azul-dark:#1e3a5f; --verde:#16a34a;
+      --rojo:#dc2626; --oro:#f59e0b; --gris:#f8fafc;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Segoe UI',Arial,sans-serif; background:linear-gradient(270deg, #cbd5e1 0%, #94a3b8 100%); color:#1e293b; min-height:100vh; }
+
+    /* HEADER PRINCIPAL CON DEGRADADO */
+    .header { background:linear-gradient(135deg,#1e3a5f,#2563eb); color:white; padding:28px 36px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; box-shadow:0 4px 16px rgba(0,0,0,.25); }
+    .header h1 { font-size:32px; font-weight:800; letter-spacing:.4px; }
+    .header .sub { font-size:15px; opacity:.9; margin-top:4px; }
+
+    /* BOTONES HEADER Y BARRA */
+    .btn-header { border:none; border-radius:20px; padding:9px 20px; font-size:13.5px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:all .2s; }
+    .btn-pdf { background:#ef4444; color:white; }
+    .btn-pdf:hover { background:#dc2626; transform:translateY(-1px); }
+    .btn-compras-gen { background:var(--verde); color:white; }
+    .btn-compras-gen:hover { background:#15803d; transform:translateY(-1px); }
+    .btn-dark { background:rgba(255,255,255,.2); color:white; border:1px solid rgba(255,255,255,.35); }
+    .btn-dark:hover { background:rgba(255,255,255,.3); }
+    .btn-calc { background:#8b5cf6; color:white; }
+    .btn-calc:hover { background:#7c3aed; transform:translateY(-1px); }
+    .btn-add-seccion { background:#0ea5e9; color:white; }
+    .btn-add-seccion:hover { background:#0284c7; transform:translateY(-1px); }
+    .btn-plantillas { background:#14b8a6; color:white; }
+    .btn-plantillas:hover { background:#0d9488; transform:translateY(-1px); }
+    .header-btns { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+
+    /* BARRA SUPERIOR FLOTANTE */
+    .barra { background:#ffffff; padding:14px 36px; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; border-bottom:2px solid #cbd5e1; position:sticky; top:0; z-index:200; box-shadow:0 3px 10px rgba(0,0,0,.08); }
+    .barra-izq { display:flex; gap:12px; align-items:center; flex:1; min-width:300px; }
+    .buscador-wrap { position:relative; flex:1; max-width:400px; }
+    .buscador-wrap input { width:100%; border:2px solid #cbd5e1; border-radius:10px; padding:10px 14px 10px 40px; font-size:13.5px; outline:none; transition:border .2s; background:white; }
+    .buscador-wrap input:focus { border-color:var(--azul); }
+    .buscador-wrap .ico { position:absolute; left:12px; top:50%; transform:translateY(-50%); font-size:18px; }
+    .badge { font-size:12px; border-radius:20px; padding:5px 14px; font-weight:700; }
+    .badge-total { background:#dbeafe; color:#1d4ed8; white-space:nowrap; }
+    .badge-filtro { background:#dcfce7; color:#15803d; display:none; white-space:nowrap; }
+    
+    .btn-barra { padding:7px 15px; font-size:12.5px; }
+    .btn-dark-barra { background:#1e293b; color:white; }
+    .btn-dark-barra:hover { background:#334155; }
+
+    /* DÍAS NAV */
+    .dias-nav { background:#ffffff; padding:12px 36px; display:flex; gap:10px; overflow-x:auto; border-bottom:1px solid #cbd5e1; position:sticky; top:67px; z-index:190; }
+    .dia-btn { padding:9px 20px; border-radius:22px; border:2px solid #cbd5e1; background:white; font-size:14px; font-weight:700; cursor:pointer; white-space:nowrap; transition:all .2s; color:#475569; }
+    .dia-btn.activo { background:var(--azul); color:white; border-color:var(--azul); box-shadow:0 2px 6px rgba(37,99,235,0.3); }
+    .dia-btn:hover:not(.activo) { border-color:var(--azul); color:#1e293b; }
+
+    /* CONTENEDOR */
+    .contenedor { padding:28px 36px; max-width:1450px; margin:0 auto; }
+
+    /* PANEL DE OBJETIVOS Y BARRAS DE PROGRESO */
+    .panel-objetivos { background:#ffffff; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,.08); padding:22px 26px; margin-bottom:28px; border:1px solid #cbd5e1; border-left:6px solid #8b5cf6; }
+    .panel-obj-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px; }
+    .panel-obj-header h3 { color:#1e293b; font-size:18px; font-weight:800; display:flex; align-items:center; gap:8px; }
+    .btn-config-obj { background:#ede9fe; color:#7c3aed; border:1px solid #ddd6fe; padding:6px 14px; border-radius:10px; font-weight:700; font-size:12.5px; cursor:pointer; }
+    .btn-config-obj:hover { background:#7c3aed; color:white; }
+
+    .obj-grid-barras { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; }
+    .obj-barra-card { background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; }
+    .obj-barra-info { display:flex; justify-content:space-between; font-size:13px; font-weight:700; margin-bottom:8px; color:#334155; }
+    .obj-barra-info span:last-child { color:#64748b; font-weight:600; }
+    .progress-track { background:#e2e8f0; height:10px; border-radius:5px; overflow:hidden; }
+    .progress-fill { background:var(--azul); height:100%; width:0%; transition:width 0.4s ease, background 0.3s; border-radius:5px; }
+
+    /* TABLA */
+    .tabla-wrap { background:#ffffff; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,.08); overflow:visible; margin-bottom:28px; border:1px solid #cbd5e1; }
+    .tabla-titulo { background:var(--azul-dark); color:white; padding:18px 26px; font-size:22px; font-weight:800; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+    .tabla-titulo .total-dia-badge { margin-left:auto; background:var(--oro); color:#1e293b; border-radius:12px; padding:8px 18px; font-size:15px; font-weight:800; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+    .tabla-titulo .total-dia-badge .emoji-amigable { filter: drop-shadow(0px 1px 2px rgba(0,0,0,0.5)); font-size: 1.5em; }
+    
+    /* BOTÓN LIMPIAR DÍA DE ALTO CONTRASTE Y TAMAÑO MEJORADO */
+    .btn-limpiar { background:#dc2626; color:#ffffff; border:2px solid #f87171; padding:8px 16px; border-radius:10px; font-size:13.5px; font-weight:800; cursor:pointer; transition:all .2s; box-shadow:0 2px 6px rgba(220,38,38,0.3); }
+    .btn-limpiar:hover { background:#b91c1c; transform:translateY(-1px); }
+    .btn-comprimir-todo { background:#f59e0b; color:#ffffff; border:2px solid #fbbf24; padding:8px 16px; border-radius:10px; font-size:13.5px; font-weight:800; cursor:pointer; transition:all .2s; box-shadow:0 2px 6px rgba(245,158,11,0.3); }
+    .btn-comprimir-todo:hover { background:#d97706; transform:translateY(-1px); }
+    .btn-duplicar-dia { background:#0ea5e9; color:#ffffff; border:2px solid #38bdf8; padding:8px 16px; border-radius:10px; font-size:13.5px; font-weight:800; cursor:pointer; transition:all .2s; box-shadow:0 2px 6px rgba(14,165,233,0.3); }
+    .btn-duplicar-dia:hover { background:#0284c7; transform:translateY(-1px); }
+    .btn-copiar-seccion { background:#ede9fe; color:#5b21b6; border:1px solid #ddd6fe; padding:5px 10px; border-radius:8px; font-size:11.5px; font-weight:700; cursor:pointer; transition:all 0.2s; }
+    .btn-copiar-seccion:hover { background:#5b21b6; color:white; }
+
+    /* TOAST DESHACER */
+    .toast-deshacer { position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:#1e293b; color:white; padding:14px 18px; border-radius:12px; display:flex; align-items:center; gap:16px; box-shadow:0 8px 24px rgba(0,0,0,.35); font-size:13.5px; font-weight:600; z-index:500; opacity:0; pointer-events:none; transition:all .25s ease; }
+    .toast-deshacer.show { opacity:1; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+    .toast-deshacer button { background:var(--oro); color:#1e293b; border:none; padding:7px 14px; border-radius:8px; font-weight:800; cursor:pointer; font-size:13px; white-space:nowrap; }
+    .toast-deshacer button:hover { background:#d97706; color:white; }
+
+    table { width:100%; border-collapse:collapse; table-layout:fixed; }
+    
+    th { position:sticky; top:115px; z-index:100; background:#f1f5f9; color:#334155; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; padding:15px 6px; border-bottom:2px solid #cbd5e1; text-align:center; vertical-align:middle; box-shadow:0 2px 4px rgba(0,0,0,0.05); }
+    .th-sub { font-size:10.5px; font-weight:normal; opacity:0.8; display:block; margin-top:3px; text-transform:none; letter-spacing:0; color:#475569; }
+    
+    td { border-bottom:1px solid #e2e8f0; padding:12px 6px; font-size:13.5px; vertical-align:middle; text-align:center; }
+    tr:last-child td { border-bottom:none; }
+    tr:hover td { background:#f8fafc; }
+
+    /* TÍTULO DE BLOQUE CON OPCIÓN DE REORDENAR, RENOMBRAR Y ELIMINAR */
+    .bloque-hdr { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+    .bloque-hdr td { font-weight:800; font-size:16px; color:#1e3a8a; padding:14px 18px; border-left:6px solid var(--azul); border-top:1px solid #93c5fd; border-bottom:1px solid #93c5fd; text-align:left; }
+    .bloque-titulo-txt { cursor: pointer; text-decoration: underline dotted; transition: color 0.2s; }
+    .bloque-titulo-txt:hover { color: var(--azul); }
+    .bloque-acciones { display: flex; gap: 6px; align-items: center; float: right; flex-wrap: wrap; }
+    .btn-mover-seccion { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; padding: 5px 9px; border-radius: 8px; font-size: 11.5px; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+    .btn-mover-seccion:hover { background: #bfdbfe; color: #1e3a8a; }
+    .btn-toggle-seccion { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; padding: 5px 9px; border-radius: 8px; font-size: 11.5px; font-weight: 800; cursor: pointer; transition: all 0.2s; }
+    .btn-toggle-seccion:hover { background: #fde68a; color: #78350f; }
+    .btn-renombrar-bloque { background: #e0e7ff; color: #3730a3; border: 1px solid #c7d2fe; padding: 5px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+    .btn-renombrar-bloque:hover { background: #3730a3; color: white; }
+    .btn-del-bloque { background: #fee2e2; color: var(--rojo); border: 1px solid #fecaca; padding: 5px 10px; border-radius: 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+    .btn-del-bloque:hover { background: var(--rojo); color: white; }
+
+    .tabla-footer-acciones { padding: 14px 20px; background: #f8fafc; border-top: 1px solid #cbd5e1; display: flex; justify-content: flex-start; align-items: center; }
+
+    .subtotal-row td { background:#f0fdf4; font-weight:800; font-size:12px; color:#166534; text-align:center; border-top:2px solid #dcfce7; }
+    .total-row td { background:#fef9c3; font-weight:800; font-size:14.5px; color:#78350f; text-align:center; border-top:2px solid #fef08a; }
+
+    /* SELECT ALIMENTO */
+    .sel-alimento { position:relative; width:100%; }
+    .sel-alimento textarea { width:100%; min-width:320px; height:58px; border:2px solid #cbd5e1; border-radius:9px; padding:9px 12px; font-size:13.5px; font-weight:600; color:#1e293b; outline:none; cursor:pointer; resize:none; white-space:normal; line-height:1.35; font-family:inherit; transition:border .2s, box-shadow .2s; text-align:left; background:white; }
+    .sel-alimento textarea::placeholder { color:#94a3b8; font-style:italic; font-weight:normal; }
+    .sel-alimento textarea:focus { border-color:var(--azul); box-shadow:0 0 0 3px rgba(37,99,235,0.15); background:white; }
+    
+    /* DROPDOWN DE 2 COLUMNAS Y FILTROS POR CATEGORÍA */
+    .dropdown { position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); width:900px; max-width:calc(100vw - 24px); max-height:86vh; overflow:hidden; overscroll-behavior:contain; background:white; border:1px solid #cbd5e1; border-radius:9px; box-shadow:0 8px 24px rgba(0,0,0,.18); z-index:1000; display:none; flex-direction:column; text-align:left; }
+    .dropdown.show { display:flex; }
+    .dd-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.45); z-index:999; display:none; }
+    .dd-backdrop.show { display:block; }
+    .dd-buscar-wrap { display:flex; gap:8px; padding:10px 12px; border-bottom:1px solid #cbd5e1; background:#fff; border-radius:9px 9px 0 0; }
+    #dd-buscar { flex:1; padding:10px 14px; font-size:14px; border:2px solid #3b82f6; border-radius:10px; outline:none; background:#fff; color:#0f172a; }
+    .dd-cerrar { background:#e2e8f0; color:#334155; border:none; border-radius:10px; width:40px; font-size:16px; font-weight:800; cursor:pointer; }
+    #dd-contenido { display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+    body.dark .dd-buscar-wrap { background:#1e293b; border-color:#334155; } body.dark #dd-buscar { background:#0f172a; color:#f1f5f9; } body.dark .dd-cerrar { background:#334155; color:#e2e8f0; }
+    
+    .dd-filtros-bar { padding: 8px 12px; background: #f1f5f9; border-bottom: 1px solid #cbd5e1; display: flex; gap: 6px; flex-wrap: wrap; }
+    .dd-filtro-btn { background: white; border: 1px solid #cbd5e1; border-radius: 14px; padding: 4px 10px; font-size: 11px; font-weight: 700; cursor: pointer; color: #475569; transition: all 0.2s; }
+    .dd-filtro-btn.activo { background: var(--azul); color: white; border-color: var(--azul); }
+
+    .dd-cuerpo-cols { display: flex; flex: 1; overflow: hidden; }
+    .dd-columna { flex: 1; padding: 6px; overflow-y: auto; max-height: calc(86vh - 150px); min-width:0; overscroll-behavior:contain; }
+    .dd-columna + .dd-columna { border-left: 1px solid #e2e8f0; }
+    .dd-columna-sug { background:#fffbeb; }
+    .dd-columna-sug .dd-columna-titulo { background:#fef3c7; color:#92400e; line-height:1.2; }
+    .dd-sug-tabs { display:flex; gap:6px; padding:2px 8px 6px; }
+    .dd-sug-tab { border:1px solid #fcd34d; background:#fff; border-radius:10px; padding:3px 10px; font-size:16px; cursor:pointer; }
+    .dd-sug-tab.activo { background:#f59e0b; border-color:#d97706; }
+    .dd-item-sug .dd-nombre { white-space:normal; }
+    body.dark .dd-columna-sug { background:#2a2412; } body.dark .dd-columna-sug .dd-columna-titulo { background:#422006; color:#fcd34d; }
+    body.dark .dd-sug-tab { background:#1e293b; border-color:#92400e; } body.dark .dd-sug-tab.activo { background:#b45309; }
+    .dd-columna-titulo { font-size: 11px; font-weight: 800; text-transform: uppercase; color: #64748b; padding: 4px 8px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+
+    .dd-item { padding:8px 10px; font-size:13px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; line-height:1.25; gap:10px; color:#1e293b; border-radius: 6px; }
+    .dd-item:hover { background:#f1f5f9; }
+    .dd-item.highlighted { background: #d97706 !important; color: #ffffff !important; }
+    
+    .dd-left-info { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+    .dd-estrella { font-size: 15px; cursor: pointer; color: #cbd5e1; transition: transform 0.1s; flex-shrink: 0; }
+    .dd-estrella:hover { transform: scale(1.2); }
+    .dd-estrella.favorito { color: #f59e0b; }
+    .dd-item.highlighted .dd-estrella { color: #fef08a; }
+
+    .dd-nombre { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; }
+
+    .dd-info { display: flex; align-items: center; gap: 6px; white-space: nowrap; flex-shrink: 0; }
+    .dd-item .dd-tag { font-size:10.5px; background:#e2e8f0; color:#334155; border-radius:4px; padding:1px 5px; font-weight:700; }
+    .dd-item.highlighted .dd-tag { background: #b45309; color: #ffffff; }
+    .dd-item .dd-kcal { font-size:11px; color:#475569; font-weight:600; min-width:48px; text-align:right; }
+    .dd-item.highlighted .dd-kcal { color: #fef08a; }
+
+    input[type=number] { width:64px; padding:9px 4px; text-align:center; border:2px solid #cbd5e1; border-radius:7px; font-size:13px; font-weight:700; outline:none; margin:0 auto; display:block; background:white; color:#1e293b; }
+    input[type=number]:focus { border-color:var(--azul); }
+    .num { text-align:center; font-variant-numeric:tabular-nums; font-weight:700; font-size:13px; color:#1e293b; }
+    .peso-badge { background:#e2e8f0; color:#334155; font-weight:800; padding:5px 8px; border-radius:7px; font-size:12px; display:inline-block; border:1px solid #cbd5e1; }
+
+    /* BOTONES TABLA */
+    .btn-agregar { background:var(--verde); color:white; border:none; padding:7px 18px; border-radius:20px; font-size:12.5px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:all .2s; }
+    .btn-agregar:hover { background:#15803d; transform:translateY(-1px); box-shadow:0 3px 8px rgba(22,163,74,.3); }
+    .btn-del { background:#fee2e2; color:var(--rojo); border:1px solid #fecaca; padding:7px 11px; border-radius:7px; cursor:pointer; font-size:12px; font-weight:700; transition:all .2s; }
+    .btn-del:hover { background:var(--rojo); color:white; }
+
+    .btn-add-seccion-tabla { background: #0ea5e9; color: white; border: none; padding: 9px 20px; border-radius: 20px; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s; }
+    .btn-add-seccion-tabla:hover { background: #0284c7; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(14,165,233,0.3); }
+
+    /* RESUMEN SEMANAL */
+    .resumen-semana { background:#ffffff; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,.08); padding:26px; margin-bottom:28px; border:1px solid #cbd5e1; }
+    .resumen-semana h3 { color:var(--azul-dark); margin-bottom:18px; font-size:20px; font-weight:800; }
+    .resumen-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:12px; }
+    .resumen-card { background:#f8fafc; border-radius:12px; padding:14px; text-align:center; border:2px solid #cbd5e1; cursor:pointer; transition:all .2s; }
+    .resumen-card:hover, .resumen-card.activo { border-color:var(--azul); background:#eff6ff; box-shadow:0 2px 8px rgba(37,99,235,0.15); }
+    .resumen-card .dia { font-size:13px; font-weight:800; color:#475569; }
+    .resumen-card .kcal { font-size:22px; font-weight:900; color:var(--azul); margin:6px 0; }
+    .resumen-card .sub { font-size:11.5px; color:#64748b; font-weight:700; }
+
+    /* LISTA DE COMPRAS DIARIA */
+    .lista-compras { background:#ffffff; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,.08); padding:26px; margin-top:28px; border-top:6px solid var(--verde); border:1px solid #cbd5e1; }
+    .lista-compras h3 { color:#166534; font-size:20px; font-weight:900; margin-bottom:6px; display:flex; align-items:center; gap:10px; }
+    .lista-compras .sub-desc { font-size:13.5px; color:#475569; margin-bottom:20px; font-weight:500; }
+    .compras-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; }
+    .compra-box { background:#f8fafc; border:2px solid #cbd5e1; border-radius:12px; padding:16px; }
+    .compra-box h4 { font-size:15px; color:var(--azul-dark); margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid #cbd5e1; display:flex; align-items:center; justify-content:space-between; font-weight:800; }
+    .compra-item { display:flex; justify-content:space-between; font-size:13px; padding:6px 0; border-bottom:1px dashed #cbd5e1; }
+    .compra-item:last-child { border-bottom:none; }
+    .compra-item span:first-child { font-weight:700; color:#334155; }
+    .compra-item span:last-child { font-weight:900; color:var(--azul); background:#eff6ff; padding:2px 9px; border-radius:12px; border:1px solid #dbeafe; }
+    .vacio-txt { font-size:13px; color:#64748b; font-style:italic; text-align:center; padding:12px 0; }
+
+    /* MODALES */
+    .modal-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.65); z-index:9999; display:none; justify-content:center; align-items:center; padding:20px; backdrop-filter:blur(3px); }
+    .modal-overlay.show { display:flex; }
+    .modal-box { background:#ffffff; width:100%; max-width:880px; max-height:90vh; border-radius:16px; box-shadow:0 12px 35px rgba(0,0,0,0.35); overflow:hidden; display:flex; flex-direction:column; border:1px solid #cbd5e1; }
+    .modal-header { background:var(--azul-dark); color:white; padding:18px 26px; display:flex; justify-content:space-between; align-items:center; font-size:20px; font-weight:800; }
+    .modal-body { padding:26px; overflow-y:auto; flex:1; background:#f8fafc; }
+    .modal-footer { padding:16px 26px; background:#ffffff; border-top:1px solid #cbd5e1; display:flex; justify-content:space-between; align-items:center; }
+    .periodo-btns { display:flex; gap:12px; margin-bottom:22px; justify-content:center; }
+    .btn-periodo { padding:9px 20px; border-radius:22px; border:2px solid #cbd5e1; background:white; font-weight:800; cursor:pointer; font-size:13.5px; color:#475569; transition:all .2s; }
+    .btn-periodo.activo { background:var(--azul); color:white; border-color:var(--azul); }
+    .btn-cerrar-modal { background:#475569; color:white; border:none; padding:9px 22px; border-radius:9px; font-weight:800; cursor:pointer; font-size:13.5px; }
+    .btn-cerrar-modal:hover { background:#334155; }
+    .btn-excel-modal { background:var(--verde); color:white; border:none; padding:9px 22px; border-radius:9px; font-weight:800; cursor:pointer; font-size:13.5px; display:inline-flex; align-items:center; gap:8px; }
+    .btn-excel-modal:hover { background:#15803d; }
+
+    /* ESTILOS FORMULARIO CALCULADORA */
+    .calc-form-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 22px; }
+    .calc-group { display: flex; flex-direction: column; gap: 6px; }
+    .calc-group.full { grid-column: span 3; }
+    .calc-group label { font-size: 13.5px; font-weight: 700; color: #334155; }
+    .calc-group input, .calc-group select { padding: 11px 14px; border: 2px solid #cbd5e1; border-radius: 8px; font-size: 14px; background: white; font-weight: 600; outline: none; width: 100%; }
+    .calc-group input:focus, .calc-group select:focus { border-color: var(--azul); }
+    .btn-calcular-meta { background: #8b5cf6; color: white; border: none; padding: 14px; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; width: 100%; transition: background 0.2s; }
+    .btn-calcular-meta:hover { background: #7c3aed; }
+    .calc-resultado-box { background: #f1f5f9; border: 2px dashed #cbd5e1; border-radius: 10px; padding: 18px; margin-top: 18px; }
+    .calc-resultado-box h4 { font-size: 15px; color: #1e3a5f; margin-bottom: 8px; font-weight: 800; }
+    .calc-resultado-box p { font-size: 13.5px; color: #475569; margin-bottom: 4px; font-weight: 600; }
+
+    @media(max-width:768px) { .contenedor { padding:12px; } .resumen-grid { grid-template-columns:repeat(4,1fr); } .header-btns, .barra .header-btns { width:100%; justify-content:center; } .calc-form-grid { grid-template-columns: 1fr; } .calc-group.full { grid-column: span 1; } }
+
+    /* PANEL BÚSQUEDA GLOBAL */
+    .panel-busqueda { background:#ffffff; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,.1); padding:20px 24px; margin-bottom:22px; display:none; border-left:6px solid var(--azul); border:1px solid #cbd5e1; }
+    .panel-busqueda h3 { font-size:18px; color:var(--azul-dark); margin-bottom:14px; font-weight:800; }
+    .panel-busqueda .resultado-item { background:#f8fafc; border-radius:10px; padding:12px 16px; margin-bottom:10px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; border:1px solid #e2e8f0; }
+    .panel-busqueda .res-dia { font-weight:800; color:var(--azul); font-size:13px; min-width:85px; }
+    .panel-busqueda .res-bloque { color:#475569; font-size:12px; font-weight:600; }
+    .panel-busqueda .res-alimento { font-weight:700; color:#1e293b; font-size:13px; }
+    .panel-busqueda .res-gramos { color:#475569; font-size:12px; font-weight:700; }
+    .panel-busqueda .res-nut { background:#eff6ff; color:#1d4ed8; border-radius:7px; padding:3px 10px; font-size:12px; font-weight:700; border:1px solid #dbeafe; }
+    .panel-busqueda .no-result { color:#64748b; font-size:14px; text-align:center; padding:22px; font-weight:500; }
+    
+    /* MODO OSCURO */
+    body.dark { background:linear-gradient(270deg, #0f172a 0%, #1e1b4b 100%); color:#f8fafc; }
+    body.dark .header { background:linear-gradient(135deg,#090d16,#1e293b); box-shadow:0 4px 16px rgba(0,0,0,.5); }
+    body.dark .barra { background:#1e293b; border-color:#334155; box-shadow:0 3px 10px rgba(0,0,0,.3); }
+    body.dark .buscador-wrap input { background:#0f172a; border-color:#475569; color:#f8fafc; }
+    body.dark .buscador-wrap input::placeholder { color:#94a3b8; }
+    body.dark .dias-nav { background:#1e293b; border-color:#334155; }
+    body.dark .dia-btn { background:#0f172a; border-color:#475569; color:#cbd5e1; }
+    body.dark .dia-btn.activo { background:var(--azul); color:white; border-color:var(--azul); }
+    body.dark .dia-btn:hover:not(.activo) { border-color:#60a5fa; color:#f8fafc; }
+    body.dark .tabla-wrap, body.dark .lista-compras, body.dark .modal-box, body.dark .resumen-semana, body.dark .panel-busqueda, body.dark .panel-objetivos { background:#1e293b; border-color:#334155; box-shadow:0 4px 16px rgba(0,0,0,.5); }
+    body.dark table { background:#1e293b; }
+    body.dark th { background:#0f172a; color:#cbd5e1; border-color:#334155; }
+    body.dark .th-sub { color:#94a3b8; }
+    body.dark td { border-color:#334155; color:#f8fafc; }
+    body.dark tr:hover td { background:#273344; }
+    body.dark .bloque-hdr { background: linear-gradient(135deg, #172554 0%, #1e3a8a 100%); }
+    body.dark .bloque-hdr td { background:transparent; color:#93c5fd; border-color:#3b82f6; }
+    body.dark .subtotal-row td { background:#064e3b; color:#a7f3d0; border-color:#065f46; }
+    body.dark .total-row td { background:#451a03; color:#fde68a; border-color:#78350f; }
+    body.dark .resumen-semana h3, body.dark .lista-compras h3, body.dark .modal-header, body.dark .panel-busqueda h3, body.dark .panel-obj-header h3 { color:#93c5fd; }
+    body.dark .resumen-card, body.dark .compra-box, body.dark .obj-barra-card { background:#0f172a; border-color:#334155; }
+    body.dark .resumen-card:hover, body.dark .resumen-card.activo { background:#172554; border-color:#60a5fa; }
+    body.dark .resumen-card .dia, body.dark .lista-compras .sub-desc, body.dark .compra-box h4, body.dark .obj-barra-info { color:#cbd5e1; }
+    body.dark .resumen-card .sub { color:#94a3b8; }
+    body.dark .compra-item { border-color:#334155; }
+    body.dark .compra-item span:first-child { color:#f1f5f9; }
+    body.dark .compra-item span:last-child { background:#172554; color:#93c5fd; border-color:#1e3a8a; }
+    body.dark .sel-alimento textarea { background:#0f172a; border-color:#475569; color:#f8fafc; }
+    body.dark .sel-alimento textarea:focus { background:#1e293b; border-color:#60a5fa; }
+    body.dark input[type=number], body.dark select { background:#0f172a; border-color:#475569; color:#f8fafc; }
+    
+    body.dark .dropdown { background:#1e293b; border-color:#475569; }
+    body.dark .dd-filtros-bar { background: #0f172a; border-color: #334155; }
+    body.dark .dd-filtro-btn { background: #1e293b; border-color: #475569; color: #cbd5e1; }
+    body.dark .dd-filtro-btn.activo { background: var(--azul); color: white; border-color: var(--azul); }
+    body.dark .dd-columna { border-color: #334155; }
+    body.dark .dd-columna-titulo { background: #0f172a; color: #94a3b8; border-color: #334155; }
+    body.dark .dd-item:hover { background:#273344; }
+    body.dark .dd-item.highlighted { background: #d97706 !important; color: #ffffff !important; }
+    body.dark .dd-item { color:#f8fafc; }
+    body.dark .dd-item .dd-tag { background:#334155; color:#cbd5e1; }
+    body.dark .dd-item.highlighted .dd-tag { background: #b45309; color: #ffffff; }
+    body.dark .dd-item .dd-kcal { color:#94a3b8; }
+    body.dark .dd-item.highlighted .dd-kcal { color: #fef08a; }
+
+    body.dark .btn-del { background:#450a0a; color:#fca5a5; border-color:#7f1d1d; }
+    body.dark .btn-del:hover { background:var(--rojo); color:white; }
+    body.dark .badge-total { background:#1e3a5f; color:#93c5fd; }
+    body.dark .badge-filtro { background:#064e3b; color:#a7f3d0; }
+    body.dark .btn-dark-barra { background:#334155; color:#f8fafc; }
+    body.dark .btn-dark-barra:hover { background:#475569; }
+    body.dark .modal-body { background:#0f172a; }
+    body.dark .modal-footer { background:#1e293b; border-color:#334155; }
+    body.dark .btn-periodo { background:#0f172a; border-color:#475569; color:#cbd5e1; }
+    body.dark .btn-periodo.activo { background:var(--azul); color:white; border-color:var(--azul); }
+    body.dark .peso-badge { background:#334155; color:#f1f5f9; border-color:#475569; }
+    body.dark .panel-busqueda .resultado-item { background:#0f172a; border-color:#334155; }
+    body.dark .panel-busqueda .res-alimento { color:#f8fafc; }
+    body.dark .panel-busqueda .res-bloque, body.dark .panel-busqueda .res-gramos { color:#cbd5e1; }
+    body.dark .panel-busqueda .res-nut { background:#172554; color:#93c5fd; border-color:#1e3a8a; }
+    body.dark .calc-resultado-box { background: #1e293b; border-color: #334155; }
+    body.dark .tabla-footer-acciones { background: #1e293b; border-color: #334155; }
+
+    /* ESTILO GRANDE Y AMIGABLE PARA EMOTICONES */
+    .emoji-amigable { font-size: 1.3em; vertical-align: middle; margin-right: 4px; display: inline-block; }
+    .emoji-grande { font-size: 1.5em; vertical-align: middle; margin-right: 6px; }
+
+    /* ── Sugerencias ── */
+    .sug-bar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding:10px 36px; background:#fffbeb; border-bottom:1px solid #fde68a; }
+    .sug-bar-lbl { font-weight:800; color:#92400e; font-size:13.5px; }
+    .btn-sug { border:none; border-radius:20px; padding:8px 16px; font-size:13px; font-weight:800; cursor:pointer; color:#fff; transition:all .2s; }
+    .btn-sug:hover { transform:translateY(-1px); filter:brightness(1.08); }
+    .btn-sug-prot { background:#7c3aed; } .btn-sug-azu { background:#ea580c; } .btn-sug-gras { background:#16a34a; } .btn-sug-fib { background:#0d9488; }
+    .sug-desc { font-size:13.5px; color:#475569; margin-bottom:12px; }
+    .sug-destino { display:flex; flex-wrap:wrap; gap:16px; margin-bottom:14px; font-size:13px; font-weight:700; color:#334155; }
+    .sug-destino select { padding:7px 10px; border:1px solid #cbd5e1; border-radius:8px; font-weight:700; background:#fff; color:#0f172a; margin-left:6px; }
+    .sug-item { display:flex; justify-content:space-between; align-items:center; gap:14px; padding:10px 12px; border:1px solid #cbd5e1; border-radius:10px; background:#fff; margin-bottom:8px; }
+    .sug-nombre { font-weight:800; color:#1e293b; } .sug-nombre small { color:#94a3b8; font-weight:600; }
+    .sug-why { font-size:12.5px; color:#475569; margin-top:2px; }
+    .sug-nut { font-size:12px; color:#166534; font-weight:700; margin-top:3px; }
+    .sug-accion { display:flex; align-items:center; gap:6px; white-space:nowrap; }
+    .sug-accion input { width:70px !important; padding:6px; border:1px solid #cbd5e1; border-radius:6px; text-align:center; font-weight:700; background:#fff; color:#0f172a; }
+    .btn-sug-add { background:#16a34a; color:#fff; border:none; border-radius:8px; padding:8px 14px; font-weight:800; cursor:pointer; font-size:12.5px; }
+    .btn-sug-add.ok { background:#64748b; }
+    .sug-aviso { margin-top:10px; font-size:11.5px; color:#94a3b8; }
+    .toast-sugerencia { position:fixed; left:50%; bottom:24px; transform:translate(-50%,30px); background:#1e293b; color:#fff; padding:12px 16px; border-radius:12px; display:flex; gap:12px; align-items:center; box-shadow:0 8px 24px rgba(0,0,0,.35); opacity:0; pointer-events:none; transition:all .3s; z-index:900; font-size:13.5px; font-weight:600; max-width:92vw; }
+    .toast-sugerencia.show { opacity:1; pointer-events:auto; transform:translate(-50%,0); }
+    .toast-sugerencia button { border:none; border-radius:8px; padding:7px 12px; font-weight:800; cursor:pointer; background:#f59e0b; color:#1e293b; }
+    .toast-sugerencia .toast-sug-x { background:transparent; color:#94a3b8; padding:4px 6px; }
+    body.dark .sug-bar { background:#1e293b; border-color:#334155; } body.dark .sug-bar-lbl { color:#fcd34d; }
+    body.dark .sug-item { background:#1e293b; border-color:#334155; } body.dark .sug-nombre { color:#f1f5f9; } body.dark .sug-why, body.dark .sug-desc { color:#94a3b8; }
+    body.dark .sug-nut { color:#86efac; } body.dark .sug-destino { color:#cbd5e1; }
+    body.dark .sug-destino select, body.dark .sug-accion input { background:#0f172a; color:#f1f5f9; border-color:#475569; }
+    @media(max-width:768px) { .sug-bar { padding:10px 12px; } .sug-item { flex-direction:column; align-items:flex-start; } }
+    /* ── Columna PESO con unidad ── */
+    .td-peso { white-space:nowrap; }
+    .td-peso input { width:62px !important; display:inline-block !important; vertical-align:middle; }
+    .td-peso .sel-unidad { width:50px !important; display:inline-block !important; vertical-align:middle; margin-left:3px; padding:6px 2px; border:1px solid #cbd5e1; border-radius:8px; font-weight:700; background:#fff; color:#0f172a; }
+    body.dark .td-peso .sel-unidad { background:#0f172a; color:#f1f5f9; border-color:#475569; }
+    /* ── Lista de compras con costos ── */
+    .modal-compras-box { max-width: 1080px; }
+    .tabla-compras-wrap { overflow-x:auto; border:2px solid #1e293b; border-radius:10px; background:#fff; }
+    .tabla-compras { width:100%; border-collapse:collapse; font-size:13px; }
+    .tabla-compras th { position:static !important; background:#2563eb; color:#fff; padding:10px 8px; font-size:12px; text-align:center; border:1px solid #1d4ed8; }
+    .tabla-compras td { padding:7px 8px; border:1px solid #cbd5e1; text-align:center; vertical-align:middle; }
+    .tabla-compras .th-alim, .tabla-compras .td-alim { text-align:left; min-width:230px; }
+    .tabla-compras .td-alim { font-weight:700; color:#334155; white-space:normal; }
+    .tabla-compras .td-alim small { color:#94a3b8; font-weight:600; }
+    .tabla-compras .fila-cat td { background:#e0e7ff; color:#1e3a5f; font-weight:900; font-size:14px; text-align:left; border-top:2px solid #1e293b; }
+    .tabla-compras .fila-cat span { background:#1e3a5f; color:#fff; border-radius:10px; padding:1px 8px; font-size:11px; margin-left:6px; }
+    .tabla-compras .fila-sub td { background:#f1f5f9; font-weight:800; text-align:right; border-top:2px solid #1e293b; }
+    .tabla-compras .fila-sub td:last-child { text-align:center; color:#1e3a5f; }
+    .tabla-compras .fila-total td { background:#16a34a; color:#fff; font-weight:900; font-size:15px; text-align:right; border-top:3px solid #0f172a; }
+    .tabla-compras .fila-total td:last-child { text-align:center; }
+    .tabla-compras input { width:84px; padding:6px; border:1px solid #cbd5e1; border-radius:6px; text-align:center; font-weight:700; background:#fff; color:#0f172a; }
+    .tabla-compras .td-cant { white-space:nowrap; min-width:165px; }
+    .tabla-compras .td-cant input { display:inline-block !important; width:76px !important; vertical-align:middle; }
+    .tabla-compras .td-cant select { display:inline-block !important; width:62px !important; vertical-align:middle; }
+    .tabla-compras .inp-precio { display:inline-block !important; width:84px !important; }
+    .tabla-compras .td-cant select { padding:6px 4px; border:1px solid #cbd5e1; border-radius:6px; background:#fff; color:#0f172a; font-weight:700; margin-left:4px; }
+    .tabla-compras .td-total { font-weight:900; color:#166534; background:#f0fdf4; }
+    .tabla-compras .sin-und { color:#94a3b8; }
+    .nota-compras { margin-top:12px; font-size:12.5px; color:#475569; }
+    body.dark .tabla-compras-wrap { background:#1e293b; border-color:#475569; }
+    body.dark .tabla-compras td { border-color:#334155; color:#e2e8f0; }
+    body.dark .tabla-compras .td-alim { color:#f1f5f9; }
+    body.dark .tabla-compras .fila-cat td { background:#1e3a8a; color:#fff; }
+    body.dark .tabla-compras .fila-sub td { background:#0f172a; color:#e2e8f0; }
+    body.dark .tabla-compras .td-total { background:#052e16; color:#86efac; }
+    body.dark .tabla-compras input, body.dark .tabla-compras select { background:#0f172a; color:#f1f5f9; border-color:#475569; }
+    body.dark .nota-compras { color:#94a3b8; }
+
+    /* ══ MEJORAS v3 ══ */
+    .btn-respaldo { background:#0f766e; color:#fff; position:relative; }
+    .btn-respaldo:hover { background:#115e59; transform:translateY(-1px); }
+    .btn-respaldo.aviso::after { content:''; position:absolute; top:-3px; right:-3px; width:12px; height:12px; border-radius:50%; background:#ef4444; border:2px solid #fff; }
+    .btn-completar { background:#16a34a !important; color:#fff !important; border-color:#16a34a !important; }
+    .btn-comidas { background:#fef3c7; color:#92400e; border:1px solid #fde68a; padding:5px 10px; border-radius:8px; font-size:11.5px; font-weight:700; cursor:pointer; }
+    .btn-comidas:hover { background:#92400e; color:#fff; }
+    .toast-aviso { position:fixed; left:50%; bottom:80px; transform:translate(-50%,30px); background:#0f172a; color:#fff; padding:11px 18px; border-radius:12px; opacity:0; pointer-events:none; transition:all .3s; z-index:10001; font-size:13.5px; font-weight:700; max-width:92vw; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.35); }
+    .toast-aviso.show { opacity:1; transform:translate(-50%,0); }
+
+    /* respaldo / nube */
+    .resp-estado { padding:12px 16px; border-radius:10px; font-weight:700; font-size:16px; margin-bottom:14px; }
+    .resp-estado.bien { background:#dcfce7; color:#166534; } .resp-estado.mal { background:#fee2e2; color:#991b1b; }
+    .resp-bloque { background:#fff; border:1px solid #cbd5e1; border-radius:12px; padding:14px 16px; margin-bottom:14px; }
+    .resp-bloque h4 { margin:0 0 8px; color:#1e3a5f; font-size:19px; }
+    .resp-bloque p, .resp-bloque small { color:#475569; font-size:15.5px; line-height:1.55; }
+    .resp-bloque small { display:block; margin-top:8px; }
+    .resp-bloque code { font-size:14px; background:#e2e8f0; padding:1px 5px; border-radius:4px; }
+    .resp-btns { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .resp-btns button, .btn-sec { background:#0f766e; color:#fff; border:none; border-radius:9px; padding:11px 18px; font-weight:800; cursor:pointer; font-size:15px; }
+    .resp-btns button.gris, .btn-sec.gris { background:#64748b; }
+    .resp-bloque textarea, .resp-bloque input[type=text] { width:100%; box-sizing:border-box; border:1px solid #cbd5e1; border-radius:8px; padding:10px; font-size:15px; font-family:monospace; margin-top:8px; }
+    .resp-bloque textarea { height:130px; }
+    #sync-estado { margin-top:10px; font-weight:700; font-size:15.5px; color:#0f766e; }
+    .resp-bloque pre { background:#0f172a; color:#e2e8f0; padding:12px; border-radius:8px; font-size:14px; overflow-x:auto; white-space:pre-wrap; }
+
+    /* revisión BD */
+    .bd-tabs { display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap; }
+    .bd-tabs button { background:#e2e8f0; border:none; border-radius:9px; padding:10px 16px; font-size:15px; font-weight:800; cursor:pointer; color:#334155; }
+    .bd-tabs button.activo { background:var(--azul); color:#fff; }
+    .bd-nota { font-size:15px; color:#475569; margin:6px 0 10px; }
+    .bd-wrap { overflow:auto; max-height:52vh; border:1px solid #cbd5e1; border-radius:10px; background:#fff; }
+    .bd-tabla { border-collapse:collapse; width:100%; font-size:14.5px; }
+    .bd-tabla th { position:sticky; top:0; background:#1e3a5f; color:#fff; padding:6px 8px; text-align:left; white-space:nowrap; }
+    .bd-tabla td { padding:5px 8px; border-bottom:1px solid #e2e8f0; }
+    .bd-tabla td.pos { color:#b45309; font-weight:700; } .bd-tabla td.neg { color:#1d4ed8; font-weight:700; }
+
+    /* compras ✔ */
+    .tabla-compras .td-chk { text-align:center; width:34px; }
+    .tabla-compras .td-chk input { width:18px; height:18px; cursor:pointer; }
+    .tabla-compras tr.comprado td { opacity:.5; }
+    .tabla-compras tr.comprado .td-alim { text-decoration:line-through; }
+    .tabla-compras .fila-pend td { background:#fef9c3; color:#713f12; font-weight:800; }
+    .compras-extra { display:flex; gap:8px; flex-wrap:wrap; }
+    .btn-wa { background:#16a34a; color:#fff; border:none; padding:9px 16px; border-radius:9px; font-weight:800; cursor:pointer; font-size:13.5px; }
+    .btn-wa:hover { background:#15803d; }
+    .btn-gris-m { background:#64748b; color:#fff; border:none; padding:9px 16px; border-radius:9px; font-weight:800; cursor:pointer; font-size:13.5px; }
+    .modal-footer { gap:8px; flex-wrap:wrap; }
+    .modal-footer-izq { display:flex; gap:8px; flex-wrap:wrap; }
+
+    /* costos */
+    .costos-fila { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:16px; padding-top:14px; border-top:1px dashed #cbd5e1; }
+    .costo-chip { background:#ecfdf5; color:#065f46; border:1px solid #a7f3d0; border-radius:10px; padding:9px 16px; font-size:16px; font-weight:700; }
+    .costo-pres { font-size:15.5px; font-weight:700; color:#334155; }
+    .costo-pres input { width:90px; padding:6px 8px; border:1px solid #cbd5e1; border-radius:8px; font-weight:700; }
+    .costo-barra { margin-top:10px; } .costo-barra-txt { font-size:12px; font-weight:700; color:#475569; margin-top:4px; }
+    .costo-aviso { margin-top:10px; font-size:14.5px; font-weight:700; color:#92400e; background:#fffbeb; border:1px solid #fde68a; border-radius:9px; padding:8px 12px; }
+    .costo-aviso button { margin-left:8px; background:#f59e0b; color:#fff; border:none; border-radius:7px; padding:4px 10px; font-weight:800; cursor:pointer; }
+    .costo-nota { margin-top:8px; font-size:13.5px; color:#64748b; }
+    .resumen-card .costo-mini { font-size:11px; font-weight:800; color:#047857; margin-top:2px; }
+    .panel-obj-header { flex-wrap:wrap; gap:8px; }
+
+    /* copiar / comidas / completar */
+    .copiar-dias { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin:12px 0; }
+    .chk-dia { display:flex; align-items:center; gap:8px; background:#fff; border:1px solid #cbd5e1; border-radius:9px; padding:9px 12px; font-weight:700; cursor:pointer; }
+    .copiar-rapido { display:flex; gap:6px; flex-wrap:wrap; }
+    .copiar-modo { display:flex; flex-direction:column; gap:6px; margin-top:6px; font-weight:700; font-size:13.5px; }
+    .comida-guardar { background:#fffbeb; border:1px solid #fde68a; border-radius:12px; padding:12px; margin-bottom:12px; }
+    .comida-sub { font-size:15px; font-weight:700; color:#92400e; margin-bottom:8px; }
+    .comida-guardar-fila { display:flex; gap:8px; } .comida-guardar-fila input { flex:1; padding:8px 10px; border:1px solid #cbd5e1; border-radius:8px; font-size:14px; }
+    .comida-guardar-fila button:disabled { background:#94a3b8; cursor:not-allowed; }
+    .comp-faltan, #comp-proy { display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center; background:#eff6ff; border:1px solid #bfdbfe; border-radius:10px; padding:12px 16px; margin-bottom:12px; font-size:16px; }
+    #comp-proy { background:#f0fdf4; border-color:#bbf7d0; margin-top:12px; margin-bottom:0; }
+    .comp-faltan small { color:#64748b; }
+
+    /* pestañas del menú de alimentos (solo celular) */
+    .dd-tabs-movil { display:none; gap:6px; padding:6px 10px; background:#f1f5f9; border-bottom:1px solid #cbd5e1; }
+    .dd-tab-movil { flex:1; background:#fff; border:1px solid #cbd5e1; border-radius:10px; padding:8px 4px; font-size:12.5px; font-weight:800; color:#475569; cursor:pointer; }
+    .dd-tab-movil.activo { background:var(--azul); color:#fff; border-color:var(--azul); }
+    @media(max-width:700px) {
+      .dropdown { width:calc(100vw - 12px); max-height:92vh; }
+      .dd-tabs-movil { display:flex; }
+      .dd-cuerpo-cols { display:block; overflow:hidden; }
+      .dd-columna { display:none; max-height:calc(92vh - 175px); }
+      .dd-columna.dd-col-activa { display:block; }
+      .dd-columna + .dd-columna { border-left:none; }
+      .dd-filtros-bar { flex-wrap:nowrap; overflow-x:auto; }
+      .dd-filtro-btn { white-space:nowrap; flex-shrink:0; }
+      #dd-buscar { font-size:16px; }
+      .copiar-dias { grid-template-columns:1fr; }
+      .costos-fila { gap:8px; }
+      .header { padding:14px 14px; } .header h1 { font-size:19px; } .header .sub { font-size:12px; }
+      .barra { position:static; padding:10px 12px; gap:8px; }
+      .barra-izq { min-width:0; width:100%; }
+      .btn-barra { padding:6px 11px; font-size:12px; }
+      .dias-nav { top:0; padding:8px 12px; }
+      .tabla-wrap { overflow-x:auto; }
+      .tabla-wrap table { min-width:860px; }
+      .tabla-compras { min-width:760px; table-layout:auto; }
+      .tabla-compras th, .tabla-compras td { white-space:nowrap; }
+      .tabla-compras .td-alim { white-space:normal; min-width:150px; }
+      .bd-tabla { min-width:760px; }
+      .tabla-titulo { position:sticky; left:0; }
+      .panel-objetivos { padding:16px 14px; }
+      .modal-overlay { padding:8px; }
+      .modal-header { font-size:16px; padding:14px 16px; } .modal-body { padding:14px; }
+    }
+    body.dark .resp-bloque, body.dark .chk-dia, body.dark .bd-wrap { background:#1e293b; border-color:#334155; color:#e2e8f0; }
+    body.dark .resp-bloque h4 { color:#93c5fd; } body.dark .resp-bloque p, body.dark .resp-bloque small, body.dark .bd-nota { color:#94a3b8; }
+    body.dark .resp-bloque textarea, body.dark .resp-bloque input[type=text], body.dark .comida-guardar-fila input, body.dark .costo-pres input { background:#0f172a; color:#f1f5f9; border-color:#475569; }
+    body.dark .bd-tabla td { border-color:#334155; color:#e2e8f0; }
+    body.dark .costo-chip { background:#052e16; color:#86efac; border-color:#166534; } body.dark .costo-pres { color:#cbd5e1; }
+    body.dark .costo-aviso, body.dark .comida-guardar { background:#2a2412; border-color:#92400e; color:#fcd34d; }
+    body.dark .comida-sub { color:#fcd34d; }
+    body.dark .comp-faltan { background:#172554; border-color:#1e40af; color:#e2e8f0; } body.dark #comp-proy { background:#052e16; border-color:#166534; color:#e2e8f0; }
+    body.dark .dd-tabs-movil { background:#0f172a; border-color:#334155; } body.dark .dd-tab-movil { background:#1e293b; border-color:#475569; color:#cbd5e1; }
+    body.dark .dd-tab-movil.activo { background:var(--azul); color:#fff; }
+    body.dark .tabla-compras .fila-pend td { background:#422006; color:#fcd34d; }
+    body.dark .btn-comidas { background:#422006; color:#fcd34d; border-color:#92400e; }
+    body.dark .calc-resultado-box h4 { color:#93c5fd; } body.dark .calc-resultado-box p { color:#e2e8f0; font-size:15px; }
+    .calc-resultado-box p { font-size:15px; }
+    .btn-fibra-sug { margin-top:10px; background:#dcfce7; color:#166534; border:1px solid #86efac; border-radius:9px; padding:8px 12px; font-size:14px; font-weight:800; cursor:pointer; width:100%; }
+    .btn-fibra-sug:hover { background:#16a34a; color:#fff; }
+    body.dark .btn-fibra-sug { background:#052e16; color:#86efac; border-color:#166534; }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1><span class="emoji-grande">🥗</span> Planificador Nutricional Semanal</h1>
+    <div class="sub">Tablas Peruanas + Base Internacional · <span id="sub-total">2030</span> alimentos</div>
+  </div>
+</div>
+
+<div class="barra">
+  <div class="barra-izq">
+    <div class="buscador-wrap">
+      <span class="ico">🔍</span>
+      <input type="text" id="buscador-global" placeholder="Buscar alimento en toda la base..." oninput="filtrarGlobal(this.value)">
+    </div>
+    <span class="badge badge-total" id="badge-total">2030 alimentos</span>
+    <span class="badge badge-filtro" id="badge-filtro"></span>
+  </div>
+  <div class="header-btns">
+    <button class="btn-header btn-add-seccion btn-barra" onclick="preguntarNuevaSeccion()"><span class="emoji-amigable">➕</span> Sección</button>
+    <button class="btn-header btn-plantillas btn-barra" onclick="abrirMenuPlantillas()"><span class="emoji-amigable">📁</span> Plantillas</button>
+    <button class="btn-header btn-calc btn-barra" onclick="abrirModalCalculadora()"><span class="emoji-amigable">⚡</span> Metas</button>
+    <button class="btn-header btn-compras-gen btn-barra" onclick="abrirModalCompras()"><span class="emoji-amigable">🛒</span> Compras</button>
+    <button class="btn-header btn-pdf btn-barra" onclick="exportarPDF()"><span class="emoji-amigable">📄</span> PDF</button>
+    <button class="btn-header btn-respaldo btn-barra" id="btn-respaldo" onclick="abrirRespaldo()"><span class="emoji-amigable">💾</span> Respaldo</button>
+    <button class="btn-header btn-dark-barra btn-barra" id="btn-dark-barra" onclick="toggleDark()"><span class="emoji-amigable" id="ico-dark-b">🌙</span> Modo oscuro</button>
+  </div>
+</div>
+
+<div class="dias-nav" id="dias-nav"></div>
+
+<div class="sug-bar">
+  <span class="sug-bar-lbl">💡 Sugerir alimentos para:</span>
+  <button class="btn-sug btn-sug-prot" onclick="abrirSugerencias('proteina')">🧬 Digerir mejor la proteína</button>
+  <button class="btn-sug btn-sug-azu" onclick="abrirSugerencias('azucar')">🍋 Frenar picos de azúcar</button>
+  <button class="btn-sug btn-sug-gras" onclick="abrirSugerencias('grasas')">🥑 Buenas grasas</button>
+  <button class="btn-sug btn-sug-fib" onclick="abrirSugerencias('fibra')">🌾 Fibra soluble</button>
+</div>
+
+<div class="contenedor">
+  <div class="panel-objetivos">
+    <div class="panel-obj-header">
+      <h3><span class="emoji-grande">🎯</span> Control de Objetivos Diarios</h3>
+      <button class="btn-config-obj btn-completar" onclick="abrirCompletar()">🎯 Completar lo que falta</button>
+      <button class="btn-config-obj" onclick="abrirModalCalculadora()">⚙️ Cambiar Objetivo / Recalcular</button>
+    </div>
+    <div class="obj-grid-barras" id="obj-grid-barras"></div>
+    <div id="panel-costos"></div>
+  </div>
+
+  <div id="panel-busqueda" class="panel-busqueda"></div>
+  <div class="resumen-semana">
+    <h3><span class="emoji-grande">📊</span> Resumen Semanal — Calorías por Día</h3>
+    <div class="resumen-grid" id="resumen-grid"></div>
+  </div>
+  <div id="contenedor-dia"></div>
+</div>
+
+<!-- Modal para Lista de Compras Múltiple -->
+<div class="modal-overlay" id="modal-compras">
+  <div class="modal-box modal-compras-box">
+    <div class="modal-header">
+      <span><span class="emoji-grande">🛒</span> Lista de Compras y Costos del Periodo</span>
+      <button onclick="cerrarModalCompras()" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="periodo-btns">
+        <button class="btn-periodo activo" id="btn-p-7" onclick="cambiarPeriodoCompras(7, 'btn-p-7')"><span class="emoji-amigable">📅</span> 1 Semana (7 días)</button>
+        <button class="btn-periodo" id="btn-p-15" onclick="cambiarPeriodoCompras(15, 'btn-p-15')"><span class="emoji-amigable">📅</span> Quincena (15 días)</button>
+        <button class="btn-periodo" id="btn-p-30" onclick="cambiarPeriodoCompras(30, 'btn-p-30')"><span class="emoji-amigable">📅</span> Todo el Mes (30 días)</button>
+      </div>
+      <div id="contenido-modal-compras"></div>
+    </div>
+    <div class="modal-footer">
+      <div class="modal-footer-izq">
+        <button class="btn-excel-modal" onclick="exportarComprasExcel()"><span class="emoji-amigable">📥</span> Excel (.xlsx)</button>
+        <button class="btn-wa" onclick="enviarComprasWhatsApp()">📲 WhatsApp</button>
+        <button class="btn-gris-m" onclick="copiarListaCompras()">📋 Copiar</button>
+        <button class="btn-gris-m" onclick="limpiarComprados()">↺ Quitar ✔</button>
+      </div>
+      <button class="btn-cerrar-modal" onclick="cerrarModalCompras()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Calculadora de Metas y Macronutrientes -->
+<div class="modal-overlay" id="modal-calculadora">
+  <div class="modal-box" style="max-width: 760px;">
+    <div class="modal-header">
+      <span><span class="emoji-grande">⚡</span> Calculadora de Objetivos y Macros</span>
+      <button onclick="cerrarModalCalculadora()" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="calc-form-grid">
+        <div class="calc-group full">
+          <label>Objetivo Principal</label>
+          <select id="calc-objetivo">
+            <option value="volumen">💪 Ganar Masa Muscular (Volumen limpio)</option>
+            <option value="definicion">🔥 Perder Peso (Definición)</option>
+            <option value="mantenimiento">⚖️ Mantener Peso (Recomposición)</option>
+          </select>
+        </div>
+        <div class="calc-group full">
+          <label>Sexo Biológico</label>
+          <select id="calc-sexo">
+            <option value="h">👨 Hombre (Mayor masa basal)</option>
+            <option value="f">👩 Mujer (Ajuste fisiológico)</option>
+          </select>
+        </div>
+        <div class="calc-group full">
+          <label>Nivel de Actividad</label>
+          <select id="calc-actividad">
+            <option value="1.2">Sedentario (poco o sin ejercicio)</option>
+            <option value="1.375" selected>Ligero (fuerza 1-3 días/sem)</option>
+            <option value="1.55">Moderado (fuerza 3-5 días/sem)</option>
+            <option value="1.725">Fuerte (fuerza 6-7 días/sem)</option>
+          </select>
+        </div>
+        <div class="calc-group">
+          <label>Peso Actual (kg)</label>
+          <input type="number" id="calc-peso" value="65" step="0.5">
+        </div>
+        <div class="calc-group">
+          <label>Estatura (cm)</label>
+          <input type="number" id="calc-altura" value="170">
+        </div>
+        <div class="calc-group">
+          <label>Edad</label>
+          <input type="number" id="calc-edad" value="25">
+        </div>
+      </div>
+      <button class="btn-calcular-meta" onclick="calcularYGuardarMetas()"><span class="emoji-amigable">🚀</span> Calcular Mis Nuevas Metas</button>
+      
+      <div class="calc-resultado-box" id="calc-resultado-box">
+        <h4>📋 Metas Actuales Configuradas:</h4>
+        <p id="res-geb"></p>
+        <p id="res-cal">Calorías objetivo: -- kcal</p>
+        <p id="res-prot">Proteínas: -- g</p>
+        <p id="res-gras">Grasas: -- g</p>
+        <p id="res-carb">Carbohidratos: -- g</p>
+        <p id="res-fibra">Fibra: -- g</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cerrar-modal" onclick="cerrarModalCalculadora()">Aceptar y Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de sugerencias -->
+<div class="modal-overlay" id="modal-sugerencias">
+  <div class="modal-box" style="max-width: 860px;">
+    <div class="modal-header">
+      <span id="sug-titulo">Sugerencias</span>
+      <button onclick="cerrarSugerencias()" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <p id="sug-desc" class="sug-desc"></p>
+      <div class="sug-destino">
+        <label>Agregar a la sección: <select id="sug-bloque"></select></label>
+        <label>¿Dónde?: <select id="sug-dia"></select></label>
+      </div>
+      <div id="sug-lista"></div>
+      <p class="sug-aviso">Información general de alimentación; no reemplaza a un nutricionista.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-excel-modal" id="sug-btn-todos" onclick="agregarTodosSugeridos()">＋ Agregar todos</button>
+      <button class="btn-cerrar-modal" onclick="cerrarSugerencias()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-sugerencia" id="toast-sugerencia">
+  <span id="toast-sug-txt"></span>
+  <button id="toast-sug-btn">Ver sugerencias</button>
+  <button class="toast-sug-x" onclick="ocultarToastSugerencia()">✕</button>
+</div>
+
+
+<!-- Modal Respaldo / nube / revisión BD -->
+<div class="modal-overlay" id="modal-respaldo">
+  <div class="modal-box" style="max-width: 720px;">
+    <div class="modal-header">
+      <span>💾 Respaldo y herramientas</span>
+      <button onclick="cerrarModal('modal-respaldo')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="resp-estado" class="resp-estado"></div>
+
+      <div class="resp-bloque">
+        <h4>📥 Respaldo en un archivo</h4>
+        <p>Guarda tu plan, metas, favoritos, precios, plantillas y comidas en un archivo <b>.json</b>. Si cambias de celular/PC o se borran los datos del navegador, lo restauras aquí.</p>
+        <div class="resp-btns">
+          <button onclick="descargarRespaldo()">⬇️ Descargar respaldo</button>
+          <button class="gris" onclick="document.getElementById('archivo-respaldo').click()">⬆️ Restaurar desde archivo</button>
+          <input type="file" id="archivo-respaldo" accept=".json,application/json" style="display:none" onchange="restaurarRespaldo(event)">
+        </div>
+      </div>
+
+      <div class="resp-bloque">
+        <h4>☁️ Sincronizar entre dispositivos (Firebase)</h4>
+        <p>Opcional. Con esto tu plan se sube solo a tu propio Firestore y lo ves igual en el celular y en la PC. Usa el mismo <b>código</b> en todos tus dispositivos.</p>
+        <small>1) En Firebase Console → tu proyecto → Configuración → “Tus apps” → copia el bloque <code>firebaseConfig</code> y pégalo abajo. 2) En Firestore → Reglas, pega esto y publica:</small>
+        <pre>rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /planes/{codigo} {
+      allow get, create, update: if true;
+      allow list, delete: if false;
+    }
+  }
+}</pre>
+        <small>⚠️ Quien conozca tu código puede leer y cambiar tu plan: usa el código largo que genera el botón y no lo compartas.</small>
+        <textarea id="sync-config" placeholder='{ apiKey: "…", authDomain: "…", projectId: "…", appId: "…" }'></textarea>
+        <input type="text" id="sync-codigo" placeholder="Código de sincronización (mín. 12 caracteres)" autocomplete="off">
+        <div class="resp-btns">
+          <button class="gris" onclick="generarCodigoSync()">🎲 Generar código</button>
+          <button id="sync-btn-conectar" onclick="guardarYConectarSync()">🔌 Guardar y conectar</button>
+        </div>
+        <div class="resp-btns" id="sync-botones-on" style="display:none">
+          <button onclick="subirNube()">⬆️ Subir ahora</button>
+          <button onclick="bajarNube(true)">⬇️ Bajar de la nube</button>
+          <button class="gris" onclick="desconectarSync()">Desconectar</button>
+        </div>
+        <div id="sync-estado">Sin conectar.</div>
+      </div>
+
+      <div class="resp-bloque">
+        <h4>🔎 Revisar la base de datos de alimentos</h4>
+        <p>Lista los alimentos cuyas calorías no cuadran con sus macros (para que decidas cuáles corregir en <code>alimentos.js</code>). No cambia nada por sí sola.</p>
+        <div class="resp-btns"><button onclick="abrirRevisionBD()">Ver filas sospechosas</button></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <span></span>
+      <button class="btn-cerrar-modal" onclick="cerrarModal('modal-respaldo')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-bd">
+  <div class="modal-box" style="max-width: 1000px;">
+    <div class="modal-header">
+      <span>🔎 Alimentos con calorías que no cuadran</span>
+      <button onclick="cerrarModal('modal-bd')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body"><div id="bd-contenido"></div></div>
+    <div class="modal-footer">
+      <button class="btn-excel-modal" onclick="descargarCSVBD()">📥 Descargar CSV (todas)</button>
+      <button class="btn-cerrar-modal" onclick="cerrarModal('modal-bd')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal copiar día / sección -->
+<div class="modal-overlay" id="modal-copiar">
+  <div class="modal-box" style="max-width: 520px;">
+    <div class="modal-header">
+      <span id="copiar-titulo">Copiar</span>
+      <button onclick="cerrarModal('modal-copiar')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="font-weight:800;margin-bottom:4px">Copiar a estos días:</div>
+      <div class="copiar-rapido">
+        <button class="btn-sec gris" onclick="marcarDiasCopiar('lv')">Lun–Vie</button>
+        <button class="btn-sec gris" onclick="marcarDiasCopiar('fs')">Fin de semana</button>
+        <button class="btn-sec gris" onclick="marcarDiasCopiar('todos')">Todos</button>
+        <button class="btn-sec gris" onclick="marcarDiasCopiar('ninguno')">Ninguno</button>
+      </div>
+      <div class="copiar-dias" id="copiar-dias"></div>
+      <div class="copiar-modo">
+        <label><input type="radio" name="copiar-modo" value="reemplazar" checked> Reemplazar lo que ya tengan</label>
+        <label><input type="radio" name="copiar-modo" value="agregar"> Agregar al final de lo que ya tengan</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-excel-modal" onclick="aplicarCopiar()">📋 Copiar</button>
+      <button class="btn-cerrar-modal" onclick="cerrarModal('modal-copiar')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal comidas guardadas -->
+<div class="modal-overlay" id="modal-comidas">
+  <div class="modal-box" style="max-width: 760px;">
+    <div class="modal-header">
+      <span>🍽️ Comidas guardadas</span>
+      <button onclick="cerrarModal('modal-comidas')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body"><div id="comidas-contenido"></div></div>
+    <div class="modal-footer"><span></span><button class="btn-cerrar-modal" onclick="cerrarModal('modal-comidas')">Cerrar</button></div>
+  </div>
+</div>
+
+<!-- Modal completar lo que falta -->
+<div class="modal-overlay" id="modal-completar">
+  <div class="modal-box" style="max-width: 820px;">
+    <div class="modal-header">
+      <span>🎯 Completar lo que falta del día</span>
+      <button onclick="cerrarModal('modal-completar')" style="background:none; border:none; color:white; font-size:22px; cursor:pointer;">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="comp-lista"></div>
+      <div id="comp-proy"></div>
+      <div class="sug-destino" style="margin-top:12px"><label>Agregar a la sección: <select id="comp-bloque"></select></label></div>
+      <p class="sug-aviso">Propuesta automática según tus metas; ajusta los gramos como quieras. No reemplaza a un nutricionista.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-excel-modal" onclick="agregarTodoCompletar()">＋ Agregar todo</button>
+      <button class="btn-cerrar-modal" onclick="cerrarModal('modal-completar')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Dropdown de 2 columnas -->
+<div class="dd-backdrop" id="dd-backdrop"></div>
+<div class="dropdown" id="dropdown-global">
+  <div class="dd-buscar-wrap">
+    <input type="text" id="dd-buscar" placeholder="🔍 Escribe para buscar un alimento…  (↑ ↓ para moverte, Enter para elegir, Esc para cerrar)" autocomplete="off">
+    <button type="button" class="dd-cerrar" onclick="cerrarDropdown()" title="Cerrar">✕</button>
+  </div>
+  <div id="dd-contenido"></div>
+</div>
+
+<script src="alimentos.js"></script>
+<script>
+const DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+
+const PESOS_UNIDAD = {
+  'huevo': 50, 'plátano': 120, 'manzana': 150, 'pera': 150, 'naranja': 130,
+  'mandarina': 100, 'pan': 50, 'palta': 150, 'papa': 150, 'limón': 40, 'atún': 120, 'leche': 400, 'queso': 100
+};
+
+let diaActivo = "Lunes";
+let inputActivo = null;
+let filtroGlobal = "";
+let periodoActualDias = 7;
+let dropdownHighlightedIndex = -1;
+let categoriaFiltroDropdown = "TODOS";
+
+let planSemanal = JSON.parse(localStorage.getItem('nut_plan_semanal') || 'null');
+if (!planSemanal) {
+  planSemanal = {};
+  DIAS.forEach(dia => {
+    planSemanal[dia] = {
+      "DESAYUNO / ALMUERZO / CENA": [
+        {nombre:"Huevo entero cocido", cant: 1, pesoKg: 0}, 
+        {nombre:"Atún en conserva", cant: 1, pesoKg: 0},
+        {nombre:"Palta", cant: 0, pesoKg: 0.1}
+      ],
+      "BATIDO MAÑANA": [
+        {nombre:"Avena envasada", cant: 0, pesoKg: 0.05},
+        {nombre:"Leche entera pasteurizada", cant: 0, pesoKg: 0.125}
+      ]
+    };
+  });
+}
+
+function guardarPlanEnStorage() {
+  localStorage.setItem('nut_plan_semanal', JSON.stringify(planSemanal));
+}
+
+let seccionesColapsadas = JSON.parse(localStorage.getItem('nut_colapsadas') || '[]');
+function guardarColapsadasEnStorage() {
+  localStorage.setItem('nut_colapsadas', JSON.stringify(seccionesColapsadas));
+}
+function toggleSeccion(dia, bloque) {
+  const clave = dia + '||' + bloque;
+  const i = seccionesColapsadas.indexOf(clave);
+  if (i >= 0) seccionesColapsadas.splice(i, 1);
+  else seccionesColapsadas.push(clave);
+  guardarColapsadasEnStorage();
+  renderDia();
+}
+
+function toggleTodasSeccionesDia() {
+  const dia = diaActivo;
+  const bloques = planSemanal[dia] ? Object.keys(planSemanal[dia]) : [];
+  if (bloques.length === 0) return;
+  const todasColapsadas = bloques.every(b => seccionesColapsadas.includes(dia + '||' + b));
+  bloques.forEach(b => {
+    const clave = dia + '||' + b;
+    const idx = seccionesColapsadas.indexOf(clave);
+    if (todasColapsadas) {
+      if (idx >= 0) seccionesColapsadas.splice(idx, 1);
+    } else {
+      if (idx < 0) seccionesColapsadas.push(clave);
+    }
+  });
+  guardarColapsadasEnStorage();
+  renderDia();
+}
+
+function abrirMenuPlantillas() {
+  const plantillas = JSON.parse(localStorage.getItem('nut_plantillas') || '{}');
+  const nombres = Object.keys(plantillas);
+  const listado = nombres.length ? nombres.map((n, i) => `${i + 1}. ${n}`).join('\n') : '(Todavía no tenés plantillas guardadas)';
+
+  const opcion = prompt(`📁 PLANTILLAS DE PLAN SEMANAL\n\n${listado}\n\n— Escribe "guardar" para guardar tu plan semanal actual como nueva plantilla\n— Escribe el número o nombre de una plantilla para CARGARLA (reemplaza el plan actual)\n— Escribe "borrar NOMBRE" para eliminar una plantilla`);
+  if (!opcion || !opcion.trim()) return;
+  const op = opcion.trim();
+
+  if (op.toLowerCase() === 'guardar') {
+    const nombre = prompt('Nombre para esta plantilla (ej: "Plan volumen", "Plan definición"):');
+    if (!nombre || !nombre.trim()) return;
+    plantillas[nombre.trim()] = JSON.parse(JSON.stringify(planSemanal));
+    localStorage.setItem('nut_plantillas', JSON.stringify(plantillas));
+    alert(`✅ Plantilla "${nombre.trim()}" guardada.`);
+    return;
+  }
+
+  if (op.toLowerCase().startsWith('borrar ')) {
+    const nombreBorrar = op.substring(7).trim();
+    const clave = nombres.find(n => n.toLowerCase() === nombreBorrar.toLowerCase());
+    if (!clave) { alert('No se encontró esa plantilla.'); return; }
+    if (confirm(`¿Eliminar la plantilla "${clave}"? Esto no afecta tu plan actual.`)) {
+      delete plantillas[clave];
+      localStorage.setItem('nut_plantillas', JSON.stringify(plantillas));
+      alert('🗑️ Plantilla eliminada.');
+    }
+    return;
+  }
+
+  let nombreCargar = nombres.find(n => n.toLowerCase() === op.toLowerCase());
+  if (!nombreCargar) {
+    const num = parseInt(op);
+    if (!isNaN(num) && nombres[num - 1]) nombreCargar = nombres[num - 1];
+  }
+  if (!nombreCargar) { alert('No se reconoció esa opción. Escribe "guardar", el nombre/número de una plantilla, o "borrar NOMBRE".'); return; }
+
+  if (!confirm(`Esto va a REEMPLAZAR tu plan semanal actual con la plantilla "${nombreCargar}".\n\nSi no guardaste tu plan actual como otra plantilla, se perderá. ¿Continuar?`)) return;
+
+  planSemanal = JSON.parse(JSON.stringify(plantillas[nombreCargar]));
+  guardarPlanEnStorage();
+  renderNav();
+  renderDia();
+  renderResumen();
+  renderBarrasObjetivos();
+  alert(`✅ Plantilla "${nombreCargar}" cargada.`);
+}
+
+let metasNutricionales = JSON.parse(localStorage.getItem('nut_metas') || JSON.stringify({
+  kcal: 2600, prot: 130, carb: 350, grasa: 75, tipoObjetivo: 'volumen', sexo: 'h'
+}));
+
+let favoritos = JSON.parse(localStorage.getItem('nut_favoritos') || '[]');
+
+function toggleFavorito(nombre, event) {
+  event.stopPropagation();
+  const idx = favoritos.indexOf(nombre);
+  if (idx >= 0) favoritos.splice(idx, 1);
+  else favoritos.push(nombre);
+  localStorage.setItem('nut_favoritos', JSON.stringify(favoritos));
+  poblarDropdown(textoBuscarDD());
+}
+
+function preguntarNuevaSeccion() {
+  const nombreSeq = prompt("Ingresa el nombre de la nueva sección (ej. MERIENDA, COMIDA 4):");
+  if (!nombreSeq || !nombreSeq.trim()) return;
+  const nombreLimpio = nombreSeq.trim().toUpperCase();
+
+  DIAS.forEach(d => {
+    if (!planSemanal[d]) planSemanal[d] = {};
+    if (!planSemanal[d][nombreLimpio]) planSemanal[d][nombreLimpio] = [];
+  });
+
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+  renderBarrasObjetivos();
+}
+
+function renombrarSeccion(viejoNombre) {
+  const nuevoNombrePrompt = prompt(`Renombrar la sección "${viejoNombre}" a:`, viejoNombre);
+  if (!nuevoNombrePrompt || !nuevoNombrePrompt.trim()) return;
+  const nuevoNombre = nuevoNombrePrompt.trim().toUpperCase();
+  if (nuevoNombre === viejoNombre) return;
+
+  DIAS.forEach(d => {
+    if (planSemanal[d] && planSemanal[d][viejoNombre] !== undefined) {
+      const bloques = planSemanal[d];
+      const nuevosBloques = {};
+      Object.keys(bloques).forEach(k => {
+        if (k === viejoNombre) nuevosBloques[nuevoNombre] = bloques[k];
+        else nuevosBloques[k] = bloques[k];
+      });
+      planSemanal[d] = nuevosBloques;
+    }
+  });
+
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+  renderBarrasObjetivos();
+}
+
+function eliminarSeccion(bloqueNombre) {
+  if (confirm(`¿Estás seguro de eliminar completamente la sección "${bloqueNombre}" de todos los días?`)) {
+    DIAS.forEach(d => {
+      if (planSemanal[d] && planSemanal[d][bloqueNombre]) delete planSemanal[d][bloqueNombre];
+    });
+    guardarPlanEnStorage();
+    renderDia();
+    renderResumen();
+    renderBarrasObjetivos();
+  }
+}
+
+function moverSeccion(dia, bloqueNombre, direccion) {
+  const bloques = planSemanal[dia];
+  const keys = Object.keys(bloques);
+  const idx = keys.indexOf(bloqueNombre);
+  if (idx < 0) return;
+  const targetIdx = idx + direccion;
+  if (targetIdx < 0 || targetIdx >= keys.length) return;
+
+  const temp = keys[idx];
+  keys[idx] = keys[targetIdx];
+  keys[targetIdx] = temp;
+
+  const nuevoBloques = {};
+  keys.forEach(k => {
+    nuevoBloques[k] = bloques[k];
+  });
+  planSemanal[dia] = nuevoBloques;
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+}
+
+// ── BASE DE DATOS: ignora filas vacías y la nota al pie del CSV ──
+const BASE = baseDatos.filter(a => a.nombre && a.nombre.trim() && !a.nombre.trim().startsWith('*'));
+const _norm = s => (s || '').toLowerCase().trim();
+const BASE_POR_NOMBRE = new Map();
+BASE.forEach(a => {
+  const k = _norm(a.nombre);
+  if (!BASE_POR_NOMBRE.has(k)) BASE_POR_NOMBRE.set(k, []);
+  BASE_POR_NOMBRE.get(k).push(a);
+});
+
+// Busca el alimento EXACTO. Si existe en las dos tablas (14 nombres repetidos con valores distintos)
+// usa la fuente que se eligió; si no hay fuente guardada, la Internacional (comportamiento anterior).
+function buscarBase(nombre, fuente) {
+  const lista = BASE_POR_NOMBRE.get(_norm(nombre));
+  if (!lista) return null;
+  if (fuente) { const e = lista.find(a => a.fuente === fuente); if (e) return e; }
+  return lista[0];
+}
+
+// Peso por unidad: primero el dato de la tabla (pesoUnidadG); si no hay, tabla de respaldo.
+// La coincidencia es por PALABRA (antes "papa" también atrapaba "papaya" y "pan" a "panca").
+const _re = k => new RegExp('(^|[^a-záéíóúñü])' + k + '(s|es)?([^a-záéíóúñü]|$)', 'i');
+const PESOS_RE = Object.entries(PESOS_UNIDAD).map(([k, p]) => [_re(k), p]);
+function pesoUnidadDe(nombre, fuente) {
+  const b = buscarBase(nombre, fuente);
+  if (b && b.pesoUnidadG > 0) return b.pesoUnidadG;
+  const nom = _norm(nombre);
+  for (const [re, p] of PESOS_RE) if (re.test(nom)) return p;
+  return null;
+}
+
+// Unidad de la columna PESO. Filas nuevas: la que elijas (por defecto g).
+// Filas antiguas sin unidad guardada: se mantiene la regla vieja (menos de 10 = kg) para no cambiarte los totales.
+function unidadPeso(item) {
+  if (item.pesoU === 'g' || item.pesoU === 'kg') return item.pesoU;
+  const v = parseFloat(item.pesoKg) || 0;
+  return (v > 0 && v < 10) ? 'kg' : 'g';
+}
+
+function calcularGramosTotales(item) {
+  const cant = parseFloat(item.cant) || 0;
+  const pesoKg = parseFloat(item.pesoKg) || 0;
+
+  let gramosPorCantidad = 0;
+  if (cant > 0) gramosPorCantidad = cant * (pesoUnidadDe(item.nombre, item.fuente) || 100);
+
+  let gramosPorPeso = 0;
+  if (pesoKg > 0) gramosPorPeso = (unidadPeso(item) === 'kg') ? pesoKg * 1000 : pesoKg;
+  return Math.round((gramosPorCantidad + gramosPorPeso) * 10) / 10;
+}
+
+function formatearPeso(gramos) {
+  return gramos >= 1000 ? `${(gramos / 1000).toFixed(2)} kg` : `${Math.round(gramos)} g`;
+}
+
+function unidadesDe(gramos, nombre, fuente) {
+  const pu = pesoUnidadDe(nombre, fuente);
+  return pu ? Math.max(1, Math.ceil(gramos / pu - 1e-6)) : null;
+}
+
+function formatearCantidadComercial(nombre, gramos, fuente) {
+  const nom = nombre.toLowerCase();
+  const und = unidadesDe(gramos, nombre, fuente);
+  if (nom.includes('huevo') && und) {
+    if (und >= 30) {
+      const mallas = Math.floor(und / 30), resto = und % 30;
+      return `${mallas} malla(s) (30 und)${resto > 0 ? ` + ${resto} und` : ''}`;
+    }
+    return `${und} unidad(es)`;
+  }
+  if ((nom.includes('atún') || nom.includes('conserva')) && und) return `${und} lata(s)`;
+  return und ? `${formatearPeso(gramos)} · ${und} und` : formatearPeso(gramos);
+}
+
+// Devuelve nutrientes + estado: 'ok' (nombre exacto), 'aprox' (coincidencia parcial), 'sin' (no se encontró)
+function getNut(item) {
+  const cero = {kcal:0,prot:0,carb:0,grasa:0,fibra:0,estado:'sin'};
+  const gramosTotales = calcularGramosTotales(item);
+  const nombreItem = _norm(item.nombre);
+  if (!nombreItem) return cero;
+  let baseItem = buscarBase(item.nombre, item.fuente), estado = 'ok';
+  if (!baseItem) {
+    baseItem = BASE.find(a => _norm(a.nombre).includes(nombreItem) || nombreItem.includes(_norm(a.nombre)));
+    estado = baseItem ? 'aprox' : 'sin';
+  }
+  if (!baseItem || !gramosTotales) return {...cero, estado};
+
+  const f = gramosTotales / 100;
+  return {
+    kcal:  +(((baseItem.kcal||0)*f).toFixed(1)),
+    prot:  +(((baseItem.proteinas||0)*f).toFixed(1)),
+    carb:  +(((baseItem.carbohidratos||0)*f).toFixed(1)),
+    grasa: +(((baseItem.grasas||0)*f).toFixed(1)),
+    fibra: +(((baseItem.fibra||0)*f).toFixed(1)),
+    estado
+  };
+}
+
+// Suma el plan semanal por alimento (nombre + fuente) → [{nombre, fuente, gr}]
+function acumularPlan(dias = DIAS) {
+  const m = new Map();
+  dias.forEach(d => Object.values(planSemanal[d] || {}).forEach(items => (items || []).forEach(it => {
+    if (!it.nombre) return;
+    const gr = calcularGramosTotales(it);
+    if (gr <= 0) return;
+    const b = buscarBase(it.nombre, it.fuente);
+    const fuente = it.fuente || (b && b.fuente) || '';
+    const k = it.nombre + '||' + fuente;
+    if (!m.has(k)) m.set(k, {nombre: it.nombre, fuente, gr: 0});
+    m.get(k).gr += gr;
+  })));
+  return [...m.values()];
+}
+
+function totalDia(dia) {
+  let t={kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+  const bloques = planSemanal[dia] || {};
+  Object.keys(bloques).forEach(b => {
+    (bloques[b]||[]).forEach(item=>{
+      const n=getNut(item);
+      t.kcal+=n.kcal; t.prot+=n.prot; t.carb+=n.carb; t.grasa+=n.grasa; t.fibra+=n.fibra;
+    });
+  });
+  return t;
+}
+
+function clasificarAlimento(nombre) {
+  const nom = nombre.toLowerCase();
+  const frutas = ['fresa','plátano','manzana','papaya','mango','arándano','naranja','pera','piña','uva','melón','sandía','mandarina','durazno','kiwi','ciruela','higo','frambuesa','zarzamora','limón'];
+  if (frutas.some(f => nom.includes(f))) return 'Frutas';
+  
+  const vegetales = ['lechuga','tomate','zanahoria','brócoli','espinaca','pepino','apio','cebolla','zapallo','vainita','champiñón','coliflor','pimiento','alcachofa','espárrago'];
+  if (vegetales.some(v => nom.includes(v))) return 'Fibras y Vegetales';
+
+  const item = buscarBase(nombre);
+  if (!item) return 'Carbohidratos';
+
+  const p = item.proteinas || 0;
+  const c = item.carbohidratos || 0;
+  const g = item.grasas || 0;
+  const f = item.fibra || 0;
+
+  if (g >= p && g >= c && g > 10) return 'Grasas';
+  if (p >= c && p >= g && p > 8) return 'Proteínas';
+  if (f > 8 && f >= c) return 'Fibras y Vegetales';
+  return 'Carbohidratos';
+}
+
+function renderNav() {
+  const nav = document.getElementById('dias-nav');
+  nav.innerHTML = DIAS.map(d =>
+    `<button class="dia-btn ${d===diaActivo?'activo':''}" onclick="cambiarDia('${d}')">${d}</button>`
+  ).join('');
+}
+function cambiarDia(dia) {
+  diaActivo = dia;
+  renderNav();
+  renderDia();
+  renderResumen();
+  renderBarrasObjetivos();
+}
+
+function renderResumen() {
+  const grid = document.getElementById('resumen-grid');
+  grid.innerHTML = DIAS.map(d => {
+    const t = totalDia(d);
+    const cd = costoDia(d).total;
+    return `<div class="resumen-card ${d===diaActivo?'activo':''}" onclick="cambiarDia('${d}')">
+      <div class="dia">${d.substring(0,3).toUpperCase()}</div>
+      <div class="kcal">${t.kcal.toFixed(0)}</div>
+      <div class="sub">kcal</div>
+      ${cd > 0 ? `<div class="costo-mini">${fmtS(cd)}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderBarrasObjetivos() {
+  const t = totalDia(diaActivo);
+  const m = metasNutricionales;
+
+  const itemsBar = [
+    { label: '⚡ Calorías', actual: t.kcal, meta: m.kcal, unidad: 'kcal' },
+    { label: '💪 Proteínas', actual: t.prot, meta: m.prot, unidad: 'g' },
+    { label: '🌾 Carbohidratos', actual: t.carb, meta: m.carb, unidad: 'g' },
+    { label: '🥑 Grasas', actual: t.grasa, meta: m.grasa, unidad: 'g' },
+    { label: '🌿 Fibra', actual: t.fibra, meta: fibraMeta(), unidad: 'g', minimo: true }
+  ];
+
+  let html = '';
+  itemsBar.forEach(item => {
+    const pct = Math.round((item.actual / (item.meta || 1)) * 100);   // % REAL (antes se topaba en 100%)
+    const pctBarra = Math.min(100, pct);
+    let colorFill = 'var(--azul)';
+    if (item.minimo) colorFill = pct >= 90 ? 'var(--verde)' : (pct >= 50 ? 'var(--oro)' : 'var(--azul)');
+    else if (pct >= 90 && pct <= 110) colorFill = 'var(--verde)';
+    else if (pct > 130) colorFill = '#dc2626';
+    else if (pct > 110) colorFill = 'var(--oro)';
+
+    html += `<div class="obj-barra-card">
+      <div class="obj-barra-info">
+        <span>${item.label}: ${item.actual.toFixed(1)} / ${item.meta} ${item.unidad}</span>
+        <span>${pct}%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" style="width: ${pctBarra}%; background: ${colorFill};"></div>
+      </div>
+      ${item.minimo ? `<button class="btn-fibra-sug" onclick="abrirSugerencias('fibratotal')">${item.meta - item.actual > 0.5 ? '💡 Me faltan ' + Math.round(item.meta - item.actual) + ' g → ver sugerencias' : '✅ Meta cumplida · ver ideas'}</button>` : ''}
+    </div>`;
+  });
+
+  document.getElementById('obj-grid-barras').innerHTML = html;
+  if (typeof renderCostos === 'function') renderCostos();
+}
+
+function abrirModalCalculadora() {
+  document.getElementById('modal-calculadora').classList.add('show');
+  const m = metasNutricionales;
+  if (m.tipoObjetivo) document.getElementById('calc-objetivo').value = m.tipoObjetivo;
+  if (m.sexo) document.getElementById('calc-sexo').value = m.sexo;
+  // Recupera los datos con los que se calculó por última vez (antes volvían a 65 kg / 170 cm / 25 años)
+  if (m.peso) document.getElementById('calc-peso').value = m.peso;
+  if (m.altura) document.getElementById('calc-altura').value = m.altura;
+  if (m.edad) document.getElementById('calc-edad').value = m.edad;
+  if (m.actividad) document.getElementById('calc-actividad').value = String(m.actividad);
+  actualizarTextoResultadosCalc();
+}
+
+function cerrarModalCalculadora() {
+  document.getElementById('modal-calculadora').classList.remove('show');
+  renderBarrasObjetivos();
+}
+
+// Meta de fibra: 14 g por cada 1000 kcal (guía de ingesta adecuada), mínimo 25 g
+function metaFibra(kcal) { return Math.max(25, Math.round((kcal || 0) / 1000 * 14)); }
+function fibraMeta() { return metasNutricionales.fibra || metaFibra(metasNutricionales.kcal); }
+
+function calcularYGuardarMetas() {
+  const peso = parseFloat(document.getElementById('calc-peso').value);
+  const altura = parseFloat(document.getElementById('calc-altura').value);
+  const edad = parseFloat(document.getElementById('calc-edad').value);
+  const actividad = parseFloat(document.getElementById('calc-actividad').value);
+  const objetivo = document.getElementById('calc-objetivo').value;
+  const sexo = document.getElementById('calc-sexo').value;
+
+  // Validación (antes un campo vacío se reemplazaba en silencio por 65 kg / 170 cm / 25 años)
+  if (!(peso >= 30 && peso <= 300) || !(altura >= 120 && altura <= 230) || !(edad >= 14 && edad <= 100) || !(actividad > 0)) {
+    alert('Revisa los datos: peso entre 30 y 300 kg, estatura entre 120 y 230 cm, edad entre 14 y 100 años.');
+    return;
+  }
+
+  // Mifflin-St Jeor: GEB = 10·peso + 6.25·estatura − 5·edad + (5 hombre | −161 mujer)
+  let geb = (10 * peso) + (6.25 * altura) - (5 * edad);
+  geb += (sexo === 'h') ? 5 : -161;
+  const tdee = geb * actividad;
+
+  let kcalObjetivo = tdee;
+  let protKg, grasaKg;
+  if (objetivo === 'volumen') {
+    kcalObjetivo += (sexo === 'h') ? 450 : 300;
+    protKg = 2.1; grasaKg = 1.1;
+  } else if (objetivo === 'definicion') {
+    kcalObjetivo -= 400;
+    protKg = 2.3; grasaKg = 0.75;
+  } else {
+    protKg = 1.9; grasaKg = 0.95;
+  }
+
+  const prot = Math.round(peso * protKg);
+  const grasa = Math.round(peso * grasaKg);
+  const carbBruto = (kcalObjetivo - (prot * 4) - (grasa * 9)) / 4;
+  const carb = Math.max(0, Math.round(carbBruto));
+
+  metasNutricionales = {
+    kcal: Math.round(kcalObjetivo), prot, carb, grasa, fibra: metaFibra(kcalObjetivo),
+    tipoObjetivo: objetivo, sexo,
+    peso, altura, edad, actividad,
+    geb: Math.round(geb), tdee: Math.round(tdee)
+  };
+
+  try { localStorage.setItem('nut_metas', JSON.stringify(metasNutricionales)); } catch(e) {}
+  actualizarTextoResultadosCalc();
+  renderBarrasObjetivos();
+  if (carbBruto < 0) alert('⚠️ Con estos datos las proteínas y grasas ya superan las calorías objetivo; los carbohidratos quedaron en 0. Revisa peso/objetivo.');
+}
+
+function actualizarTextoResultadosCalc() {
+  const m = metasNutricionales;
+  const peso = m.peso || parseFloat(document.getElementById('calc-peso').value) || 65;
+  let descObj = "Volumen limpio";
+  if (m.tipoObjetivo === 'definicion') descObj = "Definición / Pérdida de peso";
+  if (m.tipoObjetivo === 'mantenimiento') descObj = "Mantenimiento / Recomposición";
+  const sexoTxt = (m.sexo === 'f') ? 'Mujer' : 'Hombre';
+
+  document.getElementById('res-geb').textContent = m.geb
+    ? `Metabolismo basal: ${m.geb} kcal · Gasto total diario (con actividad): ${m.tdee} kcal`
+    : 'Metabolismo basal: pulsa “Calcular” para ver el detalle';
+  document.getElementById('res-cal').textContent = `Calorías objetivo: ${m.kcal} kcal (${descObj} - ${sexoTxt})`;
+  document.getElementById('res-prot').textContent = `Proteínas: ${m.prot} g (${(m.prot / peso).toFixed(2)} g/kg)`;
+  document.getElementById('res-gras').textContent = `Grasas: ${m.grasa} g (${(m.grasa / peso).toFixed(2)} g/kg)`;
+  document.getElementById('res-carb').textContent = `Carbohidratos: ${m.carb} g (${(m.carb / peso).toFixed(2)} g/kg)`;
+  document.getElementById('res-fibra').textContent = `Fibra: ${fibraMeta()} g (14 g por cada 1000 kcal; ayuda a la saciedad, la digestión y el azúcar en sangre)`;
+}
+
+function limpiarDiaActual() {
+  if (confirm(`¿Estás seguro de limpiar todos los registros nutricionales de ${diaActivo}?`)) {
+    if (planSemanal[diaActivo]) {
+      Object.keys(planSemanal[diaActivo]).forEach(bloque => { planSemanal[diaActivo][bloque] = []; });
+    }
+    guardarPlanEnStorage();
+    renderDia();
+    renderResumen();
+    renderBarrasObjetivos();
+  }
+}
+
+function renderDia() {
+  const dia = diaActivo;
+  const totDia = totalDia(dia);
+  if (!planSemanal[dia]) planSemanal[dia] = {};
+
+  const bloquesDelDia = Object.keys(planSemanal[dia]);
+  const todasColapsadas = bloquesDelDia.length > 0 && bloquesDelDia.every(b => seccionesColapsadas.includes(dia + '||' + b));
+  
+  let html = `<div class="tabla-wrap">
+    <div class="tabla-titulo">
+      📅 ${dia}
+      <button class="btn-limpiar" onclick="limpiarDiaActual()">🗑️ Limpiar Día</button>
+      <button class="btn-comprimir-todo" onclick="toggleTodasSeccionesDia()">${todasColapsadas ? '▶️ Expandir todo' : '🗂️ Comprimir todo'}</button>
+      <button class="btn-duplicar-dia" onclick="duplicarDiaActual()">📋 Duplicar día</button>
+      <span class="total-dia-badge">⚡ ${totDia.kcal.toFixed(0)} kcal · 💪 ${totDia.prot.toFixed(1)}g prot · 🌾 ${totDia.carb.toFixed(1)}g carb · 🧈 ${totDia.grasa.toFixed(1)}g grasa · 🌿 ${totDia.fibra.toFixed(1)}g fibra</span>
+    </div>
+    <table>
+      <thead><tr>
+        <th style="width:340px; text-align:center;">ALIMENTO<span class="th-sub">(Nombre y origen)</span></th>
+        <th style="width:75px; text-align:center;">CANTIDAD<span class="th-sub">(Latas / Und)</span></th>
+        <th style="width:120px; text-align:center;">PESO<span class="th-sub">(g o kg)</span></th>
+        <th style="width:75px; text-align:center;">TOTAL (g)<span class="th-sub">(Calculado)</span></th>
+        <th style="width:70px; text-align:center;">ENERGÍA<span class="th-sub">(Kcal)</span></th>
+        <th style="width:65px; text-align:center;">PROT<span class="th-sub">(g)</span></th>
+        <th style="width:65px; text-align:center;">CARB<span class="th-sub">(g)</span></th>
+        <th style="width:65px; text-align:center;">GRASA<span class="th-sub">(g)</span></th>
+        <th style="width:65px; text-align:center;">FIBRA<span class="th-sub">(g)</span></th>
+        <th style="width:50px; text-align:center;"></th>
+      </tr></thead><tbody>`;
+
+  const bloquesKeys = Object.keys(planSemanal[dia]);
+  bloquesKeys.forEach((bloque, bIdx) => {
+    const items = planSemanal[dia][bloque] || [];
+    let bt={kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+    const claveColapso = dia + '||' + bloque;
+    const colapsada = seccionesColapsadas.includes(claveColapso);
+
+    html += `<tr class="bloque-hdr"><td colspan="10">
+      🍽️ <span class="bloque-titulo-txt" onclick="renombrarSeccion('${bloque}')" title="Haz clic para renombrar">${bloque}</span>
+      <div class="bloque-acciones">
+        <button class="btn-toggle-seccion" onclick="toggleSeccion('${dia}','${bloque}')" title="${colapsada ? 'Expandir sección' : 'Comprimir sección'}">${colapsada ? '▶️ Expandir' : '🔽 Comprimir'}</button>
+        <button class="btn-copiar-seccion" onclick="copiarSeccionAOtroDia('${dia}','${bloque}')" title="Copiar esta sección a otro día">📋 Copiar a...</button>
+        ${bIdx > 0 ? `<button class="btn-mover-seccion" onclick="moverSeccion('${dia}','${bloque}',-1)" title="Mover arriba">⬆️</button>` : ''}
+        ${bIdx < bloquesKeys.length - 1 ? `<button class="btn-mover-seccion" onclick="moverSeccion('${dia}','${bloque}',1)" title="Mover abajo">⬇️</button>` : ''}
+        <button class="btn-comidas" onclick="abrirComidas('${dia}','${bloque}')" title="Guardar esta sección como comida o agregar una comida guardada">🍽️ Comidas</button>
+        <button class="btn-agregar" onclick="agregarFila('${dia}','${bloque}')">＋ Agregar alimento</button>
+        <button class="btn-renombrar-bloque" onclick="renombrarSeccion('${bloque}')">✏️ Renombrar</button>
+        <button class="btn-del-bloque" onclick="eliminarSeccion('${bloque}')">Eliminar</button>
+      </div>
+    </td></tr>`;
+
+    items.forEach((item, idx) => {
+      const n = getNut(item);
+      const grTotales = calcularGramosTotales(item);
+      bt.kcal+=n.kcal; bt.prot+=n.prot; bt.carb+=n.carb; bt.grasa+=n.grasa; bt.fibra+=n.fibra;
+      if (colapsada) return;
+      const tag = buscarBase(item.nombre, item.fuente)?.fuente==='Tablas Peruanas'?'[PE]':'[INT]';
+      const displayVal = item.nombre ? `${item.nombre} ${tag}` : '';
+      const placeholder = item.nombre ? '' : 'Seleccionar alimento...';
+      
+      html += `<tr>
+        <td>
+          <div class="sel-alimento">
+            <textarea rows="2" class="input-alimento" placeholder="${placeholder}" readonly
+              onclick="abrirDropdown(this,'${dia}','${bloque}',${idx})"
+              data-dia="${dia}" data-bloque="${bloque}" data-idx="${idx}">${displayVal}</textarea>
+          </div>
+        </td>
+        <td><input type="number" value="${item.cant || ''}" step="1" min="0" placeholder="0"
+          onchange="cambiarCampo('${dia}','${bloque}',${idx},'cant',this.value)"></td>
+        <td class="td-peso"><input type="number" value="${item.pesoKg || ''}" step="any" min="0" placeholder="0"
+          onchange="cambiarCampo('${dia}','${bloque}',${idx},'pesoKg',this.value)">
+          <select class="sel-unidad" onchange="cambiarUnidadPeso('${dia}','${bloque}',${idx},this.value)">
+            <option value="g" ${unidadPeso(item)==='g'?'selected':''}>g</option>
+            <option value="kg" ${unidadPeso(item)==='kg'?'selected':''}>kg</option>
+          </select></td>
+        <td><span class="peso-badge">${grTotales}g</span></td>
+        <td class="num">${n.kcal}${item.nombre && n.estado !== 'ok' ? ` <span title="${n.estado==='aprox'?'Coincidencia aproximada: vuelve a elegir el alimento de la lista':'No se encontró en la base: vuelve a elegirlo de la lista'}" style="cursor:help">⚠️</span>` : ''}</td>
+        <td class="num">${n.prot}</td>
+        <td class="num">${n.carb}</td>
+        <td class="num">${n.grasa}</td>
+        <td class="num">${n.fibra}</td>
+        <td><button class="btn-del" onclick="eliminarFila('${dia}','${bloque}',${idx})">✕</button></td>
+      </tr>`;
+    });
+
+    html += `<tr class="subtotal-row"><td colspan="4" style="text-align:right;padding-right:20px;">Subtotal ${bloque}:</td>
+      <td class="num">${bt.kcal.toFixed(1)}</td><td class="num">${bt.prot.toFixed(1)}</td>
+      <td class="num">${bt.carb.toFixed(1)}</td><td class="num">${bt.grasa.toFixed(1)}</td>
+      <td class="num">${bt.fibra.toFixed(1)}</td><td></td></tr>`;
+  });
+
+  const t = totDia;
+  html += `<tr class="total-row"><td colspan="4" style="text-align:right;padding-right:20px;">TOTAL ${dia.toUpperCase()}:</td>
+    <td class="num">${t.kcal.toFixed(1)}</td><td class="num">${t.prot.toFixed(1)}</td>
+    <td class="num">${t.carb.toFixed(1)}</td><td class="num">${t.grasa.toFixed(1)}</td>
+    <td class="num">${t.fibra.toFixed(1)}</td><td></td></tr>`;
+
+  html += `</tbody></table>
+    <div class="tabla-footer-acciones">
+      <button class="btn-add-seccion-tabla" onclick="preguntarNuevaSeccion()">➕ Añadir Nueva Sección</button>
+    </div>
+  </div>`;
+
+  const compras = acumularPlan([dia]);
+
+  const categorias = {
+    'Frutas': { titulo: '🍎 Frutas', items: [] },
+    'Carbohidratos': { titulo: '🌾 Carbohidratos', items: [] },
+    'Proteínas': { titulo: '🥩 Proteínas', items: [] },
+    'Grasas': { titulo: '🥑 Grasas', items: [] },
+    'Fibras y Vegetales': { titulo: '🥗 Fibras y Vegetales', items: [] }
+  };
+
+  compras.forEach(({nombre: nom, fuente, gr}) => {
+    const cat = clasificarAlimento(nom);
+    if (categorias[cat]) categorias[cat].items.push({ nom, gr, fuente });
+  });
+
+  html += `<div class="lista-compras">
+    <h3>🛒 Lista de Compras del Día (${dia})</h3>
+    <div class="sub-desc">Cantidades comerciales unificadas (mallas, latas, kilos) listas para el mercado.</div>
+    <div class="compras-grid">`;
+
+  Object.values(categorias).forEach(c => {
+    html += `<div class="compra-box">
+      <h4>${c.titulo} <span>${c.items.length}</span></h4>`;
+    if (c.items.length === 0) html += `<div class="vacio-txt">Sin ítems hoy</div>`;
+    else {
+      c.items.forEach(i => {
+        const textoComercial = formatearCantidadComercial(i.nom, i.gr, i.fuente);
+        html += `<div class="compra-item"><span>${i.nom}</span><span>${textoComercial}</span></div>`;
+      });
+    }
+    html += `</div>`;
+  });
+
+  html += `</div></div>`;
+  document.getElementById('contenedor-dia').innerHTML = html;
+  renderBarrasObjetivos();
+}
+
+function abrirModalCompras() {
+  document.getElementById('modal-compras').classList.add('show');
+  renderizarContenidoModalCompras();
+}
+
+function cerrarModalCompras() {
+  document.getElementById('modal-compras').classList.remove('show');
+}
+
+function cambiarPeriodoCompras(dias, btnId) {
+  periodoActualDias = dias;
+  document.querySelectorAll('.btn-periodo').forEach(b => b.classList.remove('activo'));
+  document.getElementById(btnId).classList.add('activo');
+  renderizarContenidoModalCompras();
+}
+
+// ══════════ LISTA DE COMPRAS + COSTOS ══════════
+const ORDEN_CATS = ['Frutas','Carbohidratos','Proteínas','Grasas','Fibras y Vegetales'];
+const TIT_CATS = {'Frutas':'🍎 Frutas','Carbohidratos':'🌾 Carbohidratos','Proteínas':'🥩 Proteínas','Grasas':'🥑 Grasas','Fibras y Vegetales':'🥗 Fibras y Vegetales'};
+let preciosCompras = {};
+try { preciosCompras = JSON.parse(localStorage.getItem('nut_precios') || '{}'); } catch(e) {}
+let filasCompras = [];
+
+function guardarPrecios() { try { localStorage.setItem('nut_precios', JSON.stringify(preciosCompras)); } catch(e) {} }
+const fmtS = n => 'S/ ' + (Number(n) || 0).toLocaleString('es-PE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+function construirFilasCompras() {
+  const factor = periodoActualDias / 7;
+  const prev = {};
+  filasCompras.forEach(f => { prev[f.key] = f; });   // conserva lo que el usuario editó al cambiar de periodo
+  filasCompras = acumularPlan().map(f => {
+    const gr = f.gr * factor;
+    const pu = pesoUnidadDe(f.nombre, f.fuente);
+    const key = f.nombre + '||' + f.fuente;
+    const p = preciosCompras[key] || {};
+    let base = p.base || (pu ? 'und' : 'kg');
+    if (base === 'und' && !pu) base = 'kg';
+    const unidades = pu ? Math.max(1, Math.ceil(gr / pu - 1e-6)) : null;
+    const cantDef = base === 'und' ? unidades : +(gr / 1000).toFixed(2);
+    return {
+      key, nombre: f.nombre, fuente: f.fuente, cat: clasificarAlimento(f.nombre),
+      gr, pu, unidades, base, cantDef, cant: cantDef,
+      precio: (p.precio === undefined || p.precio === null) ? '' : p.precio
+    };
+  }).sort((a, b) => (ORDEN_CATS.indexOf(a.cat) - ORDEN_CATS.indexOf(b.cat)) || a.nombre.localeCompare(b.nombre, 'es'));
+}
+
+function totalFila(f) {
+  const c = parseFloat(f.cant), p = parseFloat(f.precio);
+  return (isNaN(c) || isNaN(p)) ? 0 : c * p;
+}
+
+function renderizarContenidoModalCompras() {
+  construirFilasCompras();
+  let html = '';
+  if (!filasCompras.length) {
+    html = `<div class="vacio-txt" style="padding:20px;text-align:center">Todavía no hay alimentos con cantidad en tu plan.</div>`;
+    document.getElementById('contenido-modal-compras').innerHTML = html;
+    return;
+  }
+  html += `<div class="tabla-compras-wrap"><table class="tabla-compras">
+    <thead><tr>
+      <th class="th-chk" title="Marca lo que ya compraste">✔</th>
+      <th class="th-alim">Alimento</th>
+      <th>Peso total</th>
+      <th>Cantidad en unidades</th>
+      <th>Cantidad a comprar</th>
+      <th>Costo unitario (S/)</th>
+      <th>Costo total (S/)</th>
+    </tr></thead><tbody>`;
+  ORDEN_CATS.forEach(cat => {
+    const idxs = filasCompras.map((f, i) => f.cat === cat ? i : -1).filter(i => i >= 0);
+    if (!idxs.length) return;
+    html += `<tr class="fila-cat"><td colspan="7">${TIT_CATS[cat]} <span>${idxs.length}</span></td></tr>`;
+    idxs.forEach(i => {
+      const f = filasCompras[i];
+      const tag = f.fuente === 'Tablas Peruanas' ? 'PE' : 'INT';
+      const undTxt = f.unidades ? `${f.unidades} und` : '<span class="sin-und" title="Este alimento no tiene peso por unidad en la tabla">—</span>';
+      html += `<tr class="${comprados[f.key] ? 'comprado' : ''}">
+        <td class="td-chk"><input type="checkbox" ${comprados[f.key] ? 'checked' : ''} onchange="marcarComprado(${i}, this.checked)" title="Ya lo compré"></td>
+        <td class="td-alim">${f.nombre} <small>[${tag}]</small></td>
+        <td>${formatearPeso(f.gr)}</td>
+        <td>${undTxt}</td>
+        <td class="td-cant">
+          <input type="number" min="0" step="any" value="${f.cant}" oninput="editarCompra(${i},'cant',this.value)">
+          <select onchange="cambiarBaseCompra(${i}, this.value)">
+            <option value="kg" ${f.base==='kg'?'selected':''}>kg</option>
+            ${f.pu ? `<option value="und" ${f.base==='und'?'selected':''}>und</option>` : ''}
+          </select>
+        </td>
+        <td><input type="number" class="inp-precio" min="0" step="0.01" placeholder="0.00" value="${f.precio}" oninput="editarCompra(${i},'precio',this.value)"></td>
+        <td class="td-total" id="tc-${i}">${fmtS(totalFila(f))}</td>
+      </tr>`;
+    });
+    html += `<tr class="fila-sub"><td colspan="6">Subtotal ${cat}</td><td id="sub-${ORDEN_CATS.indexOf(cat)}">${fmtS(0)}</td></tr>`;
+  });
+  html += `<tr class="fila-total"><td colspan="6">💰 TOTAL DE LA COMPRA (${periodoActualDias} días)</td><td id="total-general">${fmtS(0)}</td></tr>`;
+  html += `<tr class="fila-pend"><td colspan="6">🧾 Por comprar todavía (<span id="n-pend">0</span> de ${filasCompras.length} alimentos)</td><td id="total-pend">${fmtS(0)}</td></tr>`;
+  html += `</tbody></table></div>
+    <div class="nota-compras">💡 Escribe el <b>costo unitario</b> (por unidad o por kg según lo que elijas en “Cantidad a comprar”) y el total se calcula solo. Los precios quedan guardados para la próxima vez.</div>`;
+  document.getElementById('contenido-modal-compras').innerHTML = html;
+  recalcularTotalesCompras();
+}
+
+function editarCompra(i, campo, val) {
+  const f = filasCompras[i];
+  f[campo] = val;
+  if (campo === 'precio') {
+    const p = preciosCompras[f.key] || {};
+    p.precio = val === '' ? null : parseFloat(val);
+    p.base = f.base;
+    preciosCompras[f.key] = p;
+    guardarPrecios();
+    if (typeof renderCostos === 'function') { renderCostos(); renderResumen(); }
+  }
+  recalcularTotalesCompras();
+}
+
+function cambiarBaseCompra(i, base) {
+  const f = filasCompras[i];
+  f.base = base;
+  const p = preciosCompras[f.key] || {};
+  p.base = base;
+  preciosCompras[f.key] = p;
+  guardarPrecios();
+  f.cant = base === 'und' ? f.unidades : +(f.gr / 1000).toFixed(2);
+  const inp = document.querySelector(`#tc-${i}`).parentElement.querySelector('.td-cant input');
+  inp.value = f.cant;
+  recalcularTotalesCompras();
+}
+
+function recalcularTotalesCompras() {
+  const subs = {};
+  let total = 0, pend = 0, nPend = 0;
+  filasCompras.forEach((f, i) => {
+    const t = totalFila(f);
+    const el = document.getElementById('tc-' + i);
+    if (el) el.textContent = fmtS(t);
+    subs[f.cat] = (subs[f.cat] || 0) + t;
+    total += t;
+    if (!comprados[f.key]) { pend += t; nPend++; }
+  });
+  const tp = document.getElementById('total-pend'); if (tp) tp.textContent = fmtS(pend);
+  const np = document.getElementById('n-pend'); if (np) np.textContent = nPend;
+  ORDEN_CATS.forEach((c, i) => { const el = document.getElementById('sub-' + i); if (el) el.textContent = fmtS(subs[c] || 0); });
+  const tg = document.getElementById('total-general');
+  if (tg) tg.textContent = fmtS(total);
+}
+
+async function cargarExcelJS() {
+  if (window.ExcelJS) return;
+  const urls = [
+    'https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js',
+    'https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js'
+  ];
+  for (const u of urls) {
+    try {
+      await new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = u; s.onload = res; s.onerror = rej;
+        document.head.appendChild(s);
+      });
+      if (window.ExcelJS) return;
+    } catch (e) {}
+  }
+  throw new Error('No se pudo cargar ExcelJS');
+}
+
+async function exportarComprasExcel() {
+  if (!filasCompras.length) construirFilasCompras();
+  if (!filasCompras.length) { alert('No hay alimentos en el plan para exportar.'); return; }
+  try { await cargarExcelJS(); }
+  catch (e) { alert('No se pudo cargar el generador de Excel (revisa tu conexión a internet).'); return; }
+
+  const wb = new ExcelJS.Workbook();
+  wb.creator = 'Planificador Nutricional';
+  const ws = wb.addWorksheet('Lista de Compras', {
+    views: [{ state: 'frozen', ySplit: 4, showGridLines: false }],
+    pageSetup: { orientation: 'landscape', paperSize: 9, fitToPage: true, fitToWidth: 1, fitToHeight: 0, margins: {left:.4,right:.4,top:.5,bottom:.5,header:.3,footer:.3} }
+  });
+  ws.columns = [
+    { key: 'a', width: 46 }, { key: 'b', width: 15 }, { key: 'c', width: 17 },
+    { key: 'd', width: 17 }, { key: 'e', width: 13 }, { key: 'f', width: 17 }, { key: 'g', width: 18 }, { key: 'h', width: 12 }
+  ];
+
+  const NEGRO = { argb: 'FF111827' };
+  const fino = { style: 'thin', color: { argb: 'FF94A3B8' } };
+  const grueso = { style: 'medium', color: NEGRO };
+  const COLS = 8;
+  const FMT_S = '"S/" #,##0.00';
+  const COLORES = {
+    'Frutas': 'FFFDE68A', 'Carbohidratos': 'FFFED7AA', 'Proteínas': 'FFFECACA',
+    'Grasas': 'FFD9F99D', 'Fibras y Vegetales': 'FFA7F3D0'
+  };
+
+  // Título
+  ws.mergeCells(1, 1, 1, COLS);
+  const t = ws.getCell(1, 1);
+  t.value = `LISTA DE COMPRAS — ${periodoActualDias} DÍAS`;
+  t.font = { name: 'Calibri', size: 18, bold: true, color: { argb: 'FFFFFFFF' } };
+  t.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF1E3A5F' } };
+  t.alignment = { horizontal: 'center', vertical: 'middle' };
+  ws.getRow(1).height = 36;
+
+  ws.mergeCells(2, 1, 2, COLS);
+  const st = ws.getCell(2, 1);
+  const m = metasNutricionales;
+  st.value = `Generado el ${new Date().toLocaleDateString('es-PE')}  ·  Meta diaria: ${m.kcal} kcal · ${m.prot} g proteína · ${m.carb} g carbohidratos · ${m.grasa} g grasa · ${fibraMeta()} g fibra`;
+  st.font = { name: 'Calibri', size: 10.5, italic: true, color: { argb: 'FF475569' } };
+  st.alignment = { horizontal: 'center', vertical: 'middle' };
+  ws.getRow(2).height = 20;
+  ws.getRow(3).height = 8;
+
+  // Encabezado de la tabla
+  const heads = ['Alimento', 'Peso total', 'Cantidad en unidades', 'Cantidad a comprar', 'Unidad de compra', 'Costo unitario', 'Costo total', 'Comprado'];
+  const hr = ws.getRow(4);
+  heads.forEach((h, i) => {
+    const c = hr.getCell(i + 1);
+    c.value = h;
+    c.font = { name: 'Calibri', size: 11, bold: true, color: { argb: 'FFFFFFFF' } };
+    c.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF2563EB' } };
+    c.alignment = { horizontal: 'center', vertical: 'middle', wrapText: true };
+    c.border = { top: grueso, bottom: grueso, left: i === 0 ? grueso : fino, right: i === COLS - 1 ? grueso : fino };
+  });
+  hr.height = 34;
+
+  let r = 5;
+  const filasSub = [];
+  ORDEN_CATS.forEach(cat => {
+    const items = filasCompras.filter(f => f.cat === cat);
+    if (!items.length) return;
+    const top = r;
+
+    // Banda de categoría (separada)
+    ws.mergeCells(r, 1, r, COLS);
+    const bc = ws.getCell(r, 1);
+    bc.value = (TIT_CATS[cat] || cat).replace(/^[^\wÁÉÍÓÚÑ]+\s*/, '').toUpperCase();
+    bc.font = { name: 'Calibri', size: 13, bold: true, color: NEGRO };
+    bc.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLORES[cat] || 'FFE2E8F0' } };
+    bc.alignment = { horizontal: 'left', vertical: 'middle', indent: 1 };
+    ws.getRow(r).height = 24;
+    r++;
+
+    const ini = r;
+    items.forEach((f, k) => {
+      const row = ws.getRow(r);
+      const cant = parseFloat(f.cant), precio = parseFloat(f.precio);
+      const tag = f.fuente === 'Tablas Peruanas' ? ' [PE]' : ' [INT]';
+      row.getCell(1).value = f.nombre + tag;
+      row.getCell(2).value = +(f.gr / 1000).toFixed(3);
+      row.getCell(2).numFmt = '0.00" kg"';
+      row.getCell(3).value = f.unidades || '—';
+      row.getCell(4).value = isNaN(cant) ? null : cant;
+      row.getCell(4).numFmt = '#,##0.##';
+      row.getCell(5).value = f.base === 'und' ? 'unidad' : 'kg';
+      row.getCell(6).value = isNaN(precio) ? null : precio;
+      row.getCell(6).numFmt = FMT_S;
+      row.getCell(7).value = { formula: `IF(OR(D${r}="",F${r}=""),0,D${r}*F${r})`, result: isNaN(cant) || isNaN(precio) ? 0 : cant * precio };
+      row.getCell(7).numFmt = FMT_S;
+      row.getCell(8).value = comprados[f.key] ? '✔' : '';
+      const lineas = Math.ceil((f.nombre.length + 6) / 44);
+      row.height = Math.max(21, 16 * lineas + 5);
+      const zebra = k % 2 ? 'FFF8FAFC' : 'FFFFFFFF';
+      for (let c = 1; c <= COLS; c++) {
+        const cell = row.getCell(c);
+        cell.font = { name: 'Calibri', size: c === 8 ? 14 : 11, bold: c === 7 || c === 8, color: c === 8 ? { argb: 'FF16A34A' } : undefined };
+        cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: zebra } };
+        cell.alignment = { horizontal: c === 1 ? 'left' : 'center', vertical: 'middle', wrapText: true, indent: c === 1 ? 1 : 0 };
+        cell.border = { top: fino, bottom: fino, left: c === 1 ? grueso : fino, right: c === COLS ? grueso : fino };
+      }
+      r++;
+    });
+    const fin = r - 1;
+
+    // Subtotal de la categoría
+    ws.mergeCells(r, 1, r, 6);
+    const sc = ws.getCell(r, 1);
+    sc.value = `Subtotal ${cat}`;
+    const sv = ws.getCell(r, 7);
+    sv.value = { formula: `SUM(G${ini}:G${fin})`, result: items.reduce((a, f) => a + totalFila(f), 0) };
+    sv.numFmt = FMT_S;
+    for (let c = 1; c <= COLS; c++) {
+      const cell = ws.getCell(r, c);
+      cell.font = { name: 'Calibri', size: 11.5, bold: true, color: NEGRO };
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: COLORES[cat] || 'FFE2E8F0' } };
+      cell.alignment = { horizontal: c === 1 ? 'right' : 'center', vertical: 'middle', indent: c === 1 ? 1 : 0 };
+      cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : fino, right: c === COLS ? grueso : fino };
+    }
+    ws.getRow(r).height = 23;
+    // marco en negrita alrededor de toda la categoría (banda)
+    for (let c = 1; c <= COLS; c++) {
+      const cell = ws.getCell(top, c);
+      cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : undefined, right: c === COLS ? grueso : undefined };
+    }
+    filasSub.push(r);
+    r++;
+    ws.getRow(r).height = 9; // espacio entre categorías
+    r++;
+  });
+
+  // Total general
+  ws.mergeCells(r, 1, r, 6);
+  ws.getCell(r, 1).value = '💰 TOTAL GENERAL DE LA COMPRA';
+  const tg = ws.getCell(r, 7);
+  tg.value = { formula: filasSub.map(x => `G${x}`).join('+'), result: filasCompras.reduce((a, f) => a + totalFila(f), 0) };
+  tg.numFmt = FMT_S;
+  for (let c = 1; c <= COLS; c++) {
+    const cell = ws.getCell(r, c);
+    cell.font = { name: 'Calibri', size: 14, bold: true, color: { argb: 'FFFFFFFF' } };
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF16A34A' } };
+    cell.alignment = { horizontal: c === 1 ? 'right' : 'center', vertical: 'middle', indent: c === 1 ? 1 : 0 };
+    cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : undefined, right: c === COLS ? grueso : undefined };
+  }
+  ws.getRow(r).height = 32;
+  const filaTotal = r;
+
+  // Por comprar todavía = total − lo marcado como comprado
+  r++;
+  ws.mergeCells(r, 1, r, 6);
+  ws.getCell(r, 1).value = '🧾 POR COMPRAR TODAVÍA (sin lo marcado ✔)';
+  const pend = ws.getCell(r, 7);
+  pend.value = { formula: `G${filaTotal}-SUMIF(H5:H${filaTotal - 1},"✔",G5:G${filaTotal - 1})`, result: filasCompras.filter(f => !comprados[f.key]).reduce((a, f) => a + totalFila(f), 0) };
+  pend.numFmt = FMT_S;
+  for (let c = 1; c <= COLS; c++) {
+    const cell = ws.getCell(r, c);
+    cell.font = { name: 'Calibri', size: 13, bold: true, color: { argb: 'FF713F12' } };
+    cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FFFEF08A' } };
+    cell.alignment = { horizontal: c === 1 ? 'right' : 'center', vertical: 'middle', indent: c === 1 ? 1 : 0 };
+    cell.border = { top: grueso, bottom: grueso, left: c === 1 ? grueso : undefined, right: c === COLS ? grueso : undefined };
+  }
+  ws.getRow(r).height = 28;
+
+  const buf = await wb.xlsx.writeBuffer();
+  const blob = new Blob([buf], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Lista_Compras_${periodoActualDias}_dias.xlsx`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
+}
+
+// ══════════ SUGERENCIAS DE ALIMENTOS (digestión, azúcar, grasas buenas, fibra soluble) ══════════
+const SUGERENCIAS = {
+  proteina: {
+    boton: '🧬 Digerir mejor la proteína',
+    titulo: '🧬 Alimentos que ayudan a digerir y aprovechar la proteína',
+    desc: 'Enzimas naturales (bromelina, papaína), probióticos y vitamina B6. Combínalos con tus comidas de pollo, huevo, pescado o carne.',
+    items: [
+      {n:'Piña cruda', f:'Internacional', g:100, why:'Bromelina: enzima que ayuda a digerir proteínas'},
+      {n:'Papaya cruda', f:'Internacional', g:150, why:'Papaína: enzima digestiva de proteínas'},
+      {n:'Kiwi crudo', f:'Internacional', g:100, why:'Actinidina: enzima que ayuda a digerir proteínas'},
+      {n:'Yogur, griego natural', f:'Internacional', g:120, why:'Probióticos para la digestión'},
+      {n:'Kéfir', f:'Internacional', g:200, why:'Probióticos para la digestión'},
+      {n:'Plátano crudo', f:'Internacional', g:118, why:'Vitamina B6: ayuda a usar los aminoácidos'},
+      {n:'Palta', f:'Tablas Peruanas', g:60, why:'Vitamina B6 y grasa buena'},
+      {n:'Limón crudo', f:'Internacional', g:30, why:'Acidez que acompaña la digestión de la comida'}
+    ]
+  },
+  azucar: {
+    boton: '🍋 Frenar picos de azúcar',
+    titulo: '🍋 Alimentos que frenan el pico de azúcar de los carbohidratos',
+    desc: 'Fibra, proteína y grasa buena hacen que el carbohidrato se absorba más lento. Agrégalos junto a tu arroz, papa, camote, pan o fruta.',
+    items: [
+      {n:'Avena cruda', f:'Internacional', g:40, why:'Fibra (beta-glucano) que retarda la absorción'},
+      {n:'Quinua cocida', f:'Tablas Peruanas', g:150, why:'Carbohidrato con fibra y proteína'},
+      {n:'Lentejas, no agregadas grasas en la cocción', f:'Internacional', g:150, why:'Menestra: fibra + proteína'},
+      {n:'Garbanzo, cocido', f:'Tablas Peruanas', g:100, why:'Menestra: fibra + proteína'},
+      {n:'Frejol tarhui o chocho cocido con cáscara', f:'Tablas Peruanas', g:80, why:'Tarwi: mucha proteína y fibra'},
+      {n:'Semillas de chía', f:'Internacional', g:15, why:'Fibra que forma gel y frena la absorción'},
+      {n:'Linaza', f:'Tablas Peruanas', g:15, why:'Fibra soluble y omega-3'},
+      {n:'Almendras sin sal', f:'Internacional', g:20, why:'Grasa buena + fibra: baja el pico de glucosa'},
+      {n:'Brócoli crudo', f:'Internacional', g:100, why:'Verdura fibrosa: comerla antes del carbohidrato ayuda'},
+      {n:'Espinacas crudas', f:'Internacional', g:50, why:'Verdura fibrosa'},
+      {n:'Limón crudo', f:'Internacional', g:30, why:'Su acidez (como el vinagre) modera la subida de glucosa'},
+      {n:'Canela, molida*', f:'Tablas Peruanas', g:2, why:'Se usa como acompañante en avenas y postres'}
+    ]
+  },
+  grasas: {
+    boton: '🥑 Buenas grasas',
+    titulo: '🥑 Buenas grasas (omega-3 y monoinsaturadas)',
+    desc: 'Cómelas junto a verduras (zanahoria, tomate, espinaca) para absorber mejor las vitaminas A, D, E y K.',
+    items: [
+      {n:'Aguacate crudo', f:'Internacional', g:70, why:'Grasa monoinsaturada + vitamina E'},
+      {n:'Aceite de oliva', f:'Internacional', g:10, why:'Grasa monoinsaturada; úsalo en crudo en ensaladas'},
+      {n:'Almendras sin sal', f:'Internacional', g:25, why:'Grasa buena + vitamina E'},
+      {n:'Nueces (castellanas)', f:'Internacional', g:25, why:'Omega-3 (ALA)'},
+      {n:'Sacha Inchi tostado', f:'Tablas Peruanas', g:20, why:'Omega-3 vegetal peruano'},
+      {n:'Semillas de chía', f:'Internacional', g:15, why:'Omega-3 vegetal + fibra'},
+      {n:'Linaza', f:'Tablas Peruanas', g:15, why:'Omega-3 vegetal + fibra'},
+      {n:'Pescado trucha, fresca', f:'Tablas Peruanas', g:120, why:'Omega-3 (EPA/DHA)'},
+      {n:'Pescado jurel, fresco', f:'Tablas Peruanas', g:120, why:'Pescado azul: omega-3'},
+      {n:'Pescado caballa, fresco', f:'Tablas Peruanas', g:120, why:'Pescado azul: omega-3'},
+      {n:'Sardinas cocidas', f:'Internacional', g:100, why:'Pescado azul: omega-3'},
+      {n:'Aceitunas negras', f:'Internacional', g:20, why:'Grasa monoinsaturada'}
+    ]
+  },
+  fibra: {
+    boton: '🌾 Fibra soluble',
+    titulo: '🌾 Fibra soluble (atrapa colesterol y grasa)',
+    desc: 'La fibra soluble se une a la bilis y al colesterol y los elimina. Úsala sobre todo cuando tu comida tenga grasa saturada (carnes grasas, frituras, quesos).',
+    items: [
+      {n:'Avena cruda', f:'Internacional', g:40, why:'Beta-glucano: la fibra soluble más estudiada'},
+      {n:'Manzana cruda', f:'Internacional', g:150, why:'Pectina'},
+      {n:'Pera cruda', f:'Internacional', g:150, why:'Pectina'},
+      {n:'Naranja', f:'Internacional', g:130, why:'Pectina (mejor la fruta entera que el jugo)'},
+      {n:'Cebada perlada o resbalada cocida', f:'Tablas Peruanas', g:150, why:'Beta-glucano'},
+      {n:'Lentejas, no agregadas grasas en la cocción', f:'Internacional', g:150, why:'Menestra rica en fibra soluble'},
+      {n:'Garbanzo, cocido', f:'Tablas Peruanas', g:100, why:'Menestra rica en fibra soluble'},
+      {n:'Habas frescas, sin cáscara y sin vaina', f:'Tablas Peruanas', g:100, why:'Menestra fresca con fibra'},
+      {n:'Frejol tarhui o chocho cocido con cáscara', f:'Tablas Peruanas', g:80, why:'Tarwi: fibra y proteína'},
+      {n:'Linaza', f:'Tablas Peruanas', g:15, why:'Mucílago (fibra soluble) + omega-3'},
+      {n:'Semillas de chía', f:'Internacional', g:15, why:'Fibra soluble que forma gel'},
+      {n:'Zanahorias crudas', f:'Internacional', g:100, why:'Pectina'},
+      {n:'Brócoli crudo', f:'Internacional', g:100, why:'Fibra + verdura'}
+    ]
+  }
+};
+
+SUGERENCIAS.fibratotal = {
+  boton: '🌿 Fibra para llegar a tu meta',
+  titulo: '🌿 Alimentos ricos en fibra para llegar a tu meta del día',
+  desc: 'Ordenados de más a menos fibra por porción. Combina varios: una menestra, una fruta con cáscara y una semilla suelen bastar. Sube la fibra de a poco y toma agua.',
+  items: [
+    {n:'Lentejas, no agregadas grasas en la cocción', f:'Internacional', g:150, why:'Menestra: mucha fibra y proteína'},
+    {n:'Alcachofa', f:'Tablas Peruanas', g:100, why:'Una de las verduras con más fibra'},
+    {n:'Garbanzo, cocido', f:'Tablas Peruanas', g:100, why:'Menestra con fibra soluble e insoluble'},
+    {n:'Cañihua, hojuela de', f:'Tablas Peruanas', g:40, why:'Grano andino con mucha fibra'},
+    {n:'Frambuesas, crudas', f:'Internacional', g:100, why:'La fruta con más fibra por porción'},
+    {n:'Arveja, fresca sin vaina', f:'Tablas Peruanas', g:100, why:'Fibra y proteína vegetal'},
+    {n:'Pera cruda', f:'Internacional', g:150, why:'Fibra (pectina); cómela con cáscara'},
+    {n:'Aguacate crudo', f:'Internacional', g:70, why:'Fibra + grasa buena'},
+    {n:'Habas frescas, sin cáscara y sin vaina', f:'Tablas Peruanas', g:100, why:'Menestra fresca con fibra'},
+    {n:'Semillas de chía', f:'Internacional', g:15, why:'Mucha fibra en poco volumen'},
+    {n:'Linaza', f:'Tablas Peruanas', g:15, why:'Fibra + omega-3 (muélela)'},
+    {n:'Avena cruda', f:'Internacional', g:40, why:'Beta-glucano'},
+    {n:'Pan integral', f:'Internacional', g:60, why:'Cambia el pan blanco por integral'},
+    {n:'Higo seco', f:'Tablas Peruanas', g:30, why:'Fruta seca con mucha fibra'},
+    {n:'Almendras sin sal', f:'Internacional', g:25, why:'Fibra + grasa buena'},
+    {n:'Brócoli crudo', f:'Internacional', g:100, why:'Verdura fibrosa, casi sin calorías'}
+  ]
+};
+let sugTipoActual = null;
+let sugToastTimeout = null;
+
+function abrirSugerencias(tipo) {
+  sugTipoActual = tipo;
+  ocultarToastSugerencia();
+  const s = SUGERENCIAS[tipo];
+  document.getElementById('sug-titulo').textContent = s.titulo;
+  document.getElementById('sug-desc').textContent = s.desc;
+
+  const bloques = Object.keys(planSemanal[diaActivo] || {});
+  const sel = document.getElementById('sug-bloque');
+  sel.innerHTML = (bloques.length ? bloques : ['SUGERENCIAS']).map(b => `<option value="${b.replace(/"/g,'&quot;')}">${b}</option>`).join('');
+  document.getElementById('sug-dia').innerHTML =
+    `<option value="dia">Solo ${diaActivo}</option><option value="semana">Toda la semana (7 días)</option>`;
+
+  renderListaSugerencias();
+  document.getElementById('sug-btn-todos').style.display = tipo === 'fibratotal' ? 'none' : '';
+  document.getElementById('modal-sugerencias').classList.add('show');
+}
+
+function renderListaSugerencias() {
+  const s = SUGERENCIAS[sugTipoActual];
+  let html = '';
+  s.items.forEach((it, i) => {
+    const b = buscarBase(it.n, it.f);
+    if (!b) return;
+    const tag = b.fuente === 'Tablas Peruanas' ? 'PE' : 'INT';
+    html += `<div class="sug-item" id="sug-item-${i}">
+      <div class="sug-info">
+        <div class="sug-nombre">${b.nombre} <small>[${tag}]</small></div>
+        <div class="sug-why">${it.why}</div>
+        <div class="sug-nut" id="sug-nut-${i}"></div>
+      </div>
+      <div class="sug-accion">
+        <input type="number" min="1" step="1" value="${it.g}" id="sug-g-${i}" oninput="actualizarNutSugerido(${i})"> <span>g</span>
+        <button class="btn-sug-add" id="sug-btn-${i}" onclick="agregarSugerido(${i})">＋ Agregar</button>
+      </div>
+    </div>`;
+  });
+  document.getElementById('sug-lista').innerHTML = html || '<div class="vacio-txt">No se encontraron alimentos en tu base.</div>';
+  s.items.forEach((it, i) => actualizarNutSugerido(i));
+}
+
+function actualizarNutSugerido(i) {
+  const it = SUGERENCIAS[sugTipoActual].items[i];
+  const b = buscarBase(it.n, it.f);
+  const el = document.getElementById('sug-nut-' + i);
+  if (!b || !el) return;
+  const g = parseFloat(document.getElementById('sug-g-' + i).value) || 0;
+  const f = g / 100;
+  el.textContent = `${Math.round((b.kcal||0)*f)} kcal · P ${((b.proteinas||0)*f).toFixed(1)} g · C ${((b.carbohidratos||0)*f).toFixed(1)} g · G ${((b.grasas||0)*f).toFixed(1)} g · 🌿 ${((b.fibra||0)*f).toFixed(1)} g fibra`;
+}
+
+function agregarItemSugerido(i, dias, bloque) {
+  const it = SUGERENCIAS[sugTipoActual].items[i];
+  const b = buscarBase(it.n, it.f);
+  const g = parseFloat(document.getElementById('sug-g-' + i).value) || 0;
+  if (!b || g <= 0) return false;
+  dias.forEach(d => {
+    if (!planSemanal[d]) planSemanal[d] = {};
+    if (!planSemanal[d][bloque]) planSemanal[d][bloque] = [];
+    planSemanal[d][bloque].push({nombre: b.nombre, fuente: b.fuente, cant: 0, pesoKg: g, pesoU: 'g'});
+  });
+  return true;
+}
+
+function diasDestinoSugerencia() {
+  return document.getElementById('sug-dia').value === 'semana' ? DIAS : [diaActivo];
+}
+
+function marcarAgregado(i) {
+  const btn = document.getElementById('sug-btn-' + i);
+  if (btn) { btn.textContent = '✓ Agregado'; btn.classList.add('ok'); }
+}
+
+function agregarSugerido(i) {
+  const bloque = document.getElementById('sug-bloque').value;
+  if (!agregarItemSugerido(i, diasDestinoSugerencia(), bloque)) return;
+  marcarAgregado(i);
+  guardarPlanEnStorage(); renderDia(); renderResumen();
+}
+
+function agregarTodosSugeridos() {
+  const bloque = document.getElementById('sug-bloque').value;
+  const dias = diasDestinoSugerencia();
+  SUGERENCIAS[sugTipoActual].items.forEach((it, i) => {
+    const btn = document.getElementById('sug-btn-' + i);
+    if (btn && !btn.classList.contains('ok') && agregarItemSugerido(i, dias, bloque)) marcarAgregado(i);
+  });
+  guardarPlanEnStorage(); renderDia(); renderResumen();
+}
+
+function cerrarSugerencias() {
+  document.getElementById('modal-sugerencias').classList.remove('show');
+}
+
+// Aviso al elegir un alimento nuevo: propone el grupo de sugerencias que le corresponde
+function mostrarToastSugerencia(nombre, fuente) {
+  const cat = clasificarAlimento(nombre);
+  const mapa = {
+    'Proteínas': ['proteina', 'Es una proteína: ¿agregas algo que ayude a digerirla?'],
+    'Carbohidratos': ['azucar', 'Es un carbohidrato: ¿agregas algo que frene el pico de azúcar?'],
+    'Grasas': ['fibra', 'Es una grasa: ¿agregas fibra soluble para reducir su absorción?']
+  };
+  const m = mapa[cat];
+  if (!m) return;
+  const t = document.getElementById('toast-sugerencia');
+  document.getElementById('toast-sug-txt').textContent = '💡 ' + m[1];
+  document.getElementById('toast-sug-btn').onclick = () => abrirSugerencias(m[0]);
+  t.classList.add('show');
+  clearTimeout(sugToastTimeout);
+  sugToastTimeout = setTimeout(ocultarToastSugerencia, 9000);
+}
+function ocultarToastSugerencia() {
+  document.getElementById('toast-sugerencia').classList.remove('show');
+  clearTimeout(sugToastTimeout);
+}
+
+// ── DROPDOWN CON FILTROS FUNCIONALES ──
+let ddDia, ddBloque, ddIdx;
+
+let sugDropdownTipo = 'proteina';
+const ICONOS_SUG = {proteina:'🧬', azucar:'🍋', grasas:'🥑', fibra:'🌾'};
+const TIPS_SUG = {proteina:'Digerir mejor la proteína', azucar:'Frenar picos de azúcar', grasas:'Buenas grasas', fibra:'Fibra soluble'};
+
+// Grupo de sugerencias por defecto según lo último que hay en la sección:
+// proteína → ayudas para digerirla; carbohidrato → frenos del azúcar; grasa → fibra soluble.
+function tipoSugerenciaParaSeccion(dia, bloque) {
+  const items = (planSemanal[dia] && planSemanal[dia][bloque]) || [];
+  for (let i = items.length - 1; i >= 0; i--) {
+    if (!items[i].nombre) continue;
+    const cat = clasificarAlimento(items[i].nombre);
+    if (cat === 'Proteínas') return 'proteina';
+    if (cat === 'Carbohidratos') return 'azucar';
+    if (cat === 'Grasas') return 'fibra';
+  }
+  return 'proteina';
+}
+
+function cambiarTipoSugDropdown(tipo, event) {
+  if (event) { event.stopPropagation(); event.preventDefault(); }
+  sugDropdownTipo = tipo;
+  poblarDropdown(textoBuscarDD());
+  enfocarBuscarDD();
+}
+
+// Elegir un alimento sugerido desde el menú: lo pone en la fila con su porción sugerida (si la fila está vacía)
+function seleccionarSugeridoDropdown(tipo, i) {
+  const it = SUGERENCIAS[tipo].items[i];
+  const b = buscarBase(it.n, it.f);
+  if (!b) return;
+  const fila = planSemanal[ddDia][ddBloque][ddIdx];
+  fila.nombre = b.nombre;
+  fila.fuente = b.fuente;
+  if (!(parseFloat(fila.cant) > 0) && !(parseFloat(fila.pesoKg) > 0)) { fila.pesoKg = it.g; fila.pesoU = 'g'; }
+  guardarPlanEnStorage();
+  cerrarDropdown();
+  renderDia();
+  renderResumen();
+}
+
+function textoBuscarDD() { const el = document.getElementById('dd-buscar'); return el ? el.value : ''; }
+function enfocarBuscarDD() { const el = document.getElementById('dd-buscar'); if (el) el.focus(); }
+
+// El menú se abre SIEMPRE centrado en la pantalla (ya no depende de dónde esté el scroll)
+function abrirDropdown(inputEl, dia, bloque, idx) {
+  ddDia=dia; ddBloque=bloque; ddIdx=idx;
+  sugDropdownTipo = tipoSugerenciaParaSeccion(dia, bloque);
+  inputActivo = inputEl;
+  const dd = document.getElementById('dropdown-global');
+  const buscar = document.getElementById('dd-buscar');
+  dropdownHighlightedIndex = -1;
+  categoriaFiltroDropdown = "TODOS";
+  ddTabMovil = 'alim';
+  buscar.value = '';
+  poblarDropdown('');
+  document.getElementById('dd-backdrop').classList.add('show');
+  dd.classList.add('show');
+  document.body.style.overflow = 'hidden';   // la rueda del mouse ya no mueve la página de fondo
+
+  buscar.oninput = (e) => {
+    dropdownHighlightedIndex = 0;
+    poblarDropdown(e.target.value);
+    const items = dd.querySelectorAll('.dd-item');
+    if (items.length) actualizarHighlightDropdown(items);
+  };
+
+  buscar.onkeydown = (e) => {
+    if (e.key === 'Escape') { e.preventDefault(); cerrarDropdown(); return; }
+    const items = dd.querySelectorAll('.dd-item');
+    if (!items.length) return;
+
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      dropdownHighlightedIndex = (dropdownHighlightedIndex + 1) % items.length;
+      actualizarHighlightDropdown(items);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      dropdownHighlightedIndex = (dropdownHighlightedIndex - 1 + items.length) % items.length;
+      actualizarHighlightDropdown(items);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      if (items[dropdownHighlightedIndex]) {
+        const nombreAlimento = items[dropdownHighlightedIndex].getAttribute('data-nombre');
+        if (nombreAlimento) seleccionarAlimento(nombreAlimento, items[dropdownHighlightedIndex].getAttribute('data-fuente'));
+      }
+    }
+  };
+
+  buscar.focus();
+}
+
+function filtrarCategoriaDropdown(cat, event) {
+  if (event) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+  categoriaFiltroDropdown = cat;
+  poblarDropdown(textoBuscarDD());
+  enfocarBuscarDD();
+}
+
+function poblarDropdown(filtro) {
+  const dd = document.getElementById('dd-contenido');
+  const f = (filtro || '').toLowerCase();
+
+  let baseFiltrada = BASE;
+  if (categoriaFiltroDropdown !== "TODOS") {
+    baseFiltrada = BASE.filter(a => clasificarAlimento(a.nombre) === categoriaFiltroDropdown);
+  }
+
+  const todos = f
+    ? baseFiltrada.filter(a => a.nombre.toLowerCase().includes(f)).slice(0, 50)
+    : baseFiltrada.slice(0, 50);
+
+  const favsBase = baseFiltrada.filter(a => favoritos.includes(a.nombre));
+  const favs = f ? favsBase.filter(a => a.nombre.toLowerCase().includes(f)) : favsBase;
+
+  const catsDisponibles = ["TODOS", "Carbohidratos", "Proteínas", "Grasas", "Fibras y Vegetales", "Frutas"];
+  let htmlFiltros = `<div class="dd-filtros-bar">` + catsDisponibles.map(c => 
+    `<button type="button" class="dd-filtro-btn ${categoriaFiltroDropdown===c?'activo':''}" onclick="filtrarCategoriaDropdown('${c}', event)">${c}</button>`
+  ).join('') + `</div>`;
+
+  let htmlTodos = todos.map((a) => {
+    const esFav = favoritos.includes(a.nombre);
+    return `<div class="dd-item" data-nombre="${a.nombre.replace(/"/g, '&quot;')}" data-fuente="${a.fuente}"
+          onmouseover="resaltarItemPorNombre('${a.nombre.replace(/'/g, "\\'")}')"
+          onclick="seleccionarAlimento('${a.nombre.replace(/'/g,"\\'")}','${a.fuente}')">
+      <div class="dd-left-info">
+        <span class="dd-estrella ${esFav ? 'favorito' : ''}" onclick="toggleFavorito('${a.nombre.replace(/'/g,"\\'")}', event)">★</span>
+        <span class="dd-nombre">${a.nombre}</span>
+      </div>
+      <span class="dd-info">
+        <span class="dd-tag">${a.fuente==='Tablas Peruanas'?'PE':'INT'}</span>
+        <span class="dd-kcal">${a.kcal||0} kcal</span>
+      </span>
+    </div>`;
+  }).join('') || '<div class="dd-item" style="color:#64748b; justify-content:center;">Sin resultados</div>';
+
+  let htmlFavs = favs.map((a) => {
+    return `<div class="dd-item" data-nombre="${a.nombre.replace(/"/g, '&quot;')}" data-fuente="${a.fuente}"
+          onmouseover="resaltarItemPorNombre('${a.nombre.replace(/'/g, "\\'")}')"
+          onclick="seleccionarAlimento('${a.nombre.replace(/'/g,"\\'")}','${a.fuente}')">
+      <div class="dd-left-info">
+        <span class="dd-estrella favorito" onclick="toggleFavorito('${a.nombre.replace(/'/g,"\\'")}', event)">★</span>
+        <span class="dd-nombre">${a.nombre}</span>
+      </div>
+      <span class="dd-info">
+        <span class="dd-tag">${a.fuente==='Tablas Peruanas'?'PE':'INT'}</span>
+        <span class="dd-kcal">${a.kcal||0} kcal</span>
+      </span>
+    </div>`;
+  }).join('') || '<div class="dd-item" style="color:#64748b; justify-content:center;">Sin favoritos</div>';
+
+  const tiposSug = ['proteina','azucar','grasas','fibra'];
+  const htmlTabsSug = `<div class="dd-sug-tabs">` + tiposSug.map(t =>
+    `<button type="button" class="dd-sug-tab ${sugDropdownTipo===t?'activo':''}" title="${TIPS_SUG[t]}" onclick="cambiarTipoSugDropdown('${t}', event)">${ICONOS_SUG[t]}</button>`
+  ).join('') + `</div>`;
+  const htmlSugs = SUGERENCIAS[sugDropdownTipo].items.map((it, i) => {
+    const b = buscarBase(it.n, it.f);
+    if (!b) return '';
+    return `<div class="dd-item dd-item-sug" data-nombre="${b.nombre.replace(/"/g, '&quot;')}" data-fuente="${b.fuente}" title="${it.why.replace(/"/g,'&quot;')}"
+          onclick="seleccionarSugeridoDropdown('${sugDropdownTipo}', ${i})">
+      <div class="dd-left-info"><span class="dd-nombre">${b.nombre}</span></div>
+      <span class="dd-info"><span class="dd-tag">${b.fuente==='Tablas Peruanas'?'PE':'INT'}</span><span class="dd-kcal">${it.g} g</span></span>
+    </div>`;
+  }).join('');
+
+  const tabsMovil = `<div class="dd-tabs-movil">
+    <button type="button" class="dd-tab-movil ${ddTabMovil==='alim'?'activo':''}" onclick="cambiarTabMovil('alim', event)">📋 Alimentos</button>
+    <button type="button" class="dd-tab-movil ${ddTabMovil==='fav'?'activo':''}" onclick="cambiarTabMovil('fav', event)">⭐ Favoritos</button>
+    <button type="button" class="dd-tab-movil ${ddTabMovil==='sug'?'activo':''}" onclick="cambiarTabMovil('sug', event)">💡 Sugerencias</button>
+  </div>`;
+  dd.innerHTML = tabsMovil + htmlFiltros + `
+    <div class="dd-cuerpo-cols">
+      <div class="dd-columna ${ddTabMovil==='alim'?'dd-col-activa':''}">
+        <div class="dd-columna-titulo">📋 Alimentos (${categoriaFiltroDropdown})</div>
+        ${htmlTodos}
+      </div>
+      <div class="dd-columna ${ddTabMovil==='fav'?'dd-col-activa':''}">
+        <div class="dd-columna-titulo">⭐ Favoritos</div>
+        ${htmlFavs}
+      </div>
+      <div class="dd-columna dd-columna-sug ${ddTabMovil==='sug'?'dd-col-activa':''}">
+        <div class="dd-columna-titulo">💡 Sugerencias: ${TIPS_SUG[sugDropdownTipo]}</div>
+        ${htmlTabsSug}
+        ${htmlSugs}
+      </div>
+    </div>
+  `;
+}
+
+function resaltarItemPorNombre(nombre) {
+  const items = document.querySelectorAll('.dropdown .dd-item');
+  items.forEach((item, idx) => {
+    if (item.getAttribute('data-nombre') === nombre) {
+      item.classList.add('highlighted');
+      dropdownHighlightedIndex = idx;
+    } else {
+      item.classList.remove('highlighted');
+    }
+  });
+}
+
+function actualizarHighlightDropdown(items) {
+  items.forEach((item, idx) => {
+    if (idx === dropdownHighlightedIndex) {
+      item.classList.add('highlighted');
+      item.scrollIntoView({ block: 'nearest' });
+    } else {
+      item.classList.remove('highlighted');
+    }
+  });
+}
+
+function seleccionarAlimento(nombre, fuente) {
+  planSemanal[ddDia][ddBloque][ddIdx].nombre = nombre;
+  planSemanal[ddDia][ddBloque][ddIdx].fuente = fuente || buscarBase(nombre)?.fuente || '';
+  guardarPlanEnStorage();
+  cerrarDropdown();
+  renderDia();
+  renderResumen();
+  mostrarToastSugerencia(nombre, fuente);
+}
+
+function cerrarDropdown() {
+  document.getElementById('dropdown-global').classList.remove('show');
+  document.getElementById('dd-backdrop').classList.remove('show');
+  document.body.style.overflow = '';
+  const buscar = document.getElementById('dd-buscar');
+  if (buscar) { buscar.oninput = null; buscar.onkeydown = null; }
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('.sel-alimento') && !e.target.closest('.dropdown')) cerrarDropdown();
+});
+
+function cambiarCampo(dia, bloque, idx, campo, val) {
+  const it = planSemanal[dia][bloque][idx];
+  const num = val === '' ? 0 : (parseFloat(val) || 0);
+  if (campo === 'pesoKg' && !it.pesoU) it.pesoU = 'g';          // lo que escribes en PESO se entiende en gramos
+  it[campo] = num;
+  // CANTIDAD y PESO son excluyentes: al llenar uno se limpia el otro (así nunca se suman por error)
+  if (campo === 'cant' && num > 0) it.pesoKg = 0;
+  if (campo === 'pesoKg' && num > 0) it.cant = 0;
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+}
+
+function cambiarUnidadPeso(dia, bloque, idx, u) {
+  const it = planSemanal[dia][bloque][idx];
+  const antes = unidadPeso(it);
+  const v = parseFloat(it.pesoKg) || 0;
+  if (v > 0 && antes !== u) it.pesoKg = u === 'kg' ? +(v / 1000).toFixed(4) : +(v * 1000).toFixed(2);  // conserva el mismo total
+  it.pesoU = u;
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+}
+
+function agregarFila(dia, bloque) {
+  planSemanal[dia][bloque].push({nombre:"", cant: 0, pesoKg: 0, pesoU: 'g'});
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+}
+let ultimoEliminado = null;
+let deshacerTimeout = null;
+
+function eliminarFila(dia, bloque, idx) {
+  const item = planSemanal[dia][bloque][idx];
+  ultimoEliminado = { dia, bloque, idx, item: JSON.parse(JSON.stringify(item)) };
+  planSemanal[dia][bloque].splice(idx,1);
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+  mostrarToastDeshacer(item && item.nombre ? item.nombre : 'Alimento');
+}
+
+function deshacerEliminarFila() {
+  if (!ultimoEliminado) return;
+  const { dia, bloque, idx, item } = ultimoEliminado;
+  if (!planSemanal[dia]) planSemanal[dia] = {};
+  if (!planSemanal[dia][bloque]) planSemanal[dia][bloque] = [];
+  const insertIdx = Math.min(idx, planSemanal[dia][bloque].length);
+  planSemanal[dia][bloque].splice(insertIdx, 0, item);
+  ultimoEliminado = null;
+  clearTimeout(deshacerTimeout);
+  ocultarToastDeshacer();
+  guardarPlanEnStorage();
+  renderDia();
+  renderResumen();
+}
+
+function mostrarToastDeshacer(nombre) {
+  clearTimeout(deshacerTimeout);
+  let toast = document.getElementById('toast-deshacer');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast-deshacer';
+    toast.className = 'toast-deshacer';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<span>🗑️ "${nombre}" eliminado</span><button onclick="deshacerEliminarFila()">↩️ Deshacer</button>`;
+  toast.classList.add('show');
+  deshacerTimeout = setTimeout(ocultarToastDeshacer, 6000);
+}
+
+function ocultarToastDeshacer() {
+  const toast = document.getElementById('toast-deshacer');
+  if (toast) toast.classList.remove('show');
+}
+
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  const isDark = document.body.classList.contains('dark');
+  const texto = isDark ? ' Modo claro' : ' Modo oscuro';
+  const ico = isDark ? '☀️' : '🌙';
+  
+  const bh = document.getElementById('btn-dark-header');
+  const bb = document.getElementById('btn-dark-barra');
+
+  if (bh) bh.innerHTML = `${ico}${texto}`;
+  if (bb) bb.innerHTML = `${ico}${texto}`;
+  localStorage.setItem('nut_dark', isDark ? '1' : '0');
+}
+
+if (localStorage.getItem('nut_dark') === '1') {
+  document.body.classList.add('dark');
+  document.addEventListener('DOMContentLoaded', () => {
+    const bh = document.getElementById('btn-dark-header');
+    const bb = document.getElementById('btn-dark-barra');
+    if (bh) bh.innerHTML = '☀️ Modo claro';
+    if (bb) bb.innerHTML = '☀️ Modo claro';
+  });
+}
+
+async function exportarPDF() {
+  if (!window.jspdf) {
+    await new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+      s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
+  const W = doc.internal.pageSize.getWidth();
+  const PH = doc.internal.pageSize.getHeight();
+  const M = 10;
+
+  doc.setFillColor(30,58,95);
+  doc.rect(0,0,W,18,'F');
+  doc.setFontSize(13); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold');
+  doc.text('Planificador Nutricional Semanal', W/2, 11, {align:'center'});
+
+  let y = 24;
+  doc.setFillColor(139, 92, 246);
+  doc.rect(M, y, W - M * 2, 8, 'F');
+  doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+  doc.text('OBJETIVOS Y MACRONUTRIENTES DIARIOS CONFIGURADOS', M + 4, y + 5.5);
+  y += 11;
+
+  let descObj = "Volumen limpio";
+  if (metasNutricionales.tipoObjetivo === 'definicion') descObj = "Definición / Pérdida de peso";
+  if (metasNutricionales.tipoObjetivo === 'mantenimiento') descObj = "Mantenimiento / Recomposición";
+  const sexoTxt = (metasNutricionales.sexo === 'f') ? 'Mujer' : 'Hombre';
+
+  const infoMetas = [
+    `• Objetivo Principal: ${descObj} (${sexoTxt})`,
+    `• Calorias Objetivo: ${metasNutricionales.kcal} kcal`,
+    `• Proteinas Objetivo: ${metasNutricionales.prot} g`,
+    `• Carbohidratos Objetivo: ${metasNutricionales.carb} g`,
+    `• Grasas Objetivo: ${metasNutricionales.grasa} g`,
+    `• Fibra Objetivo: ${fibraMeta()} g`
+  ];
+
+  doc.setFillColor(248, 250, 252);
+  doc.setDrawColor(203, 213, 225);
+  doc.rect(M, y, W - M * 2, 34, 'FD');
+  
+  doc.setFontSize(9); doc.setTextColor(30, 41, 59); doc.setFont('helvetica', 'normal');
+  let textoY = y + 6;
+  infoMetas.forEach(linea => { doc.text(linea, M + 6, textoY); textoY += 5; });
+  y += 40;
+
+  const cols = [54,16,16,16,16,16,16,16,16,16];
+  const heads = ['ALIMENTO','CANT','PESO','TOTAL','KCAL','PROT','CARB','GRASA','FIBRA'];
+
+  DIAS.forEach(dia => {
+    const t = totalDia(dia);
+    if (y + 40 > PH) { doc.addPage(); y = 10; }
+
+    doc.setFillColor(30,58,95); doc.rect(M,y,W-M*2,7,'F');
+    doc.setFontSize(10); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold');
+    doc.text(`${dia.toUpperCase()} — ${t.kcal.toFixed(0)} kcal`, M+3, y+5);
+    y += 7;
+
+    doc.setFillColor(241,245,249); doc.rect(M,y,W-M*2,5,'F');
+    doc.setFontSize(7); doc.setTextColor(71,85,105); doc.setFont('helvetica','bold');
+    let x = M;
+    heads.forEach((h,i) => { doc.text(h, x+1, y+3.5); x+=cols[i]; });
+    y += 5;
+
+    const bloques = planSemanal[dia] || {};
+    Object.keys(bloques).forEach(bloque => {
+      const items = bloques[bloque]||[];
+      if (!items.length) return;
+      if (y + 6 > PH) { doc.addPage(); y = 10; }
+
+      doc.setFillColor(239,246,255); doc.rect(M,y,W-M*2,5,'F');
+      doc.setFontSize(7.5); doc.setTextColor(29,78,216); doc.setFont('helvetica','bold');
+      doc.text(`  ${bloque}`, M+1, y+3.5);
+      y += 5;
+
+      let bt={kcal:0,prot:0,carb:0,grasa:0,fibra:0};
+      items.forEach(item => {
+        if (y + 5 > PH) { doc.addPage(); y = 10; }
+        const n = getNut(item);
+        const grTotales = calcularGramosTotales(item);
+        bt.kcal+=n.kcal; bt.prot+=n.prot; bt.carb+=n.carb; bt.grasa+=n.grasa; bt.fibra+=n.fibra;
+        doc.setFillColor(255,255,255); doc.rect(M,y,W-M*2,5,'F');
+        doc.setFontSize(7); doc.setTextColor(30,41,59); doc.setFont('helvetica','normal');
+        const vals = [item.nombre||'—', (item.cant||''), (item.pesoKg ? item.pesoKg + ' ' + unidadPeso(item) : ''), grTotales+'g', n.kcal.toFixed(1), n.prot.toFixed(1), n.carb.toFixed(1), n.grasa.toFixed(1), n.fibra.toFixed(1)];
+        let xi = M;
+        vals.forEach((v,i) => {
+          const txt = doc.splitTextToSize(v, cols[i]-2);
+          doc.text(txt[0]||'', xi+1, y+3.5);
+          xi += cols[i];
+        });
+        doc.setDrawColor(226,232,240); doc.line(M, y+5, M+W-M*2, y+5);
+        y += 5;
+      });
+
+      if (y + 5 > PH) { doc.addPage(); y = 10; }
+      doc.setFillColor(240,253,244); doc.rect(M,y,W-M*2,5,'F');
+      doc.setFontSize(7); doc.setTextColor(22,101,52); doc.setFont('helvetica','bold');
+      doc.text(`Subtotal:`, M+1, y+3.5);
+      let xi2=M+cols[0]+cols[1]+cols[2]+cols[3];
+      [bt.kcal,bt.prot,bt.carb,bt.grasa,bt.fibra].forEach((v,i)=>{
+        doc.text(v.toFixed(1), xi2+1, y+3.5); xi2+=cols[i+4];
+      });
+      y += 5;
+    });
+
+    if (y + 6 > PH) { doc.addPage(); y = 10; }
+    doc.setFillColor(254,249,195); doc.rect(M,y,W-M*2,6,'F');
+    doc.setFontSize(8); doc.setTextColor(120,53,15); doc.setFont('helvetica','bold');
+    doc.text(`TOTAL ${dia.toUpperCase()}:`, M+1, y+4.5);
+    let xi3=M+cols[0]+cols[1]+cols[2]+cols[3];
+    [t.kcal,t.prot,t.carb,t.grasa,t.fibra].forEach((v,i)=>{
+      doc.text(v.toFixed(1), xi3+1, y+4.5); xi3+=cols[i+4];
+    });
+    y += 8;
+  });
+
+  doc.addPage();
+  y = 15;
+  doc.setFillColor(22,163,74);
+  doc.rect(M, y, W-M*2, 8, 'F');
+  doc.setFontSize(11); doc.setTextColor(255,255,255); doc.setFont('helvetica','bold');
+  doc.text('LISTA DE COMPRAS GENERAL (1 SEMANA)', M+4, y+5.5);
+  y += 12;
+
+  const acumulado = acumularPlan();
+
+  const categoriasMap = {
+    'Frutas': '🍎 Frutas', 'Carbohidratos': '🌾 Carbohidratos', 'Proteínas': '🥩 Proteínas', 'Grasas': '🥑 Grasas', 'Fibras y Vegetales': '🥗 Fibras y Vegetales'
+  };
+
+  const agrupadoCat = {};
+  acumulado.forEach(({nombre: nom, fuente, gr}) => {
+    const cat = clasificarAlimento(nom);
+    if (!agrupadoCat[cat]) agrupadoCat[cat] = [];
+    agrupadoCat[cat].push({ nom, gr, fuente });
+  });
+
+  Object.entries(agrupadoCat).forEach(([catKey, items]) => {
+    if (y + 15 > PH) { doc.addPage(); y = 15; }
+    doc.setFillColor(241,245,249);
+    doc.rect(M, y, W-M*2, 6, 'F');
+    doc.setFontSize(9); doc.setTextColor(30,58,95); doc.setFont('helvetica','bold');
+    doc.text(categoriasMap[catKey] || catKey, M+3, y+4);
+    y += 7;
+
+    items.forEach(i => {
+      if (y + 6 > PH) { doc.addPage(); y = 15; }
+      const textoComercial = formatearCantidadComercial(i.nom, i.gr, i.fuente);
+      doc.setFontSize(8); doc.setTextColor(51,65,85); doc.setFont('helvetica','normal');
+      doc.text(`• ${i.nom}`, M+4, y+4);
+      doc.text(textoComercial, W - M - 40, y+4, { align: 'right' });
+      doc.setDrawColor(226,232,240);
+      doc.line(M, y+5, W-M, y+5);
+      y += 6;
+    });
+    y += 4;
+  });
+
+  doc.save(`Planificador_Nutricional_${new Date().toISOString().slice(0,10)}.pdf`);
+}
+
+function filtrarGlobal(val) {
+  filtroGlobal = val.toLowerCase().trim();
+  const badge = document.getElementById('badge-filtro');
+  const panel = document.getElementById('panel-busqueda');
+
+  if (!filtroGlobal) {
+    badge.style.display = 'none';
+    panel.style.display = 'none';
+    return;
+  }
+
+  const resultados = [];
+  DIAS.forEach(dia => {
+    const bloques = planSemanal[dia] || {};
+    Object.keys(bloques).forEach(bloque => {
+      (bloques[bloque]||[]).forEach((item, idx) => {
+        if (item.nombre && item.nombre.toLowerCase().includes(filtroGlobal)) {
+          const n = getNut(item);
+          const grTotales = calcularGramosTotales(item);
+          resultados.push({dia, bloque, item, idx, n, grTotales});
+        }
+      });
+    });
+  });
+
+  const enBase = BASE.filter(a => a.nombre.toLowerCase().includes(filtroGlobal)).length;
+  badge.textContent = `${enBase} en base · ${resultados.length} en tu plan`;
+  badge.style.display = 'inline';
+
+  panel.style.display = 'block';
+  if (!resultados.length) {
+    panel.innerHTML = `<h3>🔍 Resultados para "<strong>${val}</strong>"</h3>
+      <div class="no-result">No encontrado en tu plan semanal actual.<br>
+      <span style="font-size:12px;color:#64748b">${enBase} coincidencias disponibles en la base de datos para agregar.</span></div>`;
+    return;
+  }
+
+  let html = `<h3>🔍 "<strong>${val}</strong>" — ${resultados.length} aparición(es) en tu plan</h3>`;
+  resultados.forEach(r => {
+    const tag = buscarBase(r.item.nombre, r.item.fuente)?.fuente==='Tablas Peruanas'?'PE':'INT';
+    html += `<div class="resultado-item">
+      <span class="res-dia">📅 ${r.dia}</span>
+      <span class="res-bloque">🍽️ ${r.bloque}</span>
+      <span class="res-alimento">${r.item.nombre} <small style="color:#94a3b8">[${tag}]</small></span>
+      <span class="res-gramos">${r.grTotales}g</span>
+      <span class="res-nut">⚡ ${r.n.kcal} kcal</span>
+      <span class="res-nut" style="background:#f0fdf4;color:#166534">💪 ${r.n.prot}g prot</span>
+      <span class="res-nut" style="background:#fef9c3;color:#78350f">🌾 ${r.n.carb}g carb</span>
+    </div>`;
+  });
+  panel.innerHTML = html;
+}
+
+
+// ══════════════════════════════════════════════════════════════
+//  MEJORAS v3: respaldo, compras ✔/WhatsApp, menú móvil, costos,
+//  copiar día, comidas guardadas, completar faltante, revisión BD, nube
+// ══════════════════════════════════════════════════════════════
+const LS_EXCLUIDAS = ['nut_ultimo_respaldo'];
+function esClaveRespaldable(k) {
+  k = String(k);
+  return k.indexOf('nut_') === 0 && k.indexOf('nut_sync') !== 0 && !LS_EXCLUIDAS.includes(k);
+}
+const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fechaISO = () => { const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); };
+const leerLS = (k, def) => { try { const v = localStorage.getItem(k); return v == null ? def : JSON.parse(v); } catch (e) { return def; } };
+const abrirModal = id => document.getElementById(id).classList.add('show');
+const cerrarModal = id => document.getElementById(id).classList.remove('show');
+
+// Cualquier cambio guardado dispara la sincronización en la nube (si está activa)
+(function () {
+  const orig = Storage.prototype.setItem;
+  Storage.prototype.setItem = function (k, v) {
+    orig.call(this, k, v);
+    try { if (this === window.localStorage && esClaveRespaldable(k)) programarSync(); } catch (e) {}
+  };
+})();
+
+// Aviso breve (toast)
+let avisoTimeout = null;
+function mostrarAviso(txt) {
+  let t = document.getElementById('toast-aviso');
+  if (!t) { t = document.createElement('div'); t.id = 'toast-aviso'; t.className = 'toast-aviso'; document.body.appendChild(t); }
+  t.textContent = txt;
+  t.classList.add('show');
+  clearTimeout(avisoTimeout);
+  avisoTimeout = setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ───────────── 1. RESPALDO ─────────────
+function recolectarDatos() {
+  const d = {};
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (esClaveRespaldable(k)) d[k] = localStorage.getItem(k);
+  }
+  return d;
+}
+
+function validarDatos(datos) {
+  if (!datos || typeof datos !== 'object') return 'El archivo no contiene datos.';
+  const claves = Object.keys(datos).filter(k => k.indexOf('nut_') === 0);
+  if (!claves.length) return 'Este archivo no es un respaldo del planificador.';
+  if (claves.some(k => typeof datos[k] !== 'string')) return 'El archivo está dañado.';
+  if (datos.nut_plan_semanal !== undefined) {
+    try { const p = JSON.parse(datos.nut_plan_semanal); if (!p || typeof p !== 'object') throw 0; }
+    catch (e) { return 'El plan guardado en el archivo está dañado.'; }
+  }
+  return null;
+}
+
+function aplicarDatos(datos) {
+  const borrar = [];
+  for (let i = 0; i < localStorage.length; i++) { const k = localStorage.key(i); if (esClaveRespaldable(k)) borrar.push(k); }
+  borrar.forEach(k => localStorage.removeItem(k));
+  Object.keys(datos).forEach(k => { if (esClaveRespaldable(k)) localStorage.setItem(k, datos[k]); });
+}
+
+function descargarRespaldo() {
+  const obj = { app: 'planificador-nutricional', version: 3, fecha: new Date().toISOString(), datos: recolectarDatos() };
+  const blob = new Blob([JSON.stringify(obj, null, 1)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'respaldo-plan-nutricional-' + fechaISO() + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+  try { localStorage.setItem('nut_ultimo_respaldo', String(Date.now())); } catch (e) {}
+  renderEstadoRespaldo();
+  actualizarAvisoRespaldo();
+}
+
+function restaurarRespaldo(ev) {
+  const f = ev.target.files && ev.target.files[0];
+  ev.target.value = '';
+  if (!f) return;
+  const r = new FileReader();
+  r.onload = () => {
+    let obj;
+    try { obj = JSON.parse(r.result); } catch (e) { alert('No se pudo leer el archivo: no es un JSON válido.'); return; }
+    const datos = obj && obj.datos ? obj.datos : null;
+    const err = validarDatos(datos);
+    if (err) { alert('❌ ' + err); return; }
+    const cuando = obj.fecha ? new Date(obj.fecha).toLocaleString('es-PE') : 'fecha desconocida';
+    if (!confirm('Vas a REEMPLAZAR todo lo que hay en este navegador (plan, metas, favoritos, precios, plantillas, comidas) con el respaldo del ' + cuando + '.\n\n¿Continuar?')) return;
+    aplicarDatos(datos);
+    location.reload();
+  };
+  r.readAsText(f);
+}
+
+function textoHace(ts) {
+  const dias = Math.floor((Date.now() - ts) / 86400000);
+  return dias <= 0 ? 'hoy' : dias === 1 ? 'ayer' : 'hace ' + dias + ' días';
+}
+
+function renderEstadoRespaldo() {
+  const el = document.getElementById('resp-estado');
+  if (!el) return;
+  const ts = parseInt(localStorage.getItem('nut_ultimo_respaldo')) || 0;
+  if (!ts) { el.className = 'resp-estado mal'; el.textContent = '⚠️ Todavía no descargaste ningún respaldo. Tus datos solo viven en este navegador.'; return; }
+  const dias = Math.floor((Date.now() - ts) / 86400000);
+  el.className = 'resp-estado ' + (dias > 7 ? 'mal' : 'bien');
+  el.textContent = (dias > 7 ? '⚠️ ' : '✅ ') + 'Último respaldo: ' + textoHace(ts) + ' (' + new Date(ts).toLocaleDateString('es-PE') + ').';
+}
+
+function actualizarAvisoRespaldo() {
+  const b = document.getElementById('btn-respaldo');
+  if (!b) return;
+  const ts = parseInt(localStorage.getItem('nut_ultimo_respaldo')) || 0;
+  const viejo = !ts || (Date.now() - ts) > 7 * 86400000;
+  b.classList.toggle('aviso', viejo && !syncActivo());
+}
+
+function abrirRespaldo() {
+  renderEstadoRespaldo();
+  renderFormSync();
+  abrirModal('modal-respaldo');
+}
+
+// ───────────── 8. SINCRONIZAR CON FIREBASE ─────────────
+let syncTimer = null, fbDoc = null, syncCancelada = false;
+function syncActivo() {
+  try { return !!(localStorage.getItem('nut_sync_cfg') && localStorage.getItem('nut_sync_cod') && localStorage.getItem('nut_sync_on') === '1'); }
+  catch (e) { return false; }
+}
+function setSyncEstado(txt) { const el = document.getElementById('sync-estado'); if (el) el.textContent = txt; }
+function horaCorta() { return new Date().toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' }); }
+
+function programarSync() {
+  if (!syncActivo()) return;
+  clearTimeout(syncTimer);
+  setSyncEstado('⏳ Cambios pendientes de subir…');
+  syncTimer = setTimeout(() => subirNube(), 2500);
+}
+
+async function cargarFirebase() {
+  if (window.firebase && window.firebase.firestore) return;
+  const base = 'https://www.gstatic.com/firebasejs/10.12.2/';
+  for (const f of ['firebase-app-compat.js', 'firebase-firestore-compat.js']) {
+    await new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = base + f; s.onload = res; s.onerror = () => rej(new Error('No se pudo cargar ' + f));
+      document.head.appendChild(s);
+    });
+  }
+}
+
+async function conectarFirebase() {
+  if (fbDoc) return fbDoc;
+  const cfg = JSON.parse(localStorage.getItem('nut_sync_cfg'));
+  const cod = localStorage.getItem('nut_sync_cod');
+  await cargarFirebase();
+  const app = (firebase.apps || []).find(a => a.name === 'nutplan') || firebase.initializeApp(cfg, 'nutplan');
+  fbDoc = app.firestore().collection('planes').doc(cod);
+  return fbDoc;
+}
+
+async function subirNube() {
+  if (!syncActivo()) return;
+  try {
+    const doc = await conectarFirebase();
+    const datos = recolectarDatos();
+    if (JSON.stringify(datos).length > 900000) { setSyncEstado('⚠️ Tus datos son demasiado grandes para la nube (>900 KB).'); return; }
+    const ts = Date.now();
+    await doc.set({ datos, actualizado: ts, version: 3 });
+    localStorage.setItem('nut_sync_ts', String(ts));
+    setSyncEstado('☁️ Subido a la nube a las ' + horaCorta());
+  } catch (e) {
+    setSyncEstado('❌ No se pudo subir: ' + (e && e.message ? e.message : e));
+  }
+}
+
+async function bajarNube(preguntar) {
+  try {
+    const doc = await conectarFirebase();
+    const snap = await doc.get();
+    if (!snap.exists) { setSyncEstado('No hay nada guardado en la nube con ese código.'); return false; }
+    const d = snap.data();
+    const err = validarDatos(d.datos);
+    if (err) { setSyncEstado('❌ ' + err); return false; }
+    if (preguntar !== false) {
+      const cuando = d.actualizado ? new Date(d.actualizado).toLocaleString('es-PE') : 'fecha desconocida';
+      if (!confirm('Vas a REEMPLAZAR lo que hay en este dispositivo con la versión de la nube (' + cuando + ').\n\n¿Continuar?')) return false;
+    }
+    aplicarDatos(d.datos);
+    localStorage.setItem('nut_sync_ts', String(d.actualizado || Date.now()));
+    location.reload();
+    return true;
+  } catch (e) {
+    setSyncEstado('❌ No se pudo bajar: ' + (e && e.message ? e.message : e));
+    return false;
+  }
+}
+
+// Al abrir la página: si la nube tiene una versión más nueva, ofrece cargarla
+async function iniciarSync() {
+  if (!syncActivo()) return;
+  try {
+    const doc = await conectarFirebase();
+    const snap = await doc.get();
+    if (!snap.exists) { await subirNube(); return; }
+    const d = snap.data();
+    const localTs = parseInt(localStorage.getItem('nut_sync_ts')) || 0;
+    if ((d.actualizado || 0) > localTs + 1000) {
+      const iguales = JSON.stringify(d.datos || {}, Object.keys(d.datos || {}).sort()) === JSON.stringify(recolectarDatos(), Object.keys(recolectarDatos()).sort());
+      if (iguales) { localStorage.setItem('nut_sync_ts', String(d.actualizado)); setSyncEstado('☁️ Sincronizado'); return; }
+      const cuando = new Date(d.actualizado).toLocaleString('es-PE');
+      if (!validarDatos(d.datos) && confirm('☁️ Hay una versión más nueva en la nube (' + cuando + ').\n\nAceptar = cargarla en este dispositivo\nCancelar = seguir con lo de este dispositivo (se subirá cuando hagas un cambio)')) {
+        aplicarDatos(d.datos);
+        localStorage.setItem('nut_sync_ts', String(d.actualizado));
+        location.reload();
+        return;
+      }
+      setSyncEstado('Este dispositivo tiene datos distintos a la nube; se subirán al próximo cambio.');
+    } else {
+      setSyncEstado('☁️ Sincronizado (' + horaCorta() + ')');
+    }
+  } catch (e) {
+    setSyncEstado('❌ No se pudo conectar con la nube: ' + (e && e.message ? e.message : e));
+  }
+}
+
+function parsearConfigFirebase(txt) {
+  const m = String(txt || '').match(/\{[\s\S]*\}/);
+  if (!m) throw new Error('No encontré el bloque { ... } de la configuración.');
+  let s = m[0].replace(/\/\/.*$/gm, '').replace(/'/g, '"').replace(/([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g, '$1"$2":').replace(/,\s*}/g, '}');
+  const cfg = JSON.parse(s);
+  if (!cfg.apiKey || !cfg.projectId) throw new Error('Faltan apiKey o projectId en la configuración.');
+  return cfg;
+}
+
+function generarCodigoSync() {
+  const a = new Uint8Array(12); crypto.getRandomValues(a);
+  const cod = Array.from(a).map(b => b.toString(36).padStart(2, '0')).join('').slice(0, 24);
+  document.getElementById('sync-codigo').value = cod;
+}
+
+async function guardarYConectarSync() {
+  try {
+    const cfg = parsearConfigFirebase(document.getElementById('sync-config').value || localStorage.getItem('nut_sync_cfg'));
+    const cod = (document.getElementById('sync-codigo').value || '').trim();
+    if (!/^[A-Za-z0-9_-]{12,}$/.test(cod)) { alert('El código de sincronización debe tener al menos 12 letras o números (usa el botón "Generar código").'); return; }
+    localStorage.setItem('nut_sync_cfg', JSON.stringify(cfg));
+    localStorage.setItem('nut_sync_cod', cod);
+    localStorage.setItem('nut_sync_on', '1');
+    fbDoc = null;
+    setSyncEstado('Conectando…');
+    renderFormSync();
+    await iniciarSync();
+    actualizarAvisoRespaldo();
+  } catch (e) { alert('❌ ' + e.message); }
+}
+
+function desconectarSync() {
+  if (!confirm('¿Desconectar la sincronización? Tus datos en la nube no se borran.')) return;
+  ['nut_sync_cfg', 'nut_sync_cod', 'nut_sync_on', 'nut_sync_ts'].forEach(k => localStorage.removeItem(k));
+  fbDoc = null; clearTimeout(syncTimer);
+  renderFormSync();
+  actualizarAvisoRespaldo();
+}
+
+function renderFormSync() {
+  const on = syncActivo();
+  const cfg = document.getElementById('sync-config'), cod = document.getElementById('sync-codigo');
+  if (!cfg) return;
+  if (on) {
+    cfg.value = ''; cfg.placeholder = '(configuración guardada en este navegador)';
+    cod.value = localStorage.getItem('nut_sync_cod') || '';
+  }
+  document.getElementById('sync-botones-on').style.display = on ? 'flex' : 'none';
+  document.getElementById('sync-btn-conectar').textContent = on ? '🔄 Actualizar conexión' : '🔌 Guardar y conectar';
+  if (!on) setSyncEstado('Sin conectar.');
+}
+
+// ───────────── 7. REVISIÓN DE LA BASE DE DATOS ─────────────
+const RX_ALCOHOL = /vino|cerveza|pisco|ron\b|whisk|vodka|licor|tequila|brandy|ginebra|champ|sangr|cocktail|cóctel|anís|anisete|martini|jerez|oporto|sidra|mistela|sake|amaretto|aguardiente|coñac|algarrobina|chicha de jora|vermut/i;
+let bdFilas = [], bdVista = 'revisar';
+
+function analizarBD() {
+  const out = [];
+  BASE.forEach(a => {
+    const kc = +a.kcal || 0, p = +a.proteinas || 0, c = +a.carbohidratos || 0, g = +a.grasas || 0, fb = +a.fibra || 0;
+    const calc = 4 * p + 4 * c + 9 * g;
+    const alt = 4 * p + 4 * Math.max(c - fb, 0) + 2 * fb + 9 * g;
+    const tol = Math.max(25, 0.2 * kc);
+    let motivo = null, nivel = null;
+    if (kc < 0 || p < 0 || c < 0 || g < 0 || fb < 0) { motivo = 'Hay valores negativos'; nivel = 'revisar'; }
+    else if (p + c + g > 100.5) { motivo = 'Proteína + carbohidratos + grasa suman más de 100 g en 100 g'; nivel = 'revisar'; }
+    else if (kc === 0 && (p + c + g) > 1) { motivo = 'Calorías en 0 pero tiene macros'; nivel = 'revisar'; }
+    else if (Math.abs(kc - calc) > tol) {
+      if (Math.abs(kc - alt) <= tol) { motivo = 'Los carbohidratos incluyen la fibra (normal en las tablas peruanas)'; nivel = 'normal'; }
+      else if (kc > calc && RX_ALCOHOL.test(a.nombre)) { motivo = 'Contiene alcohol (7 kcal/g, no se ve en los macros)'; nivel = 'normal'; }
+      else { motivo = 'Las calorías no cuadran con proteína, carbohidratos y grasa'; nivel = 'revisar'; }
+    }
+    if (motivo) out.push({ nombre: a.nombre, fuente: a.fuente, kcal: kc, calc: Math.round(calc), prot: p, carb: c, grasa: g, fibra: fb, dif: Math.round(kc - calc), motivo, nivel });
+  });
+  return out.sort((x, y) => Math.abs(y.dif) - Math.abs(x.dif));
+}
+
+function abrirRevisionBD() {
+  bdFilas = analizarBD();
+  bdVista = 'revisar';
+  renderRevisionBD();
+  abrirModal('modal-bd');
+}
+function cambiarVistaBD(v) { bdVista = v; renderRevisionBD(); }
+
+function renderRevisionBD() {
+  const rev = bdFilas.filter(f => f.nivel === 'revisar'), nor = bdFilas.filter(f => f.nivel === 'normal');
+  const lista = bdVista === 'revisar' ? rev : nor;
+  let h = `<div class="bd-tabs">
+    <button class="${bdVista === 'revisar' ? 'activo' : ''}" onclick="cambiarVistaBD('revisar')">🔎 Para revisar (${rev.length})</button>
+    <button class="${bdVista === 'normal' ? 'activo' : ''}" onclick="cambiarVistaBD('normal')">✔️ Con explicación normal (${nor.length})</button>
+  </div>
+  <p class="bd-nota">Se compara la caloría de la tabla con la que salen de los macros (4·proteína + 4·carbohidratos + 9·grasa). Se marca cuando la diferencia supera 20 % (mínimo 25 kcal). <b>Solo es una lista</b>: no se cambió ningún dato de tu base.</p>`;
+  h += `<div class="bd-wrap"><table class="bd-tabla"><thead><tr><th>Alimento</th><th>Fuente</th><th>kcal tabla</th><th>kcal por macros</th><th>Dif.</th><th>Prot</th><th>Carb</th><th>Grasa</th><th>Motivo</th></tr></thead><tbody>`;
+  lista.slice(0, 400).forEach(f => {
+    h += `<tr><td>${esc(f.nombre)}</td><td>${f.fuente === 'Tablas Peruanas' ? 'PE' : 'INT'}</td><td>${f.kcal}</td><td>${f.calc}</td><td class="${f.dif > 0 ? 'pos' : 'neg'}">${f.dif > 0 ? '+' : ''}${f.dif}</td><td>${f.prot}</td><td>${f.carb}</td><td>${f.grasa}</td><td>${esc(f.motivo)}</td></tr>`;
+  });
+  if (!lista.length) h += `<tr><td colspan="9" style="text-align:center;padding:16px">Nada que mostrar aquí 🎉</td></tr>`;
+  h += `</tbody></table></div>` + (lista.length > 400 ? `<p class="bd-nota">Se muestran las 400 con mayor diferencia; el CSV trae todas.</p>` : '');
+  document.getElementById('bd-contenido').innerHTML = h;
+}
+
+function descargarCSVBD() {
+  const cab = ['Alimento', 'Fuente', 'kcal tabla', 'kcal por macros', 'Diferencia', 'Proteina', 'Carbohidratos', 'Grasa', 'Fibra', 'Tipo', 'Motivo'];
+  const q = v => '"' + String(v).replace(/"/g, '""') + '"';
+  const filas = bdFilas.map(f => [f.nombre, f.fuente, f.kcal, f.calc, f.dif, f.prot, f.carb, f.grasa, f.fibra, f.nivel === 'revisar' ? 'REVISAR' : 'normal', f.motivo].map(q).join(','));
+  const blob = new Blob(['﻿' + [cab.map(q).join(',')].concat(filas).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = 'base-datos-filas-sospechosas.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+}
+
+// ───────────── 3. COMPRAS: ✔ COMPRADO + WHATSAPP ─────────────
+let comprados = leerLS('nut_comprados', {});
+function guardarComprados() { try { localStorage.setItem('nut_comprados', JSON.stringify(comprados)); } catch (e) {} }
+
+function marcarComprado(i, chk) {
+  const f = filasCompras[i];
+  if (!f) return;
+  if (chk) comprados[f.key] = 1; else delete comprados[f.key];
+  guardarComprados();
+  const tr = document.getElementById('tc-' + i).parentElement;
+  tr.classList.toggle('comprado', !!chk);
+  recalcularTotalesCompras();
+}
+
+function limpiarComprados() {
+  if (!Object.keys(comprados).length) return;
+  if (!confirm('¿Desmarcar todos los ✔ de la lista de compras?')) return;
+  comprados = {};
+  guardarComprados();
+  renderizarContenidoModalCompras();
+}
+
+function textoListaCompras(soloPendientes) {
+  construirFilasCompras();
+  const pend = filasCompras.filter(f => !soloPendientes || !comprados[f.key]);
+  if (!pend.length) return '';
+  let t = '🛒 *Lista de compras* (' + periodoActualDias + ' días)\n';
+  let total = 0;
+  ORDEN_CATS.forEach(cat => {
+    const items = pend.filter(f => f.cat === cat);
+    if (!items.length) return;
+    t += '\n' + TIT_CATS[cat] + '\n';
+    items.forEach(f => {
+      const c = parseFloat(f.cant);
+      const cantTxt = isNaN(c) ? '' : ' — ' + (+c.toFixed(2)) + ' ' + f.base;
+      const tf = totalFila(f); total += tf;
+      t += (comprados[f.key] ? '✅ ' : '⬜ ') + f.nombre + cantTxt + (tf > 0 ? ' (' + fmtS(tf) + ')' : '') + '\n';
+    });
+  });
+  if (total > 0) t += '\n💰 Total: ' + fmtS(total);
+  return t.trim();
+}
+
+function enviarComprasWhatsApp() {
+  const t = textoListaCompras(true);
+  if (!t) { alert('No hay nada pendiente por comprar 🎉'); return; }
+  window.open('https://wa.me/?text=' + encodeURIComponent(t), '_blank');
+}
+
+async function copiarListaCompras() {
+  const t = textoListaCompras(true);
+  if (!t) { alert('No hay nada pendiente por comprar 🎉'); return; }
+  try { await navigator.clipboard.writeText(t); mostrarAviso('📋 Lista copiada'); }
+  catch (e) { prompt('Copia la lista:', t); }
+}
+
+// ───────────── 2. COSTOS DEL DÍA Y LA SEMANA ─────────────
+let presupuestoSemanal = leerLS('nut_presupuesto', 0) || 0;
+
+function costoGramos(nombre, fuente, gr) {
+  const b = buscarBase(nombre, fuente);
+  const f = fuente || (b && b.fuente) || '';
+  const p = preciosCompras[nombre + '||' + f];
+  if (!p || p.precio === null || p.precio === undefined || p.precio === '' || isNaN(parseFloat(p.precio))) return null;
+  const pu = pesoUnidadDe(nombre, f);
+  const base = p.base || (pu ? 'und' : 'kg');
+  return (base === 'und' && pu) ? (gr / pu) * parseFloat(p.precio) : (gr / 1000) * parseFloat(p.precio);
+}
+
+function costoDia(dia) {
+  let total = 0; const faltan = new Set();
+  Object.values(planSemanal[dia] || {}).forEach(items => (items || []).forEach(it => {
+    if (!it.nombre) return;
+    const gr = calcularGramosTotales(it);
+    if (gr <= 0) return;
+    const c = costoGramos(it.nombre, it.fuente, gr);
+    if (c === null) faltan.add(it.nombre); else total += c;
+  }));
+  return { total, faltan: [...faltan] };
+}
+
+function costoSemana() {
+  let total = 0; const faltan = new Set();
+  DIAS.forEach(d => { const c = costoDia(d); total += c.total; c.faltan.forEach(n => faltan.add(n)); });
+  return { total, faltan: [...faltan] };
+}
+
+function guardarPresupuesto(v) {
+  presupuestoSemanal = Math.max(0, parseFloat(v) || 0);
+  try { localStorage.setItem('nut_presupuesto', JSON.stringify(presupuestoSemanal)); } catch (e) {}
+  renderCostos();
+}
+
+function renderCostos() {
+  const cont = document.getElementById('panel-costos');
+  if (!cont) return;
+  const hoy = costoDia(diaActivo), sem = costoSemana();
+  const hayPrecios = Object.values(preciosCompras).some(p => p && parseFloat(p.precio) > 0);
+  let h = `<div class="costos-fila">
+    <div class="costo-chip">💰 ${diaActivo}: <b>${fmtS(hoy.total)}</b></div>
+    <div class="costo-chip">📅 Semana: <b>${fmtS(sem.total)}</b></div>
+    <label class="costo-pres">Presupuesto semanal: S/ <input type="number" min="0" step="1" value="${presupuestoSemanal || ''}" placeholder="0" onchange="guardarPresupuesto(this.value)"></label>
+  </div>`;
+  if (presupuestoSemanal > 0) {
+    const pct = Math.round(sem.total / presupuestoSemanal * 100);
+    const col = pct > 100 ? '#dc2626' : pct >= 85 ? 'var(--oro)' : 'var(--verde)';
+    const resto = presupuestoSemanal - sem.total;
+    h += `<div class="costo-barra"><div class="progress-track"><div class="progress-fill" style="width:${Math.min(100, pct)}%;background:${col}"></div></div>
+      <div class="costo-barra-txt">${pct}% del presupuesto · ${resto >= 0 ? 'te sobran ' + fmtS(resto) : 'te pasas por ' + fmtS(-resto)}</div></div>`;
+  }
+  if (sem.faltan.length) {
+    h += `<div class="costo-aviso">${hayPrecios ? '⚠️ Faltan precios de ' + sem.faltan.length + ' alimento(s), por eso el total puede ser mayor.' : '💡 Pon el costo unitario de tus alimentos en 🛒 Compras y aquí verás cuánto cuesta cada día y la semana.'}
+      <button onclick="abrirModalCompras()">Poner precios</button></div>`;
+  }
+  h += `<div class="costo-nota">Costo proporcional a lo que comes. Lo que pagas en el mercado (unidades y kilos enteros) está en 🛒 Compras.</div>`;
+  cont.innerHTML = h;
+}
+
+// ───────────── 4. COPIAR DÍA / SECCIÓN A VARIOS DÍAS ─────────────
+let copiarCtx = null;
+function duplicarDiaActual() { abrirCopiar(diaActivo, null); }
+function copiarSeccionAOtroDia(dia, bloque) { abrirCopiar(dia, bloque); }
+
+function abrirCopiar(dia, bloque) {
+  copiarCtx = { dia, bloque };
+  document.getElementById('copiar-titulo').textContent = bloque ? '📋 Copiar «' + bloque + '» de ' + dia : '📋 Copiar todo ' + dia;
+  document.getElementById('copiar-dias').innerHTML = DIAS.filter(d => d !== dia).map(d =>
+    `<label class="chk-dia"><input type="checkbox" value="${d}"> ${d}</label>`).join('');
+  document.querySelector('input[name="copiar-modo"][value="reemplazar"]').checked = true;
+  abrirModal('modal-copiar');
+}
+
+function marcarDiasCopiar(grupo) {
+  const lv = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'], fs = ['Sábado', 'Domingo'];
+  document.querySelectorAll('#copiar-dias input').forEach(c => {
+    c.checked = grupo === 'todos' ? true : grupo === 'ninguno' ? false : grupo === 'lv' ? lv.includes(c.value) : fs.includes(c.value);
+  });
+}
+
+function aplicarCopiar() {
+  const { dia, bloque } = copiarCtx;
+  const destinos = [...document.querySelectorAll('#copiar-dias input:checked')].map(c => c.value);
+  if (!destinos.length) { alert('Marca al menos un día destino.'); return; }
+  const modo = document.querySelector('input[name="copiar-modo"]:checked').value;
+  const clon = x => JSON.parse(JSON.stringify(x));
+  destinos.forEach(d => {
+    if (!planSemanal[d]) planSemanal[d] = {};
+    if (!bloque) {
+      if (modo === 'reemplazar') planSemanal[d] = clon(planSemanal[dia]);
+      else Object.keys(planSemanal[dia]).forEach(b => { planSemanal[d][b] = (planSemanal[d][b] || []).concat(clon(planSemanal[dia][b])); });
+    } else {
+      const items = clon(planSemanal[dia][bloque] || []);
+      planSemanal[d][bloque] = modo === 'reemplazar' ? items : (planSemanal[d][bloque] || []).concat(items);
+    }
+  });
+  guardarPlanEnStorage();
+  cerrarModal('modal-copiar');
+  renderDia(); renderResumen(); renderBarrasObjetivos();
+  mostrarAviso('✅ Copiado a: ' + destinos.join(', '));
+}
+
+// ───────────── 4b. COMIDAS GUARDADAS ─────────────
+let comidasGuardadas = leerLS('nut_comidas', {});
+let comidasCtx = null;
+function guardarComidasLS() { try { localStorage.setItem('nut_comidas', JSON.stringify(comidasGuardadas)); } catch (e) {} }
+
+function abrirComidas(dia, bloque) {
+  comidasCtx = { dia, bloque };
+  renderComidas();
+  abrirModal('modal-comidas');
+}
+
+function totalesItems(items) {
+  const t = { kcal: 0, prot: 0, carb: 0, grasa: 0 };
+  (items || []).forEach(it => { const n = getNut(it); t.kcal += n.kcal; t.prot += n.prot; t.carb += n.carb; t.grasa += n.grasa; });
+  return t;
+}
+
+function renderComidas() {
+  const { dia, bloque } = comidasCtx;
+  const itemsSeccion = ((planSemanal[dia] || {})[bloque] || []).filter(i => i.nombre);
+  const nombres = Object.keys(comidasGuardadas);
+  let h = `<div class="comida-guardar">
+      <div class="comida-sub">Guardar lo que tienes en «${esc(bloque)}» (${itemsSeccion.length} alimento${itemsSeccion.length === 1 ? '' : 's'}) como comida reutilizable:</div>
+      <div class="comida-guardar-fila">
+        <input type="text" id="comida-nombre" maxlength="60" placeholder="Nombre (ej. Desayuno de avena)" value="${esc(bloque)}">
+        <button class="btn-sug-add" onclick="guardarComida()" ${itemsSeccion.length ? '' : 'disabled'}>💾 Guardar</button>
+      </div>
+    </div>
+    <div class="sug-destino"><label>Al agregar, poner en: <select id="comida-dest">
+      <option value="dia">Solo ${esc(dia)}</option><option value="semana">Toda la semana (7 días)</option></select></label></div>`;
+  if (!nombres.length) h += `<div class="vacio-txt" style="padding:14px;text-align:center">Todavía no tienes comidas guardadas. Arma una sección, ponle nombre arriba y guárdala.</div>`;
+  nombres.forEach((n, i) => {
+    const items = comidasGuardadas[n], t = totalesItems(items);
+    h += `<div class="sug-item">
+      <div class="sug-info">
+        <div class="sug-nombre">${esc(n)}</div>
+        <div class="sug-why">${items.map(it => esc(it.nombre)).join(' · ')}</div>
+        <div class="sug-nut">${Math.round(t.kcal)} kcal · P ${t.prot.toFixed(1)} g · C ${t.carb.toFixed(1)} g · G ${t.grasa.toFixed(1)} g</div>
+      </div>
+      <div class="sug-accion">
+        <button class="btn-sug-add" onclick="insertarComida(${i})">＋ Agregar</button>
+        <button class="btn-del" title="Borrar comida guardada" onclick="borrarComida(${i})">✕</button>
+      </div>
+    </div>`;
+  });
+  document.getElementById('comidas-contenido').innerHTML = h;
+}
+
+function guardarComida() {
+  const { dia, bloque } = comidasCtx;
+  const nombre = (document.getElementById('comida-nombre').value || '').trim();
+  if (!nombre) { alert('Escribe un nombre para la comida.'); return; }
+  const items = ((planSemanal[dia] || {})[bloque] || []).filter(i => i.nombre).map(i => JSON.parse(JSON.stringify(i)));
+  if (!items.length) return;
+  if (comidasGuardadas[nombre] && !confirm('Ya existe una comida llamada «' + nombre + '». ¿Reemplazarla?')) return;
+  comidasGuardadas[nombre] = items;
+  guardarComidasLS();
+  renderComidas();
+  mostrarAviso('💾 Comida «' + nombre + '» guardada');
+}
+
+function insertarComida(i) {
+  const { dia, bloque } = comidasCtx;
+  const nombre = Object.keys(comidasGuardadas)[i];
+  const dias = document.getElementById('comida-dest').value === 'semana' ? DIAS : [dia];
+  dias.forEach(d => {
+    if (!planSemanal[d]) planSemanal[d] = {};
+    if (!planSemanal[d][bloque]) planSemanal[d][bloque] = [];
+    comidasGuardadas[nombre].forEach(it => planSemanal[d][bloque].push(JSON.parse(JSON.stringify(it))));
+  });
+  guardarPlanEnStorage();
+  cerrarModal('modal-comidas');
+  renderDia(); renderResumen(); renderBarrasObjetivos();
+  mostrarAviso('🍽️ «' + nombre + '» agregada a ' + bloque);
+}
+
+function borrarComida(i) {
+  const nombre = Object.keys(comidasGuardadas)[i];
+  if (!confirm('¿Borrar la comida guardada «' + nombre + '»? No afecta tu plan.')) return;
+  delete comidasGuardadas[nombre];
+  guardarComidasLS();
+  renderComidas();
+}
+
+// ───────────── 5. COMPLETAR LO QUE FALTA ─────────────
+const CAND_COMPLETAR = [
+  {n:'Pollo, Pechuga, asado', f:'Internacional', g:150, why:'Proteína magra'},
+  {n:'Huevo entero crudo', f:'Internacional', g:100, why:'Proteína completa (2 huevos)'},
+  {n:'Pescado atún, enlatado en agua', f:'Tablas Peruanas', g:120, why:'Proteína sin grasa'},
+  {n:'Yogur, griego natural', f:'Internacional', g:150, why:'Proteína + probióticos'},
+  {n:'Lentejas, no agregadas grasas en la cocción', f:'Internacional', g:150, why:'Proteína vegetal + fibra'},
+  {n:'Queso Fresco (de Burgos)', f:'Internacional', g:60, why:'Proteína'},
+  {n:'Camote blanco', f:'Tablas Peruanas', g:150, why:'Carbohidrato de absorción lenta'},
+  {n:'Papa blanca', f:'Tablas Peruanas', g:200, why:'Carbohidrato'},
+  {n:'Avena envasada', f:'Tablas Peruanas', g:50, why:'Carbohidrato con fibra soluble'},
+  {n:'Quinua cocida', f:'Tablas Peruanas', g:150, why:'Carbohidrato con proteína'},
+  {n:'Pan integral', f:'Internacional', g:60, why:'Carbohidrato (2 rebanadas)'},
+  {n:'Plátano crudo', f:'Internacional', g:118, why:'Carbohidrato rápido + potasio'},
+  {n:'Palta', f:'Tablas Peruanas', g:60, why:'Grasa buena'},
+  {n:'Aceite de oliva', f:'Internacional', g:10, why:'Grasa buena (1 cucharada)'},
+  {n:'Almendras sin sal', f:'Internacional', g:25, why:'Grasa buena + fibra'},
+  {n:'Nueces (castellanas)', f:'Internacional', g:25, why:'Omega-3'},
+  {n:'Maní tostado, sin película', f:'Tablas Peruanas', g:25, why:'Grasa + proteína'}
+];
+let completarLista = [];
+
+function propuestaCompletar() {
+  const t = totalDia(diaActivo), m = metasNutricionales;
+  const meta = { kcal: m.kcal || 1, prot: m.prot || 1, carb: m.carb || 1, grasa: m.grasa || 1, fibra: fibraMeta() };
+  let falta = { kcal: m.kcal - t.kcal, prot: m.prot - t.prot, carb: m.carb - t.carb, grasa: m.grasa - t.grasa, fibra: fibraMeta() - t.fibra };
+  const peso = { kcal: 1, prot: 1.5, carb: 1, grasa: 1, fibra: 0.6 }, exceso = { kcal: 4, prot: 1.5, carb: 3, grasa: 4, fibra: 0 };
+  const score = f => Object.keys(meta).reduce((s, k) => {
+    const r = f[k] / meta[k];
+    return s + (r > 0 ? peso[k] * r * r : exceso[k] * r * r);
+  }, 0);
+  const cands = CAND_COMPLETAR.map(c => ({ c, b: buscarBase(c.n, c.f) })).filter(x => x.b);
+  const elegidos = [], usados = new Set();
+  let actual = score(falta);
+  for (let paso = 0; paso < 8 && falta.kcal > 60; paso++) {
+    let mejor = null;
+    cands.forEach(({ c, b }) => {
+      if (usados.has(c.n)) return;
+      [0.5, 1, 1.5, 2].forEach(mult => {
+        const g = Math.max(5, Math.round(c.g * mult / 5) * 5);
+        const k = g / 100;
+        const r = { kcal: falta.kcal - (b.kcal || 0) * k, prot: falta.prot - (b.proteinas || 0) * k, carb: falta.carb - (b.carbohidratos || 0) * k, grasa: falta.grasa - (b.grasas || 0) * k, fibra: falta.fibra - (b.fibra || 0) * k };
+        const s = score(r);
+        if (!mejor || s < mejor.s) mejor = { c, b, g, r, s };
+      });
+    });
+    if (!mejor || mejor.s > actual - 0.004) break;
+    usados.add(mejor.c.n); elegidos.push(mejor); falta = mejor.r; actual = mejor.s;
+  }
+  return elegidos.map(e => ({ n: e.c.n, f: e.c.f, g: e.g, why: e.c.why }));
+}
+
+function abrirCompletar() {
+  completarLista = propuestaCompletar();
+  const bloques = Object.keys(planSemanal[diaActivo] || {});
+  document.getElementById('comp-bloque').innerHTML = (bloques.length ? bloques : ['COMPLETAR']).map(b => `<option value="${esc(b)}">${esc(b)}</option>`).join('');
+  renderCompletar();
+  abrirModal('modal-completar');
+}
+
+function nutCompletar(it) {
+  const b = buscarBase(it.n, it.f), k = (parseFloat(it.g) || 0) / 100;
+  return { kcal: (b.kcal || 0) * k, prot: (b.proteinas || 0) * k, carb: (b.carbohidratos || 0) * k, grasa: (b.grasas || 0) * k, fibra: (b.fibra || 0) * k };
+}
+
+function renderCompletar() {
+  const t = totalDia(diaActivo), m = metasNutricionales;
+  const f = { kcal: m.kcal - t.kcal, prot: m.prot - t.prot, carb: m.carb - t.carb, grasa: m.grasa - t.grasa, fibra: fibraMeta() - t.fibra };
+  const sg = v => (v >= 0 ? Math.round(v) : '+' + Math.round(-v));
+  let h = `<div class="comp-faltan"><b>Hoy (${esc(diaActivo)}) te faltan:</b>
+    <span>⚡ ${sg(f.kcal)} kcal</span><span>💪 ${sg(f.prot)} g prot</span><span>🌾 ${sg(f.carb)} g carb</span><span>🥑 ${sg(f.grasa)} g grasa</span><span>🌿 ${sg(f.fibra)} g fibra</span>
+    <small>(un “+” significa que ya te pasaste de esa meta)</small></div>`;
+  if (f.kcal <= 60) {
+    h += `<div class="vacio-txt" style="padding:16px;text-align:center">🎉 Ya llegaste a tu meta de calorías de ${esc(diaActivo)}. No hace falta agregar más.</div>`;
+    document.getElementById('comp-lista').innerHTML = h; document.getElementById('comp-proy').innerHTML = ''; return;
+  }
+  if (!completarLista.length) {
+    h += `<div class="vacio-txt" style="padding:16px;text-align:center">No encontré una combinación que mejore tu día. Revisa tus metas en ⚡ Metas.</div>`;
+    document.getElementById('comp-lista').innerHTML = h; document.getElementById('comp-proy').innerHTML = ''; return;
+  }
+  completarLista.forEach((it, i) => {
+    const b = buscarBase(it.n, it.f);
+    h += `<div class="sug-item" id="comp-item-${i}">
+      <div class="sug-info"><div class="sug-nombre">${esc(b.nombre)} <small>[${b.fuente === 'Tablas Peruanas' ? 'PE' : 'INT'}]</small></div>
+        <div class="sug-why">${esc(it.why)}</div><div class="sug-nut" id="comp-nut-${i}"></div></div>
+      <div class="sug-accion"><input type="number" min="1" step="5" value="${it.g}" id="comp-g-${i}" oninput="completarCambioGramos(${i})"> <span>g</span>
+        <button class="btn-sug-add" id="comp-btn-${i}" onclick="agregarCompletar(${i})">＋ Agregar</button></div>
+    </div>`;
+  });
+  document.getElementById('comp-lista').innerHTML = h;
+  completarLista.forEach((it, i) => actualizarFilaCompletar(i));
+  actualizarProyeccionCompletar();
+}
+
+function actualizarFilaCompletar(i) {
+  const it = completarLista[i], inp = document.getElementById('comp-g-' + i);
+  if (inp) it.g = parseFloat(inp.value) || 0;
+  const n = nutCompletar(it), el = document.getElementById('comp-nut-' + i);
+  if (el) el.textContent = Math.round(n.kcal) + ' kcal · P ' + n.prot.toFixed(1) + ' g · C ' + n.carb.toFixed(1) + ' g · G ' + n.grasa.toFixed(1) + ' g';
+}
+function completarCambioGramos(i) { actualizarFilaCompletar(i); actualizarProyeccionCompletar(); }
+
+function actualizarProyeccionCompletar() {
+  const t = totalDia(diaActivo), m = metasNutricionales;
+  const p = { kcal: t.kcal, prot: t.prot, carb: t.carb, grasa: t.grasa, fibra: t.fibra };
+  completarLista.forEach((it, i) => {
+    const btn = document.getElementById('comp-btn-' + i);
+    if (btn && btn.classList.contains('ok')) return;   // ya está dentro del total del día
+    const n = nutCompletar(it); p.kcal += n.kcal; p.prot += n.prot; p.carb += n.carb; p.grasa += n.grasa; p.fibra += n.fibra;
+  });
+  const pc = (a, b) => Math.round(a / (b || 1) * 100) + '%';
+  document.getElementById('comp-proy').innerHTML = `<b>Si agregas todo quedarías en:</b>
+    <span>⚡ ${Math.round(p.kcal)} / ${m.kcal} kcal (${pc(p.kcal, m.kcal)})</span><span>💪 ${p.prot.toFixed(0)} / ${m.prot} g (${pc(p.prot, m.prot)})</span>
+    <span>🌾 ${p.carb.toFixed(0)} / ${m.carb} g (${pc(p.carb, m.carb)})</span><span>🥑 ${p.grasa.toFixed(0)} / ${m.grasa} g (${pc(p.grasa, m.grasa)})</span><span>🌿 ${p.fibra.toFixed(0)} / ${fibraMeta()} g (${pc(p.fibra, fibraMeta())})</span>`;
+}
+
+function agregarItemCompletar(i, bloque) {
+  const it = completarLista[i], b = buscarBase(it.n, it.f);
+  const g = parseFloat(document.getElementById('comp-g-' + i).value) || 0;
+  if (!b || g <= 0) return false;
+  if (!planSemanal[diaActivo][bloque]) planSemanal[diaActivo][bloque] = [];
+  planSemanal[diaActivo][bloque].push({ nombre: b.nombre, fuente: b.fuente, cant: 0, pesoKg: g, pesoU: 'g' });
+  const btn = document.getElementById('comp-btn-' + i);
+  if (btn) { btn.textContent = '✓ Agregado'; btn.classList.add('ok'); }
+  return true;
+}
+function agregarCompletar(i) {
+  if (!agregarItemCompletar(i, document.getElementById('comp-bloque').value)) return;
+  guardarPlanEnStorage(); renderDia(); renderResumen(); renderBarrasObjetivos();
+  actualizarProyeccionCompletar();
+}
+function agregarTodoCompletar() {
+  const bloque = document.getElementById('comp-bloque').value;
+  completarLista.forEach((it, i) => { const btn = document.getElementById('comp-btn-' + i); if (btn && !btn.classList.contains('ok')) agregarItemCompletar(i, bloque); });
+  guardarPlanEnStorage(); renderDia(); renderResumen(); renderBarrasObjetivos();
+  actualizarProyeccionCompletar();
+}
+
+// ───────────── 6. MENÚ DE ALIMENTOS CON PESTAÑAS EN CELULAR ─────────────
+let ddTabMovil = 'alim';
+function cambiarTabMovil(t, ev) {
+  if (ev) { ev.stopPropagation(); ev.preventDefault(); }
+  ddTabMovil = t;
+  poblarDropdown(textoBuscarDD());
+  enfocarBuscarDD();
+}
+
+document.getElementById('badge-total').textContent = BASE.length + ' alimentos';
+document.getElementById('sub-total').textContent = BASE.length;
+renderNav();
+renderResumen();
+renderDia();
+renderBarrasObjetivos();
+actualizarAvisoRespaldo();
+iniciarSync();
+</script>
+</body>
 </html>
