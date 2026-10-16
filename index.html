@@ -504,6 +504,11 @@
     body.dark .dd-tab-movil.activo { background:var(--azul); color:#fff; }
     body.dark .tabla-compras .fila-pend td { background:#422006; color:#fcd34d; }
     body.dark .btn-comidas { background:#422006; color:#fcd34d; border-color:#92400e; }
+    body.dark .calc-resultado-box h4 { color:#93c5fd; } body.dark .calc-resultado-box p { color:#e2e8f0; font-size:15px; }
+    .calc-resultado-box p { font-size:15px; }
+    .btn-fibra-sug { margin-top:10px; background:#dcfce7; color:#166534; border:1px solid #86efac; border-radius:9px; padding:8px 12px; font-size:14px; font-weight:800; cursor:pointer; width:100%; }
+    .btn-fibra-sug:hover { background:#16a34a; color:#fff; }
+    body.dark .btn-fibra-sug { background:#052e16; color:#86efac; border-color:#166534; }
   </style>
 </head>
 <body>
@@ -646,6 +651,7 @@
         <p id="res-prot">Proteínas: -- g</p>
         <p id="res-gras">Grasas: -- g</p>
         <p id="res-carb">Carbohidratos: -- g</p>
+        <p id="res-fibra">Fibra: -- g</p>
       </div>
     </div>
     <div class="modal-footer">
@@ -671,7 +677,7 @@
       <p class="sug-aviso">Información general de alimentación; no reemplaza a un nutricionista.</p>
     </div>
     <div class="modal-footer">
-      <button class="btn-excel-modal" onclick="agregarTodosSugeridos()">＋ Agregar todos</button>
+      <button class="btn-excel-modal" id="sug-btn-todos" onclick="agregarTodosSugeridos()">＋ Agregar todos</button>
       <button class="btn-cerrar-modal" onclick="cerrarSugerencias()">Cerrar</button>
     </div>
   </div>
@@ -1219,7 +1225,8 @@ function renderBarrasObjetivos() {
     { label: '⚡ Calorías', actual: t.kcal, meta: m.kcal, unidad: 'kcal' },
     { label: '💪 Proteínas', actual: t.prot, meta: m.prot, unidad: 'g' },
     { label: '🌾 Carbohidratos', actual: t.carb, meta: m.carb, unidad: 'g' },
-    { label: '🥑 Grasas', actual: t.grasa, meta: m.grasa, unidad: 'g' }
+    { label: '🥑 Grasas', actual: t.grasa, meta: m.grasa, unidad: 'g' },
+    { label: '🌿 Fibra', actual: t.fibra, meta: fibraMeta(), unidad: 'g', minimo: true }
   ];
 
   let html = '';
@@ -1227,7 +1234,8 @@ function renderBarrasObjetivos() {
     const pct = Math.round((item.actual / (item.meta || 1)) * 100);   // % REAL (antes se topaba en 100%)
     const pctBarra = Math.min(100, pct);
     let colorFill = 'var(--azul)';
-    if (pct >= 90 && pct <= 110) colorFill = 'var(--verde)';
+    if (item.minimo) colorFill = pct >= 90 ? 'var(--verde)' : (pct >= 50 ? 'var(--oro)' : 'var(--azul)');
+    else if (pct >= 90 && pct <= 110) colorFill = 'var(--verde)';
     else if (pct > 130) colorFill = '#dc2626';
     else if (pct > 110) colorFill = 'var(--oro)';
 
@@ -1239,6 +1247,7 @@ function renderBarrasObjetivos() {
       <div class="progress-track">
         <div class="progress-fill" style="width: ${pctBarra}%; background: ${colorFill};"></div>
       </div>
+      ${item.minimo ? `<button class="btn-fibra-sug" onclick="abrirSugerencias('fibratotal')">${item.meta - item.actual > 0.5 ? '💡 Me faltan ' + Math.round(item.meta - item.actual) + ' g → ver sugerencias' : '✅ Meta cumplida · ver ideas'}</button>` : ''}
     </div>`;
   });
 
@@ -1263,6 +1272,10 @@ function cerrarModalCalculadora() {
   document.getElementById('modal-calculadora').classList.remove('show');
   renderBarrasObjetivos();
 }
+
+// Meta de fibra: 14 g por cada 1000 kcal (guía de ingesta adecuada), mínimo 25 g
+function metaFibra(kcal) { return Math.max(25, Math.round((kcal || 0) / 1000 * 14)); }
+function fibraMeta() { return metasNutricionales.fibra || metaFibra(metasNutricionales.kcal); }
 
 function calcularYGuardarMetas() {
   const peso = parseFloat(document.getElementById('calc-peso').value);
@@ -1301,7 +1314,7 @@ function calcularYGuardarMetas() {
   const carb = Math.max(0, Math.round(carbBruto));
 
   metasNutricionales = {
-    kcal: Math.round(kcalObjetivo), prot, carb, grasa,
+    kcal: Math.round(kcalObjetivo), prot, carb, grasa, fibra: metaFibra(kcalObjetivo),
     tipoObjetivo: objetivo, sexo,
     peso, altura, edad, actividad,
     geb: Math.round(geb), tdee: Math.round(tdee)
@@ -1328,6 +1341,7 @@ function actualizarTextoResultadosCalc() {
   document.getElementById('res-prot').textContent = `Proteínas: ${m.prot} g (${(m.prot / peso).toFixed(2)} g/kg)`;
   document.getElementById('res-gras').textContent = `Grasas: ${m.grasa} g (${(m.grasa / peso).toFixed(2)} g/kg)`;
   document.getElementById('res-carb').textContent = `Carbohidratos: ${m.carb} g (${(m.carb / peso).toFixed(2)} g/kg)`;
+  document.getElementById('res-fibra').textContent = `Fibra: ${fibraMeta()} g (14 g por cada 1000 kcal; ayuda a la saciedad, la digestión y el azúcar en sangre)`;
 }
 
 function limpiarDiaActual() {
@@ -1356,7 +1370,7 @@ function renderDia() {
       <button class="btn-limpiar" onclick="limpiarDiaActual()">🗑️ Limpiar Día</button>
       <button class="btn-comprimir-todo" onclick="toggleTodasSeccionesDia()">${todasColapsadas ? '▶️ Expandir todo' : '🗂️ Comprimir todo'}</button>
       <button class="btn-duplicar-dia" onclick="duplicarDiaActual()">📋 Duplicar día</button>
-      <span class="total-dia-badge">⚡ ${totDia.kcal.toFixed(0)} kcal · 💪 ${totDia.prot.toFixed(1)}g prot · 🌾 ${totDia.carb.toFixed(1)}g carb · 🧈 ${totDia.grasa.toFixed(1)}g grasa</span>
+      <span class="total-dia-badge">⚡ ${totDia.kcal.toFixed(0)} kcal · 💪 ${totDia.prot.toFixed(1)}g prot · 🌾 ${totDia.carb.toFixed(1)}g carb · 🧈 ${totDia.grasa.toFixed(1)}g grasa · 🌿 ${totDia.fibra.toFixed(1)}g fibra</span>
     </div>
     <table>
       <thead><tr>
@@ -1691,7 +1705,7 @@ async function exportarComprasExcel() {
   ws.mergeCells(2, 1, 2, COLS);
   const st = ws.getCell(2, 1);
   const m = metasNutricionales;
-  st.value = `Generado el ${new Date().toLocaleDateString('es-PE')}  ·  Meta diaria: ${m.kcal} kcal · ${m.prot} g proteína · ${m.carb} g carbohidratos · ${m.grasa} g grasa`;
+  st.value = `Generado el ${new Date().toLocaleDateString('es-PE')}  ·  Meta diaria: ${m.kcal} kcal · ${m.prot} g proteína · ${m.carb} g carbohidratos · ${m.grasa} g grasa · ${fibraMeta()} g fibra`;
   st.font = { name: 'Calibri', size: 10.5, italic: true, color: { argb: 'FF475569' } };
   st.alignment = { horizontal: 'center', vertical: 'middle' };
   ws.getRow(2).height = 20;
@@ -1905,6 +1919,29 @@ const SUGERENCIAS = {
   }
 };
 
+SUGERENCIAS.fibratotal = {
+  boton: '🌿 Fibra para llegar a tu meta',
+  titulo: '🌿 Alimentos ricos en fibra para llegar a tu meta del día',
+  desc: 'Ordenados de más a menos fibra por porción. Combina varios: una menestra, una fruta con cáscara y una semilla suelen bastar. Sube la fibra de a poco y toma agua.',
+  items: [
+    {n:'Lentejas, no agregadas grasas en la cocción', f:'Internacional', g:150, why:'Menestra: mucha fibra y proteína'},
+    {n:'Alcachofa', f:'Tablas Peruanas', g:100, why:'Una de las verduras con más fibra'},
+    {n:'Garbanzo, cocido', f:'Tablas Peruanas', g:100, why:'Menestra con fibra soluble e insoluble'},
+    {n:'Cañihua, hojuela de', f:'Tablas Peruanas', g:40, why:'Grano andino con mucha fibra'},
+    {n:'Frambuesas, crudas', f:'Internacional', g:100, why:'La fruta con más fibra por porción'},
+    {n:'Arveja, fresca sin vaina', f:'Tablas Peruanas', g:100, why:'Fibra y proteína vegetal'},
+    {n:'Pera cruda', f:'Internacional', g:150, why:'Fibra (pectina); cómela con cáscara'},
+    {n:'Aguacate crudo', f:'Internacional', g:70, why:'Fibra + grasa buena'},
+    {n:'Habas frescas, sin cáscara y sin vaina', f:'Tablas Peruanas', g:100, why:'Menestra fresca con fibra'},
+    {n:'Semillas de chía', f:'Internacional', g:15, why:'Mucha fibra en poco volumen'},
+    {n:'Linaza', f:'Tablas Peruanas', g:15, why:'Fibra + omega-3 (muélela)'},
+    {n:'Avena cruda', f:'Internacional', g:40, why:'Beta-glucano'},
+    {n:'Pan integral', f:'Internacional', g:60, why:'Cambia el pan blanco por integral'},
+    {n:'Higo seco', f:'Tablas Peruanas', g:30, why:'Fruta seca con mucha fibra'},
+    {n:'Almendras sin sal', f:'Internacional', g:25, why:'Fibra + grasa buena'},
+    {n:'Brócoli crudo', f:'Internacional', g:100, why:'Verdura fibrosa, casi sin calorías'}
+  ]
+};
 let sugTipoActual = null;
 let sugToastTimeout = null;
 
@@ -1922,6 +1959,7 @@ function abrirSugerencias(tipo) {
     `<option value="dia">Solo ${diaActivo}</option><option value="semana">Toda la semana (7 días)</option>`;
 
   renderListaSugerencias();
+  document.getElementById('sug-btn-todos').style.display = tipo === 'fibratotal' ? 'none' : '';
   document.getElementById('modal-sugerencias').classList.add('show');
 }
 
@@ -1955,7 +1993,7 @@ function actualizarNutSugerido(i) {
   if (!b || !el) return;
   const g = parseFloat(document.getElementById('sug-g-' + i).value) || 0;
   const f = g / 100;
-  el.textContent = `${Math.round((b.kcal||0)*f)} kcal · P ${((b.proteinas||0)*f).toFixed(1)} g · C ${((b.carbohidratos||0)*f).toFixed(1)} g · G ${((b.grasas||0)*f).toFixed(1)} g`;
+  el.textContent = `${Math.round((b.kcal||0)*f)} kcal · P ${((b.proteinas||0)*f).toFixed(1)} g · C ${((b.carbohidratos||0)*f).toFixed(1)} g · G ${((b.grasas||0)*f).toFixed(1)} g · 🌿 ${((b.fibra||0)*f).toFixed(1)} g fibra`;
 }
 
 function agregarItemSugerido(i, dias, bloque) {
@@ -2399,17 +2437,18 @@ async function exportarPDF() {
     `• Calorias Objetivo: ${metasNutricionales.kcal} kcal`,
     `• Proteinas Objetivo: ${metasNutricionales.prot} g`,
     `• Carbohidratos Objetivo: ${metasNutricionales.carb} g`,
-    `• Grasas Objetivo: ${metasNutricionales.grasa} g`
+    `• Grasas Objetivo: ${metasNutricionales.grasa} g`,
+    `• Fibra Objetivo: ${fibraMeta()} g`
   ];
 
   doc.setFillColor(248, 250, 252);
   doc.setDrawColor(203, 213, 225);
-  doc.rect(M, y, W - M * 2, 28, 'FD');
+  doc.rect(M, y, W - M * 2, 34, 'FD');
   
   doc.setFontSize(9); doc.setTextColor(30, 41, 59); doc.setFont('helvetica', 'normal');
   let textoY = y + 6;
   infoMetas.forEach(linea => { doc.text(linea, M + 6, textoY); textoY += 5; });
-  y += 34;
+  y += 40;
 
   const cols = [54,16,16,16,16,16,16,16,16,16];
   const heads = ['ALIMENTO','CANT','PESO','TOTAL','KCAL','PROT','CARB','GRASA','FIBRA'];
@@ -3190,9 +3229,9 @@ let completarLista = [];
 
 function propuestaCompletar() {
   const t = totalDia(diaActivo), m = metasNutricionales;
-  const meta = { kcal: m.kcal || 1, prot: m.prot || 1, carb: m.carb || 1, grasa: m.grasa || 1 };
-  let falta = { kcal: m.kcal - t.kcal, prot: m.prot - t.prot, carb: m.carb - t.carb, grasa: m.grasa - t.grasa };
-  const peso = { kcal: 1, prot: 1.5, carb: 1, grasa: 1 }, exceso = { kcal: 4, prot: 1.5, carb: 3, grasa: 4 };
+  const meta = { kcal: m.kcal || 1, prot: m.prot || 1, carb: m.carb || 1, grasa: m.grasa || 1, fibra: fibraMeta() };
+  let falta = { kcal: m.kcal - t.kcal, prot: m.prot - t.prot, carb: m.carb - t.carb, grasa: m.grasa - t.grasa, fibra: fibraMeta() - t.fibra };
+  const peso = { kcal: 1, prot: 1.5, carb: 1, grasa: 1, fibra: 0.6 }, exceso = { kcal: 4, prot: 1.5, carb: 3, grasa: 4, fibra: 0 };
   const score = f => Object.keys(meta).reduce((s, k) => {
     const r = f[k] / meta[k];
     return s + (r > 0 ? peso[k] * r * r : exceso[k] * r * r);
@@ -3207,7 +3246,7 @@ function propuestaCompletar() {
       [0.5, 1, 1.5, 2].forEach(mult => {
         const g = Math.max(5, Math.round(c.g * mult / 5) * 5);
         const k = g / 100;
-        const r = { kcal: falta.kcal - (b.kcal || 0) * k, prot: falta.prot - (b.proteinas || 0) * k, carb: falta.carb - (b.carbohidratos || 0) * k, grasa: falta.grasa - (b.grasas || 0) * k };
+        const r = { kcal: falta.kcal - (b.kcal || 0) * k, prot: falta.prot - (b.proteinas || 0) * k, carb: falta.carb - (b.carbohidratos || 0) * k, grasa: falta.grasa - (b.grasas || 0) * k, fibra: falta.fibra - (b.fibra || 0) * k };
         const s = score(r);
         if (!mejor || s < mejor.s) mejor = { c, b, g, r, s };
       });
@@ -3228,15 +3267,15 @@ function abrirCompletar() {
 
 function nutCompletar(it) {
   const b = buscarBase(it.n, it.f), k = (parseFloat(it.g) || 0) / 100;
-  return { kcal: (b.kcal || 0) * k, prot: (b.proteinas || 0) * k, carb: (b.carbohidratos || 0) * k, grasa: (b.grasas || 0) * k };
+  return { kcal: (b.kcal || 0) * k, prot: (b.proteinas || 0) * k, carb: (b.carbohidratos || 0) * k, grasa: (b.grasas || 0) * k, fibra: (b.fibra || 0) * k };
 }
 
 function renderCompletar() {
   const t = totalDia(diaActivo), m = metasNutricionales;
-  const f = { kcal: m.kcal - t.kcal, prot: m.prot - t.prot, carb: m.carb - t.carb, grasa: m.grasa - t.grasa };
+  const f = { kcal: m.kcal - t.kcal, prot: m.prot - t.prot, carb: m.carb - t.carb, grasa: m.grasa - t.grasa, fibra: fibraMeta() - t.fibra };
   const sg = v => (v >= 0 ? Math.round(v) : '+' + Math.round(-v));
   let h = `<div class="comp-faltan"><b>Hoy (${esc(diaActivo)}) te faltan:</b>
-    <span>⚡ ${sg(f.kcal)} kcal</span><span>💪 ${sg(f.prot)} g prot</span><span>🌾 ${sg(f.carb)} g carb</span><span>🥑 ${sg(f.grasa)} g grasa</span>
+    <span>⚡ ${sg(f.kcal)} kcal</span><span>💪 ${sg(f.prot)} g prot</span><span>🌾 ${sg(f.carb)} g carb</span><span>🥑 ${sg(f.grasa)} g grasa</span><span>🌿 ${sg(f.fibra)} g fibra</span>
     <small>(un “+” significa que ya te pasaste de esa meta)</small></div>`;
   if (f.kcal <= 60) {
     h += `<div class="vacio-txt" style="padding:16px;text-align:center">🎉 Ya llegaste a tu meta de calorías de ${esc(diaActivo)}. No hace falta agregar más.</div>`;
@@ -3270,16 +3309,16 @@ function completarCambioGramos(i) { actualizarFilaCompletar(i); actualizarProyec
 
 function actualizarProyeccionCompletar() {
   const t = totalDia(diaActivo), m = metasNutricionales;
-  const p = { kcal: t.kcal, prot: t.prot, carb: t.carb, grasa: t.grasa };
+  const p = { kcal: t.kcal, prot: t.prot, carb: t.carb, grasa: t.grasa, fibra: t.fibra };
   completarLista.forEach((it, i) => {
     const btn = document.getElementById('comp-btn-' + i);
     if (btn && btn.classList.contains('ok')) return;   // ya está dentro del total del día
-    const n = nutCompletar(it); p.kcal += n.kcal; p.prot += n.prot; p.carb += n.carb; p.grasa += n.grasa;
+    const n = nutCompletar(it); p.kcal += n.kcal; p.prot += n.prot; p.carb += n.carb; p.grasa += n.grasa; p.fibra += n.fibra;
   });
   const pc = (a, b) => Math.round(a / (b || 1) * 100) + '%';
   document.getElementById('comp-proy').innerHTML = `<b>Si agregas todo quedarías en:</b>
     <span>⚡ ${Math.round(p.kcal)} / ${m.kcal} kcal (${pc(p.kcal, m.kcal)})</span><span>💪 ${p.prot.toFixed(0)} / ${m.prot} g (${pc(p.prot, m.prot)})</span>
-    <span>🌾 ${p.carb.toFixed(0)} / ${m.carb} g (${pc(p.carb, m.carb)})</span><span>🥑 ${p.grasa.toFixed(0)} / ${m.grasa} g (${pc(p.grasa, m.grasa)})</span>`;
+    <span>🌾 ${p.carb.toFixed(0)} / ${m.carb} g (${pc(p.carb, m.carb)})</span><span>🥑 ${p.grasa.toFixed(0)} / ${m.grasa} g (${pc(p.grasa, m.grasa)})</span><span>🌿 ${p.fibra.toFixed(0)} / ${fibraMeta()} g (${pc(p.fibra, fibraMeta())})</span>`;
 }
 
 function agregarItemCompletar(i, bloque) {
