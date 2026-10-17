@@ -1,6 +1,6 @@
 // Service worker: uso sin internet. Sube el número de VERSION si algún día algo no se actualiza.
-const VERSION = 'mis-comidas-v1';
-const ARCHIVOS = ['./', './index.html', './alimentos.js', './manifest.json', './icon-192.png', './icon-512.png'];
+const VERSION = 'mis-comidas-v2';
+const ARCHIVOS = ['./', './index.html', './alimentos.js', './manifest.json', './icon-192.png', './icon-512.png', './logo-app.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => Promise.all(ARCHIVOS.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
