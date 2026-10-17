@@ -980,6 +980,33 @@ function toggleFavorito(nombre, event) {
   poblarDropdown(textoBuscarDD());
 }
 
+// Ordena las secciones que empiezan con número (1, 1.2, 1.4, 2, 2.5…). Las que no tienen número se quedan donde están.
+function claveNumeroSeccion(nombre) {
+  const m = String(nombre).match(/^\s*(\d+(?:[.,]\d+)*)/);
+  return m ? m[1].replace(/,/g, '.').split('.').map(Number) : null;
+}
+function compararNumeroSeccion(a, b) {
+  for (let i = 0; i < Math.max(a.length, b.length); i++) {
+    const x = a[i] === undefined ? -1 : a[i], y = b[i] === undefined ? -1 : b[i];
+    if (x !== y) return x - y;
+  }
+  return 0;
+}
+function ordenarSeccionesPorNumero() {
+  DIAS.forEach(d => {
+    const bloques = planSemanal[d];
+    if (!bloques) return;
+    const keys = Object.keys(bloques);
+    const numeradas = keys.filter(k => claveNumeroSeccion(k)).sort((a, b) => compararNumeroSeccion(claveNumeroSeccion(a), claveNumeroSeccion(b)));
+    let n = 0;
+    const orden = keys.map(k => claveNumeroSeccion(k) ? numeradas[n++] : k);
+    if (orden.every((k, i) => k === keys[i])) return;
+    const nuevo = {};
+    orden.forEach(k => { nuevo[k] = bloques[k]; });
+    planSemanal[d] = nuevo;
+  });
+}
+
 function preguntarNuevaSeccion() {
   const nombreSeq = prompt("Ingresa el nombre de la nueva sección (ej. MERIENDA, COMIDA 4):");
   if (!nombreSeq || !nombreSeq.trim()) return;
@@ -989,6 +1016,7 @@ function preguntarNuevaSeccion() {
     if (!planSemanal[d]) planSemanal[d] = {};
     if (!planSemanal[d][nombreLimpio]) planSemanal[d][nombreLimpio] = [];
   });
+  ordenarSeccionesPorNumero();
 
   guardarPlanEnStorage();
   renderDia();
@@ -1013,6 +1041,7 @@ function renombrarSeccion(viejoNombre) {
       planSemanal[d] = nuevosBloques;
     }
   });
+  ordenarSeccionesPorNumero();
 
   guardarPlanEnStorage();
   renderDia();
@@ -3384,6 +3413,7 @@ renderDia();
 renderBarrasObjetivos();
 actualizarAvisoRespaldo();
 iniciarSync();
+ordenarSeccionesPorNumero(); guardarPlanEnStorage(); renderDia(); renderResumen();
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});</script>
 </body>
 </html>
