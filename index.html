@@ -488,13 +488,56 @@
       .barra-izq { min-width:0; width:100%; }
       .btn-barra { padding:6px 11px; font-size:12px; }
       .dias-nav { top:0; padding:8px 12px; }
-      .tabla-wrap { overflow-x:auto; }
-      .tabla-wrap table { min-width:860px; }
       .tabla-compras { min-width:760px; table-layout:auto; }
       .tabla-compras th, .tabla-compras td { white-space:nowrap; }
       .tabla-compras .td-alim { white-space:normal; min-width:150px; }
       .bd-tabla { min-width:760px; }
-      .tabla-titulo { position:sticky; left:0; }
+
+      /* ── Tabla del día en celular: tarjetas (sin scroll lateral) ── */
+      .tabla-wrap { overflow:visible; }
+      .tabla-titulo { padding:14px 14px; font-size:19px; gap:8px; }
+      .tabla-titulo .total-dia-badge { margin-left:0; width:100%; font-size:13px; padding:8px 12px; line-height:1.5; }
+      .tabla-titulo button { font-size:12px !important; padding:7px 10px !important; }
+      .tabla-wrap table, .tabla-wrap tbody { display:block; width:100%; min-width:0; table-layout:auto; }
+      .tabla-wrap thead { display:none; }
+      .tabla-wrap tr { display:block; }
+      .tabla-wrap td { display:block; border:none; padding:0; background:transparent !important; }
+      .tabla-wrap tr:hover td { background:transparent !important; }
+      .tabla-wrap tr.bloque-hdr { margin-top:10px; }
+      .tabla-wrap tr.bloque-hdr td { padding:12px 14px !important; font-size:17px; border-left:6px solid var(--azul); }
+      .tabla-wrap tr.bloque-hdr .bloque-acciones { float:none; margin-top:10px; gap:6px; }
+      .tabla-wrap tr.bloque-hdr .bloque-acciones button { flex:1 1 auto; min-height:40px; font-size:12.5px; padding:8px 10px; }
+      .tabla-wrap tr.fila-item { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px 6px; margin:8px 10px; padding:10px; background:#fff; border:1px solid #cbd5e1; border-radius:14px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+      .tabla-wrap tr.fila-item td::before { content:attr(data-l); display:block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.4px; color:#64748b; margin-bottom:3px; }
+      .tabla-wrap tr.fila-item td.td-alim-main { grid-column:1 / -1; }
+      .tabla-wrap tr.fila-item td.td-alim-main::before { display:none; }
+      .tabla-wrap .sel-alimento textarea { min-width:0; width:100%; height:56px; font-size:15px; }
+      .tabla-wrap tr.fila-item td[data-l="Cantidad"] { grid-column:span 1; min-width:0; }
+      .tabla-wrap tr.fila-item td.td-peso { grid-column:span 2; min-width:0; white-space:nowrap; }
+      .tabla-wrap tr.fila-item td[data-l="Total"] { grid-column:span 1; min-width:0; text-align:center; }
+      .tabla-wrap tr.fila-item td.td-del { grid-column:5; grid-row:2; align-self:end; }
+      .tabla-wrap tr.fila-item td.td-del::before { display:none; }
+      .tabla-wrap tr.fila-item td input[type=number] { width:100% !important; font-size:16px; padding:9px 6px; box-sizing:border-box; }
+      .tabla-wrap tr.fila-item .td-peso input { width:calc(100% - 56px) !important; }
+      .tabla-wrap tr.fila-item .td-peso .sel-unidad { width:52px !important; font-size:15px; padding:9px 2px; }
+      .tabla-wrap tr.fila-item .peso-badge { font-size:14px; padding:9px 4px; display:block; }
+      .tabla-wrap tr.fila-item .btn-del { width:100%; height:42px; font-size:15px; padding:0; }
+      .tabla-wrap tr.fila-item td.num { grid-column:span 1; text-align:center; background:#f1f5f9 !important; border-radius:9px; padding:6px 2px; font-size:15px; font-weight:800; }
+      .tabla-wrap tr.fila-item td.num::before { font-size:9.5px; }
+      .tabla-wrap tr.subtotal-row, .tabla-wrap tr.total-row { display:flex; flex-wrap:wrap; gap:6px; margin:8px 10px; padding:10px; border-radius:12px; }
+      .tabla-wrap tr.subtotal-row { background:#f0fdf4; border:1px solid #bbf7d0; }
+      .tabla-wrap tr.total-row { background:#fef9c3; border:2px solid #fde047; }
+      .tabla-wrap tr.subtotal-row td, .tabla-wrap tr.total-row td { text-align:center !important; padding:0 !important; }
+      .tabla-wrap tr.subtotal-row td[colspan], .tabla-wrap tr.total-row td[colspan] { flex:0 0 100%; text-align:left !important; font-size:14px; padding:0 0 4px !important; }
+      .tabla-wrap tr.subtotal-row td.num, .tabla-wrap tr.total-row td.num { flex:1 1 calc(20% - 6px); font-size:15px; font-weight:800; }
+      .tabla-wrap tr.subtotal-row td.num::before, .tabla-wrap tr.total-row td.num::before { content:attr(data-l); display:block; font-size:9.5px; font-weight:800; text-transform:uppercase; opacity:.75; }
+      .tabla-wrap tr.subtotal-row td:last-child:not(.num), .tabla-wrap tr.total-row td:last-child:not(.num) { display:none; }
+      .tabla-footer-acciones { padding:10px; } .tabla-footer-acciones button { width:100%; min-height:46px; font-size:15px; }
+      body.dark .tabla-wrap tr.fila-item { background:#0f172a; border-color:#334155; }
+      body.dark .tabla-wrap tr.fila-item td::before { color:#94a3b8; }
+      body.dark .tabla-wrap tr.fila-item td.num { background:#1e293b !important; color:#f1f5f9; }
+      body.dark .tabla-wrap tr.subtotal-row { background:#052e16; border-color:#166534; }
+      body.dark .tabla-wrap tr.total-row { background:#451a03; border-color:#92400e; }
       .panel-objetivos { padding:16px 14px; }
       .modal-overlay { padding:8px; }
       .modal-header { font-size:16px; padding:14px 16px; } .modal-body { padding:14px; }
@@ -1458,43 +1501,43 @@ function renderDia() {
       const displayVal = item.nombre ? `${item.nombre} ${tag}` : '';
       const placeholder = item.nombre ? '' : 'Seleccionar alimento...';
       
-      html += `<tr>
-        <td>
+      html += `<tr class="fila-item">
+        <td class="td-alim-main">
           <div class="sel-alimento">
             <textarea rows="2" class="input-alimento" placeholder="${placeholder}" readonly
               onclick="abrirDropdown(this,'${dia}','${bloque}',${idx})"
               data-dia="${dia}" data-bloque="${bloque}" data-idx="${idx}">${displayVal}</textarea>
           </div>
         </td>
-        <td><input type="number" value="${item.cant || ''}" step="1" min="0" placeholder="0"
+        <td data-l="Cantidad"><input type="number" value="${item.cant || ''}" step="1" min="0" placeholder="0"
           onchange="cambiarCampo('${dia}','${bloque}',${idx},'cant',this.value)"></td>
-        <td class="td-peso"><input type="number" value="${item.pesoKg || ''}" step="any" min="0" placeholder="0"
+        <td class="td-peso" data-l="Peso"><input type="number" value="${item.pesoKg || ''}" step="any" min="0" placeholder="0"
           onchange="cambiarCampo('${dia}','${bloque}',${idx},'pesoKg',this.value)">
           <select class="sel-unidad" onchange="cambiarUnidadPeso('${dia}','${bloque}',${idx},this.value)">
             <option value="g" ${unidadPeso(item)==='g'?'selected':''}>g</option>
             <option value="kg" ${unidadPeso(item)==='kg'?'selected':''}>kg</option>
           </select></td>
-        <td><span class="peso-badge">${grTotales}g</span></td>
-        <td class="num">${n.kcal}${item.nombre && n.estado !== 'ok' ? ` <span title="${n.estado==='aprox'?'Coincidencia aproximada: vuelve a elegir el alimento de la lista':'No se encontró en la base: vuelve a elegirlo de la lista'}" style="cursor:help">⚠️</span>` : ''}</td>
-        <td class="num">${n.prot}</td>
-        <td class="num">${n.carb}</td>
-        <td class="num">${n.grasa}</td>
-        <td class="num">${n.fibra}</td>
-        <td><button class="btn-del" onclick="eliminarFila('${dia}','${bloque}',${idx})">✕</button></td>
+        <td data-l="Total"><span class="peso-badge">${grTotales}g</span></td>
+        <td class="num" data-l="Kcal">${n.kcal}${item.nombre && n.estado !== 'ok' ? ` <span title="${n.estado==='aprox'?'Coincidencia aproximada: vuelve a elegir el alimento de la lista':'No se encontró en la base: vuelve a elegirlo de la lista'}" style="cursor:help">⚠️</span>` : ''}</td>
+        <td class="num" data-l="Prot">${n.prot}</td>
+        <td class="num" data-l="Carb">${n.carb}</td>
+        <td class="num" data-l="Grasa">${n.grasa}</td>
+        <td class="num" data-l="Fibra">${n.fibra}</td>
+        <td class="td-del"><button class="btn-del" onclick="eliminarFila('${dia}','${bloque}',${idx})">✕</button></td>
       </tr>`;
     });
 
     html += `<tr class="subtotal-row"><td colspan="4" style="text-align:right;padding-right:20px;">Subtotal ${bloque}:</td>
-      <td class="num">${bt.kcal.toFixed(1)}</td><td class="num">${bt.prot.toFixed(1)}</td>
-      <td class="num">${bt.carb.toFixed(1)}</td><td class="num">${bt.grasa.toFixed(1)}</td>
-      <td class="num">${bt.fibra.toFixed(1)}</td><td></td></tr>`;
+      <td class="num" data-l="Kcal">${bt.kcal.toFixed(1)}</td><td class="num" data-l="Prot">${bt.prot.toFixed(1)}</td>
+      <td class="num" data-l="Carb">${bt.carb.toFixed(1)}</td><td class="num" data-l="Grasa">${bt.grasa.toFixed(1)}</td>
+      <td class="num" data-l="Fibra">${bt.fibra.toFixed(1)}</td><td></td></tr>`;
   });
 
   const t = totDia;
   html += `<tr class="total-row"><td colspan="4" style="text-align:right;padding-right:20px;">TOTAL ${dia.toUpperCase()}:</td>
-    <td class="num">${t.kcal.toFixed(1)}</td><td class="num">${t.prot.toFixed(1)}</td>
-    <td class="num">${t.carb.toFixed(1)}</td><td class="num">${t.grasa.toFixed(1)}</td>
-    <td class="num">${t.fibra.toFixed(1)}</td><td></td></tr>`;
+    <td class="num" data-l="Kcal">${t.kcal.toFixed(1)}</td><td class="num" data-l="Prot">${t.prot.toFixed(1)}</td>
+    <td class="num" data-l="Carb">${t.carb.toFixed(1)}</td><td class="num" data-l="Grasa">${t.grasa.toFixed(1)}</td>
+    <td class="num" data-l="Fibra">${t.fibra.toFixed(1)}</td><td></td></tr>`;
 
   html += `</tbody></table>
     <div class="tabla-footer-acciones">
